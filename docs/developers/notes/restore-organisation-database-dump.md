@@ -43,8 +43,8 @@ Ensure your ETL service is running. Please enable and disable analytics database
 
 ## Caveats
 
-- catchment_address is a many-to-many table that doesn't have row-level security mapping. This table likely contains data that are not relevant for you. The non-relevant data can be deleted. After following two foreign constraints can be re-applied.
-  - ```sql
+* catchment\_address is a many-to-many table that doesn't have row-level security mapping. This table likely contains data that are not relevant for you. The non-relevant data can be deleted. After following two foreign constraints can be re-applied.
+  * ```sql
     -- pseudo code
     catchment_id references catchment.id
     addresslevel_id references address_level.id
