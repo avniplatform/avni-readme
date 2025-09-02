@@ -12,4 +12,4 @@ next:
 ---
 Every java project in Avni has a .java-version. Developers are encouraged to use `jenv` to automatically configure the right jdk when entering a directory. 
 
-<https://www.jenv.be/>
+[https://www.jenv.be/](https://www.jenv.be/)
