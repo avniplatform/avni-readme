@@ -14,7 +14,7 @@ next:
 
 ### Build
 
-Code is here: <https://github.com/avniproject/integration-service>
+Code is here: [https://github.com/avniproject/integration-service](https://github.com/avniproject/integration-service)
 
 Currently integration service is configured in CircleCI, so that build has to be done on the local machine. Run `make build-server` and use the file `integrator/build/libs/integrator-0.0.2-SNAPSHOT.jar` file.
 
@@ -72,16 +72,16 @@ BAHMNI_SCHEDULE_CRON_FULL_ERROR
 
 Each system has their own migration series:
 
-| SystemName | Migration Series                 |
-| ---------- | -------------------------------- |
-| Generic    | V2\_1\_\_XXX\_\<some_string>.sql |
-| Bahmni     | V2\_2\_\_XXX\_\<some_string>.sql |
-| Goonj      | V2\_3\_\_XXX\_\<some_string>.sql |
-| Amrit      | V2\_4\_\_XXX\_\<some_string>.sql |
-| Power      | V2\_5\_\_XXX\_\<some_string>.sql |
+| SystemName | Migration Series                  |
+| ---------- | --------------------------------- |
+| Generic    | V2\_1\_\_XXX\_\<some\_string>.sql |
+| Bahmni     | V2\_2\_\_XXX\_\<some\_string>.sql |
+| Goonj      | V2\_3\_\_XXX\_\<some\_string>.sql |
+| Amrit      | V2\_4\_\_XXX\_\<some\_string>.sql |
+| Power      | V2\_5\_\_XXX\_\<some\_string>.sql |
 
-And most importantly, all the generic db schema changes, have to be done in the series  
-**V2\_1\_\_XXX\_\<some_string>.sql**
+And most importantly, all the generic db schema changes, have to be done in the series\
+**V2\_1\_\_XXX\_\<some\_string>.sql**
 
 If we break this behaviour, we'll mess up the Integrations update going forward
 
@@ -110,7 +110,7 @@ insert into users (email, password, working_integration_system_id)
 
 ### Build
 
-Code is here - <https://github.com/avniproject/integration-admin-app>
+Code is here - [https://github.com/avniproject/integration-admin-app](https://github.com/avniproject/integration-admin-app)
 
 `make deps build-app` (make sure you have the node version mentioned in the .nvmrc)
 
