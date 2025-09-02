@@ -69,7 +69,7 @@ Navigate to "avni-infra" repository, "configure" directory and perform following
 
 1. Search and replace all instances of "security.lfe.avniproject.org" in "avni-infra" repository with your Company/project's domain name. Ex: "dev.mycompany.org"
 
-2. Create a file "configure/group\_vars/onpremise-secret-vars.yml" in "avni-infra" repository using "configure/group\_vars/onpremise-secret-vars.template.yml" as the template and set appropriate values for all values enclosed in "\{\{<placeholder>}}"
+2. Create a file "configure/group\_vars/onpremise-secret-vars.yml" in "avni-infra" repository using "configure/group\_vars/onpremise-secret-vars.template.yml" as the template and set appropriate values for all values enclosed in "\{\{\<placeholder>}}"
 
 3. Invoke the Encrypt command to save the newly created file, using your own encrytion\_key file
 
