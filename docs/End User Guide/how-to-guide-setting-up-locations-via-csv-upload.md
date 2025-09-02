@@ -14,25 +14,25 @@ next:
 
 Below is a list of definitions that are essential for understanding this document.
 
-- **Locations:** These can be names of Villages, Schools or Dams, or other such  places which correspond to Geographical locations in the real world.  
-- **Location Types:** As its name suggests, Location Types are used to classify Locations into different categories. Ex: Karnataka and Maharashtra are 2 locations that could be classified into a single Location Type called “State”. Additional caveats related to the Location Type are as follows:  
-  - You may associate a “Parent” Location Type for it, which would be instrumental in coming up with Location Type Hierarchy  
-  - Each location type also has an additional field called “Level” associated with it. This is a Floating point number used to indicate relative position of a Location type in-comparison to others.   
-  - There can be more than one location type with the same “Level” value in an organisation.  
-  - The value for “Level” should less than the “Parent” Location Type’s “Level” field value  
-- **Location Type Hierarchy:** Location types using the “Parent” field can construct a hierarchy of sorts. Ex:  State(3) \-\> District(2) \-\> City(1)  
+* **Locations:** These can be names of Villages, Schools or Dams, or other such  places which correspond to Geographical locations in the real world.  
+* **Location Types:** As its name suggests, Location Types are used to classify Locations into different categories. Ex: Karnataka and Maharashtra are 2 locations that could be classified into a single Location Type called “State”. Additional caveats related to the Location Type are as follows:  
+  * You may associate a “Parent” Location Type for it, which would be instrumental in coming up with Location Type Hierarchy  
+  * Each location type also has an additional field called “Level” associated with it. This is a Floating point number used to indicate relative position of a Location type in-comparison to others.   
+  * There can be more than one location type with the same “Level” value in an organisation.  
+  * The value for “Level” should less than the “Parent” Location Type’s “Level” field value  
+* **Location Type Hierarchy:** Location types using the “Parent” field can construct a hierarchy of sorts. Ex:  State(3) \-\> District(2) \-\> City(1)\
   A single organisation can have **any** number of Location Type Hierarchies within it. Note that the example is a single hierarchy.  
-- **Lineage:** Location Type hierarchy, are in-turn used to come up with Location lineage. Ex: Given a “Location Type Hierarchy” of State(3) \-\> District(2) \-\> City(1) being present, we could correspondingly create Location “Lineage” of the kind “Karnataka, Hassan, Girinagara”, where-in “Karnataka” corresponds to “State” Location-type, “Hassan” to “District” and “Girinagara” to “City”.
+* **Lineage:** Location Type hierarchy, are in-turn used to come up with Location lineage. Ex: Given a “Location Type Hierarchy” of State(3) \-\> District(2) \-\> City(1) being present, we could correspondingly create Location “Lineage” of the kind “Karnataka, Hassan, Girinagara”, where-in “Karnataka” corresponds to “State” Location-type, “Hassan” to “District” and “Girinagara” to “City”.
 
 ## Overview
 
 In Avni, Locations refer to geographical entities which could be a State, Village, Schools, Hospital, etc.. where an organisation provides services. It plays an important role in identifying the “Where” aspect of the data being captured / service that was provided. Locations are also used to group together Avni entities (Subjects, Encounters, GroupSubjects) based on their Geographical proximity, using the Catchments. This simplifies the assignment of Avni entities in the Geographical area of influence of a Field-Worker to him/her as a single composite entity rather than individually allocating each entity to the User.
 
-Avni **“Upload \- Locations”** functionality, allows Avni Admin Users to perform following actions in **bulk**
+Avni **“Upload\- Locations”** functionality, allows Avni Admin Users to perform following actions in **bulk**
 
-- Create new locations   
-- Update name, GPS coordinates and other properties for existing locations  
-- Modify the parent location for an existing location and there-after reflect the change in lineage for it and all its children
+* Create new locations   
+* Update name, GPS coordinates and other properties for existing locations  
+* Modify the parent location for an existing location and there-after reflect the change in lineage for it and all its children
 
 This is achieved by means of uploading a CSV(Comma-separated Values) file of a specific format. Please read through the rest of the document to learn more about initializing Location Types and setting up large amounts of Locations for each of those types for specific Location Type Hierarchy.
 
@@ -40,15 +40,15 @@ This is achieved by means of uploading a CSV(Comma-separated Values) file of a s
 
 ### Navigation to the Bulk Uploads screen
 
-- Login to Avni Web Console 
+* Login to Avni Web Console 
 
 ![](https://files.readme.io/35932d9141d5744753f1730b6b5a4aa04a4b755a9fd18c25586ca98b58639177-image.png)
 
-- Go to **Admin** app
+* Go to **Admin** app
 
 ![](https://files.readme.io/b51402bda3d8cf3a6aefd515b8e19cecc2c0200c5c557ae973cb38d3fa4e172e-image.png)
 
-- Click on the **“Location Types”** section
+* Click on the **“Location Types”** section
 
 ![](https://files.readme.io/b846e3e44e146727fc20ad58b6c881cb8d2a96ac3dcdac90ae90f84b1fc81d2f-image.png)
 
@@ -90,14 +90,14 @@ Do a quick review of the Location Types Hierarchy, to ensure that its created as
 
 For your organization, if there is a need to specify additional details as part of each Location, then Avni allows you to configure a “Location” type Form, which can be configured to store those additional details as Observations for each Location. This is an optional feature to be done only if such need arises.
 
-- Navigate to the App Designer app
+* Navigate to the App Designer app
 
   ![](https://files.readme.io/45b6cf059a148183cb5597b2e09a93dc6d705c9af4eb09f99df0c9cdbd246050-image.png)
-- Click on Forms in the left side tab, to open up the Forms section.  
-- Create a new Form of type “Locations” by clicking on the “CREATE” button on the Top-Right corner of the screen.  
+* Click on Forms in the left side tab, to open up the Forms section.  
+* Create a new Form of type “Locations” by clicking on the “CREATE” button on the Top-Right corner of the screen.  
 
   ![](https://files.readme.io/2ad5b18293dfb28f217f3a87bd633dccb766d962a56c68f2c3fdb4b1611e6237-image.png)
-- Setup the Locations type Form in the same way as you do for any other Avni Entity Data collection Forms. See below sample screenshot for reference.
+* Setup the Locations type Form in the same way as you do for any other Avni Entity Data collection Forms. See below sample screenshot for reference.
 
   ![](https://files.readme.io/b5c2e8c75e8660ff5eaa3fba63826e1b2898aab32cf942beeec47d8cba11dd19-image.png)
 
@@ -105,22 +105,22 @@ For your organization, if there is a need to specify additional details as part 
 
 ### Prerequisites
 
-- **Ensure Location Types Hierarchy already exists**  
+* **Ensure Location Types Hierarchy already exists**\
   In order to start with the locations upload in the Avni app, organisation needs to have Location Types created in the requisite hierarchical order.  
-- **Ensure Location Form if needed, has already been configured**  
+* **Ensure Location Form if needed, has already been configured**\
   If your organisation needs additional properties to be set during Location creation, then ensure that you have configured a form of type “Locations” in the aforementioned manner 
 
 ### Navigation to the Bulk Uploads screen
 
-- Login to Avni Web Console
+* Login to Avni Web Console
 
 ![](https://files.readme.io/93db597e0607f374895d82942c940eca42ff9954f008e28fb2933b459a2bc280-image.png)
 
-- Go to **Admin** app
+* Go to **Admin** app
 
 ![](https://files.readme.io/a0bfd4fcaa19d3275985307bdc624b89237c508ee94eb2a9f6a992c0f3d30348-image.png)
 
-- Click on the **“Upload”** section
+* Click on the **“Upload”** section
 
 ![](https://files.readme.io/81b9a7ec02dcba7ee588ceb2c4a6a508e9346610ef43e9b29c2c30ba0fb6b8fa-image.png)
 
@@ -130,7 +130,7 @@ In the Avni “Admin” app, “Upload” section, we provide the users with an 
 
 The locations upload file format is different for the “Create” and “Edit” modes, therefore choose the appropriate mode and apply the same, when uploading the file later as well.
 
-If your organization has multiple Location hierarchies, then you would have to select the specific location hierarchy for which you need the sample file. This is applicable only for “Create” mode.  
+If your organization has multiple Location hierarchies, then you would have to select the specific location hierarchy for which you need the sample file. This is applicable only for “Create” mode.\
 Finally, click on the “Download Sample” button, to get the sample file.
 
 ![](https://files.readme.io/31cbacad108b87cdd4a90ad196fbd4b879761676b333fe0cdfbd7baa6814f30c-image.png)
@@ -139,8 +139,8 @@ Finally, click on the “Download Sample” button, to get the sample file.
 
 As part of the sample Locations csv file downloaded, you’ll have following information available to you for quick reference:
 
-- All Headers configurable for the selected Mode and Location hierarchy  
-- Descriptor row with guidance and examples on what values should be specified for each of the columns
+* All Headers configurable for the selected Mode and Location hierarchy  
+* Descriptor row with guidance and examples on what values should be specified for each of the columns
 
 1. **Create** mode
 
@@ -155,7 +155,7 @@ As part of the sample Locations csv file downloaded, you’ll have following inf
 
 #### Headers Row
 
-The first row of your upload file should contain Location types, arranged in descending order of their Level, in the selected Location Hierarchy from Left to Right, as comma-separated values.  
+The first row of your upload file should contain Location types, arranged in descending order of their Level, in the selected Location Hierarchy from Left to Right, as comma-separated values.\
 Refer Sample Locations Upload documents available [here](https://docs.google.com/spreadsheets/d/1R3l_tRUKZ7_WoZa4QIRctecFqJZoB2jdltyKUPMSD0Q/edit?usp=sharing) for Location Hierarchy of: Block(3) \-\> GP(2) \-\> Village/Hamlet(1). This is followed by “GPS Coordinates” and other Location properties name as column names.
 
 ![](https://files.readme.io/1a1dff92a0cb11f31704ee8f6d87ac78013ae49e56e8b878dc8657bb96762ece-image.png)
@@ -166,12 +166,12 @@ The second row of your upload file can optionally be a descriptor row, retained 
 
 #### Data Rows
 
-Entries provided in each of the address-level-type columns would be created as individual locations. (For example, the “Jawhar” block, “Sarsun” GP, and “Dehere” village will be created as a unique location with the appropriate location lineage, as specified during upload.)  
+Entries provided in each of the address-level-type columns would be created as individual locations. (For example, the “Jawhar” block, “Sarsun” GP, and “Dehere” village will be created as a unique location with the appropriate location lineage, as specified during upload.)\
 If the Parent locations already exists during a new location creation, then they are not re-created and are just used as is to build the location lineage.
 
 #### GPS Coordinates
 
-In-case, user would like to set the GPS Coordinates for locations during upload, then they would need to additionally specify values in the "GPS coordinates" column. The value for this column should be of the Format “\<Decimal number\>,\<Decimal number\>”.  
+In-case, user would like to set the GPS Coordinates for locations during upload, then they would need to additionally specify values in the "GPS coordinates" column. The value for this column should be of the Format “\<Decimal number\>,\<Decimal number\>”.\
 Ex: “123.456789,234.567890”, “12.34,45.67”, “13,77”
 
 #### Additional Location Properties
@@ -186,9 +186,9 @@ In-order to configure Location properties, you would need to specify the Concept
 
 This mode is to be used to perform bulk updates to locations. The type of updates allowed are as follows:
 
-- Update name of existing locations  
-- Update GPS coordinates and other properties for existing locations  
-- Modify the parent location for an existing location and there-after reflect the change in lineage for it and all its children
+* Update name of existing locations  
+* Update GPS coordinates and other properties for existing locations  
+* Modify the parent location for an existing location and there-after reflect the change in lineage for it and all its children
 
 #### Headers Row
 
@@ -208,31 +208,31 @@ Refer Sample Locations Upload documents available [here](https://docs.google.com
 
 Entries provided for the columns listed below would be used as specified here:
 
-- Location with full hierarchy (Mandatory): Used to identify the specific location to be modified  
-- New location name (Optional):  Used to specify the new title value for a location  
-- Parent location with full hierarchy (Optional):  Used to identify the new parent location to move this location to. Ex: Move “Vil B” to “PHC C, Sub C” from “PHC B, Sub B”  
-- GPS coordinates (Optional):  Used to update the GPS coordinates. Format:  “\<Double\>,\<Double\>”. Ex: “123.456789,234.567890”  
-- Values for multiple Location Properties columns that are part of the Form of type “FormType.Location”. These again are optional.
+* Location with full hierarchy (Mandatory): Used to identify the specific location to be modified  
+* New location name (Optional):  Used to specify the new title value for a location  
+* Parent location with full hierarchy (Optional):  Used to identify the new parent location to move this location to. Ex: Move “Vil B” to “PHC C, Sub C” from “PHC B, Sub B”  
+* GPS coordinates (Optional):  Used to update the GPS coordinates. Format:  “\<Double\>,\<Double\>”. Ex: “123.456789,234.567890”  
+* Values for multiple Location Properties columns that are part of the Form of type “FormType.Location”. These again are optional.
 
 #### Edit Row validations
 
 1. If the “Location with full hierarchy” does not exist during location updation, then the update operation fails for that row.  
 2. Atleast one among the following columns should have a valid value for the updation operation to be performed successfully for that row:  
-   - New location name  
-   - Parent location with full hierarchy  
-   - GPS coordinates  
+   * New location name  
+   * Parent location with full hierarchy  
+   * GPS coordinates  
 
 ### Upload the CSV file
 
 Project team then downloads the sheet in the CSV format. Navigate to the “**Upload”** tab of the Admin section, and perform the following steps to upload the file:
 
-- Select the “Type” to be “Locations”   
-- Specify the file to be uploaded using the “CHOOSE FILE” option  
-- Select the appropriate “Mode**”** of CSV Upload  
-  - Create: For creating new locations  
-  - Edit: For updating existing location’s Name, Parent, GPS coordinates or other properties  
-- Choose appropriate “Location Hierarchy” (Applicable only for “Create” mode)  
-- Click on the “Upload” button
+* Select the “Type” to be “Locations”   
+* Specify the file to be uploaded using the “CHOOSE FILE” option  
+* Select the appropriate “Mod&#x65;**”** of CSV Upload  
+  * Create: For creating new locations  
+  * Edit: For updating existing location’s Name, Parent, GPS coordinates or other properties  
+* Choose appropriate “Location Hierarchy” (Applicable only for “Create” mode)  
+* Click on the “Upload” button
 
 ![](https://files.readme.io/225211b913de07fb56c6a7676b1b6c88a78aecc2c92f97833c646b304b8ce6c4-image.png)
 
