@@ -33,14 +33,14 @@ Since all objects fetched from the database come from db.objects(...), the db cl
 
 ### What does the model look like?
 
-See ProgramEnrolment (<https://github.com/avniproject/avni-models/blob/master/src/ProgramEnrolment.js>) as an example.
+See ProgramEnrolment ([https://github.com/avniproject/avni-models/blob/master/src/ProgramEnrolment.js](https://github.com/avniproject/avni-models/blob/master/src/ProgramEnrolment.js)) as an example.
 
-- constructor with that argument
-- note the getters/setters delegating to that
+* constructor with that argument
+* note the getters/setters delegating to that
 
 `that` is the actual object that realm got out from the database. Our proxies when creating model class instances pass `that` to the model class. Model classes in getters for other model object instances (like EncounterType) or model collections (like Encounters) instantiate the model classes backed by realm. You can follow the helper methods in PersistedObject which do this.
 
-`that` is not meant to be used outside these framework classes (PersistedObject, framework classes, etc). See all framework classes here - <https://github.com/avniproject/avni-models/tree/master/src/framework>
+`that` is not meant to be used outside these framework classes (PersistedObject, framework classes, etc). See all framework classes here - [https://github.com/avniproject/avni-models/tree/master/src/framework](https://github.com/avniproject/avni-models/tree/master/src/framework)
 
 When model instance classes are saved then we get hold of the underlying object `that` and persist that. `that`s are connected to children `that`. e.g. `that` in program enrolment is connected via program encounters or encounter type property to a `that`(s) correspond to them. Also, model instance ProgramEnrolment is not linked to EncounterType and ProgramEncounter model class instances.
 
@@ -50,9 +50,9 @@ When we do db.objects(...) or db.objects(...).filtered(...) and we want to our m
 
 ### Limitations
 
-- We cannot use JS spread operator in model objects
-- We cannot use Object.keys on model objects (as it would give back that which is not what we want)
-- lodash binds to Array.prototype functions that mutate array ('pop', 'push', 'shift', 'sort', 'splice', 'unshift'). this implies that if lodash is used on RealmListProxy which is an array as it extends from it, our overridden methods will not be called. Hence we cannot use these methods to mutate. We usually don't use lodash to mutate realm lists, but if it is done then we can simply use array methods available to us which have been overridden in RealmListProxy.
+* We cannot use JS spread operator in model objects
+* We cannot use Object.keys on model objects (as it would give back that which is not what we want)
+* lodash binds to Array.prototype functions that mutate array ('pop', 'push', 'shift', 'sort', 'splice', 'unshift'). this implies that if lodash is used on RealmListProxy which is an array as it extends from it, our overridden methods will not be called. Hence we cannot use these methods to mutate. We usually don't use lodash to mutate realm lists, but if it is done then we can simply use array methods available to us which have been overridden in RealmListProxy.
 
 ### Bypass for performance reasons
 
@@ -60,9 +60,9 @@ When we display a list of objects in the mobile view (like Individual Search Res
 
 ### More details
 
-- RealmListsProxy is further proxied by JavaScript Proxy which handles length and indexer \[] operator. It can be seen here - <https://github.com/avniproject/avni-models/blob/master/src/framework/RealmResultsProxyHandler.js>
-- We had to implement custom toJSON as realm toJSON methods on realm objects don't work. They have a fix it seems which works only in hermes version of the JS engine. The code can be seen here - <https://github.com/avniproject/avni-models/blob/d54b6fcd2c8503ba5d5b55b871d93cbcaa8e7bb5/src/PersistedObject.js#L41>. toJSON is required sometimes when we post the models objects to the server.
-- We should not declare properties in JS class like this anymore - <https://github.com/avniproject/avni-models/blob/30cdfffa23eb961055875cadd454a133040cfc4f/src/SubjectMigration.ts> as these will come from getters and setters
+* RealmListsProxy is further proxied by JavaScript Proxy which handles length and indexer \[] operator. It can be seen here - [https://github.com/avniproject/avni-models/blob/master/src/framework/RealmResultsProxyHandler.js](https://github.com/avniproject/avni-models/blob/master/src/framework/RealmResultsProxyHandler.js)
+* We had to implement custom toJSON as realm toJSON methods on realm objects don't work. They have a fix it seems which works only in hermes version of the JS engine. The code can be seen here - [https://github.com/avniproject/avni-models/blob/d54b6fcd2c8503ba5d5b55b871d93cbcaa8e7bb5/src/PersistedObject.js#L41](https://github.com/avniproject/avni-models/blob/d54b6fcd2c8503ba5d5b55b871d93cbcaa8e7bb5/src/PersistedObject.js#L41). toJSON is required sometimes when we post the models objects to the server.
+* We should not declare properties in JS class like this anymore - [https://github.com/avniproject/avni-models/blob/30cdfffa23eb961055875cadd454a133040cfc4f/src/SubjectMigration.ts](https://github.com/avniproject/avni-models/blob/30cdfffa23eb961055875cadd454a133040cfc4f/src/SubjectMigration.ts) as these will come from getters and setters
 
 ### TOOL - INTELLIJ LIVE TEMPLATES
 
@@ -80,8 +80,6 @@ set $prop$(x) {
 }
 ```
 
-
-
 #### for sub-entity properties
 
 ```javascript
@@ -93,8 +91,6 @@ set $prop$(x) {
     this.that.$prop$ = this.fromObject(x);
 }
 ```
-
-
 
 #### for primitive properties
 
