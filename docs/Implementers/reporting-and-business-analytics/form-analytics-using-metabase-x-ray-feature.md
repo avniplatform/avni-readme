@@ -16,13 +16,13 @@ Metabase xRay allows for generating basic analytics on click of a button from th
 
 ### Features relevant to us
 
-- Auto generated breakup by coded fields
-- Can see line list for each breakup
-- Related tables can be mapped to logical names
-- Internal columns can be removed
-- Related table’s data can be seen from the line list (e.g. by clicking on Individual name)
-- In pie-chart form also see the percentage
-- Can be used with custom models feature
+* Auto generated breakup by coded fields
+* Can see line list for each breakup
+* Related tables can be mapped to logical names
+* Internal columns can be removed
+* Related table’s data can be seen from the line list (e.g. by clicking on Individual name)
+* In pie-chart form also see the percentage
+* Can be used with custom models feature
 
 ### Standard ETL table or Custom Model
 
@@ -45,15 +45,15 @@ Remove visibility of fields that do not concern the user. Some you can remove fr
 
 ### Dashboard changes
 
-- Remove any unnecessary generated filters and cards first. With fewer cards the performance of the dashboard during the design process will be better.
-- Any field directly on the table/form can be added as filter.
-- Only one address filter can be added per table/dashboard (note that table metadata should be changed to map too).
+* Remove any unnecessary generated filters and cards first. With fewer cards the performance of the dashboard during the design process will be better.
+* Any field directly on the table/form can be added as filter.
+* Only one address filter can be added per table/dashboard (note that table metadata should be changed to map too).
 
 ### Table configuration changes to make certain fields more useful
 
-Metabase allows to map a foreign key field such that one can see a logical text instead of seeing a number. For example - individual_id can be mapped to Individual.first_name; address_id can be mapped to Address.Title.
+Metabase allows to map a foreign key field such that one can see a logical text instead of seeing a number. For example - individual\_id can be mapped to Individual.first\_name; address\_id can be mapped to Address.Title.
 
 ### Known Limitations
 
-- Cannot do percentage only totals (why? - <https://avni.readme.io/docs/form-analytics-using-metabase-x-ray-feature>) in non-pie chart form.
-- Once xRay dashboard is generated subsequent addition of fields will have to be manual, otherwise the previous changes will be lost.
+* Cannot do percentage only totals (why? - [https://avni.readme.io/docs/form-analytics-using-metabase-x-ray-feature](https://avni.readme.io/docs/form-analytics-using-metabase-x-ray-feature)) in non-pie chart form.
+* Once xRay dashboard is generated subsequent addition of fields will have to be manual, otherwise the previous changes will be lost.
