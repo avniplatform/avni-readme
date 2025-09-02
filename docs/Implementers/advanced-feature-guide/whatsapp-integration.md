@@ -25,22 +25,7 @@ Being able to communicate to your beneficiaries through Whatsapp is very powerfu
 
 ## How it works
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5faa756-Screenshot_2023-10-13_at_1.28.13_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "350px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="350px" src="https://files.readme.io/5faa756-Screenshot_2023-10-13_at_1.28.13_PM.png" />
 
 Avni uses [Glific](https://glific.org/) to send Whatsapp messages to beneficiaries and users. Glific is not just a way to connect to Whatsapp. It also provides rich communication between beneficiaries through chatbots. Glific also provides a neat way for two-way communication between beneficiaries. 
 
@@ -67,29 +52,14 @@ First, you need to enable messaging in the Organisation Settings on the Admin pa
 
 ![](https://files.readme.io/69637ed-image.png)
 
-Next, provide details to connect to Glific into the external_api table. This currently does not have a UI. Entries need to be made in the format. 
+Next, provide details to connect to Glific into the external\_api table. This currently does not have a UI. Entries need to be made in the format. 
 
 `insert into external_system_config(organisation_id, version, created_by_id, last_modified_by_id, created_date_time, last_modified_date_time, system_name, config)
 values (2, 1, 1, 1, now(), now(), 'Glific', '{"baseUrl": "API URI field value from password manager", "phone": "Login for API field value from password manager", "password": "Password field value from password manager", "avniSystemUser": "maha@test"}'::jsonb);`
 
-Ensure that atleast one of your form fields is marked as a phone number. This can be done by going to a **Text** or **PhoneNumber** concept, and marking its "contact_number" value to "yes". Use this concept in the form to register the subject. It is to the value of this field, that the whatsapp message will be sent.
+Ensure that atleast one of your form fields is marked as a phone number. This can be done by going to a **Text** or **PhoneNumber** concept, and marking its "contact\_number" value to "yes". Use this concept in the form to register the subject. It is to the value of this field, that the whatsapp message will be sent.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4f4f325-Screenshot_2022-11-14_at_7.07.26_PM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/4f4f325-Screenshot_2022-11-14_at_7.07.26_PM.png" />
 
 Once this configuration is complete, go over to the App Designer and create rules to send messages. 
 
@@ -123,13 +93,13 @@ Currently, through the web-app, we are able to look at the Sent and Scheduled me
 
 ### Debugging
 
-- To understand the db design for debugging, checkout [this](https://avni.readme.io/docs/understanding-whatsapp-integration-tables#to-understand-the-status-of-automatic-messages) and [this](https://dbdiagram.io/d/63bb840e7d39e42284e9a83d) link.
-- To view the logs printed when executing message rule or schedule rule execute the following after ssh-ing into the server machine:
+* To understand the db design for debugging, checkout [this](https://avni.readme.io/docs/understanding-whatsapp-integration-tables#to-understand-the-status-of-automatic-messages) and [this](https://dbdiagram.io/d/63bb840e7d39e42284e9a83d) link.
+* To view the logs printed when executing message rule or schedule rule execute the following after ssh-ing into the server machine:
 
   ```
   sudo su - rules-server-user
   pm2 logs --lines 1000
   ```
-- If expected message not delivered, can check in the glific webapp (credentials in keeweb) to see if any error displayed beside the message in the chat. Sometimes say, when the phone no is invalid or the expected no of parameters not mentioned, an error message stating the reason for inability to deliver the message gets displayed in the chat.
-- The background job that runs for sending messages from message_request_queue table is currently configured to run once in 5 mins.
-- In order to handle scenarios where either system is unavailable, the background job retries messages that were not successfully sent. Messages older than a certain period are not retried. Default: 4 (days); Configuration: `AVNI_SEND_MESSAGES_SCHEDULED_SINCE_DAYS`
+* If expected message not delivered, can check in the glific webapp (credentials in keeweb) to see if any error displayed beside the message in the chat. Sometimes say, when the phone no is invalid or the expected no of parameters not mentioned, an error message stating the reason for inability to deliver the message gets displayed in the chat.
+* The background job that runs for sending messages from message\_request\_queue table is currently configured to run once in 5 mins.
+* In order to handle scenarios where either system is unavailable, the background job retries messages that were not successfully sent. Messages older than a certain period are not retried. Default: 4 (days); Configuration: `AVNI_SEND_MESSAGES_SCHEDULED_SINCE_DAYS`
