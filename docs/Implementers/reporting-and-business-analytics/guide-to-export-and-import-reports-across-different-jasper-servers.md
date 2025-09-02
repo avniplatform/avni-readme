@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-## Reference: <https://community.jaspersoft.com/documentation/jasperreports-server/tibco-jasperreports-server-security-guide/vv900/jasperreports-server-security-guide-_-keymanagement-_-import_and_export/#Key_Command_Line_Export>
+## Reference: [https://community.jaspersoft.com/documentation/jasperreports-server/tibco-jasperreports-server-security-guide/vv900/jasperreports-server-security-guide-\_-keymanagement-\_-import\_and\_export/#Key\_Command\_Line\_Export](https://community.jaspersoft.com/documentation/jasperreports-server/tibco-jasperreports-server-security-guide/vv900/jasperreports-server-security-guide-_-keymanagement-_-import_and_export/#Key_Command_Line_Export)
 
 ## Login into Source server
 
@@ -35,21 +35,8 @@ Ex: from your machine terminal
 scp jasper-reporting-openchs:gramin_rwb_2023.zip ./
 ```
 
-## Login into Target Jasper server webapp 
+## Login into Target Jasper server webapp
 
-Import the zip file in target jasper using the "Key Value" option by specifying the key value "\<specify_key_value>" used during export.
+Import the zip file in target jasper using the "Key Value" option by specifying the key value "\<specify\_key\_value>" used during export.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6ca70fd-Screenshot_2024-03-15_at_4.32.26_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/6ca70fd-Screenshot_2024-03-15_at_4.32.26_PM.png" />
