@@ -61,9 +61,9 @@ Note there are other elements in params object which are specific to the rule he
 }
 ```
 
-User: <https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js>
+User: [https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js](https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js)
 
-Group: <https://github.com/avniproject/avni-models/blob/master/src/Groups.js>
+Group: [https://github.com/avniproject/avni-models/blob/master/src/Groups.js](https://github.com/avniproject/avni-models/blob/master/src/Groups.js)
 
 #### Entities passed to the rule
 
@@ -91,46 +91,10 @@ All rule receives an entity from the `params` object. Depending on the rule type
 18. [Global reusable code rule](https://avni.readme.io/docs/writing-rules#18-global-reusable-code-rule-alpha)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png",
-        "Screenshot 2020-07-03 at 9.33.55 AM.png",
-        2138
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Invocation of different rule types"
-    }
-  ]
-}
-[/block]
-
+![Invocation of different rule types](https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png",
-        "Screenshot 2020-07-03 at 9.59.42 AM.png",
-        2196
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Invocation of rules affecting the form elements"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png)
 
 <br/><hr/>
 
@@ -179,46 +143,10 @@ You need to return an array of summary objects from this function.
     return summaries;
 };
 ```
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png",
-        "Screenshot 2020-05-19 at 3.09.44 PM.png",
-        2332
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Enrolment summary rule in App Designer"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png",
-        "4bf85d9-encounter-scheduling-2.png",
-        1024
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Summary section displays the data returned by the enrolment summary rule"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png)
 
 <br/><hr/>
 
@@ -324,42 +252,9 @@ You can either use FormElementStatusBuilder or use normal JavaScript to build th
 const phulwariName = _.get(_.find(params.entityContext.affiliatedGroups, ({voided}) => !voided), ['groupSubject', 'firstName'], '');
 
 ```
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png",
-        "Screenshot 2020-07-02 at 6.21.43 PM.png",
-        2074
-      ],
-      "align": "center",
-      "sizing": "80"
-    }
-  ]
-}
-[/block]
-
-
+![](https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png)
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif",
-        "4692c21-SkipLogic.gif",
-        320
-      ],
-      "align": "center",
-      "caption": "Skip logic in action for the field user"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif)
 
 Please note that form element rules are not transitive and cannot depend on the result of another form element's form element rule. The rule logic for a particular element will need to cater to this. 
 
@@ -485,46 +380,10 @@ You need to return an array of visit schedules from this function.
 .
 .
 ```
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png",
-        "Screenshot 2020-05-19 at 7.04.19 PM.png",
-        1950
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Screenshot - App Designer"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png",
-        "4fff50b-encounter-scheduling-1.png",
-        1024
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Returned encounters/visits from function are shown to the user as - Visits Being Scheduled"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png)
 
 ### Strategies that Avni uses.
 
@@ -581,7 +440,7 @@ Used to add decisions/recommendations to the form. The decisions are displayed o
 }
 ```
 
-You need to add <decision object> to decisions parameter's appropriate field and return it back.  
+You need to add `<decision object>` to decisions parameter's appropriate field and return it back.  
 Inside the function, you will build decisions using ComplicationsBuilder and push the decisions to the decisions parameter's appropriate field. The return value will be the modified decisions parameter. You can also choose to not use ComplicationsBuilder and directly construct the return value as per the contract shown below:
 
 ### Shape of the return value
@@ -627,45 +486,10 @@ The shape of <decision object>
     return decisions;
 };
 ```
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png",
-        "Screenshot 2020-05-19 at 7.09.58 PM.png",
-        1950
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png",
-        "4fff50b-encounter-scheduling-1.png",
-        1024
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "Decision rule output are displayed in system recommendations section."
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png)
 
 <br/><hr/>
 
@@ -703,24 +527,7 @@ The return value of this function is an array with validation errors.
   return validationResults;
 };
 ```
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png",
-        "Screenshot 2020-05-19 at 7.14.05 PM.png",
-        2300
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png)
 
 <br/><hr/>
 
@@ -757,45 +564,10 @@ The return value of this function should be a boolean.
 ```
 
 **Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour. 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png",
-        "Screenshot 2020-05-20 at 3.57.52 PM.png",
-        2300
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png)
 
 <br />
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png",
-        "cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png",
-        1020
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true,
-      "caption": "This list can be controlled by this rule."
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png)
 
 <br/><hr/>
 
@@ -836,24 +608,7 @@ The return value of this function should be a boolean.
 ```
 
 **Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour. 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png",
-        "Screenshot 2020-05-20 at 4.02.24 PM.png",
-        2300
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png)
 
 <br/><hr/>
 
@@ -920,24 +675,8 @@ You can add a new WorkItem anywhere after the currentWorkList.currentItem.
 
 ### Example
 
-<https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146>
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png",
-        "Screenshot 2020-05-21 at 3.25.33 PM.png",
-        2210
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
+[https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
+![](https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png)
 
 
 <br/><hr/>
@@ -1006,7 +745,7 @@ You need to return an array of summary objects from this function.
 }
 ```
 
-User: <https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js>
+User: [https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js](https://github.com/avniproject/avni-models/blob/master/src/UserInfo.js)
 
 You need to return a string that is the full URL that can be opened in a browser.
 
@@ -1039,25 +778,8 @@ Message Rule can be configured only when 'Messaging' is enabled for the organisa
 
 ### Example configuration:
 
-Say, 'common_otp' Glific message template is 'Your OTP for {{1}} is {{2}}. This is valid for {{3}}.' If we want to send a OTP message that says 'Your OTP for receiving books is 1458. This is valid for 2 hours.' to a student after 1 day of their registration, then we need to configure for student subject type as shown in the below image (Note the shape of the return objects): 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "80",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+Say, 'common_otp' Glific message template is 'Your OTP for `{{1}}` is `{{2}}`. This is valid for `{{3}}`.' If we want to send a OTP message that says 'Your OTP for receiving books is 1458. This is valid for 2 hours.' to a student after 1 day of their registration, then we need to configure for student subject type as shown in the below image (Note the shape of the return objects): 
+![](https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png)
 
 ```Text Schedule
 'use strict';  
@@ -1134,9 +856,9 @@ The shape of dashboard card rule
 
 <br />
 
-14.1) <https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L2>
+14.1) [https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L2](https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L2)
 
-14.2) <https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L30>
+14.2) [https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L30](https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L30)
 
 <br/><hr/>
 
@@ -1241,23 +963,7 @@ While adding members to a "Self-help" group, we need to validate that the person
 ```
 
 **Reference Screenshot, when Member Addition Eligibility Check Rule fails:**
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "420px"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png)
 
 #### Error Handling
 
@@ -1271,7 +977,7 @@ When a Member Addition Eligibility Check rule fails (throws an exception), the e
 
 ### 17. Edit Form Rule
 
-This rule is used when the user tries to edit a form. If non-boolean value is returned in the value, or the rule fails, then it would be treated as true and edit will be allowed. To check the places where it is available, not available, & not applicable - <https://avni.readme.io/docs/rules-concept-guide#edit-form-rule>.Value of message has translation support.
+This rule is used when the user tries to edit a form. If non-boolean value is returned in the value, or the rule fails, then it would be treated as true and edit will be allowed. To check the places where it is available, not available, & not applicable - [https://avni.readme.io/docs/rules-concept-guide#edit-form-rule](https://avni.readme.io/docs/rules-concept-guide#edit-form-rule).Value of message has translation support.
 
 #### Sample Rule
 
@@ -1522,7 +1228,7 @@ In many of the rules params db object is available to query the offline database
 
 <br />
 
-**Realm Query Language Reference** - <https://www.mongodb.com/docs/realm/realm-query-language/>
+**Realm Query Language Reference** - [https://www.mongodb.com/docs/realm/realm-query-language](https://www.mongodb.com/docs/realm/realm-query-language)
 
 ### Difference between filter and filtered
 
@@ -1562,8 +1268,8 @@ Note that this function is not implemented for the data entry app and throws a "
 
 ### Service methods available are:
 
-- <https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js>
-- <https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js>
+- [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js)
+- [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js)
 
 ### Examples
 
@@ -1774,23 +1480,7 @@ For business reasons, we might need to verify that there are **No / Limited numb
 Use IndividualServiceFacade.findAllSubjectsWithMobileNumberForType(mobileNumber, subjectTypeUUID) method to get subjects with same phone number.
 
 **Requires the PhoneNumber concept to have, KeyValue (primary_contact : yes) or (contact_number : yes)**
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "410px"
-    }
-  ]
-}
-[/block]
-
+![](https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png)
 
 ```js
 
