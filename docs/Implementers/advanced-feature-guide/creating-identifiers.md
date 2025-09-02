@@ -24,11 +24,11 @@ In usual systems, identifiers are generated from a central place because we need
 
 There is a special form element type called ID. If you configure a form element to be of ID type, then the Avni android app will automatically retrieve the next ID from this batch and assign it as the value. 
 
-_Advanced_ - It is also possible to create rules that modify the final ID that is stored for the beneficiary. For example, if there is the need of adding a date to the final ID being generated, you would write a ViewFilter rule that will use the generated ID and append a date to it. 
+*Advanced* - It is also possible to create rules that modify the final ID that is stored for the beneficiary. For example, if there is the need of adding a date to the final ID being generated, you would write a ViewFilter rule that will use the generated ID and append a date to it. 
 
 ### Identifier sources
 
-It is possible to have multiple IDs being generated at the same time. Each ID type is called an identifier source. An identifier source will have a certain type (discussed later), prefix (optional), minimum and maximum lengths and can be assigned to a  catchment.  
+It is possible to have multiple IDs being generated at the same time. Each ID type is called an identifier source. An identifier source will have a certain type (discussed later), prefix (optional), minimum and maximum lengths and can be assigned to a  catchment.\
 The type of an identifier source determines the strategy used to generate IDS of that source. There are currently two types available. The only difference between them is the place where the prefix is stored. 
 
 1. User pool based identifier generation - Here, a pool of users within a catchment share the same prefix. The prefix is stored within the identifier source within options. Every user asking for ids is provided with a set of ids prefixed with this value. 
@@ -39,7 +39,7 @@ The type of an identifier source determines the strategy used to generate IDS of
 1. User pool based identifier generation - overlaps in ID for the same identifier source not allowed.
 2. User based identifier generation - Two users in the same organisation cannot have same prefix. This check is case in-sensitive.
 
-Queries to analyse existing data is available here - <https://github.com/avniproject/avni-webapp/issues/1022#issuecomment-1693064436>
+Queries to analyse existing data is available here - [https://github.com/avniproject/avni-webapp/issues/1022#issuecomment-1693064436](https://github.com/avniproject/avni-webapp/issues/1022#issuecomment-1693064436)
 
 ### Tutorial
 
