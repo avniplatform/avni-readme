@@ -12,7 +12,7 @@ next:
 ---
 ## Transaction data
 
-_i.e. Subjects, Encounters, Enrolments etc._
+*i.e. Subjects, Encounters, Enrolments etc.*
 
 There are a few options available suited for different purpose.
 
