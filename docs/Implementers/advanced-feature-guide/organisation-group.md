@@ -12,9 +12,9 @@ next:
 ---
 If an organisation works with other sub-organisations performing same activity and if it wants each sub-organisation to be able to view/manage only their data - then one can check organisation group feature to solve for:
 
-- Same app definition shared across partner organisations
-- Each partner organisation get their own dashboard and reports without being able to see data from other partner organisations.
-- Super organisation to be able to have a dashboard where they can view all sub-organisation data.
+* Same app definition shared across partner organisations
+* Each partner organisation get their own dashboard and reports without being able to see data from other partner organisations.
+* Super organisation to be able to have a dashboard where they can view all sub-organisation data.
 
 > 🚧 Should not be used when the number of partner organisations can grow a large number over time.
 
@@ -48,7 +48,7 @@ Metabase is not right tool for such setup and SuperSet should be used.
 
 #### How to create separation between different partner organisations so that they do not see each other's data.
 
-1. All reports should connect using the organisation group db_user to the database. ETL should be enabled for only organisation group.
+1. All reports should connect using the organisation group db\_user to the database. ETL should be enabled for only organisation group.
 2. Setup row level security and roles for each organisation (feature of Superset).
 3. Assign correct role to the user when provisioning users from any partner organisation
 4. For users who can see the reports for all organisations no role level security role is required.
