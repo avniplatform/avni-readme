@@ -82,7 +82,7 @@ Avni stores the images, videos, and longitudinal data export in S3.
 Avni is a multi-tenant system, hence this user is the administrator for all tenants (also referred to as implementation or organization elsewhere).
 
 * Create an *admin* user in your user pool. For userUUID provide the value as *5fed2907-df3a-4867-aef5-c87f4c78a31a*. After you have manually created the user in Cognito you can use the command *aws cognito-idp admin-update-user-attributes --user-pool-id\<YOUR\_POOL\_ID> --username admin --user-attributes Name="custom:userUUID",Value="c8381fe2-7924-4ffd-acbe-14729b3257ed"*
-* Set password for admin user and confirm it *aws cognito-idp admin-set-user-password --user-pool-id\<USER\_POOL\_ID> --username admin --password <PASSWORD> --permanent*
+* Set password for admin user and confirm it *aws cognito-idp admin-set-user-password --user-pool-id\<USER\_POOL\_ID> --username admin --password \<PASSWORD> --permanent*
 
 # 2. Server-side components
 
@@ -97,7 +97,7 @@ Avni is a multi-tenant system, hence this user is the administrator for all tena
 ### 2.2 Avni Server
 
 * Download the RPM you want to install. You can download it by replacing the build number in the *[https://circleci.com/gh/avniproject/avni-server/](https://circleci.com/gh/avniproject/avni-server/)\<server\_build\_number>#artifacts* by the build server build number you got from release info page. For downloading the build expand CircleCI **node** in the tree. Refer to [this diagram](https://github.com/avniproject/avni-readme-docs/blob/master/img/downloading-build-from-circleci.png) for help.
-* Install from the rpm using *sudo yum install<rpm-file>*
+* Install from the rpm using *sudo yum install \<rpm-file>*
 * Create a file update the file /etc/openchs/openchs.conf with the contents [here](https://raw.githubusercontent.com/avniproject/avni-readme-docs/master/example-code-files/openchs.conf). The properties are explained below:
   * OPENCHS\_SERVER\_PORT - port on which you want the server to listen on
   * OPENCHS\_SERVER\_OPTS - change the logging properties which are self-explanatory. You can also set JVM properties.
@@ -109,7 +109,7 @@ Avni is a multi-tenant system, hence this user is the administrator for all tena
   * OPENCHS\_BUCKET\_NAME - S3 bucket name (required if the users are using the photo, video features in the forms)
   * OPENCHS\_IAM\_USER, OPENCHS\_IAM\_USER\_ACCESS\_KEY, OPENCHS\_IAM\_USER\_SECRET\_ACCESS\_KEY = AWS IAM user details
 * Start Avni Server by running the command `sudo service openchs start`
-* Verify Avni server is running - *curl http\://<server>:<port>/concept* - should give you a few concepts in the JSON response.
+* Verify Avni server is running - *c`url http\://<server>:<port>/concept`* - should give you a few concepts in the JSON response.
 
 # 3. Deploy Implementation
 
