@@ -14,7 +14,7 @@ next:
 
 Avni users can be grouped into different Users Groups based on their roles and responsibilities and different permissions can be given to them. It ensures that users have the right access levels to perform their tasks effectively while maintaining data integrity:
 
-1. **Role-based Access Control: **User groups ensure each user gets permissions suited to their role. For example, field workers, supervisors, and administrators may need different access levels.
+1. **Role-based Access Control:** User groups ensure each user gets permissions suited to their role. For example, field workers, supervisors, and administrators may need different access levels.
 2. **Permission Management:**  Instead of setting permissions individually, administrators can manage them for entire groups, reducing errors and saving time.
 3. **Enhanced Security:** User groups help to  define which group can access certain data or perform certain activities in the Avni app like registration, enrolments, edits, and canceling the visit. This 
 4. **Customization and Flexibility:** User groups allow for tailored permissions based on specific user roles. A user can have multiple user groups assigned based on their area of work. 
@@ -43,7 +43,7 @@ Before creating Users & Catchment, the first step is to create User Groups. Diff
 
 ![](https://files.readme.io/6575689-image6.png)
 
-4. **Click on Create Group**  
+4. **Click on Create Group**\
    Enter the Group name and click on the CREATE NEW GROUP button
 
 ![](https://files.readme.io/bb4854b-image5.png)
