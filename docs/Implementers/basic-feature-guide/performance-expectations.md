@@ -14,65 +14,165 @@ In the table below different performance items have been listed with the rough e
 
 ### Implementation
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Performance Item",
-    "h-1": "General Expectation",
-    "h-2": "Raise red flag",
-    "0-0": "**SuperSet/Metabase Dashboard**  \n(with or without filters)",
-    "0-1": "\\< 10 seconds",
-    "0-2": "> 20 seconds",
-    "1-0": "**SuperSet/Metabase Line list download**",
-    "1-1": "\\< 60 seconds",
-    "1-2": "> 3 minutes",
-    "2-0": "**Offline mobile dashboard**  \n(with or without filter values,  \nfor any catchment size; on any device)",
-    "2-1": "\\<= 2 seconds",
-    "2-2": "> 5 seconds",
-    "3-0": "**Summary and Recommendations  \nScreen** (mobile app; on any device)",
-    "3-1": "\\<= 2 seconds",
-    "3-2": "> 5 seconds"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th style={{ textAlign: "left" }}>
+        Performance Item
+      </th>
 
+      <th style={{ textAlign: "left" }}>
+        General Expectation
+      </th>
+
+      <th style={{ textAlign: "left" }}>
+        Raise red flag
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        **SuperSet/Metabase Dashboard**
+        (with or without filters)
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \< 10 seconds
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        > 20 seconds
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        **SuperSet/Metabase Line list download**
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \< 60 seconds
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        > 3 minutes
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        **Offline mobile dashboard**\
+        (with or without filter values,\
+        for any catchment size; on any device)
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \<= 2 seconds
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        > 5 seconds
+      </td>
+    </tr>
+
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        * \*Summary and Recommendations\
+          Screen\*\* (mobile app; on any device)
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        \<= 2 seconds
+      </td>
+
+      <td style={{ textAlign: "left" }}>
+        > 5 seconds
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### Platform
 
 These are platform issues, but may have been caused by some specific configuration of the organisation, hence may not be a known issue. So please feel free to report them.
 
-[block:parameters]
-{
-  "data": {
-    "h-0": "Performance Item",
-    "h-1": "General Expectation",
-    "h-2": "Raise red flag",
-    "0-0": "**Incremental sync**  \n(on wifi network; on any device)",
-    "0-1": "\\< 20 seconds",
-    "0-2": "> 1 minute",
-    "1-0": "**Subject search** (mobile app; on any device)",
-    "1-1": "\\<= 3 seconds",
-    "1-2": "> 5 seconds",
-    "2-0": "**DEA subject search** (after release 10)  \nwith/without filters",
-    "2-1": "\\<= 5 seconds",
-    "2-2": "> 10 seconds",
-    "3-0": "**All admin / app designer screens**  \n(Except CSV, bundle uploads)",
-    "3-1": "\\<= 5 seconds",
-    "3-2": "> 10 seconds"
-  },
-  "cols": 3,
-  "rows": 4,
-  "align": [
-    "left",
-    "left",
-    "left"
-  ]
-}
-[/block]
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Performance Item
+      </th>
+
+      <th>
+        General Expectation
+      </th>
+
+      <th>
+        Raise red flag
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Incremental sync**
+        (on wifi network; on any device)
+      </td>
+
+      <td>
+        \< 20 seconds
+      </td>
+
+      <td>
+        > 1 minute
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        * \*Subject search\*\* (mobile app; on any device)
+      </td>
+
+      <td>
+        \<= 3 seconds
+      </td>
+
+      <td>
+        > 5 seconds
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        * \*DEA subject search\*\* (after release 10)\
+          with/without filters
+      </td>
+
+      <td>
+        \<= 5 seconds
+      </td>
+
+      <td>
+        > 10 seconds
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **All admin / app designer screens**\
+        (Except CSV, bundle uploads)
+      </td>
+
+      <td>
+        \<= 5 seconds
+      </td>
+
+      <td>
+        > 10 seconds
+      </td>
+    </tr>
+  </tbody>
+</Table>
