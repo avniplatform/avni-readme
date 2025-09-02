@@ -14,6 +14,6 @@ next:
 
 In functional components try to avoid (**this is not a strict requirement**) creating functions in the body, as these functions get redefined with every state change. There are the following options:
 
-- Use _useCallback_ to define memoized functions (note that even these get redefined based on the state change)
-- define the function outside the functional component in the same file and pass all the required parameters which may be too many
-- create class type component
+* Use *useCallback* to define memoized functions (note that even these get redefined based on the state change)
+* define the function outside the functional component in the same file and pass all the required parameters which may be too many
+* create class type component
