@@ -14,20 +14,4 @@ Many times, the local database of the Android app provides clues to an issue hap
 
 To upload your local database, go to the "More" section on the home page and press on the "Upload Database" menu item. 
 
-
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/be788e5-Upload_Database.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "500px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="500px" src="https://files.readme.io/be788e5-Upload_Database.png" />
