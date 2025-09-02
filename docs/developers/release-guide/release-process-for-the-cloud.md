@@ -252,7 +252,7 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
   ```
 * Once the pipeline completes, AAB and APK files will be available in the artifacts for the release\_android\_live job. The AAB is meant for uploading to play store. APK can be used for manual testing if required. 
   * For some reason the AAB downloaded is in `.zip` format. From terminal, do something like `mv avni.zip avni.aab` before uploading it to google play store.
-  * OR, copy the download link for the AAB file and use terminal to download it via wget command (Ex: wget <url>.aab), upload the same to google play store
+  * OR, copy the download link for the AAB file and use terminal to download it via wget command (Ex: wget \<url>.aab), upload the same to google play store
 * Open the [Google Play console](https://play.google.com/console)
 * Open the Avni app and go to Release Menu -> Testing -> Open Testing
 * Create a new Beta release and upload AAB generated
