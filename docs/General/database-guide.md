@@ -18,11 +18,11 @@ Avni database can be logically broken down into a smaller-cohesive group of tabl
 
 **An explanation for a few columns which are repeated across the tables**
 
-- organisation_id: This column indicates the organisation to which a row belongs (since Avni uses row-level multi-tenancy.
-- is_voided or active: This is used to perform soft delete of data
-- id: the primary key of a table
-- uuid: identifier via which an externally integrating system can refer to records in Avni. id should not be used for this purpose.
-- version: although this column is present, please ignore it because this column is not used as the functionality around it has not been developed fully.
+* organisation\_id: This column indicates the organisation to which a row belongs (since Avni uses row-level multi-tenancy.
+* is\_voided or active: This is used to perform soft delete of data
+* id: the primary key of a table
+* uuid: identifier via which an externally integrating system can refer to records in Avni. id should not be used for this purpose.
+* version: although this column is present, please ignore it because this column is not used as the functionality around it has not been developed fully.
 
 # Foundational modules
 
@@ -34,25 +34,25 @@ Avni database can be logically broken down into a smaller-cohesive group of tabl
 
 Avni is multi-tenant with multiple organisation's data residing within the same schema - protected by row-level security. Avni also supports a group of organisations with one master organisation.
 
-**organisation, organisation_group, organisation_group_organisation**
+**organisation, organisation\_group, organisation\_group\_organisation**
 
 ## Work area
 
 For more about work-area please refer to [this](https://avni.readme.io/docs/avnis-domain-model-of-field-based-work#1--architecture-of-the-service-delivery-organisation).
 
-**address_level_type, address_level, location_location_mapping, catchment, catchment_address_mapping**
+**address\_level\_type, address\_level, location\_location\_mapping, catchment, catchment\_address\_mapping**
 
 ## Master data tables
 
 For few commonly required entities recognised, hence recognised by the platform.
 
-**gender, individual_relation, individual_relationship_type, individual_relation_gender_mapping**
+**gender, individual\_relation, individual\_relationship\_type, individual\_relation\_gender\_mapping**
 
 ## User-defined data model
 
-These tables allow the user of the platform (aka implementer) to define their data model. These tables could be further sub-grouped into form_, concept_ and _types tables. Concept tables describe your data independent of how it has been captured. Form_ tables describe how the data should be captured. \*Types tables allow you to define the high-level relationship between your data entities, as explained in section 2 and 4 [here](doc:avnis-domain-model-of-field-based-work).
+These tables allow the user of the platform (aka implementer) to define their data model. These tables could be further sub-grouped into for&#x6D;*, concept* and *types tables. Concept tables describe your data independent of how it has been captured. Form* tables describe how the data should be captured. \*Types tables allow you to define the high-level relationship between your data entities, as explained in section 2 and 4 [here](doc:avnis-domain-model-of-field-based-work).
 
-**concept, concept_answer, subject_type, operational_subject_type, program, operational_program, encounter_type, group_role, operational_encounter_type, form, form_element_group, form_element, non_applicable_form_element, form_mapping**
+**concept, concept\_answer, subject\_type, operational\_subject\_type, program, operational\_program, encounter\_type, group\_role, operational\_encounter\_type, form, form\_element\_group, form\_element, non\_applicable\_form\_element, form\_mapping**
 
 <hr/>
 
@@ -60,7 +60,7 @@ These tables allow the user of the platform (aka implementer) to define their da
 
 ## Transaction data
 
-**individual, program_enrolment, encounter, program_encounter, group_subject, individual_relationship**
+**individual, program\_enrolment, encounter, program\_encounter, group\_subject, individual\_relationship**
 
 <hr/>
 
@@ -72,11 +72,11 @@ Note that here tables for transaction and meta/master data are grouped together.
 
 Identifiers have been documented [here](doc:creating-identifiers).
 
-**identifier_assignment, identifier_source, identifier_user_assignment**
+**identifier\_assignment, identifier\_source, identifier\_user\_assignment**
 
 ## Checklist
 
-checklist, checklist_detail, checklist_item,  checklist_item_detail
+checklist, checklist\_detail, checklist\_item,  checklist\_item\_detail
 
 <hr/>
 
@@ -84,19 +84,19 @@ checklist, checklist_detail, checklist_item,  checklist_item_detail
 
 ## Rules
 
-**deps_saved_ddl, rule, rule_dependency**
+**deps\_saved\_ddl, rule, rule\_dependency**
 
 ## User
 
-**users, user_group, user_facility_mapping**
+**users, user\_group, user\_facility\_mapping**
 
 ## Application settings
 
-**organisation_config**
+**organisation\_config**
 
 ## Access Control
 
-**privilege, group_privilege, groups**
+**privilege, group\_privilege, groups**
 
 <hr/>
 
@@ -104,41 +104,41 @@ checklist, checklist_detail, checklist_item,  checklist_item_detail
 
 ## Translations
 
-**platform_translation, translation**
+**platform\_translation, translation**
 
 ## Account
 
-**account, account_admin**
+**account, account\_admin**
 
 ## Telemetry and logs
 
-**rule_failure_log, rule_failure_telemetry, sync_telemetry, video_telemetric**
+**rule\_failure\_log, rule\_failure\_telemetry, sync\_telemetry, video\_telemetric**
 
 ## Task
 
-**Task, Task_Status, Task_Type, Task_Unassignment**
+**Task, Task\_Status, Task\_Type, Task\_Unassignment**
 
 ## Messaging
 
-**Manual_Message, Message_Receiver, message_request_queue, message_rule, msg91_config, news**
+**Manual\_Message, Message\_Receiver, message\_request\_queue, message\_rule, msg91\_config, news**
 
 ## Documentation
 
-documentation, documentation_item
+documentation, documentation\_item
 
 ## Comment
 
-comment, comment_thread
+comment, comment\_thread
 
 ## Offline/mobile dashboard
 
-**dashboard, dashboard_card_mapping, dashboard_filter, dashboard_section, dashboard_section_card_mapping, standard_report_card_type, group_dashboard, report_card**
+**dashboard, dashboard\_card\_mapping, dashboard\_filter, dashboard\_section, dashboard\_section\_card\_mapping, standard\_report\_card\_type, group\_dashboard, report\_card**
 
 ## ETL
 
-**table_metadata, column_metadata, scheduled_job_run**
+**table\_metadata, column\_metadata, scheduled\_job\_run**
 
 # Media Viewer - Database
 
-- **download_jobs**
-  - Contains information about the downloads done by the user
+* **download\_jobs**
+  * Contains information about the downloads done by the user
