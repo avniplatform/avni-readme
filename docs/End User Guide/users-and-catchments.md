@@ -14,11 +14,11 @@ next:
 
 To access the features of the Avni app, users need to have a unique username and password to log in to the app and perform the activities as and when required. These login credentials can be created through Avni web-app where certain permission can be provided to each unique user as per the area of work and authority to access the data generated in the app.
 
-### Prerequisites before creating the users: 
+### Prerequisites before creating the users:
 
 The following items must be configured in the web app before proceeding with the user creation process.
 
-1. Location Hierarchy, Locations ([Refer to this guide \[TO BE ADDED\]](<>))
+1. Location Hierarchy, Locations ([Refer to this guide \[TO BE ADDED\]]())
 2. Languages
 3. User Groups ([Refer to this guide](https://avni.readme.io/docs/user-groups))
 4. Catchments
@@ -29,7 +29,7 @@ A catchment is a group of locations that are serviced by a user i.e. the locatio
 
 1. Navigate to the admin console
 
-![alt_text](https://files.readme.io/d32ed8d-image8.png "image_tooltip")
+![alt\_text](https://files.readme.io/d32ed8d-image8.png "image_tooltip")
 
 2. Click on the catchments and create a catchment
 
@@ -65,7 +65,7 @@ Once the above-provided prerequisites have been created successfully, we can pro
 
 <br />
 
-3. Provide a unique Login ID for each user. Login ID allows to have alphanumeric values which will be followed by @ProjectName. A Login ID that is already in use cannot be re-used to create another user. **Note: **The login name is a case-sensitive field. The user needs to provide the same login ID while logging in to the Avni app.
+3. Provide a unique Login ID for each user. Login ID allows to have alphanumeric values which will be followed by @ProjectName. A Login ID that is already in use cannot be re-used to create another user. **Note:** The login name is a case-sensitive field. The user needs to provide the same login ID while logging in to the Avni app.
 
 ![](https://files.readme.io/18b704a-image4.png)
 
