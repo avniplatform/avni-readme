@@ -24,33 +24,33 @@ Report cards can be of 2 types - 'Standard' and 'Custom'. The logic used to disp
 
 1. Standard Report Cards, the different types of which are as follows (Entity specified in brackets indicates the type of entity listed on clicking on the card):
 
-   - Pending approval (Entity Approval Statuses)
+   * Pending approval (Entity Approval Statuses)
 
-   - Approved (Entity Approval Statuses)
+   * Approved (Entity Approval Statuses)
 
-   - Rejected (Entity Approval Statuses)
+   * Rejected (Entity Approval Statuses)
 
-   - Scheduled visits (Subjects)
+   * Scheduled visits (Subjects)
 
-   - Overdue visits (Subjects)
+   * Overdue visits (Subjects)
 
-   - Recent registrations (Subjects)
+   * Recent registrations (Subjects)
 
-   - Recent enrolments (Subjects)
+   * Recent enrolments (Subjects)
 
-   - Recent visits (Subjects)
+   * Recent visits (Subjects)
 
-   - Total (Subjects)
+   * Total (Subjects)
 
-   - Comments (Subjects)
+   * Comments (Subjects)
 
-   - Call tasks (Tasks)
+   * Call tasks (Tasks)
 
-   - Open subject tasks (Tasks)
+   * Open subject tasks (Tasks)
 
-   - Due checklist (Individuals)
+   * Due checklist (Individuals)
 
-   [block:image]{"images":[{"image":["https://files.readme.io/5093034-Screenshot_2023-12-11_at_4.55.48_PM.png","",""],"align":"center"}]}[/block]
+   <Image align="center" src="https://files.readme.io/5093034-Screenshot_2023-12-11_at_4.55.48_PM.png" />
 2. Custom Report cards: Report card with configurable **Query**, which returns a list of Individuals as the response. Length of the list is shown on the card and on clicking the card, the list of Individuals returned is shown. Please note that the query function can return a list of Individuals or an object with these properties, ` { primaryValue: '20', secondaryValue: '(5%)',  lineListFunction  }`, here `lineListFunction` should always return the list of subjects.
 
 ![](https://files.readme.io/387d221-Report_card.png "Report card.png")
@@ -76,9 +76,9 @@ Filters can also be configured at the dashboard level (covered below). If a filt
 
 After all the cards are done it's time to group them together using the dashboard. Offline Dashboards have the following sub-components:
 
-- Sections : Visual Partitions used to club together cards of specific grouping type
-- Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
-- Filters : Configurable filters that get applied to all "Report Cards" count and listing
+* Sections : Visual Partitions used to club together cards of specific grouping type
+* Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
+* Filters : Configurable filters that get applied to all "Report Cards" count and listing
 
 Users with access to the "App Designer" can Create, Modifiy or Delete Custom Dashboards as seen below. 
 
@@ -86,27 +86,13 @@ Users with access to the "App Designer" can Create, Modifiy or Delete Custom Das
 
 ### Steps to configure a Custom Dashboard
 
-- Click on the dashboard tab on the app designer and click on the new dashboard.
-- This will take you to the new dashboard screen. Provide the name and description of the dashboard.
-- You can create sections on this screen and
-- Select all the cards you need to add to the section in the dashboard.
-- After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
+* Click on the dashboard tab on the app designer and click on the new dashboard.
+* This will take you to the new dashboard screen. Provide the name and description of the dashboard.
+* You can create sections on this screen and
+* Select all the cards you need to add to the section in the dashboard.
+* After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png" />
 
 ### Dashboard Filters
 
@@ -148,84 +134,27 @@ Sample Code for handling filters in report card:
 
 ### Assigning custom Dashboards to User Groups
 
-Custom Dashboards created need to be assigned specifically to a User Group, in-order for Users to see it on the Avni-client mobile app. You may do this, by navigating to the "Admin" app -> "User Groups" -> (User_GROUP) -> "Dashboards" tab, and assigning one or more Custom Dashboards to a User-Group.
+Custom Dashboards created need to be assigned specifically to a User Group, in-order for Users to see it on the Avni-client mobile app. You may do this, by navigating to the "Admin" app -> "User Groups" -> (User\_GROUP) -> "Dashboards" tab, and assigning one or more Custom Dashboards to a User-Group.
 
-In addition, You can also mark one of these Custom Dashboards as the Primary (Is Primary: True) dashboard from the "Admin" app -> "User Groups" -> (User_GROUP) -> "Dashboards".
+In addition, You can also mark one of these Custom Dashboards as the Primary (Is Primary: True) dashboard from the "Admin" app -> "User Groups" -> (User\_GROUP) -> "Dashboards".
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/54b6434-Screenshot_2024-06-26_at_12.14.37_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/54b6434-Screenshot_2024-06-26_at_12.14.37_PM.png" />
 
 ## Using the Dashboard in the Field App
 
 After saving the dashboard sync the field app, and from the bottom "More" tab click on the "Dashboards" option. It will take you to the dashboard screen and will show all the cards that are added to the dashboard.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/8b37cf6-Screenshot_2024-06-26_at_12.15.37_PM.png",
-        "dashboard-field-app.png",
-        "Report cards only passing List of subjects."
-      ],
-      "align": "center",
-      "sizing": "400px",
-      "caption": "Report cards only passing List of subjects."
-    }
-  ]
-}
-[/block]
+<Image title="dashboard-field-app.png" alt="Report cards only passing List of subjects." align="center" width="400px" src="https://files.readme.io/8b37cf6-Screenshot_2024-06-26_at_12.15.37_PM.png">
+  Report cards only passing List of subjects.
+</Image>
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/548f99d-offline-dashboard.png",
-        "offline-dashboard.png",
-        566
-      ],
-      "align": "center",
-      "sizing": "400px",
-      "caption": "Report cards  returning `primaryValue` and `secondaryValue` object"
-    }
-  ]
-}
-[/block]
-
+<Image title="offline-dashboard.png" alt={566} align="center" width="400px" src="https://files.readme.io/548f99d-offline-dashboard.png">
+  Report cards  returning `primaryValue` and `secondaryValue` object
+</Image>
 
 Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/18fb944-Subject-list-field-app.png",
-        "Subject-list-field-app.png",
-        ""
-      ],
-      "align": "center",
-      "sizing": "400px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="400px" src="https://files.readme.io/18fb944-Subject-list-field-app.png" />
 
 Users can click on any subject and navigate to their dashboard.
 
@@ -235,62 +164,17 @@ Users can click on any subject and navigate to their dashboard.
 
 As part of Avni release 8.0.0, a new feature of a secondary dashboard is added which can be configured at user group level to populate an additional option on the Avni mobile app bottom drawer to navigate to a secondary dashboard. This configuration has to be done in the user group in Avni web app. 
 
-- By navigating to the dashboard section in a particular user group where dashboards can be added to user groups, the secondary dashboard can be defined apart from the home dashboard. As shown in the screenshot below, any dashboard can be selected as the secondary dashboard.
+* By navigating to the dashboard section in a particular user group where dashboards can be added to user groups, the secondary dashboard can be defined apart from the home dashboard. As shown in the screenshot below, any dashboard can be selected as the secondary dashboard.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/68ac5d9-Screenshot_2024-06-26_at_12.14.37_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "1500px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="1500px" src="https://files.readme.io/68ac5d9-Screenshot_2024-06-26_at_12.14.37_PM.png" />
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/a5640e1-Se.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "15px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="15px" src="https://files.readme.io/a5640e1-Se.png" />
 
 ### Secondary dashboard in mobile app
 
 The configuration mentioned above would display the particular dashboard in the mobile app as given below. This would allow users to access the home and secondary dashboard from the bottom drawer of the mobile app instead of navigating to the more page. 
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/d95166d-Screenshot_2024-06-26_at_12.17.40_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "400px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="400px" src="https://files.readme.io/d95166d-Screenshot_2024-06-26_at_12.17.40_PM.png" />
 
 ### Clash in Dashboards configuration across different UserGroups
 
@@ -350,7 +234,7 @@ The report cards requires one to return a list individuals. This can be done by:
 
 Please refer to [this reference for Realm Query Language](https://www.mongodb.com/docs/atlas/device-sdks/realm-query-language/).
 
-To understand difference between filter and filtered that is referred below, please see, <https://avni.readme.io/docs/writing-rules#difference-between-filter-and-filtered>
+To understand difference between filter and filtered that is referred below, please see, [https://avni.readme.io/docs/writing-rules#difference-between-filter-and-filtered](https://avni.readme.io/docs/writing-rules#difference-between-filter-and-filtered)
 
 Please also get in touch with platform team if you identify a new pattern and a new type of requirement where none of the following fits.
 
@@ -376,10 +260,10 @@ Please also get in touch with platform team if you identify a new pattern and a 
 
 #### DEPRECATED: Avoid using generic functions:
 
-- The following is deprecated cause we should use `Filter based on chronological data` pattern from above.
-- To find observation of a concept avoid using the function `findLatestObservationInEntireEnrolment` unless absolutely necessary since it searches for the observation in all encounters and enrolment observations. Use specific functions.
-- Eg: To find observation in enrolment can use the function `enrolment.findObservation` or to find observations in specific encounter type can get the encounters using `enrolment.lastFulfilledEncounter(...encounterTypeNames)` and then find observation. Refer code examples for the below 3 usecases.
-- ```text Usecase 1
+* The following is deprecated cause we should use `Filter based on chronological data` pattern from above.
+* To find observation of a concept avoid using the function `findLatestObservationInEntireEnrolment` unless absolutely necessary since it searches for the observation in all encounters and enrolment observations. Use specific functions.
+* Eg: To find observation in enrolment can use the function `enrolment.findObservation` or to find observations in specific encounter type can get the encounters using `enrolment.lastFulfilledEncounter(...encounterTypeNames)` and then find observation. Refer code examples for the below 3 usecases.
+* ```text Usecase 1
   Find children with birth weight less than 2. Birth weight is captured in enrolment
   ```
   ```javascript Recommended way
@@ -488,11 +372,11 @@ Please also get in touch with platform team if you identify a new pattern and a 
 
 #### Based on the use case decide whether to write the logic using realm query or JS.
 
-- Not always achieving the purpose using realm queries might be efficient/possible. 
+* Not always achieving the purpose using realm queries might be efficient/possible. 
 
-  - **DEPRECATED** cause we should use `Filter based on chronological data` pattern from above. Eg: consider a use case where a mandatory concept is used in a program encounter. Now to check the latest value of the concept, its sufficient to check the last encounter and need not iterate all encounters. Since realm subquery doesn't support searching only in the last encounter, for such usecases, using realm queries not only becomes slow and also sometimes inappropriate depending on the usecase. So in such cases, using JS code for the logic, is more efficient. (refer the below code example)
+  * **DEPRECATED** cause we should use `Filter based on chronological data` pattern from above. Eg: consider a use case where a mandatory concept is used in a program encounter. Now to check the latest value of the concept, its sufficient to check the last encounter and need not iterate all encounters. Since realm subquery doesn't support searching only in the last encounter, for such usecases, using realm queries not only becomes slow and also sometimes inappropriate depending on the usecase. So in such cases, using JS code for the logic, is more efficient. (refer the below code example)
 
-    - ```Text Usecase
+    * ```Text Usecase
       Find dead children using concept value captured in encounter cancel or program exit form.
       ```
       ```javascript Recommended way
@@ -536,8 +420,8 @@ Please also get in touch with platform team if you identify a new pattern and a 
       In this cases since the intention is to find if child is dead, hence it can be assumed to be captured in the last encounter or in program exit form based on the domain knowledge
 
       ```
-  - Please also refer to `Filter based on a custom observation value expression` pattern above, before using this. Consider another use case, where observations of numeric concepts need to be compared. This is not possible to achieve via realm query since the solution would involve the need for JSON parsing of the stored observation. Hence JS logic is appropriate here. (refer below code example)
-    - ```Text Usecase
+  * Please also refer to `Filter based on a custom observation value expression` pattern above, before using this. Consider another use case, where observations of numeric concepts need to be compared. This is not possible to achieve via realm query since the solution would involve the need for JSON parsing of the stored observation. Hence JS logic is appropriate here. (refer below code example)
+    * ```Text Usecase
       Find children with birth weight less than 2. Birth weight is captured in enrolment
       ```
       ```javascript Recommended way
@@ -567,9 +451,9 @@ Please also get in touch with platform team if you identify a new pattern and a 
       ```Text How optimized
       Moving to realm query for checking birth weight was not possible. If it were a equals comparison it can be achieved using 'CONTAINS' in realm
       ```
-- But in cases where time complexity is the same for both cases, writing realm queries would be efficient to achieve the purpose. (refer below code example). Also refer to `Filter based on a custom observation value expression` pattern above.
+* But in cases where time complexity is the same for both cases, writing realm queries would be efficient to achieve the purpose. (refer below code example). Also refer to `Filter based on a custom observation value expression` pattern above.
 
-  - ```Text Usecase
+  * ```Text Usecase
     Find 13 months children who are completely immunised
     ```
     ```javascript Recommended way
@@ -603,9 +487,9 @@ Please also get in touch with platform team if you identify a new pattern and a 
     ```Text How optimized
     Moving to realm query since no of children with age < 13 months were less
     ```
-- In most cases, filtering as much as possible using realm queries (for cases like voided checks) and then doing JS filtering on top of it if needed, would be appropriate. (refer the below code example)
+* In most cases, filtering as much as possible using realm queries (for cases like voided checks) and then doing JS filtering on top of it if needed, would be appropriate. (refer the below code example)
 
-  - ```Text Usecase
+  * ```Text Usecase
     Find dead children using concept value captured in encounter cancel or program exit form.
     ```
     ```javascript Recommended way
@@ -650,7 +534,7 @@ Please also get in touch with platform team if you identify a new pattern and a 
 
     ```
 
-Also check - <https://avni.readme.io/docs/writing-rules#using-paramsdb-object-when-writing-rules>
+Also check - [https://avni.readme.io/docs/writing-rules#using-paramsdb-object-when-writing-rules](https://avni.readme.io/docs/writing-rules#using-paramsdb-object-when-writing-rules)
 
 #### DEPRECATED. Use Concept UUIDs instead of their names for comparison
 
@@ -658,7 +542,7 @@ Please check - `Filter based on a custom observation value expression` pattern a
 
 Though not much performance improvement, using concept uuids(for comparing with concept answers), instead of getting its readable values did provide minor improvement(in seconds) when need to iterate through thousands of rows. (refer below code example)
 
-- ```Text Usecase
+* ```Text Usecase
   Find children with congential abnormality based on values of certain concepts
   ```
   ```javascript Recommended way
@@ -727,7 +611,7 @@ Though not much performance improvement, using concept uuids(for comparing with 
 
 ## Nested Report Cards
 
-Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.  
+Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.\
 The above kind of scenarios also lead to code duplication across report cards and when some requirement changes, then the change needs to be done in both.
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
@@ -829,61 +713,17 @@ return {reportCards: [{
 
 ### Screenshot of Nested Custom Dashboard Report Card Edit screen on Avni Webapp
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ecdd996-Screenshot_2024-01-25_at_5.15.20_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/ecdd996-Screenshot_2024-01-25_at_5.15.20_PM.png" />
 
 ### Screenshot of Nested Report Cards in Custom Dashboard in Avni Client
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "576px"
-    }
-  ]
-}
-[/block]
+<Image align="center" width="576px" src="https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png" />
 
-
-![](<>)
+![]()
 
 Note: If there is a mismatch between the count of nested report cards configured and the length of reportCards property returned by the query response, then we show an appropriate error message on all Nested Report Cards corresponding to the Custom Report Card.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/82d8ca0-Screenshot_2024-01-25_at_5.23.56_PM.png",
-        "",
-        ""
-      ],
-      "align": "center",
-      "sizing": "576px"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" width="576px" src="https://files.readme.io/82d8ca0-Screenshot_2024-01-25_at_5.23.56_PM.png" />
 
 <br />
 
@@ -907,62 +747,20 @@ This default dashboard will also be assigned as Primary dashboard on the 'Everyo
 
 ## Reference screen-shots of Avni-Client Custom Dashboard with Approvals ReportCards and Location filter
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/e35888a-Screenshot_2023-12-12_at_12.46.46_PM.png",
-        "",
-        "Default state of Approvals Report Cards without any filter applied"
-      ],
-      "align": "center",
-      "border": true,
-      "caption": "Default state of Approvals Report Cards without any filter applied"
-    }
-  ]
-}
-[/block]
-
+<Image alt="Default state of Approvals Report Cards without any filter applied" align="center" border={true} src="https://files.readme.io/e35888a-Screenshot_2023-12-12_at_12.46.46_PM.png">
+  Default state of Approvals Report Cards without any filter applied
+</Image>
 
 ***
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/576efec-Screenshot_2023-12-12_at_12.47.01_PM.png",
-        "",
-        "Custom Dashboards filter page"
-      ],
-      "align": "center",
-      "border": true,
-      "caption": "Custom Dashboards filter page"
-    }
-  ]
-}
-[/block]
-
+<Image alt="Custom Dashboards filter page" align="center" border={true} src="https://files.readme.io/576efec-Screenshot_2023-12-12_at_12.47.01_PM.png">
+  Custom Dashboards filter page
+</Image>
 
 ***
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c5ac6f6-Screenshot_2023-12-12_at_12.47.25_PM.png",
-        "",
-        "State of Approvals Report Cards after the Location filter was applied"
-      ],
-      "align": "center",
-      "border": true,
-      "caption": "State of Approvals Report Cards after the Location filter was applied"
-    }
-  ]
-}
-[/block]
-
+<Image alt="State of Approvals Report Cards after the Location filter was applied" align="center" border={true} src="https://files.readme.io/c5ac6f6-Screenshot_2023-12-12_at_12.47.25_PM.png">
+  State of Approvals Report Cards after the Location filter was applied
+</Image>
 
 ***
