@@ -20,5 +20,5 @@ We do not have to do any release of rules config and instead, we use GitHub hash
 
 ### Releasing Avni Models and other libraries (not mentioned above)
 
-- `make release` Provide the next version number.
-- `make publish` Publishes to Github, where-from the CI picks up and releases to npmjs.com. The package will appear in npmjs.com after a lag.
+* `make release` Provide the next version number.
+* `make publish` Publishes to Github, where-from the CI picks up and releases to npmjs.com. The package will appear in npmjs.com after a lag.
