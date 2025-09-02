@@ -22,19 +22,19 @@ Click [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vS1Xq4cVi1pDn8B78g_
 
 ### Structure of Checklist json file
 
-```
+```json
 {
     "name": "Vaccination",
     "uuid": "uuid of this checklist. We support only single checklist in the system right now so don't change this uuid after you save the file for the first time",
     "items": [
-        <item-object>
+        `<item-object>`
     ]
 }
 ```
 
 ### Structure of item-object
 
-```
+```json
 {
     //uuid of checklist item
     "uuid": "uuid of checklist item",
@@ -43,22 +43,22 @@ Click [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vS1Xq4cVi1pDn8B78g_
     //uuid of a dependency. This item will get due only after the dependency is marked as completed
     "dependentOn": "uuid",
     //Set this when the dependency can expire and you want this item to be scheduled even then
-    "scheduleOnExpiryOfDependency": <boolean>,
+    "scheduleOnExpiryOfDependency": `<boolean>`,
     //Number of days from base date of checklist after which the item becomes due. Put this only if you are also making this item dependent on another item.
-    "minDaysFromStartDate": <integer>,
+    "minDaysFromStartDate": `<integer>`,
     //Number of days from completion date of dependency after which the item becomes due. Put this only if you are also making this item dependent on another item.
-    "minDaysFromDependent": <integer>,
+    "minDaysFromDependent": `<integer>`,
     //If an item can expire then you can use this to specify it. It's relative from the base date of the checklist.
-    "expiresAfter": <integer>,
-   //Array of status objects. We use this to specify different phases an item can be in. E.g. You may want to define that it's Due from day 2 to day 30, Critical from Day 30 to 60, and Overdue after day 60. 
-    "status": array of <status-object>,
-    "concept: <concept-object>
+    "expiresAfter": `<integer>`,
+    //Array of status objects. We use this to specify different phases an item can be in. E.g. You may want to define that it's Due from day 2 to day 30, Critical from Day 30 to 60, and Overdue after day 60. 
+    "status": "array of `<status-object>`",
+    "concept": `<concept-object>`
 }
 ```
 
 ### Structure of status-object
 
-```
+```json
 {
   //Looks like an unused field right now. Set it in increasing order for now inside status array
   "displayOrder": 1,
@@ -75,7 +75,7 @@ Click [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vS1Xq4cVi1pDn8B78g_
 
 ### Strucuture of concept-object
 
-```
+```json
 {
   "uuid": "uuid of the concept that should be used for this item",
   "comment": "Put the name of the concept here for readability"
@@ -112,31 +112,16 @@ A dependent item goes into it's first state after completion date of it's depede
 max(dependentCompletionDate + minDaysFromDependent + item.start, 
 dependentCompletionDate + minDaysFromStartDate + item.start), 
 and move the item to it's first state on that date.
-
 ```
 
 #### What will happen if my computed due date is after the expiry date.?
 
-An item's due date based on computations of dependent's completion_date, minDaysFromDependent and item.start, if exceeds the "expiresAfter" value, then we give priority to "expiresAfter" and mark it as expired.
+An item's due date based on computations of dependent's completion\_date, minDaysFromDependent and item.start, if exceeds the "expiresAfter" value, then we give priority to "expiresAfter" and mark it as expired.
 
 ### Flowchart for determining the Vaccination state:
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/815c13987e5ad6616202a18db078663bae5ec8000d94680642a418ff4e2ca2f3-Flowcharts_2.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
+<Image align="center" src="https://files.readme.io/815c13987e5ad6616202a18db078663bae5ec8000d94680642a418ff4e2ca2f3-Flowcharts_2.png" />
 
+### <span style={{ color: "blue" }}>TODOS:</span>
 
-### <span style="color:blue">TODOS:</span>
-
-- [ ] It is not clear if there is any default ordering in displaying status groups and is it possible to change it. E.g. we may want to show all due items in first row,  all critical in second, overdue in third, expired in fourth and completed in fifth.
+* [ ] It is not clear if there is any default ordering in displaying status groups and is it possible to change it. E.g. we may want to show all due items in first row, all critical in second, overdue in third, expired in fourth and completed in fifth.
