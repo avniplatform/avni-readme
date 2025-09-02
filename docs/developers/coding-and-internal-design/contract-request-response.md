@@ -27,9 +27,9 @@ Avni server internally uses entities or domain model based on hibernate. These d
 
 In Avni code while we would like to reuse data transfer object classes as much as possible but currently:
 
-- In order to maintain stability of mobile app, we tend to keep their formats separate.
-- Rule server formats are not very well thought out yet, as it may be refactored in future, hence they are also separate. It may become internal to Avni server in future, so separate formats may not be required.
-- External API request/responses are designed for external consumption. Their formats look like what one implementation may see their data as and not how Avni represents data.
+* In order to maintain stability of mobile app, we tend to keep their formats separate.
+* Rule server formats are not very well thought out yet, as it may be refactored in future, hence they are also separate. It may become internal to Avni server in future, so separate formats may not be required.
+* External API request/responses are designed for external consumption. Their formats look like what one implementation may see their data as and not how Avni represents data.
 
 <br />
 
