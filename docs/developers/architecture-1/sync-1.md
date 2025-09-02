@@ -44,7 +44,7 @@ These are functional (or implementation) entity types rather than model classes.
 
 Since group subject is a link between two subject types - hence the sync strategy for both these subject types should be as described below.
 
-- The user should have view access to both the subject types. If group subject type access is present then the sync will expect that view access to member subject type is also present - without checking for it (for now).
-- If one the subject types have location based sync strategy then the other should also have this.
-- If one of the subject types has sync attributes based sync strategy then other should also have it. The implementation must also make sure that the possible observation values on both group and member subject matches.
-- When the group subject is assigned then it implicitly assumed that child subject is also assigned. The other location and/sync attributes based sync strategy of child subject type should completely match the group subject type - if present (so that all entities sync correctly with the client).
+* The user should have view access to both the subject types. If group subject type access is present then the sync will expect that view access to member subject type is also present - without checking for it (for now).
+* If one the subject types have location based sync strategy then the other should also have this.
+* If one of the subject types has sync attributes based sync strategy then other should also have it. The implementation must also make sure that the possible observation values on both group and member subject matches.
+* When the group subject is assigned then it implicitly assumed that child subject is also assigned. The other location and/sync attributes based sync strategy of child subject type should completely match the group subject type - if present (so that all entities sync correctly with the client).
