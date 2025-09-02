@@ -26,6 +26,6 @@ In Avni most entities are synchronised to the client, hence their lifecycle must
 
 Hence following needs to be done:
 
-- The web app where editing of these entities happen, must always use the UUID or id of each entity it is changing (parent, child, all). It must communicate with the server with these ids.
-- The one-to-many mappings on the server, uses Set and we have id based equality on entities (not uuid). On the server one must load the entity from the database and then modified it found or create new.
-- For saving the on the server, hibernate maintains cascade from the parent to child - hence one needs to call save only on the parent and not on the child.
+* The web app where editing of these entities happen, must always use the UUID or id of each entity it is changing (parent, child, all). It must communicate with the server with these ids.
+* The one-to-many mappings on the server, uses Set and we have id based equality on entities (not uuid). On the server one must load the entity from the database and then modified it found or create new.
+* For saving the on the server, hibernate maintains cascade from the parent to child - hence one needs to call save only on the parent and not on the child.
