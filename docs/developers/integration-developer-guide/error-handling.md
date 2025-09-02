@@ -28,8 +28,8 @@ Important rule to identify such errors is that - these type of rules can be be f
 
 These are errors that the integrator doesn't have any way to recover from, as it is outside the scope of the integrator if even it itself is working as expected.
 
-- one or both of the systems being integrated are not available due to network or other issues
-- one or both of the integrated systems have software defects that cause the integration process to work not as expected
+* one or both of the systems being integrated are not available due to network or other issues
+* one or both of the integrated systems have software defects that cause the integration process to work not as expected
 
 ### Error due to defect in the integration code or data setup of the integrator
 
@@ -64,7 +64,7 @@ In this case the next run of the process will pick up from the same record and t
 
 The limitation of this approach is that:
 
-- In case it is a bug in one of the three systems that impact only certain records then other records are also not processed till this issue is resolved by someone manually by changing the code.
+* In case it is a bug in one of the three systems that impact only certain records then other records are also not processed till this issue is resolved by someone manually by changing the code.
 
 ## Business error classification
 
