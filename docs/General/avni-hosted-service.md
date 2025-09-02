@@ -17,6 +17,5 @@ If you are an existing user of the Avni hosted services, you can
 1. Download the application from the Android Play Store [here](https://play.google.com/store/apps/details?id=com.openchsclient)
 2. Login to the web-based data entry app or app designer [here](https://app.avniproject.org/#/)
 
-
-If you have configured reports via Metabase, they will be available [here](https://reporting.avniproject.org/)
+If you have configured reports via Metabase, they will be available [here](https://reporting.avniproject.org/)\
 If you have configured reports via Jasper Reports, they will be available [here](https://reporting-jasper.avniproject.org/jasperserver/login.html).
