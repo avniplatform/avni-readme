@@ -34,8 +34,8 @@ Clearing ETL schema and rows corresponding to it in the database. The next run o
 
 Steps: (please note if you are recreating for an organisation that uses reporting views then after recreation also generate the reporting views)
 
-- Disable ETL for the org using the screen in the previous section in the webapp.
-- ### For standalone organizations
+* Disable ETL for the org using the screen in the previous section in the webapp.
+* ### For standalone organizations
 
 ```Text SQL Function
 select delete_etl_metadata_for_schema('$impl_schema', '$impl_db_user', '$impl_db_owner');
@@ -57,7 +57,7 @@ delete from table_metadata
 		where schema_name = '$impl_schema';
 ```
 
-- ### For organization groups
+* ### For organization groups
 
 ```Text SQL Function
 select delete_etl_metadata_for_org('$impl_schema', '$impl_db_user');
@@ -78,18 +78,18 @@ delete from column_metadata where table_id
 delete from table_metadata where schema_name = '$impl_schema';
 ```
 
-- Enable ETl for the org using the screen in the previous section in the webapp.
+* Enable ETl for the org using the screen in the previous section in the webapp.
 
 ## Subject Type, Program and Encounter Type names
 
 ETL service tries to automatically create the table names based on the subject type, program and encounter type names. Since these are also namespaced the names for these tables are as long as possible in postgres to support uniqueness. But there could still be clash in the names due to which the ETL process may fail to create tables. To ensure that this doesn't happen please ensure that the first six characters for the following are not the same. Please note that it is scoped, i.e. e.g. you can have same starting six characters for two encounter types under different programs.
 
-- two encounter types within same program
-- two encounter types within same subject type
-- two programs inside the same subject type
+* two encounter types within same program
+* two encounter types within same subject type
+* two programs inside the same subject type
 
 ### Trimming configuration on ETL table names
 
 Refer to below link for current trimming configuration on ETL table name, when the original name exceeds length of 63 bytes(63 ASCII Code characters).
 
-<https://github.com/avniproject/avni-etl/blob/main/src/main/java/org/avniproject/etl/repository/rowMappers/TableNameGenerator.java#L15>
+[https://github.com/avniproject/avni-etl/blob/main/src/main/java/org/avniproject/etl/repository/rowMappers/TableNameGenerator.java#L15](https://github.com/avniproject/avni-etl/blob/main/src/main/java/org/avniproject/etl/repository/rowMappers/TableNameGenerator.java#L15)
