@@ -23,39 +23,13 @@ Avni supports Data analytics in 2 different modes:
 
 Avni has a section to retrieve longitudinal exports of data that is analysis friendly with applications such as SAS/SPSS. This is also available in the browser if you login to the Avni web application.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/327a38b7ee76e06144331079639ab99b7e70f3fb9723509cc2af4f2fec1d8cbf-old_longitudinal_export.png",
-        null,
-        "Old Longitudinal exports"
-      ],
-      "align": "center",
-      "caption": "Old Longitudinal exports"
-    }
-  ]
-}
-[/block]
+<Image alt="Old Longitudinal exports" align="center" src="https://files.readme.io/327a38b7ee76e06144331079639ab99b7e70f3fb9723509cc2af4f2fec1d8cbf-old_longitudinal_export.png">
+  Old Longitudinal exports
+</Image>
 
-
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/552ab3fac1f97a83dc533b3bb7c70d8dc406702c515f089bf93ef72e433256bf-new_longitudinal_export.png",
-        null,
-        "New Longitudinal exports"
-      ],
-      "align": "center",
-      "caption": "New Longitudinal exports"
-    }
-  ]
-}
-[/block]
-
+<Image alt="New Longitudinal exports" align="center" src="https://files.readme.io/552ab3fac1f97a83dc533b3bb7c70d8dc406702c515f089bf93ef72e433256bf-new_longitudinal_export.png">
+  New Longitudinal exports
+</Image>
 
 ## Avni hosted Reporting services
 
@@ -63,26 +37,14 @@ As part of [Avni Hosted Service](doc:avni-hosted-service) we provide three diffe
 
 Alternatively, you can directly go to the various reporting tools via following links:
 
-- Metabase - <https://reporting.avniproject.org/>
-- Jasper Reports - <https://reporting-jasper.avniproject.org/jasperserver/login.html>
-- Superset - <https://reporting-superset.avniproject.org/>
+* Metabase - [https://reporting.avniproject.org/](https://reporting.avniproject.org/)
+* Jasper Reports - [https://reporting-jasper.avniproject.org/jasperserver/login.html](https://reporting-jasper.avniproject.org/jasperserver/login.html)
+* Superset - [https://reporting-superset.avniproject.org/](https://reporting-superset.avniproject.org/)
 
 ### Self-Service Reports
 
 Avni provides a Self-Service Reports feature that allows users to create and manage reports without requiring technical expertise. We uses Metabase for this purpose. You can read up more about it [here](self-service-reports-guide-for-avni).
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/0ffb57d71344858fd1f3fb5018f7af9425cc23fa9fb2ac517b741ea0322c7727-self_service_reports.png",
-        null,
-        "Self-Service Reports"
-      ],
-      "align": "center",
-      "caption": "Self-Service Reports"
-    }
-  ]
-}
-[/block]
+<Image alt="Self-Service Reports" align="center" src="https://files.readme.io/0ffb57d71344858fd1f3fb5018f7af9425cc23fa9fb2ac517b741ea0322c7727-self_service_reports.png">
+  Self-Service Reports
+</Image>
