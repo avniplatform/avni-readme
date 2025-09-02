@@ -25,12 +25,8 @@ All work in Avni happens through Github issues, so if you discover a problem in 
 | Android field app                         | [github.com/avniproject/avni-client/issues](github.com/avniproject/avni-server/issues)  |
 | Multiple/not sure                         | [github.com/avniproject/avni-product/issues](github.com/avniproject/avni-server/issues) |
 
-
-
 2. If the issue affects an end-user of the application, mark the label "user-reported". 
 3. If you believe the issue is a bug, then add the label "bug"
 4. When reporting a product issue, try to help the developer understand how the issue can be replicated with minimum effort. For example, create a new organisation where you can isolate the issue to its bare minimum. Alternatively, provide steps to reproduce the issue in a clear manner. This helps save a lot of developer time, and cuts down the number of communication hops to understand the issue. 
-
-
 
 Once issues are reported, they get triaged and assigned a release. The list of releases and their expected go-live dates are available on the [Roadmap](https://github.com/orgs/avniproject/projects/2/views/7). The [Avni Development Process]\(Avni Development Process)provides a peek into how issues get sorted and move through to be fixed in the product.
