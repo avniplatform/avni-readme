@@ -22,8 +22,6 @@ When an http request reaches Avni, the user is first authenticated. Based on the
 
 ![](https://files.readme.io/2a03d9f-Avni_multitenancy.png "Avni multitenancy.png")
 
-
-
 ### Reporting server
 
 \[Deprecated]In the reporting server, each organisation is defined as a new database, authenticated by their corresponding database role. This limits access to data to their organisation alone. Users are assigned to groups, one group per organisation. Each group is provided access to the database that they have access to.
