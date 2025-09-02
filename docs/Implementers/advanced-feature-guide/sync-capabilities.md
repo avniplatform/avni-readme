@@ -26,7 +26,7 @@ Avni works completely in offline mode except during login and sync. The first ti
 | Auto Sync       | Upload           | Every hour     |
 | Auto Sync       | Download         | Every 12 hours |
 
-<br>
+<br/>
 
 ## More about Auto Sync
 
