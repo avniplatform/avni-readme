@@ -10,6 +10,6 @@ metadata:
 next:
   description: ''
 ---
-Website: <https://avniproject.org/>
+Website: [https://avniproject.org/](https://avniproject.org/)
 
-Chat: <https://discord.gg/JVEpdaMt>
+Chat: [https://discord.gg/JVEpdaMt](https://discord.gg/JVEpdaMt)
