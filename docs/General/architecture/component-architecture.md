@@ -12,33 +12,19 @@ next:
 ---
 ## The Avni suite includes the following components:
 
-- Field app (Android)
-- Administration app and App Designer (Web)
-- Media app (Web)
-- Avni server
-- Rules server
-- ETL Server
-- Media Server
-- Integration Server
-- BI Tools
+* Field app (Android)
+* Administration app and App Designer (Web)
+* Media app (Web)
+* Avni server
+* Rules server
+* ETL Server
+* Media Server
+* Integration Server
+* BI Tools
 
 ## Avni components
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/601f4e4-Avni_Components.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/601f4e4-Avni_Components.png" />
 
 ### Field app (android)
 
@@ -54,11 +40,11 @@ The **Administration app and App Designer** is a web-based interface that is use
 
 The **Avni server** exists for the following reasons
 
-- A centralized place to keep data persistent and to enable sharing of data between different devices.
-- Enable creation of organisation workflows and forms centrally through metadata.
-- Enable availability of aggregate data that can be accessed by the Reports server. 
+* A centralized place to keep data persistent and to enable sharing of data between different devices.
+* Enable creation of organisation workflows and forms centrally through metadata.
+* Enable availability of aggregate data that can be accessed by the Reports server. 
 
-The Avni server is multitenant, which means that the same server can be used for multiple organisations/locations/programs. Multitenancy is achieved through _row-level security policies_ within the database. This is important for Avni to achieve operational efficiency. For further in-depth details on multi-tenancy please refer [Multitenancy](doc:multitenancy-1)
+The Avni server is multitenant, which means that the same server can be used for multiple organisations/locations/programs. Multitenancy is achieved through *row-level security policies* within the database. This is important for Avni to achieve operational efficiency. For further in-depth details on multi-tenancy please refer [Multitenancy](doc:multitenancy-1)
 
 ### Rules Server
 
