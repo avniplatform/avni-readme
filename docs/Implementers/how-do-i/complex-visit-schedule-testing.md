@@ -24,7 +24,7 @@ These are tests that are written such that they read close normal english using 
 
 ### Example
 
-This is one test for scheduling visits on edit of an ANC Visit - <https://github.com/avniproject/apf-odisha-2/blob/main/test/ANCTest.js#L117>.
+This is one test for scheduling visits on edit of an ANC Visit - [https://github.com/avniproject/apf-odisha-2/blob/main/test/ANCTest.js#L117](https://github.com/avniproject/apf-odisha-2/blob/main/test/ANCTest.js#L117).
 
 **Given** that the for beneficiary ANC-1 visit is completed and ANC-2 visit is scheduled for the next month
 
@@ -36,12 +36,12 @@ This is one test for scheduling visits on edit of an ANC Visit - <https://github
 
 Visit schedules for which such unit tests have been written should be tested differently.
 
-- Review the test scenarios already automated via these tests.  If any scenario is missing, request the developer to add those scenarios to the test suite.
-- Pick a handful, not too many, of these to verify whether the mobile application is indeed working in the same way as well.
-- **Most importantly - do not manually run all the scenarios.**
+* Review the test scenarios already automated via these tests.  If any scenario is missing, request the developer to add those scenarios to the test suite.
+* Pick a handful, not too many, of these to verify whether the mobile application is indeed working in the same way as well.
+* **Most importantly - do not manually run all the scenarios.**
 
 ## For developers
 
-- Jest - <https://jestjs.io/docs/api>
-- It is important to learn about test lifecycle and setup, teardown, describe, test/it methods. <https://jestjs.io/docs/setup-teardown>
-- It is important the each test (test/it) runs independent of other tests, so that execution of one test doesn't have any impact on another test. To achieve this all variables should be instantiated in each test, i.e. in move all the code common instantiation code (not functions) to beforeEach. Do not instantiate anything outside beforeEach and it/test. Unit tests run super-fast so optimisation is not useful and is in fact counter-productive.
+* Jest - [https://jestjs.io/docs/api](https://jestjs.io/docs/api)
+* It is important to learn about test lifecycle and setup, teardown, describe, test/it methods. [https://jestjs.io/docs/setup-teardown](https://jestjs.io/docs/setup-teardown)
+* It is important the each test (test/it) runs independent of other tests, so that execution of one test doesn't have any impact on another test. To achieve this all variables should be instantiated in each test, i.e. in move all the code common instantiation code (not functions) to beforeEach. Do not instantiate anything outside beforeEach and it/test. Unit tests run super-fast so optimisation is not useful and is in fact counter-productive.
