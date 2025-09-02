@@ -50,15 +50,15 @@ Mark as FIXED
 
 ## Analysing errors
 
-- We should look at last 30 days, errors happening in production environment and not on developer machines (applies to emulators).
-- You can look at additional information available in Bugsnag in its tabs like Release stages, Users, Models etc.
-- Usually the higher frequency of error should be paid more attention to, in terms of prioritisation (note this applies across projects i.e. a higher frequency of server error is likely more important to fix than lower frequency client error and vice-versa).
-- If an error doesn't have a source map associated with it then raise a bug to get the source map uploaded for that version.
-- Use and maintain the bookmark created for analysis called - Production Open Issues.
-- Check comment on the issue to check whether the issue is linked to Zenhub issue already. It is not linked via their issue tracking to Github as not sure what that will get us.
+* We should look at last 30 days, errors happening in production environment and not on developer machines (applies to emulators).
+* You can look at additional information available in Bugsnag in its tabs like Release stages, Users, Models etc.
+* Usually the higher frequency of error should be paid more attention to, in terms of prioritisation (note this applies across projects i.e. a higher frequency of server error is likely more important to fix than lower frequency client error and vice-versa).
+* If an error doesn't have a source map associated with it then raise a bug to get the source map uploaded for that version.
+* Use and maintain the bookmark created for analysis called - Production Open Issues.
+* Check comment on the issue to check whether the issue is linked to Zenhub issue already. It is not linked via their issue tracking to Github as not sure what that will get us.
 
 ## Bugsnag Management
 
-- When ignoring an issue, first discard it and then ignore it.
-- Look for issue template in Zenhub/Github and add if necessary.
-- Look for Zenhub issue from the comment on BugSnag issue
+* When ignoring an issue, first discard it and then ignore it.
+* Look for issue template in Zenhub/Github and add if necessary.
+* Look for Zenhub issue from the comment on BugSnag issue
