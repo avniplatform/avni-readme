@@ -14,8 +14,6 @@ Avni is a standalone application and is not meant to be used as a library within
 
 This document provides the reasons, and the actual compatibility policy that Avni adheres to. 
 
-
-
 ### What are the ideas behind backwards compatibility?
 
 The field-app is hosted on Google Play, and therefore we expect users to stay on older versions (sometimes upto 6 month old versions). The server, therefore has to be able to service these apps correctly. 
