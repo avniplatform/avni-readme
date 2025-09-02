@@ -16,43 +16,29 @@ Avni doesn't stop the users from using the app and filling the forms when the ru
 
 The app designer displays these errors from the Rule Failures tab. On clicking a RuleFailure entry, the errorMessage details are visible. These can be also closed from there, by selecting corresponding CheckBoxes and clicking on "CLOSE ERRORS" button.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/755b159-Screenshot_2024-05-06_at_4.22.58_PM.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/755b159-Screenshot_2024-05-06_at_4.22.58_PM.png" />
 
 ## App designer fields of rule failure entry
 
 ### Which Rule
 
-- Rule UUID - UUID of the rule (other details can be picked from the database)
-- Source - Possible values are present [here](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/server/domain/enums/ruleFailure/SourceType.java). This should not be null (currently there are some old entries for which it is null). This indicates what is the type of rule for which this error happened.
+* Rule UUID - UUID of the rule (other details can be picked from the database)
+* Source - Possible values are present [here](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/server/domain/enums/ruleFailure/SourceType.java). This should not be null (currently there are some old entries for which it is null). This indicates what is the type of rule for which this error happened.
 
 ### On which entity
 
-- Individual UUID - The UUID of the subject on whose data edit/create this error happened. This will be not be present for EntityType=ReportCard - as ReportCard rules span across subjects.
-- Entity - `UUID` + `Type of the Entity`. For report card rule errors this field will be null
-  - Type of the entity - Possible values are named [here](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/server/domain/enums/ruleFailure/EntityType.java).
-  - UUID - When the type of entity = `Individual` then the UUID and `Individual UUID` field will be same.
+* Individual UUID - The UUID of the subject on whose data edit/create this error happened. This will be not be present for EntityType=ReportCard - as ReportCard rules span across subjects.
+* Entity - `UUID` + `Type of the Entity`. For report card rule errors this field will be null
+  * Type of the entity - Possible values are named [here](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/server/domain/enums/ruleFailure/EntityType.java).
+  * UUID - When the type of entity = `Individual` then the UUID and `Individual UUID` field will be same.
 
 ### Other details
 
-- Message (database field error_message + stack trace).
-- Error date - The date on which error happened on the user's device. The clock used is that of the device.
-- App - Android or Web. null value = Web. This indicates which type of channel on which this error happened.
+* Message (database field error\_message + stack trace).
+* Error date - The date on which error happened on the user's device. The clock used is that of the device.
+* App - Android or Web. null value = Web. This indicates which type of channel on which this error happened.
 
 ### Error management
 
-- Status (Open, Closed)
-- Closed date - Date on which on the error was closed.
+* Status (Open, Closed)
+* Closed date - Date on which on the error was closed.
