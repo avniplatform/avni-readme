@@ -12,9 +12,9 @@ next:
 ---
 Avni client is developed using ReactNative, NativeBase, RealmJS, and Redux. Some of the core concepts for these frameworks and libraries are:
 
-- [ReactNative Basics](https://reactnative.dev/docs/0.65/getting-started) 
-- [React main concepts](https://reactjs.org/docs/hello-world.html) be also useful
-- Official documentation of RealmJS, NativeBase, and [Redux](https://devdocs.io/redux~3-basics/).
+* [ReactNative Basics](https://reactnative.dev/docs/0.65/getting-started) 
+* [React main concepts](https://reactjs.org/docs/hello-world.html) be also useful
+* Official documentation of RealmJS, NativeBase, and [Redux](https://devdocs.io/redux~3-basics/).
 
 The main building blocks of Avni Client are as follows:
 
@@ -46,7 +46,7 @@ Redux actions call clones in several places. One should be careful about making 
 
 ### Services
 
-Services are responsible for the interaction with the database, making server calls, and other IO calls. The service can/should use other services. (Services plus Repository as in DDD).  
+Services are responsible for the interaction with the database, making server calls, and other IO calls. The service can/should use other services. (Services plus Repository as in DDD).\
 Services also manage database transaction boundaries.
 
 Services must not dispatch any action to redux.
