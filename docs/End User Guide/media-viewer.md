@@ -12,23 +12,9 @@ next:
 ---
 If you collect media (images, video, files) as part of your workflow then Avni Media Viewer will help your users to browse through, search and bulk download such media files. Media Viewer is available as an web app on the home page.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/697f439-image.png",
-        null,
-        "Media Viewer app"
-      ],
-      "align": "center",
-      "border": true,
-      "caption": "Media Viewer app"
-    }
-  ]
-}
-[/block]
-
+<Image alt="Media Viewer app" align="center" border={true} src="https://files.readme.io/697f439-image.png">
+  Media Viewer app
+</Image>
 
 Media can be filtered by
 
@@ -54,10 +40,10 @@ Other than the Media Viewer app, media can be accessed using the following mecha
 
 ### Thumbnails and original image
 
-- **Thumbnails** are shown in the search/filter results. Thumbnails are generated automatically by Avni.
-- When you click an image the preview of image is shown, this is the **original image** shown in a fixed size.
-- When you download the image the **original image** is downloaded.
-- When you click on the name the image **original image** is shown in the new tab.
+* **Thumbnails** are shown in the search/filter results. Thumbnails are generated automatically by Avni.
+* When you click an image the preview of image is shown, this is the **original image** shown in a fixed size.
+* When you download the image the **original image** is downloaded.
+* When you click on the name the image **original image** is shown in the new tab.
 
 ### Display of non-open formats of images
 
@@ -67,15 +53,4 @@ Due to this, the thumbnails are not visible in the media viewer web app. But you
 
 Currently the users can upload standard images by turning of this feature in Samsung. There are two settings that need to be changed as described in this short video.
 
-[block:embed]
-{
-  "html": "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2F7MLuT-dVuf0%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D7MLuT-dVuf0&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2F7MLuT-dVuf0%2Fhqdefault.jpg&key=7788cb384c9f4d5dbbdbeffd9fe4b92f&type=text%2Fhtml&schema=youtube\" width=\"854\" height=\"480\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-  "url": "https://www.youtube.com/embed/7MLuT-dVuf0?si=B3D3GwQK8_08nXX0",
-  "title": "How to Fix Android Phone Shooting Picture in HEIC/HEIF Format | Samsung Mobile",
-  "favicon": "https://www.youtube.com/favicon.ico",
-  "image": "https://i.ytimg.com/vi/7MLuT-dVuf0/hqdefault.jpg",
-  "provider": "youtube.com",
-  "href": "https://www.youtube.com/embed/7MLuT-dVuf0?si=B3D3GwQK8_08nXX0",
-  "typeOfEmbed": "youtube"
-}
-[/block]
+<Embed url="https://www.youtube.com/embed/7MLuT-dVuf0?si=B3D3GwQK8_08nXX0" title="How to Fix Android Phone Shooting Picture in HEIC/HEIF Format | Samsung Mobile" favicon="https://www.youtube.com/favicon.ico" image="https://i.ytimg.com/vi/7MLuT-dVuf0/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/embed/7MLuT-dVuf0?si=B3D3GwQK8_08nXX0" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F7MLuT-dVuf0%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D7MLuT-dVuf0%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F7MLuT-dVuf0%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
