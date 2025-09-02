@@ -12,7 +12,7 @@ next:
 ---
 Since Avni Bahmni integration is reusable integration, hence this page. Some Avni integration modules are specific to a project, hence they will not be documented here.
 
-### Conceptual Background
+### Conceptual Background 
 
 The purpose Avni Bahmni integration is to make the data of Avni available to the hospital users and the Bahmni data available to the field workers using Avni. The integration allows control over which data is made available on the other side. Once the data is available the existing mechanisms present in the both the system can be used to view this data.
 
