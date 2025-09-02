@@ -14,23 +14,9 @@ next:
 
 ## Take dump
 
-### From IntelliJ choose the database and from pop-up menu choose "Export pg_dump".
+### From IntelliJ choose the database and from pop-up menu choose "Export pg\_dump".
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/42ab63c-Screenshot_2023-07-19_at_2.30.41_PM.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
+<Image align="center" className="border" border={true} src="https://files.readme.io/42ab63c-Screenshot_2023-07-19_at_2.30.41_PM.png" />
 
 ### In Statements choose Copy instead of insert (applying the dump later is faster). Note down the location of the dump.
 
