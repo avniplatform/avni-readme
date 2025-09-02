@@ -12,11 +12,11 @@ next:
 ---
 ### Version compatibility (Hermes, Chrome, React Native)
 
-- React Native supports debugging via Chrome Debugger (DevTools)
-- Realm doesn't support debugging with JSC only with Hermes
-- Since Chrome keeps getting updated on our machines, so even with hermes one needs to be at a certain version for chrome debuggers for specific versions of react native (and maybe realm also).
-- The above problem is solved by Flipper (desktop app) which has an embedded chrome debugger - hence at fixed compatible version.
-- For our code, Flipper Version 0.176.0 (50.0.0) has been tested to work.
+* React Native supports debugging via Chrome Debugger (DevTools)
+* Realm doesn't support debugging with JSC only with Hermes
+* Since Chrome keeps getting updated on our machines, so even with hermes one needs to be at a certain version for chrome debuggers for specific versions of react native (and maybe realm also).
+* The above problem is solved by Flipper (desktop app) which has an embedded chrome debugger - hence at fixed compatible version.
+* For our code, Flipper Version 0.176.0 (50.0.0) has been tested to work.
 
 ### How to use
 
@@ -33,8 +33,6 @@ make clean_app run_app
 # continue to use JSC
 make run_app
 ```
-
-
 
 In the `make run_app` log (not Metro) verify the engine by looking for `[Avni] Hermes Enabled:`
 
