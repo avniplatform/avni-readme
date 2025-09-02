@@ -14,20 +14,20 @@ next:
 
 **Message Rule**
 
-- entityType - see [EntityType](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/messaging/domain/EntityType.java) enum
-- entityTypeId (Avni ID of the entity type like SubjectType, Program, etc)
+* entityType - see [EntityType](https://github.com/avniproject/avni-server/blob/master/avni-server-api/src/main/java/org/avni/messaging/domain/EntityType.java) enum
+* entityTypeId (Avni ID of the entity type like SubjectType, Program, etc)
 
 (From reporting/querying standpoint, these fields provide information about meta entity)
 
 **Message Receiver**
 
-- receiverType (User, Subject, Group)
-- receiverId (Avni ID for User and Subject. never populated for Group)
-- externalId (for User and Subject this field gets populated when the message is first sent to the external system. for Group this field is always present)
+* receiverType (User, Subject, Group)
+* receiverId (Avni ID for User and Subject. never populated for Group)
+* externalId (for User and Subject this field gets populated when the message is first sent to the external system. for Group this field is always present)
 
 **Message Request (Queue)**
 
-- entityId (Subject ID, Program Enrolment ID, Program Encounter ID, Encounter ID)
+* entityId (Subject ID, Program Enrolment ID, Program Encounter ID, Encounter ID)
 
 ### To understand the status of automatic messages
 
@@ -42,8 +42,6 @@ where mrq.is_voided = false
   and mr.is_voided = false and o.is_voided = false
 order by o.name, scheduled_date_time desc;
 ```
-
-
 
 ### To understand the status of manually triggered messages
 
