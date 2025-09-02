@@ -20,33 +20,19 @@ Release Versioning Format: MajorVersionNumber.MinorVersionNumber.PatchVersionNum
 
 ### Branches
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/701267ec2f229cac03b6f1996472488fb8e37ea9bba2e4ff669aca89d50a4ed2-7d3d36e-branching.png",
-        "",
-        ""
-      ],
-      "align": "center"
-    }
-  ]
-}
-[/block]
-
+<Image align="center" src="https://files.readme.io/701267ec2f229cac03b6f1996472488fb8e37ea9bba2e4ff669aca89d50a4ed2-7d3d36e-branching.png" />
 
 Every branch comes out of the previous parent (4.1.0 comes out of 4.0.0, 5.0.0 comes out of main / master). Branches are merged to their parents, which eventually go up till the mainline (master/main).
 
 ### Release branching guidelines
 
-1. Patch version use the corresponding major / minor version branch itself and **not** a separate branch  
+1. Patch version use the corresponding major / minor version branch itself and **not** a separate branch\
    Ex: For 4.0.1, we'll use 4.0 release branch itself
-2. Minor version has its own branch, created from previous major/ minor release branch  
+2. Minor version has its own branch, created from previous major/ minor release branch\
    Ex: for 4.1.0, we'll create a new branch 4.1 from 4.0
-3. Merge happens from release major / minor branch to all pending Major / minor release branches, as well as to Master/Main branch  
+3. Merge happens from release major / minor branch to all pending Major / minor release branches, as well as to Master/Main branch\
    Ex: During 4.1 release, We'll merge 4.1 to 4.2, 5.0 and Master/Main branches
-4. During release create tag with format vMajor.Minor.Patch version in release branch across all repos  
+4. During release create tag with format vMajor.Minor.Patch version in release branch across all repos\
    Ex: For 4.1.0 release, create tag v4.1.0 on all repos, 4.1 branch **head** commit
-5. To trigger different Flavor(Gramin) APK generation for an old Patch version in avni-client which already has additional patch versions, you should make use of a separate branch that would only used for APK generation purpose.  
-   Ex: For 4.0.1 Patch release, if there is already 4.0.2 release completed, since all changes are on 4.0 branch, create a new branch "apk_401" from tag v4.0.1 and use "apk_401" branch for Gramin APK generation.
+5. To trigger different Flavor(Gramin) APK generation for an old Patch version in avni-client which already has additional patch versions, you should make use of a separate branch that would only used for APK generation purpose.\
+   Ex: For 4.0.1 Patch release, if there is already 4.0.2 release completed, since all changes are on 4.0 branch, create a new branch "apk\_401" from tag v4.0.1 and use "apk\_401" branch for Gramin APK generation.
