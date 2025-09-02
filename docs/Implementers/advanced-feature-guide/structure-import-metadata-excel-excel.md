@@ -36,55 +36,42 @@ The following are the various spreadsheets within a metaData.xlsx file.
 
 Sheets represent a logical sheet of data. A physical sheet of data can be mapped to multiple logical sheets of data.
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+<table>
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Column</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th>Column</th>
+  <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>File Name</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The data migration service is used by supplying the metadata excel file, a data excel file, and a fileName (since the server reads the data excel file via a stream it doesn&#39;t know the name of the file originally uploaded hence it needs to be explicitly provided).  </p>
-<p>Only the sheets which have the file name matching the fileName via the API would be imported.</p>
-</td>
+  <td><p>File Name</p></td>
+  <td><p>The data migration service is used by supplying the metadata excel file, a data excel file, and a fileName (since the server reads the data excel file via a stream it doesn&#39;t know the name of the file originally uploaded hence it needs to be explicitly provided).  </p>
+<p>Only the sheets which have the file name matching the fileName via the API would be imported.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>User File Type</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is the unique name given to the file of specific types. There can be more than one physical file of the same type, in which case the user file type will be the same but file names will be different.</p>
-</td>
+  <td><p>User File Type</p></td>
+  <td><p>This is the unique name given to the file of specific types. There can be more than one physical file of the same type, in which case the user file type will be the same but file names will be different.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Sheet Name</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is the name of the actual sheet in the data file uploaded where the data should be read.</p>
-</td>
+  <td><p>Sheet Name</p></td>
+  <td><p>This is the name of the actual sheet in the data file uploaded where the data should be read.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Entity Type, Program Name and Visit Type, Address</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Core but optional data to be provided depending on the type of data being imported</p>
-</td>
+  <td><p>Entity Type, Program Name and Visit Type, Address</p></td>
+  <td><p>Core but optional data to be provided depending on the type of data being imported</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Active</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>During data migration, it is possible that there are a lot of files and mapping metadata definition for those files may not be complete. Active flag (Yes or No) can be used to disable sheets that need not be considered for migration when uploaded.</p>
-</td>
+  <td><p>Active</p></td>
+  <td><p>During data migration, it is possible that there are a lot of files and mapping metadata definition for those files may not be complete. Active flag (Yes or No) can be used to disable sheets that need not be considered for migration when uploaded.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Name of fields</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>One can add multiple columns after this such that it matches the name of a System Field and provides the default value for the entire virtual sheet.</p>
-</td>
+  <td><p>Name of fields</p></td>
+  <td><p>One can add multiple columns after this such that it matches the name of a System Field and provides the default value for the entire virtual sheet.</p></td>
 </tr>
 </tbody>
 </table>
-`}</HTMLBlock>
+
 #### Sample
 
 | File Name                          | User File Type | Sheet Name | Entity Type      | Program Name | Visit Type | Active | Date of Birth Verified | SubjectTypeUUID                          | Registration Date | Enrolment Date |
@@ -96,42 +83,32 @@ Sheets represent a logical sheet of data. A physical sheet of data can be mapped
 
 The mapping for non-calculated fields
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
+<table>
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;">Column</th>
-  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+  <th>Column</th>
+  <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>User File Type</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is the same as in Sheets.</p>
-</td>
+  <td><p>User File Type</p></td>
+  <td><p>This is the same as in Sheets.</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Form Type</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>[IndividualProfile, Encounter, ProgramEncounter, ProgramEnrolment, ProgramExit, ProgramEncounterCancellation, ChecklistItem, IndividualRelationship]</p>
-</td>
+  <td><p>Form Type</p></td>
+  <td><p>[IndividualProfile, Encounter, ProgramEncounter, ProgramEnrolment, ProgramExit, ProgramEncounterCancellation, ChecklistItem, IndividualRelationship]</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>System Field</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>The concept name is specified in the form.<br>Or Default field (this can be seen in different importers, See below ).</p>
-</td>
+  <td><p>System Field</p></td>
+  <td><p>The concept name is specified in the form.<br/>Or Default field (this can be seen in different importers, See below ).</p></td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>User Field</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Name of the column from data.xlsx file</p>
-</td>
+  <td><p>User Field</p></td>
+  <td><p>Name of the column from data.xlsx file</p></td>
 </tr>
 </tbody>
 </table>
-`}</HTMLBlock>
 
 #### Default fields for each entity as of Dec 2019
 
