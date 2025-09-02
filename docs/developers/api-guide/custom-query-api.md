@@ -14,12 +14,12 @@ Avni allows you to save the implementation-related queries in the `custom_query`
 
 ### Points to note:
 
-- Right now, there is no UI, and the implementer needs to insert the query manually into the DB.
-- The query gets passed following additional parameters used to set Organisation context, which can be made use of, as per implementation team's requirement in the custom query. 
-  - ORG_ID =>"org_id"
-  - ORG_DB_USER => "org_db_user"
-  - ORG_SCHEMA_NAME => "org_schema_name"
-- Please note that the custom query is executed within the current organisation's db_user's role context.. therefore, data access would be limited to only that within its organisation.
+* Right now, there is no UI, and the implementer needs to insert the query manually into the DB.
+* The query gets passed following additional parameters used to set Organisation context, which can be made use of, as per implementation team's requirement in the custom query. 
+  * ORG\_ID =>"org\_id"
+  * ORG\_DB\_USER => "org\_db\_user"
+  * ORG\_SCHEMA\_NAME => "org\_schema\_name"
+* Please note that the custom query is executed within the current organisation's db\_user's role context.. therefore, data access would be limited to only that within its organisation.
 
 ### Sample insert statement
 
