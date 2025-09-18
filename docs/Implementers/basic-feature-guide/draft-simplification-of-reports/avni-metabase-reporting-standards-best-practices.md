@@ -16,16 +16,15 @@ metadata:
 ```
 Row 1: Summary & Description
 ├── Dashboard title and purpose description
+├── Explanation of Filters available
 └── Key metrics overview
 
 Row 2: Total Count Cards  
 ├── Aggregate metrics from base query
-├── KPI cards with totals
-└── Summary statistics
+└── Apply Conditional filters only where appropriate
 
 Row 3+: Filtered Linelists
 ├── Detailed records for each count card
-├── Drill-down capability
 └── Conditional filters applied
 ```
 
