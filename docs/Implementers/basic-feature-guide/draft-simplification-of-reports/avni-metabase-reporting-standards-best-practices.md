@@ -67,37 +67,41 @@ Row 3+: Filtered Linelists
 
 ### **3. Complex Query Management via PostETLSync**
 
+#### **PostETLSync Overview**
+
+PostETLSync enables custom data transformations after standard ETL completion through configurable SQL transformations. This feature supports incremental processing, ordered execution, and organization-specific configurations while ensuring data integrity through transaction management.
+
 #### **When to Use PostETLSync:**
 
-* Complex multi-table aggregations
-* Time-series calculations requiring window functions
-* Business logic that spans multiple entities
-* Performance-intensive queries affecting dashboard load times
+* **Views Persisted Across ETL Schema Recreates**: Maintain custom views and derived tables that survive ETL schema rebuilds
+* **Derived Tables**: Create complex aggregated views from multiple source tables
+* **Custom Business Logic**: Implement organization-specific calculations and transformations
+* **Performance Optimization**: Pre-compute complex queries for faster dashboard loading
+* **Incremental Updates**: Process only changed data since last sync using timestamp filtering
 
-#### **PostETLSync Configuration Process:**
+#### **Configuration Structure:**
 
-```sql
--- Example: Create materialized view for complex reporting
-CREATE MATERIALIZED VIEW mv_program_performance AS
-SELECT 
-    p.name as program_name,
-    COUNT(DISTINCT pe.id) as total_enrollments,
-    COUNT(DISTINCT enc.id) as total_encounters,
-    AVG(EXTRACT(days FROM pe.enrolment_date_time - i.date_of_birth)/365.25) as avg_age_at_enrollment
-FROM program_enrolment pe
-JOIN individual i ON pe.individual_id = i.id
-JOIN program p ON pe.program_id = p.id
-LEFT JOIN program_encounter enc ON enc.program_enrolment_id = pe.id
-WHERE pe.is_voided = false
-GROUP BY p.id, p.name;
-```
+PostETLSync uses JSON configuration files (`post-etl-sync-processing-config.json`) with two main sections:
 
-#### **Advantages:**
+* **DDL Operations**: Create tables, indexes, and database objects (executed first)
+* **DML Operations**: Insert and update data with ordered execution and parameter substitution
 
-* **Pre-computed Results**: Faster dashboard loading
-* **Complex Logic Encapsulation**: Business rules embedded in ETL
-* **Simplified Metabase Queries**: Use materialized views as simple base tables
-* **Consistent Calculations**: Same logic applied across all reports
+#### **Key Features:**
+
+* **Automatic Parameter Substitution**: `:previousCutoffDateTime` and `:newCutoffDateTime` for incremental processing
+* **Schema-Qualified Operations**: All table references must include schema names for proper permissions
+* **Timestamp Filtering**: Built-in support for processing only modified records
+* **Transaction Safety**: Ensures data consistency during transformation processes
+
+#### **Best Practices:**
+
+* Always use both timestamp parameters in data modification queries
+* Include `is_voided = false` checks when applicable
+* Use descriptive prefixes for SQL script naming
+* Apply timestamp filters to all subqueries and CTEs
+* Begin DDL scripts with appropriate role setting for permissions
+
+This approach transforms complex reporting requirements into maintainable, performant solutions that integrate seamlessly with Avni's ETL pipeline while providing the flexibility needed for organization-specific reporting needs.
 
 ### **4. Implementation Best Practices**
 
@@ -160,8 +164,6 @@ WHERE subject.is_voided = false
 * Dashboard purpose and target audience
 * Base query explanation and assumptions
 * Filter definitions and expected behaviors
-* Data refresh schedule and dependencies
-* Known limitations or caveats
 
 ### **6. Reference Implementation**
 
@@ -172,4 +174,4 @@ Following the <Anchor label="Avni reporting simplification guidelines" target="_
 * **User-Centric Design**: Intuitive navigation from summary to detail
 * **Data Governance**: Consistent metrics across the organization
 
-This structured approach transforms complex health program data into actionable insights while maintaining system performance and user experience quality.
+This structured approach transforms complex organisational data into actionable insights while maintaining system performance and user experience quality.
