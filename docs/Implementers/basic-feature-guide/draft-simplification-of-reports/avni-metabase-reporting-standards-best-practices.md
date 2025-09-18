@@ -52,9 +52,9 @@ Row 3+: Filtered Linelists
 - Mixed time periods and contexts
 
 ✅ Good: Separate Dashboards  
-- Subject Registration Dashboard (primary: individual table)
-- Program Performance Dashboard (primary: program_enrolment table)
-- Service Delivery Dashboard (primary: encounter tables)
+- Subject Registration Dashboard (primary: beneficiary table)
+- Program Performance Dashboard (primary: beneficiary_pregnancy table)
+- Service Delivery Dashboard (primary: beneficiary_pregnancy_anc tables)
 ```
 
 #### **Benefits of Pure Dashboards:**
