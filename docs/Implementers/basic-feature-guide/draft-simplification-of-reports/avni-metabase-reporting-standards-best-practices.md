@@ -127,8 +127,8 @@ SELECT
     block.title as block,
     district.title as district
 
-FROM individual subject
-JOIN program_enrolment enrolment ON subject.id = enrolment.individual_id
+FROM beneficiary subject
+JOIN beneficiary_pregnancy enrolment ON subject.id = enrolment.individual_id
 JOIN program ON enrolment.program_id = program.id
 -- Add location joins as needed
 WHERE subject.is_voided = false 
