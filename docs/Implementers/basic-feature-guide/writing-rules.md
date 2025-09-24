@@ -80,7 +80,7 @@ All rule receives an entity from the `params` object. Depending on the rule type
 7. [Enrolment eligibility check rule](/docs/writing-rules#7-enrolment-eligibility-check-rule)
 8. [Encounter eligibility check rule](/docs/writing-rules#8-encounter-eligibility-check-rule)
 9. [Checklists rule](/docs/writing-rules#9-checklists-rule)
-10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule)
+10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule) - *See [comprehensive worklist guide](/docs/Implementers/advanced-feature-guide/worklist-readme)*
 11. [Subject summary rule](/docs/writing-rules#11-subject-summary-rule)
 12. [Hyperlink menu item rule](/docs/writing-rules#12-hyperlink-menu-item-rule)
 13. [Message rule](https://avni.readme.io/docs/writing-rules#13-message-rule)
@@ -654,28 +654,72 @@ Used to add a checklist to an enrolment
 - In designer = Main Menu
 - When to use = Stitch together multiple forms which can be filled back to back
 
+> 📖 **Comprehensive Worklist Documentation Available**
+> 
+> For detailed information about worklists, including concepts, implementation patterns, examples, and troubleshooting, see the [**Avni Worklist Documentation**](/docs/Implementers/advanced-feature-guide/worklist-readme).
+
 The System Recommendations screen of Avni can be configured to direct a user to go to the next task to be done. Typically, if a new encounter is scheduled for a person on the same day, then the system automatically prompts the user to perform that encounter.  
-This is performed using worklists. A worklist is an array of [work items](https://github.com/avniproject/avni-models/blob/master/src/application/WorkItem.js). 
 
-The WorkListUpdation rule is used to customize this flow. The WorkLists object is passed on to this rule just before showing the System Recommendations screen. Any modification in the worklists is applied immediately to the flow. 
+This is performed using **worklists** - a powerful feature that enables sequential form workflows by automatically chaining multiple forms together. A worklist is an array of [work items](https://github.com/avniproject/avni-models/blob/master/src/application/WorkItem.js) that represent individual forms/tasks in the sequence.
 
-You can add a new WorkItem anywhere after the currentWorkList.currentItem. 
+The **WorkListUpdation rule** is used to customize this flow. The WorkLists object is passed to this rule just before showing the System Recommendations screen. Any modification in the worklists is applied immediately to the flow.
+
+### Quick Reference
+
+For a complete understanding of worklists, including:
+- **What are worklists and when to use them**
+- **Detailed WorkItem types and parameters** 
+- **Real-world implementation examples**
+- **Advanced patterns and best practices**
+- **Limitations and troubleshooting**
+
+Please refer to the [**comprehensive worklist guide**](/docs/Implementers/advanced-feature-guide/worklist-readme).
 
 ### Shape of params object:
 
 ```javascript
 {
-  worklists: {},
-  context: {},
+  workLists: {}, // WorkLists object containing current worklist
+  context: {},   // Form completion context with entity information
   services,
   user, //Current User's UserInfo object  
   myUserGroups //List of Group objects  
 }
 ```
 
-### Example
+### Basic Example
 
-[https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
+```javascript
+({params, imports}) => {
+    const workLists = params.workLists;
+    const context = params.context;
+    const WorkItem = imports.models.WorkItem;
+    
+    // Add health survey after individual registration
+    if (context.entity && context.entity.individual) {
+        const healthSurvey = new WorkItem(
+            imports.common.randomUUID(), 
+            WorkItem.type.ENCOUNTER,
+            {
+                encounterType: 'Health Survey',
+                subjectUUID: context.entity.individual.uuid
+            }
+        );
+        
+        // Insert before the last item
+        const totalItems = workLists.currentWorkList.workItems.length;
+        workLists.currentWorkList.workItems.splice(totalItems - 1, 0, healthSurvey);
+    }
+    
+    return workLists;
+}
+```
+
+### Additional Resources
+
+- [External example gist](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
+- [**Complete worklist documentation with advanced examples**](/docs/Implementers/advanced-feature-guide/worklist-readme)
+
 ![](https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png)
 
 
