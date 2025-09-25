@@ -80,7 +80,7 @@ All rule receives an entity from the `params` object. Depending on the rule type
 7. [Enrolment eligibility check rule](/docs/writing-rules#7-enrolment-eligibility-check-rule)
 8. [Encounter eligibility check rule](/docs/writing-rules#8-encounter-eligibility-check-rule)
 9. [Checklists rule](/docs/writing-rules#9-checklists-rule)
-10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule) - *See [comprehensive worklist guide](/docs/Implementers/advanced-feature-guide/avni-worklist-documentation)*
+10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule) - *See [comprehensive worklist guide](https://avni.readme.io/update/docs/worklist-configuration)*
 11. [Subject summary rule](/docs/writing-rules#11-subject-summary-rule)
 12. [Hyperlink menu item rule](/docs/writing-rules#12-hyperlink-menu-item-rule)
 13. [Message rule](https://avni.readme.io/docs/writing-rules#13-message-rule)
@@ -656,7 +656,7 @@ Used to add a checklist to an enrolment
 
 > 📖 **Comprehensive Worklist Documentation Available**
 > 
-> For detailed information about worklists, including concepts, implementation patterns, examples, and troubleshooting, see the [**Avni Worklist Documentation**](/docs/Implementers/advanced-feature-guide/avni-worklist-documentation).
+> For detailed information about worklists, including concepts, implementation patterns, examples, and troubleshooting, see the [**Avni Worklist Documentation**](https://avni.readme.io/update/docs/worklist-configuration).
 
 The System Recommendations screen of Avni can be configured to direct a user to go to the next task to be done. Typically, if a new encounter is scheduled for a person on the same day, then the system automatically prompts the user to perform that encounter.  
 
@@ -673,7 +673,7 @@ For a complete understanding of worklists, including:
 - **Advanced patterns and best practices**
 - **Limitations and troubleshooting**
 
-Please refer to the [**comprehensive worklist guide**](/docs/Implementers/advanced-feature-guide/avni-worklist-documentation).
+Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/update/docs/worklist-configuration).
 
 ### Shape of params object:
 
@@ -718,7 +718,7 @@ Please refer to the [**comprehensive worklist guide**](/docs/Implementers/advanc
 ### Additional Resources
 
 - [External example gist](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
-- [**Complete worklist documentation with advanced examples**](/docs/Implementers/advanced-feature-guide/avni-worklist-documentation)
+- [**Complete worklist documentation with advanced examples**](https://avni.readme.io/update/docs/worklist-configuration)
 
 ![](https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png)
 

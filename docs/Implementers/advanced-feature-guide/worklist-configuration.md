@@ -13,11 +13,11 @@ Worklists in Avni are a powerful feature that enables **sequential form workflow
 ## Table of Contents
 
 1. [What are Worklists?](#what-are-worklists)
-2. [For Newcomers](#for-newcomers)
-3. [Self-Service Configuration](#self-service-configuration)
-4. [Advanced Implementation Guide](#advanced-implementation-guide)
-5. [Limitations and Gotchas](#limitations-and-gotchas)
-6. [Troubleshooting](#troubleshooting)
+2. [Basic Concept](#basic-concept)
+3. [Writing Worklist Updation Rules](#writing-worklist-updation-rules)
+4. [Limitations and Gotchas](#limitations-and-gotchas)
+5. [Troubleshooting](#troubleshooting)
+6. [Best Practices Summary](#best-practices-summary)
 
 ***
 

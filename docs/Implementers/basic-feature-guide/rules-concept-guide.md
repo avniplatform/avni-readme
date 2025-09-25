@@ -40,7 +40,7 @@ Create scheduled encounters with only due dates and no data.
 
 #### Worklist Updation Rule
 
-To display next forms on completion of one form. For comprehensive documentation on worklists, see the [Avni Worklist Documentation](/docs/Implementers/advanced-feature-guide/avni-worklist-documentation).
+To display next forms on completion of one form. For comprehensive documentation on worklists, see the [Avni Worklist Documentation](https://avni.readme.io/update/docs/worklist-configuration).
 
 #### Subject/Enrolment Summary
 
