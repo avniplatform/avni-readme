@@ -3,6 +3,7 @@ title: Avni Worklist Documentation
 deprecated: false
 hidden: false
 metadata:
+  title: Worklist Configuration
   robots: index
 ---
 ## Overview
