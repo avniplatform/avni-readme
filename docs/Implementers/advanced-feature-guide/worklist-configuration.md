@@ -1,5 +1,5 @@
 ---
-title: Avni Worklist Documentation
+title: Worklist Configuration
 deprecated: false
 hidden: false
 metadata:
