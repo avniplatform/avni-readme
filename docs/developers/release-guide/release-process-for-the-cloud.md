@@ -40,7 +40,7 @@ All versions of below specified end-deployables are marked with a release number
 * avni-product
 * avni-infra
 
-Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages.  
+Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages.
 
 ### Branch cut-off for upcoming release
 
@@ -75,9 +75,9 @@ Other smaller packages such as avni-models and rules-config have their own relea
 
 ### Patch deployments
 
-* Happens from the release branch by increasing the patch version by a number (eg: 3.35.0 if patched will have a version of 3.35.1). 
+* Happens from the release branch by increasing the patch version by a number (eg: 3.35.0 if patched will have a version of 3.35.1).
 * Create release notes in the respective repos and in avni-product repo and tag the commits in the respective repos with the patch release version. This applies to the patch fixes that we do for the issues raised for the app in Open testing track. When a patch release is done, to fix issues of the app in Open testing track, in its corresponding release notes, add a line mentioning the link for the main release notes.
-* The latest tag with the bigger no(across repos) will be our release version to be mentioned in the mail to our users. If this deviates from mobile app version, or if a release doesn't have a mobile app release, mention the same in the mail to the users. 
+* The latest tag with the bigger no(across repos) will be our release version to be mentioned in the mail to our users. If this deviates from mobile app version, or if a release doesn't have a mobile app release, mention the same in the mail to the users.
 * Merge the branch across repos to the main branch / next release branch if already cut.
 * Update [release tracker](https://docs.google.com/spreadsheets/d/1LcyE3_Ht_YztBjfPpedvjUtvzcJezP5dFOZFOyzWs2E/edit#gid=0) if applicable.
 
@@ -241,27 +241,27 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
 * Click on the 'Trigger Pipeline' button. Note that Trigger can be done only on HEAD of a branch, if you need to build from one of the previous commits, then create a new branch and use that for build purposes. Merge it back to the parent after build.
 * In the popup that is opened, add `flavor`, `versionCode` and `versionName` parameters. `flavor` by default is set to `generic` and can be skipped if generating the generic avni flavor.
 
-![](https://files.readme.io/ef90846-image.png)
+<Image border={false} src="https://files.readme.io/ef90846-image.png" />
 
-* Click on 'Trigger Pipeline' in the popup. 
-* Once the test and build jobs pass, approve the **hold\_live** job.
+* Click on 'Trigger Pipeline' in the popup.
+* Once the test and build jobs pass, approve the **hold_live** job.
 * Trigger platform translation upload for live
   ```shell
   ## Deploy platform translations
   make deploy_platform_translations_for_flavor_live flavor='generic'
   ```
-* Once the pipeline completes, AAB and APK files will be available in the artifacts for the release\_android\_live job. The AAB is meant for uploading to play store. APK can be used for manual testing if required. 
+* Once the pipeline completes, AAB and APK files will be available in the artifacts for the release_android_live job. The AAB is meant for uploading to play store. APK can be used for manual testing if required.
   * For some reason the AAB downloaded is in `.zip` format. From terminal, do something like `mv avni.zip avni.aab` before uploading it to google play store.
   * OR, copy the download link for the AAB file and use terminal to download it via wget command (Ex: wget \<url>.aab), upload the same to google play store
 * Open the [Google Play console](https://play.google.com/console)
 * Open the Avni app and go to Release Menu -> Testing -> Open Testing
 * Create a new Beta release and upload AAB generated
 * Name the version and provide the release notes. In the release notes, no need to mention cards with label 'Epic' or with category as 'regression'.
-* Send changes for review 
-  * On Open-testing track, to 100% of  users 
+* Send changes for review
+  * On Open-testing track, to 100% of  users
   * On Prod track, partial rollout to 5% of Prod track users
 * After we receive Playstore review approval and QA team gives "Go ahead" on performing Sanity testing of Prod APK, manually publish the changes
-* Email to [avni-users@googlegroups.com.](mailto:avni-users@googlegroups.com.) 
+* Email to [avni-users@googlegroups.com.](mailto:avni-users@googlegroups.com.)
 * Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing.
 * Wait for 7 days for feedback from users. If none, then increase roll-out to 20% of the production user-base
 * Wait for another 7 days(14 days from initial rollout) for feedback from users. If none, then increase roll-out to 100% of the production user-base
@@ -288,15 +288,19 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
 
 ### Post-deployment
 
-* Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing. 
+* Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing.
 * Publish release for  "avni-product" repo only
 
 ```Text Shell
 gh project item-list -L 3000 --owner avniproject --format json 2 | jq -c '.items[] | select (.release == "<Specify release number, ex:5.1.0>") | [ .title, .content.url]'
 ```
 
-* **Optional:** Create a blog on avni-website repository with details of the release. Make sure to include relevant documentation links and videos if necessary. This is meant for a non-technical user while the release notes on Github can be for developers and implementers 
-* Send mail to [avni@samanvayfoundation.org](mailto:avni@samanvayfoundation.org) with [avni-users@googlegroups.com](mailto:avni-users@googlegroups.com) in bcc (usually with the subject "Avni Release Announcement")
+* **Optional:** Create a blog on avni-website repository with details of the release. Make sure to include relevant documentation links and videos if necessary. This is meant for a non-technical user while the release notes on Github can be for developers and implementers
+* Send brief information on 
+  * [avni@samanvayfoundation.org](mailto:avni@samanvayfoundation.org),  [avni-users@googlegroups.com](mailto:avni-users@googlegroups.com) (usually with the subject "Avni Release Announcement - release_number")
+  * avni-community discord channel
+  * avni-community whatsapp group
+* If you are sending this communication for the first check past examples. 
 * **Merge the release branch to following branches across all repositories**
   * master/main
   * any upcoming release branches already cut-off (Ex: 7.1 into 8.0)
