@@ -455,7 +455,7 @@ Stakeholders Present: __________
    - Starts when: __________
 
 2. List of Items (one per row)
-   Item Name | Due Date | Critical Date | Overdue Date | Expired Date | Dependencies
+   Name of Vaccine | Due by (days) | Critical (days) | Overdue (days) | Expired (days) | Notes |
 
 3. Special Rules or Conditions
    - 
