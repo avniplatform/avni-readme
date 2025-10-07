@@ -61,12 +61,16 @@ Use this format for simple checklists without complex dependencies:
 
 Use this format for complex checklists with dependencies, multiple time units, and gaps:
 
-| Checklist Item Name | # Doses   | Days | Weeks | Months | Start Days at age of child | Expiry after (days) | Weeks (completed) During Months | Minimum gap in days from previous vaccination | Start Days | Dependencies | Special Notes |                                                              |
-| :------------------ | :-------- | :--- | :---- | :----- | :------------------------- | :------------------ | :------------------------------ | :-------------------------------------------- | :--------- | :----------- | :------------ | :----------------------------------------------------------- |
-| Polio               | Polio-0   | 0    | 0     | 0      | 0                          | At birth            | 15                              |                                               |            |              | 0             |                                                              |
-| Polio               | Polio-1   |      |       |        |                            | 42                  |                                 | 6                                             | 2          | 28           | 42            | dependent on Polio-0                                         |
-| BCG                 | BCG       | 0    | 0     | 0      | 0                          | At birth            | 1095                            |                                               |            |              |               | Within 3 years; BCG vaccine should be given within this time |
-| Measles             | Measles-1 | 274  | 274   | 39     | 10                         | 270                 |                                 | 39                                            | 10         | 0            | 270           | dependent on Measles-1                                       |
+| Name of Vaccines | # Doses of vaccination | Days | Weeks | Months | Start Days at the age of child | Expiry after (days) | Weeks (completed) During the Months | Minimum gap in days from previous vaccination | Dependencies           | Special Notes            |
+| ---------------- | ---------------------- | ---- | ----- | ------ | ------------------------------ | ------------------- | ----------------------------------- | --------------------------------------------- | ---------------------- | ------------------------ |
+| Polio            | Polio-0                | 0    | 0     | 0      | At birth                       | 15                  |                                     |                                               |                        |                          |
+| Polio            | Polio-1                |      |       |        | 42                             |                     | 6                                   | 28                                            | dependent on Polio-0   | 28 days after Polio-0    |
+| Polio            | Polio-2                |      |       |        | 70                             |                     | 10                                  | 28                                            | dependent on Polio-1   | 28 days after Polio-1    |
+| BCG              | BCG                    | 0    | 0     | 0      | At birth                       | 1095                |                                     |                                               |                        | Within 3 years of age    |
+| Measles          | Measles-1              | 274  | 39    | 10     | 270                            |                     | 39                                  | 0                                             |                        |                          |
+| Measles          | Measles-2              | 274  | 78    | 20     | 540                            |                     | 78                                  | 180                                           | dependent on Measles-1 | 180 days after Measles-1 |
+
+
 
 **Additional Column Definitions:**
 
