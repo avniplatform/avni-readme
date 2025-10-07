@@ -40,13 +40,13 @@ Individual items within a checklist that need to be tracked.
 
 Use this format for simple checklists without complex dependencies:
 
-| Checklist Item Name | Due by (days) | Critical (days) | Overdue (days) | Expired (days) | Notes                             |
-| ------------------- | ------------- | --------------- | -------------- | -------------- | --------------------------------- |
-| BCG                 | Birth         | 56              | 365            | 366            | Given at birth                    |
-| OPV 0               | Birth         | 7               | 15             | 16             |                                   |
-| OPV 1               | 42            | 49              | 365            | 1826           |                                   |
-| Penta 1             | 42            | 49              | 365            | 366            |                                   |
-| Measles 1/MR 1      | 252-365       | 280             | 365            | 366            | Can be given between 252-365 days |
+| Name of Vaccine | Due by (days) | Critical (days) | Overdue (days) | Expired (days) | Notes                             |
+| --------------- | ------------- | --------------- | -------------- | -------------- | --------------------------------- |
+| BCG             | Birth         | 56              | 365            | 366            | Given at birth                    |
+| OPV 0           | Birth         | 7               | 15             | 16             |                                   |
+| OPV 1           | 42            | 49              | 365            | 1826           |                                   |
+| Penta 1         | 42            | 49              | 365            | 366            |                                   |
+| Measles 1/MR 1  | 252-365       | 280             | 365            | 366            | Can be given between 252-365 days |
 
 **Column Definitions:**
 
@@ -61,25 +61,60 @@ Use this format for simple checklists without complex dependencies:
 
 Use this format for complex checklists with dependencies, multiple time units, and gaps:
 
-| Name of Vaccines | # Doses of vaccination | Days | Weeks | Months | Start Days at the age of child | Expiry after (days) | Weeks (completed) During the Months | Minimum gap in days from previous vaccination | Dependencies           | Special Notes            |
-| ---------------- | ---------------------- | ---- | ----- | ------ | ------------------------------ | ------------------- | ----------------------------------- | --------------------------------------------- | ---------------------- | ------------------------ |
-| Polio            | Polio-0                | 0    | 0     | 0      | At birth                       | 15                  |                                     |                                               |                        |                          |
-| Polio            | Polio-1                |      |       |        | 42                             |                     | 6                                   | 28                                            | dependent on Polio-0   | 28 days after Polio-0    |
-| Polio            | Polio-2                |      |       |        | 70                             |                     | 10                                  | 28                                            | dependent on Polio-1   | 28 days after Polio-1    |
-| BCG              | BCG                    | 0    | 0     | 0      | At birth                       | 1095                |                                     |                                               |                        | Within 3 years of age    |
-| Measles          | Measles-1              | 274  | 39    | 10     | 270                            |                     | 39                                  | 0                                             |                        |                          |
-| Measles          | Measles-2              | 274  | 78    | 20     | 540                            |                     | 78                                  | 180                                           | dependent on Measles-1 | 180 days after Measles-1 |
-
-
+| Name of Vaccine | # Doses of vaccination | Days | Weeks | Months | Start Days at the age of child | Expiry after (days) | Weeks (completed) During the Months | Minimum gap in days from previous vaccination | Dependencies           | Special Notes                    |
+| --------------- | ---------------------- | ---- | ----- | ------ | ------------------------------ | ------------------- | ----------------------------------- | --------------------------------------------- | ---------------------- | -------------------------------- |
+| Polio           | Polio-0                | 0    | 0     | 0      | At birth                       | 15                  | 0                                   | 0                                             | None                   | Given at birth                   |
+| Polio           | Polio-1                | 42   | 6     | 2      | 42                             | 365                 | 6                                   | 28                                            | dependent on Polio-0   | 28 days after Polio-0            |
+| Polio           | Polio-2                | 70   | 10    | 3      | 70                             | 365                 | 10                                  | 28                                            | dependent on Polio-1   | 28 days after Polio-1            |
+| BCG             | BCG                    | 0    | 0     | 0      | At birth                       | 1095                | 0                                   | 0                                             | None                   | Within 3 years of age when given |
+| Measles         | Measles-1              | 270  | 39    | 9      | 270                            | 365                 | 39                                  | 0                                             | None                   | Between 9-12 months              |
+| Measles         | Measles-2              | 540  | 78    | 18     | 540                            | 730                 | 78                                  | 180                                           | dependent on Measles-1 | 180 days after Measles-1         |
+| Hepatitis       | Hep-B                  | 0    | 0     | 0      | At birth                       | 2                   | 0                                   | 0                                             | None                   | Within 24 hours of birth         |
+| Vitamins        | Vitamin A-1            | 270  | 39    | 9      | 270                            | 365                 | 39                                  | 0                                             | None                   | First dose at 9 months           |
 
 **Additional Column Definitions:**
 
-* **# Doses**: If the same vaccine/item has multiple doses, specify which dose number
-* **Days/Weeks/Months**: Multiple representations of the same timing (helps verification)
-* **Weeks (completed) During Months**: For monthly tracking, which week the item should be completed
-* **Minimum gap in days from previous vaccination**: Minimum time required between related items
-* **Dependencies**: Which checklist items must be completed before this one
-* **Special Notes**: Any additional business logic, contraindications, or special handling
+* **Name of Vaccine**: The vaccine or immunization name (e.g., "Polio", "BCG", "Measles")
+* **# Doses of vaccination**: If the same vaccine has multiple doses, specify which dose (e.g., "Polio-0", "Polio-1", "Measles-1", "Measles-2")
+* **Days**: Number of days from the trigger event (usually date of birth) when this vaccine is due - helps with precise calculations
+* **Weeks**: Same timing represented in weeks - helps with verification and cross-checking
+* **Months**: Same timing represented in months - helps with verification and cross-checking
+* **Start Days at the age of child**: The age (in days) when the vaccine becomes eligible/due. Can be "At birth" for birth vaccines or a specific number of days (e.g., 42, 70, 270)
+* **Expiry after (days)**: Number of days after which the vaccine is no longer valid or recommended (e.g., 15 days, 1095 days). Leave empty if the vaccine doesn't expire within the program timeline
+* **Weeks (completed) During the Months**: For monthly tracking systems, indicates which week within the month the vaccine should be completed (e.g., week 6, week 10, week 39)
+* **Minimum gap in days from previous vaccination**: Minimum number of days that must pass since the dependent vaccination before this one can be given (e.g., 28 days between Polio doses, 180 days between Measles doses)
+* **Dependencies**: Which checklist items must be completed before this one can be administered (e.g., "dependent on Polio-0", "dependent on Measles-1")
+* **Special Notes**: Any additional business logic, contraindications, special handling instructions, or clarifications (e.g., "Within 3 years of age", "28 days after Polio-0")
+
+### When to Use Each Format
+
+**Use Basic Format when:**
+
+* Simple vaccination schedules with minimal dependencies
+* Straightforward timing (single due dates, not ranges)
+* Limited cross-validation needed between different time units
+* Small number of vaccines with clear scheduling
+
+**Use Advanced Format when:**
+
+* Complex vaccination schedules with multiple dependencies
+* Need to track timing in multiple units (days, weeks, months) for verification
+* Monthly reporting requirements that need week-based tracking
+* Multiple doses of the same vaccine with specific gap requirements
+* Need to capture detailed business rules and special handling
+
+**Example Conversion:**
+The basic format entry:
+
+```
+| BCG | Birth | 56 | 365 | 366 | Given at birth |
+```
+
+Becomes this in advanced format:
+
+```
+| BCG | BCG | 0 | 0 | 0 | At birth | 1095 | 0 | 0 | None | Within 3 years of age when given |
+```
 
 ***
 
@@ -229,30 +264,30 @@ nextDueDate = lastCompletedDate + minimumGapDays;
 
 **Checklist Items:**
 
-| Vaccine Name   | Due by (days) | Critical (days) | Overdue (days) | Expired (days) | Min Gap (days) | Dependencies  | Notes                             |
-| -------------- | ------------- | --------------- | -------------- | -------------- | -------------- | ------------- | --------------------------------- |
-| BCG            | Birth (0)     | 56              | 365            | 366            | -              | None          | Given at birth or within 2 months |
-| Hep B          | Birth (0)     | 1               | 2              | 10             | -              | None          | Must be given within 24 hours     |
-| OPV 0          | Birth (0)     | 7               | 15             | 16             | -              | None          | Birth dose                        |
-| OPV 1          | 42            | 49              | 365            | 1826           | 28             | OPV 0         | 28 days after OPV 0               |
-| OPV 2          | 70            | 77              | 365            | 1826           | 28             | OPV 1         | 28 days after OPV 1               |
-| OPV 3          | 98            | 105             | 365            | 1826           | 28             | OPV 2         | 28 days after OPV 2               |
-| Penta 1        | 42            | 49              | 365            | 366            | -              | None          | Can be given with OPV 1           |
-| Penta 2        | 70            | 77              | 365            | 366            | 28             | Penta 1       | 28 days after Penta 1             |
-| Penta 3        | 98            | 105             | 365            | 366            | 28             | Penta 2       | 28 days after Penta 2             |
-| Rotavirus 1    | 42            | 49              | 365            | 366            | -              | None          | Given with Penta 1                |
-| Rotavirus 2    | 70            | 77              | 365            | 366            | 28             | Rotavirus 1   | Given with Penta 2                |
-| Rotavirus 3    | 98            | 105             | 365            | 366            | 28             | Rotavirus 2   | Given with Penta 3                |
-| IPV 1          | 42            | 49              | 365            | 366            | -              | None          | Given with Penta 1                |
-| IPV 2          | 98            | 105             | 365            | 366            | 56             | IPV 1         | Given with Penta 3                |
-| Measles 1/MR 1 | 252-365       | 280             | 365            | 366            | -              | None          | Between 9-12 months               |
-| Measles 2/MR 2 | 448-730       | 504             | 730            | 731            | 180            | Measles 1     | Between 16-24 months              |
-| Vit. A         | 252           | 280             | 1825           | 1826           | -              | None          | Every 6 months after 9 months     |
-| DPT Booster 1  | 448-730       | 504             | 730            | 731            | -              | Penta 3       | Between 16-24 months              |
-| DPT Booster 2  | 1825          | 2190            | 2191           | 2500           | -              | DPT Booster 1 | At 5-6 years                      |
-| OPV Booster    | 448           | 504             | 1825           | 1826           | -              | OPV 3         | At 16-18 months                   |
-| TT Booster 1   | 3650          | 5475            | 6570           | 7000           | -              | DPT Booster 2 | At 10 years                       |
-| TT Booster 2   | 5840          | 7300            | 8760           | 9000           | -              | TT Booster 1  | At 16 years                       |
+| Name of Vaccine | Due by (days) | Critical (days) | Overdue (days) | Expired (days) | Min Gap (days) | Dependencies  | Notes                             |
+| --------------- | ------------- | --------------- | -------------- | -------------- | -------------- | ------------- | --------------------------------- |
+| BCG             | Birth (0)     | 56              | 365            | 366            | -              | None          | Given at birth or within 2 months |
+| Hep B           | Birth (0)     | 1               | 2              | 10             | -              | None          | Must be given within 24 hours     |
+| OPV 0           | Birth (0)     | 7               | 15             | 16             | -              | None          | Birth dose                        |
+| OPV 1           | 42            | 49              | 365            | 1826           | 28             | OPV 0         | 28 days after OPV 0               |
+| OPV 2           | 70            | 77              | 365            | 1826           | 28             | OPV 1         | 28 days after OPV 1               |
+| OPV 3           | 98            | 105             | 365            | 1826           | 28             | OPV 2         | 28 days after OPV 2               |
+| Penta 1         | 42            | 49              | 365            | 366            | -              | None          | Can be given with OPV 1           |
+| Penta 2         | 70            | 77              | 365            | 366            | 28             | Penta 1       | 28 days after Penta 1             |
+| Penta 3         | 98            | 105             | 365            | 366            | 28             | Penta 2       | 28 days after Penta 2             |
+| Rotavirus 1     | 42            | 49              | 365            | 366            | -              | None          | Given with Penta 1                |
+| Rotavirus 2     | 70            | 77              | 365            | 366            | 28             | Rotavirus 1   | Given with Penta 2                |
+| Rotavirus 3     | 98            | 105             | 365            | 366            | 28             | Rotavirus 2   | Given with Penta 3                |
+| IPV 1           | 42            | 49              | 365            | 366            | -              | None          | Given with Penta 1                |
+| IPV 2           | 98            | 105             | 365            | 366            | 56             | IPV 1         | Given with Penta 3                |
+| Measles 1/MR 1  | 252-365       | 280             | 365            | 366            | -              | None          | Between 9-12 months               |
+| Measles 2/MR 2  | 448-730       | 504             | 730            | 731            | 180            | Measles 1     | Between 16-24 months              |
+| Vit. A          | 252           | 280             | 1825           | 1826           | -              | None          | Every 6 months after 9 months     |
+| DPT Booster 1   | 448-730       | 504             | 730            | 731            | -              | Penta 3       | Between 16-24 months              |
+| DPT Booster 2   | 1825          | 2190            | 2191           | 2500           | -              | DPT Booster 1 | At 5-6 years                      |
+| OPV Booster     | 448           | 504             | 1825           | 1826           | -              | OPV 3         | At 16-18 months                   |
+| TT Booster 1    | 3650          | 5475            | 6570           | 7000           | -              | DPT Booster 2 | At 10 years                       |
+| TT Booster 2    | 5840          | 7300            | 8760           | 9000           | -              | TT Booster 1  | At 16 years                       |
 
 **Business Rules:**
 
