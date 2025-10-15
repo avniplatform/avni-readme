@@ -14,9 +14,13 @@ metadata:
 next:
   description: ''
 ---
+<Callout icon="❗️">
+  This is no longer the recommended approach, please refer to "Simplification"
+</Callout>
+
 The tool used for this is Cursor which internally uses other AI services. You can download [Cursor](https://www.cursor.com/).
 
-The source code used in this tool is available here [avni-ai-experiment](https://github.com/avniproject/avni-ai-experiment) (private repository as the CSV files used in the context may contain customer specific information). This repository will become a public repository soon. 
+The source code used in this tool is available here [avni-ai-experiment](https://github.com/avniproject/avni-ai-experiment) (private repository as the CSV files used in the context may contain customer specific information). This repository will become a public repository soon.
 
 # Generate aggregate and line list query
 
