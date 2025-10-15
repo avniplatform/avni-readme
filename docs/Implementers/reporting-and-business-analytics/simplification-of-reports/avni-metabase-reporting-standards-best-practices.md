@@ -1,9 +1,5 @@
 ---
 title: 'Avni Metabase Reporting : Standards & Best Practices'
-excerpt: >-
-  Based on the Metabase reporting principles you've outlined, here's a
-  comprehensive review and elaboration of these best practices for Avni
-  reporting:
 deprecated: false
 hidden: false
 metadata:
