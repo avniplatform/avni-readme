@@ -6,7 +6,7 @@ excerpt: >-
   and AI service can generate SQL queries and other reporting artifacts. This
   reduces manual coding and creates efficient, standardised reporting queries.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
