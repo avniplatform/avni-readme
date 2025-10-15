@@ -1,5 +1,5 @@
 ---
-title: 'Avni Metabase Reporting : Standards & Best Practices'
+title: 'Avni Reporting : Standards & Best Practices'
 deprecated: false
 hidden: false
 metadata:
