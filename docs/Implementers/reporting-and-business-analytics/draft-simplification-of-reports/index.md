@@ -1,5 +1,5 @@
 ---
-title: '[Draft] Simplification of reports development and testing'
+title: Simplification of reports development and testing
 excerpt: ''
 deprecated: false
 hidden: false
