@@ -10,8 +10,6 @@ metadata:
 next:
   description: ''
 ---
-> 🚧 This document is still in draft
-
 Since we develop a number of reports for each organisation. As the number of organisations grow maintenance and first time & ongoing testing of these reports can get difficult. This document covers some the ideas that can be employed to simply these two activities.
 
 For this document, will use this example to discuss the points below. Lets take a report which shows:
@@ -51,7 +49,7 @@ This is to ensure that the same type mistakes do not occur due to over sight. It
 
 ### Code
 
-* Ensure voided, exited, and cancelled are appropriately used for each table that is joined in the report. Ensure this is done for parents also (e.g. checking voided on encounter may not be sufficient as one may also want to check whether the parent i.e. individual or program\_enrolment voiding has been checked).
+* Ensure voided, exited, and cancelled are appropriately used for each table that is joined in the report. Ensure this is done for parents also (e.g. checking voided on encounter may not be sufficient as one may also want to check whether the parent i.e. individual or program_enrolment voiding has been checked).
   * Include these fields (whichever is relevant for the report) in the line list in the end so that it is easy to test.
 * Have you used inner join and left joins correctly
 * If approvals are implemented then add the appropriate checks
@@ -61,7 +59,7 @@ This is to ensure that the same type mistakes do not occur due to over sight. It
 ### BI Tools
 
 * **SuperSet specific**
-  * If we are implementing  the row level security then ensure that “$P!\{LoggedInUserAttribute\_LocationFilter}” Is added in query for jasper only
+  * If we are implementing  the row level security then ensure that “$P!\{LoggedInUserAttribute_LocationFilter}” Is added in query for jasper only
 * **Metabase specific**
   * Use summarize feature to create the aggregate report so it will give drill down.
 * **Jasper specific**
@@ -84,9 +82,9 @@ This is to ensure that the same type mistakes do not occur due to over sight. It
   * If above is avoided then it also eliminates the need to keep pointing the reports do database in different environment.
 * There are three broad type of tests that we need to carry out with reports - as in the following diagram.
 
-*source:[https://docs.google.com/presentation/d/1skfVtHmyAg2QEyTowcN2eZwIIoDo03s1K7WAWBE4BDc/edit#slide=id.p](https://docs.google.com/presentation/d/1skfVtHmyAg2QEyTowcN2eZwIIoDo03s1K7WAWBE4BDc/edit#slide=id.p)*
+_source:[https://docs.google.com/presentation/d/1skfVtHmyAg2QEyTowcN2eZwIIoDo03s1K7WAWBE4BDc/edit#slide=id.p](https://docs.google.com/presentation/d/1skfVtHmyAg2QEyTowcN2eZwIIoDo03s1K7WAWBE4BDc/edit#slide=id.p)_
 
-![](https://files.readme.io/5c5156c-image.png)
+<Image border={false} src="https://files.readme.io/5c5156c-image.png" />
 
 > **DEA** = Data Entry App
 
@@ -104,7 +102,7 @@ False-Negatives can be difficult to verify hence:
 
 * Some of this should get covered by code review (mentioned in checklist). In fact if the developer and code reviewer both check this - it should cover most of such cases.
 * In testing one can try any hypothesis on False-Negatives by using different filter values by checking for existing such data.
-* Lastly, customers and usage of reports is the best way to identify them - as they will use the data most and will have *much better feel/intuition* of the numbers.
+* Lastly, customers and usage of reports is the best way to identify them - as they will use the data most and will have _much better feel/intuition_ of the numbers.
 
 # To be explored (not recommended yet)
 
@@ -115,5 +113,5 @@ False-Negatives can be difficult to verify hence:
 [https://reporting.avniproject.org/question/2995-prevalence-of-anemia-linelist](https://reporting.avniproject.org/question/2995-prevalence-of-anemia-linelist)
 
 * Instead of school, boarding, and boarding as different drop down it is better to have Location Type and Location as drop downs. They become `and` query with two items instead of 6 items.
-* Use of full join instead of union, with `COALESCE`. 
+* Use of full join instead of union, with `COALESCE`.
 * For haemoglobin entries create `json_each` and `join`. Same for age-group.
