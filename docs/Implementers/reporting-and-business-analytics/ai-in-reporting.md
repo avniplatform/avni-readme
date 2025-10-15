@@ -15,7 +15,7 @@ next:
   description: ''
 ---
 <Callout icon="❗️">
-  This is no longer the recommended approach, please refer to "Simplification"
+  This is no longer the recommended approach, please refer to [Simplification of reports development and testing](https://avni.readme.io/docs/simplification-of-reports#/) section
 </Callout>
 
 The tool used for this is Cursor which internally uses other AI services. You can download [Cursor](https://www.cursor.com/).
