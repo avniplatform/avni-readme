@@ -18,7 +18,9 @@ After an organisation has run Avni for a few years, the amount of data collected
 
 In order to address this, implementers can now configure an SQL query which returns the subject ids of subjects which should be disabled from being synced when a sync from the android app is performed.
 
-This configuration can be made via the 'App Designer -> [App Storage Config](https://app.avniproject.org/#/appdesigner/appStorageConfig)' menu. This query is validated to ensure it returns a single numeric column (the subject id) as output.
+This configuration can be made via the 'App Designer -> [App Storage Config](https://app.avniproject.org/#/appdesigner/appStorageConfig)' menu. 
+**Note: To configure this feature, the user must have the "Edit organisation configuration" permission.** 
+This query is validated to ensure it returns a single numeric column (the subject id) as output.
 
 The query configured via this screen is picked up by a job that runs on a daily basis (configured to run at 2AM IST) which finds subjects based on this query and disables **subsequent sync to android app on user devices** for these subjects and the related entities for these subjects (visits, program visits, entity approval status, subject migration, user subject assignments, relationships, groups, checklists, comments, subject program eligibility etc).
 
