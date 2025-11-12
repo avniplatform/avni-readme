@@ -1498,6 +1498,7 @@ const exportData = {
 
 ## 📚 Additional Resources
 
-* [Writing Rules Guide](./writing-rules.md) - Complete guide to writing Avni rules
-* [Validation Framework](./validation.md) - Understanding validation in Avni
-* [Concept Reference](../concepts.md) - Working with concepts and observations
+* [Writing Rules Guide](../writing-rules) - Complete guide to writing Avni rules
+* [Concept Reference](../concepts#/) - Working with concepts and observations
+
+<br />
