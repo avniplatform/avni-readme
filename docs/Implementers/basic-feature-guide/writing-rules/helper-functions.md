@@ -1,8 +1,8 @@
 ---
-title: Avni JavaScript Methods Reference Guide
+title: Helper Functions Reference Guide
 excerpt: >-
   Complete structured reference for all JavaScript methods that can be used
-  while writing Rules in Avni
+  while writing rules in Avni.
 ---
 **Audience**: Rule developers, implementers, and technical teams
 
