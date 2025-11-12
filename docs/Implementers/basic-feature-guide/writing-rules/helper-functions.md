@@ -1,76 +1,79 @@
-# Avni JavaScript Methods Reference Guide
-
-**Last Updated**: September 29, 2025  
-**Purpose**: Complete structured reference for all Avni JavaScript rule methods  
+---
+title: Avni JavaScript Methods Reference Guide
+excerpt: >-
+  Complete structured reference for all JavaScript methods that can be used
+  while writing Rules in Avni
+---
 **Audience**: Rule developers, implementers, and technical teams
 
 ## 📋 Table of Contents
 
-- [Observation Access Methods](#observation-access-methods)
-  - [`getObservationReadableValue()`](#getobservationreadablevalueconceptnameoruuid-parentconceptnameoruuid)
-  - [`getObservationValue()`](#getobservationvalueconceptnameoruuid-parentconceptnameoruuid)
-  - [`findObservation()`](#findobservationconceptnameoruuid-parentconceptnameoruuid)
-  - [`findLatestObservationInEntireEnrolment()`](#findlatestobservationinentirenrolmentconceptnameoruuid-currentencounter)
-  - [`hasObservation()`](#hasobservationconceptnameoruuid)
-- [Age and Time Calculation Methods](#age-and-time-calculation-methods)
-  - [`getAgeInYears()`](#getageinyearsasondate-precise)
-  - [`getAgeInMonths()`](#getageinmonthsasondate-precise)
-  - [`getAgeInWeeks()`](#getageinweeksondate-precise)
-  - [`getAge()`](#getageasondate)
-- [Cancel Encounter Methods](#cancel-encounter-methods)
-  - [`findCancelEncounterObservation()`](#findcancelencounterobservationconceptnameoruuid)
-  - [`findCancelEncounterObservationReadableValue()`](#findcancelencounterobservationreadablevalueconceptnameoruuid)
-- [Encounter Navigation Methods](#encounter-navigation-methods)
-  - [`getEncounters()`](#getencountersremovecancelledencounters)
-  - [`findLatestObservationFromEncounters()`](#findlatestobservationfromencountersconceptnameoruuid-currentencounter)
-  - [`findLastEncounterOfType()`](#findlastencounteroftypecurrentencounter-encountertypes)
-  - [`scheduledEncounters()`](#scheduledencounters)
-  - [`scheduledEncountersOfType()`](#scheduledencountersoftypeencountertypename)
-- [Individual and Subject Methods](#individual-and-subject-methods)
-  - [`isFemale()`](#isfemale)
-  - [`isMale()`](#ismale)
-  - [`isPerson()`](#isperson)
-  - [`isHousehold()`](#ishousehold)
-  - [`isGroup()`](#isgroup)
-  - [`getMobileNumber()`](#getmobilenumber)
-  - [`nameString`](#namestring)
-- [Location and Address Methods](#location-and-address-methods)
-  - [`lowestAddressLevel`](#lowestaddresslevel)
-  - [`lowestTwoLevelAddress()`](#lowesttwoleveladdressi18n)
-  - [`fullAddress()`](#fulladdressi18n)
-- [Relationship and Group Methods](#relationship-and-group-methods)
-  - [`getRelatives()`](#getrelativesrelationname-inverse)
-  - [`getRelative()`](#getrelativerelationname-inverse)
-  - [`getGroups()`](#getgroups)
-  - [`getGroupSubjects()`](#getgroupsubjects)
-- [Validation and Status Methods](#validation-and-status-methods)
-  - [`hasBeenEdited()`](#hasbeenedited)
-  - [`isCancelled()`](#iscancelled)
-  - [`isScheduled()`](#isscheduled)
-  - [`isRejectedEntity()`](#isrejectedentity)
-- [Media and Utility Methods](#media-and-utility-methods)
-  - [`findMediaObservations()`](#findmediaobservations)
-  - [`getProfilePicture()`](#getprofilepicture)
-  - [`getEntityTypeName()`](#getentitytypename)
-  - [`toJSON()`](#tojson)
+* [Observation Access Methods](#observation-access-methods)
+  * [`getObservationReadableValue()`](#getobservationreadablevalueconceptnameoruuid-parentconceptnameoruuid)
+  * [`getObservationValue()`](#getobservationvalueconceptnameoruuid-parentconceptnameoruuid)
+  * [`findObservation()`](#findobservationconceptnameoruuid-parentconceptnameoruuid)
+  * [`findLatestObservationInEntireEnrolment()`](#findlatestobservationinentirenrolmentconceptnameoruuid-currentencounter)
+  * [`hasObservation()`](#hasobservationconceptnameoruuid)
+* [Age and Time Calculation Methods](#age-and-time-calculation-methods)
+  * [`getAgeInYears()`](#getageinyearsasondate-precise)
+  * [`getAgeInMonths()`](#getageinmonthsasondate-precise)
+  * [`getAgeInWeeks()`](#getageinweeksondate-precise)
+  * [`getAge()`](#getageasondate)
+* [Cancel Encounter Methods](#cancel-encounter-methods)
+  * [`findCancelEncounterObservation()`](#findcancelencounterobservationconceptnameoruuid)
+  * [`findCancelEncounterObservationReadableValue()`](#findcancelencounterobservationreadablevalueconceptnameoruuid)
+* [Encounter Navigation Methods](#encounter-navigation-methods)
+  * [`getEncounters()`](#getencountersremovecancelledencounters)
+  * [`findLatestObservationFromEncounters()`](#findlatestobservationfromencountersconceptnameoruuid-currentencounter)
+  * [`findLastEncounterOfType()`](#findlastencounteroftypecurrentencounter-encountertypes)
+  * [`scheduledEncounters()`](#scheduledencounters)
+  * [`scheduledEncountersOfType()`](#scheduledencountersoftypeencountertypename)
+* [Individual and Subject Methods](#individual-and-subject-methods)
+  * [`isFemale()`](#isfemale)
+  * [`isMale()`](#ismale)
+  * [`isPerson()`](#isperson)
+  * [`isHousehold()`](#ishousehold)
+  * [`isGroup()`](#isgroup)
+  * [`getMobileNumber()`](#getmobilenumber)
+  * [`nameString`](#namestring)
+* [Location and Address Methods](#location-and-address-methods)
+  * [`lowestAddressLevel`](#lowestaddresslevel)
+  * [`lowestTwoLevelAddress()`](#lowesttwoleveladdressi18n)
+  * [`fullAddress()`](#fulladdressi18n)
+* [Relationship and Group Methods](#relationship-and-group-methods)
+  * [`getRelatives()`](#getrelativesrelationname-inverse)
+  * [`getRelative()`](#getrelativerelationname-inverse)
+  * [`getGroups()`](#getgroups)
+  * [`getGroupSubjects()`](#getgroupsubjects)
+* [Validation and Status Methods](#validation-and-status-methods)
+  * [`hasBeenEdited()`](#hasbeenedited)
+  * [`isCancelled()`](#iscancelled)
+  * [`isScheduled()`](#isscheduled)
+  * [`isRejectedEntity()`](#isrejectedentity)
+* [Media and Utility Methods](#media-and-utility-methods)
+  * [`findMediaObservations()`](#findmediaobservations)
+  * [`getProfilePicture()`](#getprofilepicture)
+  * [`getEntityTypeName()`](#getentitytypename)
+  * [`toJSON()`](#tojson)
 
----
+***
 
 ## 📊 Quick Reference
 
-| Category | Most Used Methods | Purpose |
-|----------|------------------|---------|
-| **Observations** | `getObservationReadableValue()` | Get formatted values for display |
-| **Observations** | `getObservationValue()` | Get raw values for calculations |
-| **Age Calculations** | `getAgeInYears()` | Calculate age in years |
-| **Age Calculations** | `getAgeInMonths()` | Calculate age in months (pediatric) |
-| **Encounters** | `getEncounters()` | Get encounter history |
-| **Individual Info** | `isFemale()` / `isMale()` | Gender checks |
-| **Individual Info** | `getMobileNumber()` | Get contact number |
-| **Validation** | `hasObservation()` | Check if data exists |
-| **Validation** | `hasBeenEdited()` | Check encounter completion |
+| Category             | Most Used Methods               | Purpose                             |
+| -------------------- | ------------------------------- | ----------------------------------- |
+| **Observations**     | `getObservationReadableValue()` | Get formatted values for display    |
+| **Observations**     | `getObservationValue()`         | Get raw values for calculations     |
+| **Age Calculations** | `getAgeInYears()`               | Calculate age in years              |
+| **Age Calculations** | `getAgeInMonths()`              | Calculate age in months (pediatric) |
+| **Encounters**       | `getEncounters()`               | Get encounter history               |
+| **Individual Info**  | `isFemale()` / `isMale()`       | Gender checks                       |
+| **Individual Info**  | `getMobileNumber()`             | Get contact number                  |
+| **Validation**       | `hasObservation()`              | Check if data exists                |
+| **Validation**       | `hasBeenEdited()`               | Check encounter completion          |
 
----
+***
+
 ## Observation Access Methods
 
 ### `getObservationReadableValue(conceptNameOrUuid, parentConceptNameOrUuid)`
@@ -80,12 +83,14 @@
 **Purpose**: Gets the human-readable/display value of an observation, automatically formatting based on concept type.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
-- `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
+* `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
 
 **Returns**: String, Number, Date, Array, or undefined - The readable representation of the observation value
 
----
+***
+
 ```javascript
 // Basic usage on different entities
 const treatmentDate = programEnrolment.getObservationReadableValue("Treatment Start date");
@@ -107,22 +112,23 @@ const dueDate = programEnrolment.getObservationReadableValue("Expected Date of D
 // Returns: "15/03/2024" (formatted date) instead of Date object
 ```
 
----
+***
 
 ### `getObservationValue(conceptNameOrUuid, parentConceptNameOrUuid)`
 
 **Available on**: Individual, ProgramEnrolment, AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Gets the raw value of an observation without formatting.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
-- `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
+* `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
 
 **Returns**: Raw value (String, Number, Date, Array, concept UUID for coded) or undefined
 
----
+***
+
 ```javascript
 // Get raw values for calculations
 const weight = programEncounter.getObservationValue("Weight");
@@ -148,22 +154,23 @@ const symptoms = encounter.getObservationValue("Symptoms");
 // Returns: ["fever-uuid", "cough-uuid", "headache-uuid"]
 ```
 
----
+***
 
 ### `findObservation(conceptNameOrUuid, parentConceptNameOrUuid)`
 
 **Available on**: Individual, AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Finds and returns the observation object itself, allowing access to all observation properties and methods.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
-- `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
+* `parentConceptNameOrUuid` (String, optional): Parent concept for grouped observations
 
 **Returns**: Observation object or undefined
 
----
+***
+
 ```javascript
 // Find observation object
 const mobileObs = individual.findObservation('Mobile Number');
@@ -186,22 +193,23 @@ const systolicObs = encounter.findObservation('Systolic', 'Blood Pressure Group'
 const weight = encounter.findObservation('Weight')?.getValue() || 0;
 ```
 
----
+***
 
 ### `findLatestObservationInEntireEnrolment(conceptNameOrUuid, currentEncounter)`
 
 **Available on**: ProgramEnrolment, ProgramEncounter
 
-
 **Purpose**: Finds the most recent observation for a concept across the entire program enrolment lifecycle, including all encounters.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
-- `currentEncounter` (ProgramEncounter, optional): Current encounter to exclude from search
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
+* `currentEncounter` (ProgramEncounter, optional): Current encounter to exclude from search
 
 **Returns**: Observation object or undefined
 
----
+***
+
 ```javascript
 // Track treatment progression
 const latestPhase = programEnrolment.findLatestObservationInEntireEnrolment("Treatment phase type");
@@ -225,21 +233,22 @@ const daysSinceTest = lastTestResult ?
     moment().diff(lastTestResult.encounterDateTime, 'days') : null;
 ```
 
----
+***
 
 ### `hasObservation(conceptNameOrUuid)`
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter), ProgramEnrolment
 
-
 **Purpose**: Checks if an observation exists for the given concept without retrieving the value.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to check
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to check
 
 **Returns**: Boolean
 
----
+***
+
 ```javascript
 // Conditional logic based on data availability
 if (programEnrolment.hasObservation("Comorbidity")) {
@@ -260,7 +269,7 @@ if (missingFields.length > 0) {
 }
 ```
 
----
+***
 
 ## Age and Time Calculation Methods
 
@@ -268,16 +277,17 @@ if (missingFields.length > 0) {
 
 **Available on**: Individual
 
-
 **Purpose**: Calculates age in years from the individual's date of birth.
 
 **Parameters**:
-- `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
-- `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
+
+* `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
+* `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
 
 **Returns**: Number (age in years)
 
----
+***
+
 ```javascript
 // Basic usage - current age
 const currentAge = individual.getAgeInYears();
@@ -307,22 +317,23 @@ if (individual.getAgeInYears() > 120) {
 }
 ```
 
----
+***
 
 ### `getAgeInMonths(asOnDate, precise)`
 
 **Available on**: Individual
 
-
 **Purpose**: Calculates age in months from the individual's date of birth, particularly useful for pediatric care.
 
 **Parameters**:
-- `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
-- `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
+
+* `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
+* `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
 
 **Returns**: Number (age in months)
 
----
+***
+
 ```javascript
 // Basic usage for infants and children
 const ageInMonths = individual.getAgeInMonths();
@@ -356,22 +367,23 @@ if (months >= 6 && months < 24) {
 }
 ```
 
----
+***
 
 ### `getAgeInWeeks(asOnDate, precise)`
 
 **Available on**: Individual
 
-
 **Purpose**: Calculates age in weeks from the individual's date of birth, useful for newborn care.
 
 **Parameters**:
-- `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
-- `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
+
+* `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
+* `precise` (Boolean, optional): Whether to use precise calculation (defaults to false)
 
 **Returns**: Number (age in weeks)
 
----
+***
+
 ```javascript
 // Newborn care protocols
 const ageInWeeks = individual.getAgeInWeeks();
@@ -395,21 +407,22 @@ if (ageInWeeks < 26) { // Less than 6 months
 }
 ```
 
----
+***
 
 ### `getAge(asOnDate)`
 
 **Available on**: Individual
 
-
 **Purpose**: Returns age as a Duration object with appropriate units, providing smart formatting.
 
 **Parameters**:
-- `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
+
+* `asOnDate` (Date, optional): Date to calculate age as of (defaults to current date)
 
 **Returns**: Duration object with smart unit selection
 
----
+***
+
 ```javascript
 // Smart age display
 const ageDuration = individual.getAge();
@@ -432,7 +445,7 @@ if (age.isInYears()) {
 }
 ```
 
----
+***
 
 ## Cancel Encounter Methods
 
@@ -440,15 +453,16 @@ if (age.isInYears()) {
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Finds observation from cancelled encounter data.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
 
 **Returns**: Observation object or undefined
 
----
+***
+
 ```javascript
 // Find cancellation reason
 const cancelReason = encounter.findCancelEncounterObservation('Cancellation reason');
@@ -473,21 +487,22 @@ const cancelDate = encounter.findCancelEncounterObservation('Cancel date');
 const cancelReason = encounter.findCancelEncounterObservation('Cancel reason');
 ```
 
----
+***
 
 ### `findCancelEncounterObservationReadableValue(conceptNameOrUuid)`
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Gets the readable value from cancelled encounter observation.
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
 
 **Returns**: String (readable value) or undefined
 
----
+***
+
 ```javascript
 // Get readable cancellation information
 const nextStep = programEncounter.findCancelEncounterObservationReadableValue("Select next step");
@@ -516,7 +531,7 @@ const cancelDetails = {
 };
 ```
 
----
+***
 
 ## Encounter Navigation Methods
 
@@ -524,17 +539,18 @@ const cancelDetails = {
 
 **Available on**: Individual, ProgramEnrolment
 
-
 **Purpose**: Retrieves encounters sorted by date (most recent first), with option to exclude cancelled encounters.
 
 **Parameters**:
-- `removeCancelledEncounters` (Boolean):
-    - `true` - Return only completed encounters
-    - `false` - Return all encounters including cancelled ones
+
+* `removeCancelledEncounters` (Boolean):
+  * `true` - Return only completed encounters
+  * `false` - Return all encounters including cancelled ones
 
 **Returns**: Array of Encounter/ProgramEncounter objects sorted by encounter date (descending)
 
----
+***
+
 ```javascript
 // Get completed encounters only
 const completedEncounters = individual.getEncounters(true);
@@ -563,22 +579,23 @@ if (individual.getEncounters(true).length === 0) {
 }
 ```
 
----
+***
 
 ### `findLatestObservationFromEncounters(conceptNameOrUuid, currentEncounter)`
 
 **Available on**: Individual
 
-
 **Purpose**: Finds the latest observation for a concept from all individual encounters (across all programs).
 
 **Parameters**:
-- `conceptNameOrUuid` (String): Name or UUID of the concept to find
-- `currentEncounter` (Encounter, optional): Current encounter to exclude from search
+
+* `conceptNameOrUuid` (String): Name or UUID of the concept to find
+* `currentEncounter` (Encounter, optional): Current encounter to exclude from search
 
 **Returns**: Observation object or undefined
 
----
+***
+
 ```javascript
 // Find latest vital signs across all visits
 const latestBP = individual.findLatestObservationFromEncounters('Blood Pressure');
@@ -609,22 +626,23 @@ if (latestHbA1c) {
 }
 ```
 
----
+***
 
 ### `findLastEncounterOfType(currentEncounter, encounterTypes)`
 
 **Available on**: Individual
 
-
 **Purpose**: Finds the most recent encounter of specified types before the current encounter.
 
 **Parameters**:
-- `currentEncounter` (Encounter): Current encounter to exclude from search
-- `encounterTypes` (Array): Array of encounter type names to search for
+
+* `currentEncounter` (Encounter): Current encounter to exclude from search
+* `encounterTypes` (Array): Array of encounter type names to search for
 
 **Returns**: Encounter object or undefined
 
----
+***
+
 ```javascript
 // Find last ANC visit
 const lastANC = individual.findLastEncounterOfType(currentEncounter, ['ANC']);
@@ -654,18 +672,18 @@ if (lastFollowUp) {
 }
 ```
 
----
+***
 
 ### `scheduledEncounters()`
 
 **Available on**: Individual
 
-
 **Purpose**: Gets all scheduled encounters that haven't been completed or cancelled.
 
 **Returns**: Array of scheduled encounters
 
----
+***
+
 ```javascript
 // Check for pending visits
 const pendingVisits = individual.scheduledEncounters();
@@ -688,21 +706,22 @@ if (nextVisit) {
 }
 ```
 
----
+***
 
 ### `scheduledEncountersOfType(encounterTypeName)`
 
 **Available on**: Individual
 
-
 **Purpose**: Gets scheduled encounters of a specific type.
 
 **Parameters**:
-- `encounterTypeName` (String): Name of the encounter type to filter by
+
+* `encounterTypeName` (String): Name of the encounter type to filter by
 
 **Returns**: Array of scheduled encounters of the specified type
 
----
+***
+
 ```javascript
 // Check for scheduled ANC visits
 const scheduledANC = individual.scheduledEncountersOfType('ANC');
@@ -721,7 +740,7 @@ if (scheduledVaccination.length === 0 && individual.getAgeInMonths() >= 6) {
 }
 ```
 
----
+***
 
 ## Individual and Subject Methods
 
@@ -729,12 +748,12 @@ if (scheduledVaccination.length === 0 && individual.getAgeInMonths() >= 6) {
 
 **Available on**: Individual
 
-
 **Purpose**: Checks if the individual's gender is female.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Basic gender check
 if (individual.isFemale()) {
@@ -763,18 +782,18 @@ if (individual.isFemale() && individual.getAgeInYears() > 10 && individual.getAg
 }
 ```
 
----
+***
 
 ### `isMale()`
 
 **Available on**: Individual
-
 
 **Purpose**: Checks if the individual's gender is male.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Basic gender check
 if (individual.isMale()) {
@@ -800,18 +819,18 @@ if (individual.isMale() && individual.getAgeInYears() >= 40) {
 }
 ```
 
----
+***
 
 ### `isPerson()`
 
 **Available on**: Individual
-
 
 **Purpose**: Checks if the subject type is a person (as opposed to household, group, etc.).
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Person-specific logic
 if (individual.isPerson()) {
@@ -834,18 +853,18 @@ if (individual.isPerson()) {
 }
 ```
 
----
+***
 
 ### `isHousehold()`
 
 **Available on**: Individual
-
 
 **Purpose**: Checks if the subject type is a household.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Household-specific rules
 if (individual.isHousehold()) {
@@ -868,18 +887,18 @@ if (individual.isHousehold()) {
 }
 ```
 
----
+***
 
 ### `isGroup()`
 
 **Available on**: Individual
-
 
 **Purpose**: Checks if the subject type is a group.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Group-specific processing
 if (individual.isGroup()) {
@@ -893,18 +912,18 @@ if (individual.isGroup() && individual.groupSubjects.length < 5) {
 }
 ```
 
----
+***
 
 ### `getMobileNumber()`
 
 **Available on**: Individual
-
 
 **Purpose**: Gets mobile number from observations using mobile number concept.
 
 **Returns**: String (mobile number) or undefined
 
 **Examples**:
+
 ```javascript
 // Get mobile number for notifications
 const mobileNumber = individual.getMobileNumber();
@@ -923,18 +942,18 @@ if (!mobile && isRequired) {
 const displayNumber = individual.getMobileNumber() || "Not provided";
 ```
 
----
+***
 
 ### `nameString`
 
 **Available on**: Individual
-
 
 **Purpose**: Gets formatted name string based on subject type.
 
 **Returns**: String (formatted name)
 
 **Examples**:
+
 ```javascript
 // Get formatted name
 const displayName = individual.nameString;
@@ -951,7 +970,7 @@ const uniqueName = individual.nameStringWithUniqueAttribute;
 // Returns: "John Doe (9876543210)" if mobile number exists
 ```
 
----
+***
 
 ## Location and Address Methods
 
@@ -959,12 +978,12 @@ const uniqueName = individual.nameStringWithUniqueAttribute;
 
 **Available on**: Individual
 
-
 **Purpose**: Gets the lowest (most specific) address level for the individual.
 
 **Returns**: AddressLevel object
 
 **Examples**:
+
 ```javascript
 // Access address information
 const addressLevel = individual.lowestAddressLevel;
@@ -989,21 +1008,22 @@ if (individual.lowestAddressLevel.name === "High Risk Village") {
 }
 ```
 
----
+***
 
 ### `lowestTwoLevelAddress(i18n)`
 
 **Available on**: Individual
 
-
 **Purpose**: Gets formatted address string with the lowest two levels of address hierarchy.
 
 **Parameters**:
-- `i18n` (Object): Internationalization object for translation
+
+* `i18n` (Object): Internationalization object for translation
 
 **Returns**: String (formatted address)
 
 **Examples**:
+
 ```javascript
 // Display compact address
 const compactAddress = individual.lowestTwoLevelAddress(i18n);
@@ -1019,21 +1039,22 @@ if (!address || address.trim() === '') {
 }
 ```
 
----
+***
 
 ### `fullAddress(i18n)`
 
 **Available on**: Individual
 
-
 **Purpose**: Gets complete address lineage from lowest to highest level.
 
 **Parameters**:
-- `i18n` (Object): Internationalization object for translation
+
+* `i18n` (Object): Internationalization object for translation
 
 **Returns**: String (complete address hierarchy)
 
 **Examples**:
+
 ```javascript
 // Full address hierarchy
 const fullAddr = individual.fullAddress(i18n);
@@ -1050,7 +1071,7 @@ const addressComponents = individual.fullAddress(i18n).split(', ');
 const state = addressComponents[addressComponents.length - 1];
 ```
 
----
+***
 
 ## Relationship and Group Methods
 
@@ -1058,16 +1079,17 @@ const state = addressComponents[addressComponents.length - 1];
 
 **Available on**: Individual
 
-
 **Purpose**: Gets all relatives by relation name.
 
 **Parameters**:
-- `relationName` (String): Name of the relation to find
-- `inverse` (Boolean, optional): Whether to check inverse relation (default: false)
+
+* `relationName` (String): Name of the relation to find
+* `inverse` (Boolean, optional): Whether to check inverse relation (default: false)
 
 **Returns**: Array of Individual objects
 
 **Examples**:
+
 ```javascript
 // Get all children (inverse of parent relation)
 const children = individual.getRelatives('Parent', true);
@@ -1099,22 +1121,23 @@ parents.forEach(parent => {
 });
 ```
 
----
+***
 
 ### `getRelative(relationName, inverse)`
 
 **Available on**: Individual
 
-
 **Purpose**: Gets the first relative by relation name.
 
 **Parameters**:
-- `relationName` (String): Name of the relation to find
-- `inverse` (Boolean, optional): Whether to check inverse relation (default: false)
+
+* `relationName` (String): Name of the relation to find
+* `inverse` (Boolean, optional): Whether to check inverse relation (default: false)
 
 **Returns**: Individual object or undefined
 
 **Examples**:
+
 ```javascript
 // Get spouse
 const spouse = individual.getRelative('Spouse');
@@ -1138,18 +1161,18 @@ const emergencyContact = individual.getRelative('Emergency Contact');
 const emergencyNumber = emergencyContact ? emergencyContact.getMobileNumber() : null;
 ```
 
----
+***
 
 ### `getGroups()`
 
 **Available on**: Individual
-
 
 **Purpose**: Gets all non-voided groups that this individual belongs to.
 
 **Returns**: Array of GroupSubject objects
 
 **Examples**:
+
 ```javascript
 // Get household information
 const household = individual.getGroups().filter(grp => 
@@ -1176,18 +1199,18 @@ if (shgMembership) {
 }
 ```
 
----
+***
 
 ### `getGroupSubjects()`
 
 **Available on**: Individual
-
 
 **Purpose**: Gets all non-voided group subjects where this individual is a member.
 
 **Returns**: Array of GroupSubject objects
 
 **Examples**:
+
 ```javascript
 // Get all group memberships
 const groupMemberships = individual.getGroupSubjects();
@@ -1210,7 +1233,7 @@ if (membershipCount === 0) {
 }
 ```
 
----
+***
 
 ## Validation and Status Methods
 
@@ -1218,12 +1241,12 @@ if (membershipCount === 0) {
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Checks if encounter has been edited (filled with data).
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Check if encounter is completed
 if (encounter.hasBeenEdited()) {
@@ -1247,18 +1270,18 @@ if (!encounter.hasBeenEdited() && !encounter.isCancelled()) {
 }
 ```
 
----
+***
 
 ### `isCancelled()`
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter)
-
 
 **Purpose**: Checks if encounter has been cancelled.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Check cancellation status
 if (encounter.isCancelled()) {
@@ -1283,18 +1306,18 @@ if (encounter.isCancelled()) {
 }
 ```
 
----
+***
 
 ### `isScheduled()`
 
 **Available on**: AbstractEncounter (Encounter, ProgramEncounter)
-
 
 **Purpose**: Checks if encounter is scheduled (not filled and not cancelled).
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Check if visit is pending
 if (encounter.isScheduled()) {
@@ -1314,18 +1337,18 @@ const overdueVisits = individual.encounters.filter(enc =>
     enc.isScheduled() && moment().isAfter(enc.maxVisitDateTime));
 ```
 
----
+***
 
 ### `isRejectedEntity()`
 
 **Available on**: Individual, AbstractEncounter (Encounter, ProgramEncounter)
-
 
 **Purpose**: Checks if entity has been rejected in the approval workflow.
 
 **Returns**: Boolean
 
 **Examples**:
+
 ```javascript
 // Check individual approval status
 if (individual.isRejectedEntity()) {
@@ -1348,7 +1371,7 @@ if (!individual.isRejectedEntity()) {
 }
 ```
 
----
+***
 
 ## Media and Utility Methods
 
@@ -1356,12 +1379,12 @@ if (!individual.isRejectedEntity()) {
 
 **Available on**: Individual, AbstractEncounter (Encounter, ProgramEncounter)
 
-
 **Purpose**: Finds all media observations (images, videos, audio files).
 
 **Returns**: Array of media observations
 
 **Examples**:
+
 ```javascript
 // Get all media attachments
 const mediaObs = individual.findMediaObservations();
@@ -1387,18 +1410,18 @@ if (mediaCount === 0) {
 }
 ```
 
----
+***
 
 ### `getProfilePicture()`
 
 **Available on**: Individual
-
 
 **Purpose**: Gets the profile picture path/URL.
 
 **Returns**: String (image path) or undefined
 
 **Examples**:
+
 ```javascript
 // Display profile picture
 const profilePic = individual.getProfilePicture();
@@ -1416,18 +1439,18 @@ if (requiresPhoto && !hasPicture) {
 }
 ```
 
----
+***
 
 ### `getEntityTypeName()`
 
 **Available on**: Individual, AbstractEncounter (Encounter, ProgramEncounter)
-
 
 **Purpose**: Gets the entity type name for identification and logging.
 
 **Returns**: String
 
 **Examples**:
+
 ```javascript
 // Get type for logging
 const entityType = individual.getEntityTypeName(); // Returns subject type name like "Person", "Household"
@@ -1444,18 +1467,18 @@ if (individual.getEntityTypeName() === "Household") {
 console.log(`Processing ${entity.getEntityTypeName()}: ${entity.uuid}`);
 ```
 
----
+***
 
 ### `toJSON()`
 
 **Available on**: Individual, ProgramEncounter
-
 
 **Purpose**: Gets JSON representation of the entity for serialization.
 
 **Returns**: Object (JSON representation)
 
 **Examples**:
+
 ```javascript
 // Serialize for logging or transmission
 const individualData = individual.toJSON();
@@ -1471,10 +1494,10 @@ const exportData = {
 };
 ```
 
----
+***
 
 ## 📚 Additional Resources
 
-- [Writing Rules Guide](./writing-rules.md) - Complete guide to writing Avni rules
-- [Validation Framework](./validation.md) - Understanding validation in Avni
-- [Concept Reference](../concepts.md) - Working with concepts and observations
+* [Writing Rules Guide](./writing-rules.md) - Complete guide to writing Avni rules
+* [Validation Framework](./validation.md) - Understanding validation in Avni
+* [Concept Reference](../concepts.md) - Working with concepts and observations
