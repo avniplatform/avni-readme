@@ -1498,7 +1498,7 @@ const exportData = {
 
 ## 📚 Additional Resources
 
-* [Writing Rules Guide](../writing-rules) - Complete guide to writing Avni rules
-* [Concept Reference](../concepts#/) - Working with concepts and observations
+* [Writing Rules Guide](../docs/writing-rules#/) - Complete guide to writing Avni rules
+* [Concept Reference](../docs/concepts#/) - Working with concepts and observations
 
 <br />
