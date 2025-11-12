@@ -4,6 +4,72 @@
 **Purpose**: Complete structured reference for all Avni JavaScript rule methods  
 **Audience**: Rule developers, implementers, and technical teams
 
+## 📋 Table of Contents
+
+- [Observation Access Methods](#observation-access-methods)
+  - [`getObservationReadableValue()`](#getobservationreadablevalueconceptnameoruuid-parentconceptnameoruuid)
+  - [`getObservationValue()`](#getobservationvalueconceptnameoruuid-parentconceptnameoruuid)
+  - [`findObservation()`](#findobservationconceptnameoruuid-parentconceptnameoruuid)
+  - [`findLatestObservationInEntireEnrolment()`](#findlatestobservationinentirenrolmentconceptnameoruuid-currentencounter)
+  - [`hasObservation()`](#hasobservationconceptnameoruuid)
+- [Age and Time Calculation Methods](#age-and-time-calculation-methods)
+  - [`getAgeInYears()`](#getageinyearsasondate-precise)
+  - [`getAgeInMonths()`](#getageinmonthsasondate-precise)
+  - [`getAgeInWeeks()`](#getageinweeksondate-precise)
+  - [`getAge()`](#getageasondate)
+- [Cancel Encounter Methods](#cancel-encounter-methods)
+  - [`findCancelEncounterObservation()`](#findcancelencounterobservationconceptnameoruuid)
+  - [`findCancelEncounterObservationReadableValue()`](#findcancelencounterobservationreadablevalueconceptnameoruuid)
+- [Encounter Navigation Methods](#encounter-navigation-methods)
+  - [`getEncounters()`](#getencountersremovecancelledencounters)
+  - [`findLatestObservationFromEncounters()`](#findlatestobservationfromencountersconceptnameoruuid-currentencounter)
+  - [`findLastEncounterOfType()`](#findlastencounteroftypecurrentencounter-encountertypes)
+  - [`scheduledEncounters()`](#scheduledencounters)
+  - [`scheduledEncountersOfType()`](#scheduledencountersoftypeencountertypename)
+- [Individual and Subject Methods](#individual-and-subject-methods)
+  - [`isFemale()`](#isfemale)
+  - [`isMale()`](#ismale)
+  - [`isPerson()`](#isperson)
+  - [`isHousehold()`](#ishousehold)
+  - [`isGroup()`](#isgroup)
+  - [`getMobileNumber()`](#getmobilenumber)
+  - [`nameString`](#namestring)
+- [Location and Address Methods](#location-and-address-methods)
+  - [`lowestAddressLevel`](#lowestaddresslevel)
+  - [`lowestTwoLevelAddress()`](#lowesttwoleveladdressi18n)
+  - [`fullAddress()`](#fulladdressi18n)
+- [Relationship and Group Methods](#relationship-and-group-methods)
+  - [`getRelatives()`](#getrelativesrelationname-inverse)
+  - [`getRelative()`](#getrelativerelationname-inverse)
+  - [`getGroups()`](#getgroups)
+  - [`getGroupSubjects()`](#getgroupsubjects)
+- [Validation and Status Methods](#validation-and-status-methods)
+  - [`hasBeenEdited()`](#hasbeenedited)
+  - [`isCancelled()`](#iscancelled)
+  - [`isScheduled()`](#isscheduled)
+  - [`isRejectedEntity()`](#isrejectedentity)
+- [Media and Utility Methods](#media-and-utility-methods)
+  - [`findMediaObservations()`](#findmediaobservations)
+  - [`getProfilePicture()`](#getprofilepicture)
+  - [`getEntityTypeName()`](#getentitytypename)
+  - [`toJSON()`](#tojson)
+
+---
+
+## 📊 Quick Reference
+
+| Category | Most Used Methods | Purpose |
+|----------|------------------|---------|
+| **Observations** | `getObservationReadableValue()` | Get formatted values for display |
+| **Observations** | `getObservationValue()` | Get raw values for calculations |
+| **Age Calculations** | `getAgeInYears()` | Calculate age in years |
+| **Age Calculations** | `getAgeInMonths()` | Calculate age in months (pediatric) |
+| **Encounters** | `getEncounters()` | Get encounter history |
+| **Individual Info** | `isFemale()` / `isMale()` | Gender checks |
+| **Individual Info** | `getMobileNumber()` | Get contact number |
+| **Validation** | `hasObservation()` | Check if data exists |
+| **Validation** | `hasBeenEdited()` | Check encounter completion |
+
 ---
 ## Observation Access Methods
 
@@ -19,7 +85,7 @@
 
 **Returns**: String, Number, Date, Array, or undefined - The readable representation of the observation value
 
-**Examples**:
+---
 ```javascript
 // Basic usage on different entities
 const treatmentDate = programEnrolment.getObservationReadableValue("Treatment Start date");
@@ -56,7 +122,7 @@ const dueDate = programEnrolment.getObservationReadableValue("Expected Date of D
 
 **Returns**: Raw value (String, Number, Date, Array, concept UUID for coded) or undefined
 
-**Examples**:
+---
 ```javascript
 // Get raw values for calculations
 const weight = programEncounter.getObservationValue("Weight");
@@ -97,7 +163,7 @@ const symptoms = encounter.getObservationValue("Symptoms");
 
 **Returns**: Observation object or undefined
 
-**Examples**:
+---
 ```javascript
 // Find observation object
 const mobileObs = individual.findObservation('Mobile Number');
@@ -135,7 +201,7 @@ const weight = encounter.findObservation('Weight')?.getValue() || 0;
 
 **Returns**: Observation object or undefined
 
-**Examples**:
+---
 ```javascript
 // Track treatment progression
 const latestPhase = programEnrolment.findLatestObservationInEntireEnrolment("Treatment phase type");
@@ -173,7 +239,7 @@ const daysSinceTest = lastTestResult ?
 
 **Returns**: Boolean
 
-**Examples**:
+---
 ```javascript
 // Conditional logic based on data availability
 if (programEnrolment.hasObservation("Comorbidity")) {
@@ -211,7 +277,7 @@ if (missingFields.length > 0) {
 
 **Returns**: Number (age in years)
 
-**Examples**:
+---
 ```javascript
 // Basic usage - current age
 const currentAge = individual.getAgeInYears();
@@ -256,7 +322,7 @@ if (individual.getAgeInYears() > 120) {
 
 **Returns**: Number (age in months)
 
-**Examples**:
+---
 ```javascript
 // Basic usage for infants and children
 const ageInMonths = individual.getAgeInMonths();
@@ -305,7 +371,7 @@ if (months >= 6 && months < 24) {
 
 **Returns**: Number (age in weeks)
 
-**Examples**:
+---
 ```javascript
 // Newborn care protocols
 const ageInWeeks = individual.getAgeInWeeks();
@@ -343,7 +409,7 @@ if (ageInWeeks < 26) { // Less than 6 months
 
 **Returns**: Duration object with smart unit selection
 
-**Examples**:
+---
 ```javascript
 // Smart age display
 const ageDuration = individual.getAge();
@@ -382,7 +448,7 @@ if (age.isInYears()) {
 
 **Returns**: Observation object or undefined
 
-**Examples**:
+---
 ```javascript
 // Find cancellation reason
 const cancelReason = encounter.findCancelEncounterObservation('Cancellation reason');
@@ -421,7 +487,7 @@ const cancelReason = encounter.findCancelEncounterObservation('Cancel reason');
 
 **Returns**: String (readable value) or undefined
 
-**Examples**:
+---
 ```javascript
 // Get readable cancellation information
 const nextStep = programEncounter.findCancelEncounterObservationReadableValue("Select next step");
@@ -468,7 +534,7 @@ const cancelDetails = {
 
 **Returns**: Array of Encounter/ProgramEncounter objects sorted by encounter date (descending)
 
-**Examples**:
+---
 ```javascript
 // Get completed encounters only
 const completedEncounters = individual.getEncounters(true);
@@ -512,7 +578,7 @@ if (individual.getEncounters(true).length === 0) {
 
 **Returns**: Observation object or undefined
 
-**Examples**:
+---
 ```javascript
 // Find latest vital signs across all visits
 const latestBP = individual.findLatestObservationFromEncounters('Blood Pressure');
@@ -558,7 +624,7 @@ if (latestHbA1c) {
 
 **Returns**: Encounter object or undefined
 
-**Examples**:
+---
 ```javascript
 // Find last ANC visit
 const lastANC = individual.findLastEncounterOfType(currentEncounter, ['ANC']);
@@ -599,7 +665,7 @@ if (lastFollowUp) {
 
 **Returns**: Array of scheduled encounters
 
-**Examples**:
+---
 ```javascript
 // Check for pending visits
 const pendingVisits = individual.scheduledEncounters();
@@ -636,7 +702,7 @@ if (nextVisit) {
 
 **Returns**: Array of scheduled encounters of the specified type
 
-**Examples**:
+---
 ```javascript
 // Check for scheduled ANC visits
 const scheduledANC = individual.scheduledEncountersOfType('ANC');
@@ -1404,3 +1470,11 @@ const exportData = {
     encounters: individual.encounters.map(enc => enc.toJSON ? enc.toJSON() : enc)
 };
 ```
+
+---
+
+## 📚 Additional Resources
+
+- [Writing Rules Guide](./writing-rules.md) - Complete guide to writing Avni rules
+- [Validation Framework](./validation.md) - Understanding validation in Avni
+- [Concept Reference](../concepts.md) - Working with concepts and observations
