@@ -12,7 +12,7 @@ next:
 ---
 The Data Entry App, as the name suggests, is used to view and enter data directly without relying on mobile syncing. It can be accessed by clicking on the 'Data Entry app' tile in the home page.
 
-<Image align="center" width="10000px" src="https://files.readme.io/be9c75e10c6f8e1eb905f84e0714b46475192e039bac88837f38b62c87cabf91-Screenshot_2025-08-25_at_7.10.40_PM.png" />
+<Image align="center" border={false} width="10000px" src="https://files.readme.io/be9c75e10c6f8e1eb905f84e0714b46475192e039bac88837f38b62c87cabf91-Screenshot_2025-08-25_at_7.10.40_PM.png" />
 
 ### Advantages:
 
@@ -27,6 +27,7 @@ The Data Entry App, as the name suggests, is used to view and enter data directl
 * [Member addition eligibility check rule](https://avni.readme.io/docs/writing-rules#16-member-addition-eligibility-check-rule)
 * [Manual programs eligibility check rule](https://avni.readme.io/docs/writing-rules#15-manual-programs-eligibility-check-rule)
 * [Rules that use service methods to filter across subjects](https://avni.readme.io/docs/writing-rules#using-service-methods-in-the-rules)
+* <Anchor label="Accessing logged-in user information" target="_blank" href="https://avni.readme.io/docs/writing-rules#shape-of-common-parameters-in-all-params-object">Accessing logged-in user information</Anchor>
 
 <br />
 
