@@ -18,14 +18,6 @@ Media content support enables:
 * Inline display of media content within forms
 * Offline access to synced media files
 
-## Implementation
-
-### Sync and Storage
-
-* Media files are downloaded during standard Avni sync process
-* Files are cached locally for offline access
-* Storage management follows Avni's existing file handling patterns
-
 ## Configuration
 
 ### Adding Media to Concepts
@@ -52,7 +44,28 @@ Media added to a concept can be used in forms as follows:
 
 > <Image align="center" alt="App Designer showing media-enabled concepts integrated into form questions and answer options" border={false} src="https://files.readme.io/dd576e833fcaa2057680c629419ec653f8e629cd9a28a5dea6f08579062d5000-ConceptsWithMediaView.png" />
 
-## Field Worker Experience
+### Supported Media Types
+
+* **Videos**: MP4 format - max 10 MB
+* **Images**: JPG, PNG formats - max 150 KB
+
+### Technical Considerations
+
+* Media playback depends on device capabilities
+* Test on target devices before deployment
+* Storage constraints may limit media file quantities on field devices
+* Network connectivity required for initial sync
+* Media files are cached locally after sync for offline access
+
+## Mobile application capability
+
+### Sync and Storage
+
+* Media files are downloaded during standard Avni sync process
+* Files are cached locally for offline access
+* Storage management follows Avni's existing file handling patterns
+
+### Field Worker Experience
 
 When a form contains media-enabled concepts, field workers see:
 
@@ -65,15 +78,4 @@ When a form contains media-enabled concepts, field workers see:
 
 > <Image align="center" alt="Mobile app view showing media icons next to answer options (video and image icons visible)" border={false} src="https://files.readme.io/9c17f25cadff6372d7fd31839c47342888a8087696c1c221a93938de532a8c78-FormEdit.png" />
 
-## Supported Media Types
-
-* **Videos**: MP4 format - max 10 MB
-* **Images**: JPG, PNG formats - max 150 KB
-
-## Technical Considerations
-
-* Media playback depends on device capabilities
-* Test on target devices before deployment
-* Storage constraints may limit media file quantities on field devices
-* Network connectivity required for initial sync
-* Media files are cached locally after sync for offline access
+<br />
