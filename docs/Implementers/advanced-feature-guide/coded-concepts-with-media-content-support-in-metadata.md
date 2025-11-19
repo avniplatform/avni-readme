@@ -18,6 +18,25 @@ Media content support to concept metadata enables:
 * Inline display of media content within forms
 * Offline access of the synced media files
 
+## Use Cases
+
+### Counselling and Guidance
+
+* Display instructional videos showing correct procedures or techniques
+* Show visual examples to help beneficiaries understand health concepts
+* Provide image references for medication identification or usage instructions
+
+### Training and Reference
+
+* Include training videos for field workers to reference during data collection
+* Display procedural demonstrations to standardize how tasks are performed
+* Provide visual guides for complex decision-making processes
+
+### Quality Assurance
+
+* Ensure consistent information delivery across all field workers
+* Reduce errors by providing visual reference materials at point of data entry
+
 ## Configuration
 
 ### Adding Media to Concepts
