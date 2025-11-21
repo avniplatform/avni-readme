@@ -1,4 +1,15 @@
-# Template-Based Setup
+---
+title: Templates
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 
 ## Overview
 The template-based setup allows implementers to quickly bootstrap their Avni instance with pre-configured settings, forms, and metadata that closely match common use cases. This significantly reduces the time and effort required for initial configuration.
