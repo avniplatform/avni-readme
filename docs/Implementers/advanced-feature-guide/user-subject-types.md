@@ -28,15 +28,9 @@ A user subject type is a type that can be used to manage information about users
   * for every new User created thereafter via the "Webapp" 
   * for new Users created via "CSV Uploads", by triggering a Background Job
   * for all existing Users, by triggering a Background Job
-* **Ability to Disable Registration of User type SubjectTypes on Client**: Currently, Avni allows an Organisation Administrator to disable User's ability to create any new User Subject Type Subjects on client, by following the below steps:
+* **Registration disallowed for User type SubjectTypes**: 
+When a User type SubjectType is created, the default registration form mapping is not created and hence subjects for this subject type cannot be registered.
 
-  1. Navigate to "App Designer", Forms Section
-
-     <Image align="center" src="https://files.readme.io/af7a60f-Screenshot_2024-05-17_at_3.51.29_PM.png" />
-  2. Click on the "Gear Wheel" icon, to load the Form-Mapping Edit view
-
-     <Image align="center" src="https://files.readme.io/2c4cffc-Screenshot_2024-05-17_at_3.52.44_PM.png" />
-  3. Click on the "Bin (Delete)" icon to Void the Form to Subject type association (Form Mapping)
 * **Access to User type Subject on the client**: Users cannot make use of "Subject Search" capability to access the User type Subject on the Client. They would always have to make use of "Filter" button on "My Dashboard" to select the User type Subject, as shown below.
 
 <Image alt="Select User type in the Subject Filter" align="center" width="500px" border={true} src="https://files.readme.io/f265252-Screenshot_2024-05-17_at_4.23.24_PM.png">
