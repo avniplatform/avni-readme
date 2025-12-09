@@ -1,0 +1,48 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Add upstream remote
+      run: |
+        git remote add upstream https://github.com/avniproject/avni-readme.git || true
+        git fetch upstream
+
+    - name: Hard sync with upstream
+      run: |
+        git checkout v2.0
+        git reset --hard upstream/v2.0
+
+    - name: Restore custom workflows
+      run: |
+        # Get workflows from custom-workflows branch using git show
+        git fetch origin custom-workflows:custom-workflows
+        mkdir -p .github/workflows
+        git show custom-workflows:sync-fork.yml.txt > .github/workflows/sync-fork.yml
+        git show custom-workflows:generate-readme.yml.txt > .github/workflows/generate-readme.yml
+        if [ -f .github/workflows/sync-fork.yml ] || [ -f .github/workflows/generate-readme.yml ]; then
+          git add .github/workflows/
+          git commit -m "Restore custom workflow files after sync"
+        fi
+
+    - name: Push changes
+      run: |
+        git push --force-with-lease origin v2.0
