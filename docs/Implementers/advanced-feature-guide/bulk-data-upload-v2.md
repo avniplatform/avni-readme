@@ -30,7 +30,7 @@ The Admin app of the web console has an upload option. Currently, this supports 
 
 ## Sample file
 
-Sample files are available in the interface. Download the file, fill in values and then upload. The file is in a [CSV](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) format.\
+Sample files are available in the interface. Download the file, fill in values and then upload. The file is in a [CSV](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) format.  
 Sample file acts as an up-to-date documentation on the following.
 
 * fields
@@ -107,7 +107,7 @@ The primary purpose of these identifiers is for the users to be able to link dif
       </td>
 
       <td>
-        Any unique identifier that you may want to use. It should unique for all program enrolments. They can be same as woman registration id, but we recommend you use something like e.g. WOMAN-100001-01, WOMAN-100001-02 so that you can use multiple enrolments for the same woman.  
+        Any unique identifier that you may want to use. It should unique for all program enrolments. They can be same as woman registration id, but we recommend you use something like e.g. WOMAN-100001-01, WOMAN-100001-02 so that you can use multiple enrolments for the same woman.
 
         It is possible that at the time of preparing this data, you are don't plan to upload woman registration via CSV and it is already present in Avni. In such a case you should use the Avni UUID value of the woman registration in this field.
       </td>
@@ -151,7 +151,7 @@ The primary purpose of these identifiers is for the users to be able to link dif
       </td>
 
       <td>
-        This should be used to match the program ante natal visit form record with woman registration record. Hence, for our example used so far, this field would have values like - WOMAN-100001-01, WOMAN-100002-01  
+        This should be used to match the program ante natal visit form record with woman registration record. Hence, for our example used so far, this field would have values like - WOMAN-100001-01, WOMAN-100002-01
 
         It is possible that at the time of preparing this data, you are don't plan to upload pregnancy enrolment data via CSV and it is already present in Avni. In such a case you should use the Avni UUID value of the woman registration in this field.
       </td>
@@ -165,7 +165,7 @@ The primary purpose of these identifiers is for the users to be able to link dif
 
 Please note that sample file for uploading visit details and scheduling a visit are different. These two options allow for  either creating a scheduled encounter/visit or completed encounter/visit. Note that scheduling a visit and then uploading the visit details for the same visit is not supported (as that is similar to edit).
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/30f7062dbe6572554955d88df13530e6e45c5a4cd5986fd81499661a294f78a2-image.png" />
+<Image align="center" border={true} src="https://files.readme.io/30f7062dbe6572554955d88df13530e6e45c5a4cd5986fd81499661a294f78a2-image.png" className="border" />
 
 ## Important Notes / Gotchas
 
@@ -175,6 +175,7 @@ Please note that sample file for uploading visit details and scheduling a visit 
   * File
 * **Id Confusion**: The identifiers (used in Id from previous system) are different from Id elements in the form, if you have them.
 * **Form Data Editing**: Editing previously submitted form data is not currently supported through the CSV upload process.
+* **No Metadata Rollback**: For metadata zip uploads, uploading an older zip file version does not restore a previous version of the metadata. The result of uploading an older version will be an attempted merge of the old version over the current version which might not be what is expected. Avni does not support rolling back of the metadata configuration to a previous state. One can only move forward from the current configuration.
 
 # Questions
 
