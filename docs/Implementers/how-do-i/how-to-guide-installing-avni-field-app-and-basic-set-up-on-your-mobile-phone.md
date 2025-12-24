@@ -43,11 +43,9 @@ Note: The User ID and Password is sent to the registered mobile number via SMS o
 
 <br />
 
-### **Step 3: Basic Set - Ups**
+### **Step 3: Basic Set - Up**
 
- 
-
-#### **Sync**
+#### **Sync data**
 
 It is important to sync the app whenever an internet connection is available for the new data to get stored and reflect in the app Dashboard. This can be done by clicking on the Sync button at the top right
 
@@ -57,7 +55,7 @@ It is important to sync the app whenever an internet connection is available for
 
 <br />
 
-b) **Language:**
+#### **Select Language**
 
 By clicking on the Edit Settings button at the top, you can select the language in which you want to see the app content. The default language selected is English
 
@@ -67,7 +65,7 @@ By clicking on the Edit Settings button at the top, you can select the language 
 
 <Image align="center" border={false} width="250px" src="https://files.readme.io/f9de6e9-1712641958848.JPEG" />
 
-**c) Change Password**:
+#### **Change Password**
 
 If you wish to change your password, you can do so, by clicking on the Change Password button and entering the new password details.
 
@@ -76,3 +74,5 @@ If you wish to change your password, you can do so, by clicking on the Change Pa
 <Image align="left" border={true} width="250px" src="https://files.readme.io/5b1f088-Change_Pass.JPEG" className="border" />
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/69adaa1-Password.JPEG" className="border" />
+
+<br />
