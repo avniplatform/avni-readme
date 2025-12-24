@@ -26,8 +26,6 @@ next:
 
 <Image align="left" border={true} width="250px" src="https://files.readme.io/e07f14d-Avni.JPEG" className="border" />
 
-<br />
-
 <Image align="center" border={true} width="250px" src="https://files.readme.io/daf3937-Install.JPEG" className="border" />
 
 ### **Step 2: LOGIN**
