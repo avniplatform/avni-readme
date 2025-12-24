@@ -1,6 +1,6 @@
 ---
-title: 'How to guide: Setting up Locations via CSV Upload'
-excerpt: For bulk location upload after Release 10.0
+title: Locations
+excerpt: Guide to setup Locations via CSV Bulk Upload
 deprecated: false
 hidden: false
 metadata:
