@@ -1,5 +1,5 @@
 ---
-title: 'How to guide: Creating User Groups'
+title: User Groups
 excerpt: ''
 deprecated: false
 hidden: false
