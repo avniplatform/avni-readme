@@ -5,7 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
-
 This guide describes how to use AI to accelerate Avni project scoping and configuration development. The workflow has two main phases:
 
 1. **Export scoping documents** – Convert Google Sheets scoping/SRS documents to CSV for AI consumption
@@ -18,8 +17,8 @@ Use this Apps Script to export all sheets from Google Sheets files in a Drive fo
 ### Setup
 
 1. Create two folders in Google Drive:
-   - One for **input** spreadsheets (source)
-   - One for **CSV exports** (target)
+   * One for **input** spreadsheets (source)
+   * One for **CSV exports** (target)
 2. Copy each folder's ID from its URL (`https://drive.google.com/drive/folders/<ID>`)
 3. In any Google Sheet, open **Extensions → Apps Script**
 4. Paste the script below and replace `SOURCE_FOLDER_ID` and `TARGET_FOLDER_ID` with your IDs
@@ -70,16 +69,15 @@ With the scoping CSVs ready, use AI to generate Avni bundle configurations. The 
 
 ### What the Guide Covers
 
-- **Analyze SRS Documents** – Map subject types, programs, and form fields from your CSVs
-- **Create Concepts** – Define concept structures with proper data types and coded values
-- **Create Forms** – Build forms with skip logic, validation rules, and decision rules
-- **Configure Form Mappings** – Link forms to subject types and programs
-- **Set Up User Groups & Privileges** – Define access control and permissions
-- **Configure Report Cards & Dashboards** – Create standard and custom report cards
-- **Write Rules** – Implement subject summary, eligibility, visit schedule, and validation rules
-- **Validation & Troubleshooting** – Common errors and verification checklists
+* **Analyze SRS Documents** – Map subject types, programs, and form fields from your CSVs
+* **Create Concepts** – Define concept structures with proper data types and coded values
+* **Create Forms** – Build forms with skip logic, validation rules, and decision rules
+* **Configure Form Mappings** – Link forms to subject types and programs
+* **Set Up User Groups & Privileges** – Define access control and permissions
+* **Configure Report Cards & Dashboards** – Create standard and custom report cards
+* **Write Rules** – Implement summary, eligibility, visit schedule, decision and validation rules
+* **Validation & Troubleshooting** – Common errors and verification checklists
 
 ### Reference Materials
 
 The [`avni-impl-bundles/reference`](https://github.com/avniproject/avni-impl-bundles/tree/main/reference) folder contains additional guidance and examples for AI-assisted configuration generation
-
