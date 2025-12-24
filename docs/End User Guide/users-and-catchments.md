@@ -1,6 +1,6 @@
 ---
 title: Users and Catchments
-excerpt: 'How to guide: Creating Users and Catchments'
+excerpt: Guide for creating Users and Catchments
 deprecated: false
 hidden: false
 metadata:
