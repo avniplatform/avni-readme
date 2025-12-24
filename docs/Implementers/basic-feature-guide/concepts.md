@@ -72,12 +72,15 @@ The following datatypes are supported while defining concepts to be used in form
 
     <tr>
       <td>
-        **Media concepts (Image, Video and Audio)**
+        **Media concepts (Image, Video and Audio, File, ImageV2)**
       </td>
 
       <td>
-        Images and videos can be captured using Image and Video concept datatypes. For audio recording, Audio datatype can be used.  
-        To capture Images with geotagging and other metadata associated, ImageV2 datatype can be used.
+        Images and videos can be captured using Image and Video concept datatypes. To capture Images with geotagging and other metadata associated, ImageV2 datatype can be used.
+
+        For audio recording, Audio datatype can be used.  
+
+        For other generic file types, File datatype can be used.
       </td>
     </tr>
 
@@ -99,10 +102,10 @@ The following datatypes are supported while defining concepts to be used in form
       <td>
         There are different datatypes that can be used to capture date and time.
 
-        * *Date** - A simple date with no time
-        * *Time** - Just the time of day, with no date
-        * *DateTime** - To store both date and time in a single observation
-        * *Duration** - To capture durations such as 4 weeks, 2 days etc.
+        * _Date_* - A simple date with no time
+        * _Time_* - Just the time of day, with no date
+        * _DateTime_* - To store both date and time in a single observation
+        * _Duration_* - To capture durations such as 4 weeks, 2 days etc.
       </td>
     </tr>
 
