@@ -14,7 +14,7 @@ metadata:
 next:
   description: ''
 ---
-**Step 1: Install the Avni app from Google Play Store**
+### **Step 1: Install the Avni app from Google Play Store**
 
 1. Go to the Google Play Store on your mobile device
 2. Type **Avni** on the search bar
@@ -22,15 +22,15 @@ next:
 
 <br />
 
-<Image align="left" className="border" width="250px" border={true} src="https://files.readme.io/b2ec7c3-Playstore.JPEG" />
+<Image align="left" border={true} width="250px" src="https://files.readme.io/b2ec7c3-Playstore.JPEG" className="border" />
 
-<Image align="left" className="border" width="250px" border={true} src="https://files.readme.io/e07f14d-Avni.JPEG" />
+<Image align="left" border={true} width="250px" src="https://files.readme.io/e07f14d-Avni.JPEG" className="border" />
 
 <br />
 
-<Image align="center" className="border" width="250px" border={true} src="https://files.readme.io/daf3937-Install.JPEG" />
+<Image align="center" border={true} width="250px" src="https://files.readme.io/daf3937-Install.JPEG" className="border" />
 
-**Step 2: LOGIN**
+### **Step 2: LOGIN**
 
 1. LOGIN to the app by entering your User ID and Password
 2. Click on the LOGIN button
@@ -39,19 +39,21 @@ Note: The User ID and Password is sent to the registered mobile number via SMS o
 
 <br />
 
-<Image align="center" className="border" width="300px" border={true} src="https://files.readme.io/99d67fd-LOGIN.JPEG" />
+<Image align="center" border={true} width="300px" src="https://files.readme.io/99d67fd-LOGIN.JPEG" className="border" />
 
 <br />
 
-**Step 3: Basic Set - Ups**
+### **Step 3: Basic Set - Ups**
 
-a) **Sync**
+ 
+
+#### **Sync**
 
 It is important to sync the app whenever an internet connection is available for the new data to get stored and reflect in the app Dashboard. This can be done by clicking on the Sync button at the top right
 
 <br />
 
-<Image align="center" className="border" width="300px" border={true} src="https://files.readme.io/4f2e86b-Sync2.JPEG" />
+<Image align="center" border={true} width="300px" src="https://files.readme.io/4f2e86b-Sync2.JPEG" className="border" />
 
 <br />
 
@@ -61,16 +63,16 @@ By clicking on the Edit Settings button at the top, you can select the language 
 
 <br />
 
-<Image align="left" width="250px" src="https://files.readme.io/75ffcfa-Edit_Lang.JPEG" />
+<Image align="left" border={false} width="250px" src="https://files.readme.io/75ffcfa-Edit_Lang.JPEG" />
 
-<Image align="center" width="250px" src="https://files.readme.io/f9de6e9-1712641958848.JPEG" />
+<Image align="center" border={false} width="250px" src="https://files.readme.io/f9de6e9-1712641958848.JPEG" />
 
-**c) Change Password**: 
+**c) Change Password**:
 
 If you wish to change your password, you can do so, by clicking on the Change Password button and entering the new password details.
 
 <br />
 
-<Image align="left" className="border" width="250px" border={true} src="https://files.readme.io/5b1f088-Change_Pass.JPEG" />
+<Image align="left" border={true} width="250px" src="https://files.readme.io/5b1f088-Change_Pass.JPEG" className="border" />
 
-<Image align="center" className="border" width="250px" border={true} src="https://files.readme.io/69adaa1-Password.JPEG" />
+<Image align="center" border={true} width="250px" src="https://files.readme.io/69adaa1-Password.JPEG" className="border" />
