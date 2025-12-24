@@ -14,11 +14,11 @@ next:
       slug: rules-concept-guide
       title: Rules concept guide
 ---
-**Concepts** define the different pieces of information that you collect as part of your service delivery.  
+**Concepts** define the different pieces of information that you collect as part of your service delivery.
 
-For example, if you collect the blood pressure of a subject in a form, then "*Blood Pressure*" should be defined as a concept. You would notice that every question in a form requires a concept.  
+For example, if you collect the blood pressure of a subject in a form, then "_Blood Pressure_" should be defined as a concept. You would notice that every question in a form requires a concept.
 
-The *datatype* of a concept determines the kind of data can be stored against a concept, and therefor against the form question or form element. Using concepts with datatypes ensures incorrect answers are not captured in a form question, and is helpful for eventually data aggregation, validation and reporting.
+The _datatype_ of a concept determines the kind of data can be stored against a concept, and therefor against the form question or form element. Using concepts with datatypes ensures incorrect answers are not captured in a form question, and is helpful for eventually data aggregation, validation and reporting.
 
 ## Supported DataTypes in Concepts
 
@@ -40,7 +40,7 @@ The following datatypes are supported while defining concepts to be used in form
   <tbody>
     <tr>
       <td>
-        * Numeric\_ **concepts** 
+        **Numeric concepts**
       </td>
 
       <td>
@@ -50,11 +50,11 @@ The following datatypes are supported while defining concepts to be used in form
 
     <tr>
       <td>
-        **Coded concepts (and NA concepts)** 
+        **Coded concepts (and NA concepts)**
       </td>
 
       <td>
-        Coded concepts are those that have a fixed set of answers. For instance for Blood Group you would choose a coded concept with values: A+, B+, AB+, etc.  
+        Coded concepts are those that have a fixed set of answers. For instance for Blood Group you would choose a coded concept with values: A+, B+, AB+, etc.
 
         These answers are also defined as concepts of NA datatype.
       </td>
@@ -62,7 +62,7 @@ The following datatypes are supported while defining concepts to be used in form
 
     <tr>
       <td>
-        **ID datatype** 
+        **ID datatype**
       </td>
 
       <td>
@@ -76,17 +76,18 @@ The following datatypes are supported while defining concepts to be used in form
       </td>
 
       <td>
-        Images and videos can be captured using Image and Video concept datatypes. For audio recording, Audio datatype can be used.
+        Images and videos can be captured using Image and Video concept datatypes. For audio recording, Audio datatype can be used.  
+        To capture Images with geotagging and other metadata associated, ImageV2 datatype can be used.
       </td>
     </tr>
 
     <tr>
       <td>
-        **Text (and Notes) concepts** 
+        **Text (and Notes) concepts**
       </td>
 
       <td>
-        The *Text* data type helps capture one-line text while the *Notes* datatype is used to capture longer **form** text.
+        The _Text_ data type helps capture one-line text while the _Notes_ datatype is used to capture longer **form** text.
       </td>
     </tr>
 
@@ -96,12 +97,12 @@ The following datatypes are supported while defining concepts to be used in form
       </td>
 
       <td>
-        There are different datatypes that can be used to capture date and time.  
+        There are different datatypes that can be used to capture date and time.
 
-        * \*Date\*\* - A simple date with no time  
-        * \*Time\*\* - Just the time of day, with no date  
-        * \*DateTime\*\* - To store both date and time in a single observation  
-        * \*Duration\*\* - To capture durations such as 4 weeks, 2 days etc.
+        * *Date** - A simple date with no time
+        * *Time** - Just the time of day, with no date
+        * *DateTime** - To store both date and time in a single observation
+        * *Duration** - To capture durations such as 4 weeks, 2 days etc.
       </td>
     </tr>
 
@@ -111,9 +112,9 @@ The following datatypes are supported while defining concepts to be used in form
       </td>
 
       <td>
-        * Location\_ concepts can be used to capture locations based on the location types configured in your implementation.  
+        * Location_ concepts can be used to capture locations based on the location types configured in your implementation.
 
-        Location concepts have 3 attributes:  
+        Location concepts have 3 attributes:
 
         1. Within Catchment - Denotes whether the location to be captured would be within the catchment already assigned to your field workers. This attribute defaults to true and is mandatory.
 
@@ -129,9 +130,9 @@ The following datatypes are supported while defining concepts to be used in form
       </td>
 
       <td>
-        * Subject\_ concepts can be used to link to other subjects.  
+        * Subject_ concepts can be used to link to other subjects.
 
-        Each Subject concept can map to a single subject type.  
+        Each Subject concept can map to a single subject type.
 
         Any form element using this concept can capture one or multiple subjects of the specified subject type.
       </td>
@@ -149,7 +150,7 @@ The following datatypes are supported while defining concepts to be used in form
 
     <tr>
       <td>
-        **Group Affiliation concepts** 
+        **Group Affiliation concepts**
       </td>
 
       <td>
@@ -159,13 +160,13 @@ The following datatypes are supported while defining concepts to be used in form
 
     <tr>
       <td>
-        **Encounter** 
+        **Encounter**
       </td>
 
       <td>
-        * Encounter\_ concepts can be used to link an encounter to any form.  
+        * Encounter_ concepts can be used to link an encounter to any form.
 
-        Each Encounter concept can map to a single encounter type.  It should also provide the scope to search that encounter. Also, name identifiers can be constructed by specifying the concepts used in the encounter form.  
+        Each Encounter concept can map to a single encounter type.  It should also provide the scope to search that encounter. Also, name identifiers can be constructed by specifying the concepts used in the encounter form.
 
         Any form element using this concept can capture one or multiple encounters of the specified encounter type.
       </td>
