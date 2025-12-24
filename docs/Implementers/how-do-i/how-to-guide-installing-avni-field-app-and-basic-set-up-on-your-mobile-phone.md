@@ -63,6 +63,8 @@ By clicking on the Edit Settings button at the top, you can select the language 
 
 <Image align="center" border={false} width="250px" src="https://files.readme.io/f9de6e9-1712641958848.JPEG" />
 
+<br />
+
 #### **Change Password**
 
 If you wish to change your password, you can do so, by clicking on the Change Password button and entering the new password details.
