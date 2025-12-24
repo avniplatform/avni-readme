@@ -1,6 +1,6 @@
 ---
 title: User Groups
-excerpt: ''
+excerpt: 'How to guide: Creating User Groups'
 deprecated: false
 hidden: false
 metadata:
