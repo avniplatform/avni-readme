@@ -1,5 +1,5 @@
 ---
-title: Users and Catchments
+title: 'How to guide: Creating Users and Catchments'
 excerpt: ''
 deprecated: false
 hidden: false
