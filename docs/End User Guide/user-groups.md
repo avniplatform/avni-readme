@@ -1,6 +1,6 @@
 ---
 title: User Groups
-excerpt: 'How to guide: Creating User Groups'
+excerpt: Guide for creation of User Groups
 deprecated: false
 hidden: false
 metadata:
