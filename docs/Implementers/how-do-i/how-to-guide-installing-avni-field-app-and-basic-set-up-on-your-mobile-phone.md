@@ -28,6 +28,8 @@ next:
 
 <Image align="center" border={true} width="250px" src="https://files.readme.io/daf3937-Install.JPEG" className="border" />
 
+<br />
+
 ### **Step 2: LOGIN**
 
 1. LOGIN to the app by entering your User ID and Password
