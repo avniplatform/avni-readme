@@ -150,11 +150,15 @@ Following should be run in the database created via restore. `$dbUser` should be
 select create_db_user('$dbUser', 'password')
 ```
 
-Note that the dump provided contains only the source data. The ETL data that can be derived from it is not present in the dump. This dump contains the ETL metadata as well.
+Note that the dump provided contains 
+
+* the source data 
+* the ETL metadata and
+* the ETL data that can be derived from source data
 
 ### For running ETL service
 
-Ensure your ETL service is running. Please enable and disable analytics database for the organisation, to recreate the ETL database.
+Ensure your ETL service is running. Please enable and disable analytics database for the organisation, to retrigger the ETL process.
 
 ## Caveats
 
