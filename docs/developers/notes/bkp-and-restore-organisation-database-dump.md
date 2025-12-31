@@ -104,13 +104,91 @@ Backup files are saved with the naming convention:
 * **Remote backups**: `<prefix>-<dbRole>.sql` (e.g., `prod-demo_org.sql`)
 * **Local backups**: `local-<orgDbUser>.sql` (e.g., `local-demo_user.sql`)
 
-## Important Notes
+## Restoration
 
-1. **Tunnel Required**: Remote backups require an active SSH tunnel
-2. **Database Role**: The `dbRole` parameter should match the organization's database schema/role
-3. **Exclusions**: System tables and large log tables are automatically excluded to reduce backup size
-4. **Security**: Backups are created with row security enabled
-5. **Verbose Output**: Backup process shows verbose logging for monitoring progress
+### Available Restoration Commands
+
+* **`restore-org-dump`** - For organization databases (full restoration with schema fixes)
+* **`restore-dump-only`** - Direct SQL file restoration (simple import)
+* **`restore-staging-dump`** - For staging environment restoration
+
+### restore-org-dump Process
+
+The `restore-org-dump` command performs a complete restoration process:
+
+1. **Schema Fixes**: Automatically fixes schema references in the dump file
+   * Converts `from form` to `from public.form`
+   * Converts `inner join form` to `inner join public.form`
+
+2. **Database Preparation**:
+   * Cleans and rebuilds the `avni_org` database
+   * Creates the implementation database user with proper permissions
+
+3. **Data Import**: Restores the data from the specified dump file
+
+**Usage**:
+
+```bash
+make restore-org-dump dumpFile=<path_to_dump_file> dbRole=<database_role>
+```
+
+### Backup Contents
+
+The dump file contains three types of data:
+
+1. **Source Data** - Core application data
+2. **ETL Metadata** - Analytics and reporting metadata
+3. **ETL Derived Data** - Data that can be regenerated from source data
+
+### Running ETL Service
+
+After restoration, ensure your ETL service is running properly:
+
+1. Start/restart the ETL service
+2. Enable and disable analytics database for the organization to retrigger the ETL process
+3. Monitor the ETL process for completion
+
+## Important Caveats
+
+### catchment_address Table Issue
+
+The `catchment_address` table has specific considerations:
+
+* **No Row-Level Security**: This many-to-many table lacks row-level security mapping
+* **Mixed Data**: Likely contains data not relevant to your organization
+* **Manual Cleanup**: Non-relevant data should be manually deleted
+
+**Cleanup Process**:
+
+```sql
+-- Delete non-relevant catchment_address data
+-- (pseudo code - adapt based on your specific requirements)
+DELETE FROM catchment_address 
+WHERE catchment_id NOT IN (SELECT id FROM catchment WHERE organisation_id = <your_org_id>)
+   OR addresslevel_id NOT IN (SELECT id FROM address_level WHERE organisation_id = <your_org_id>);
+```
+
+**Constraint Re-application**:
+After cleanup, ensure foreign key constraints are properly applied:
+
+```sql
+-- Verify constraints are in place
+-- pseudo code
+ALTER TABLE catchment_address 
+ADD CONSTRAINT fk_catchment_address_catchment 
+FOREIGN KEY (catchment_id) REFERENCES catchment(id);
+
+ALTER TABLE catchment_address 
+ADD CONSTRAINT fk_catchment_address_address_level 
+FOREIGN KEY (addresslevel_id) REFERENCES address_level(id);
+```
+
+### Additional Considerations
+
+* **Data Validation**: Verify data integrity after restoration
+* **Performance**: Large dumps may require significant restoration time
+* **Space**: Ensure adequate disk space for restoration process
+* **Permissions**: Confirm database user has necessary permissions
 
 ## Troubleshooting
 
@@ -118,54 +196,4 @@ Backup files are saved with the naming convention:
 * Verify the database role exists and is accessible
 * Check disk space in the backup directory
 * Ensure proper permissions for the backup location
-
-## Restoration
-
-### Before restoring the dump
-
-```sql
-create user openchs with password 'password' createrole
-
--- Extensions
-create extension if not exists "uuid-ossp"
-create extension if not exists "ltree"
-create extension if not exists "hstore"
-
-create role openchs_impl
-grant openchs_impl to openchs
-create role organisation_user createrole admin openchs_impl
-```
-
-For restoring backups, see the restoration commands:
-
-* `restore-org-dump` - For organization databases
-* `restore-dump-only` - Direct SQL file restoration
-* `restore-staging-dump` - For staging environment
-
-### After restoring dump
-
-Following should be run in the database created via restore. `$dbUser` should be provided person who provided the dump.
-
-```sql
-select create_db_user('$dbUser', 'password')
-```
-
-Note that the dump provided contains 
-
-* the source data 
-* the ETL metadata and
-* the ETL data that can be derived from source data
-
-### For running ETL service
-
-Ensure your ETL service is running. Please enable and disable analytics database for the organisation, to retrigger the ETL process.
-
-## Caveats
-
-* catchment_address is a many-to-many table that doesn't have row-level security mapping. This table likely contains data that are not relevant for you. The non-relevant data can be deleted. After following two foreign constraints can be re-applied.
-  * ```sql
-    -- pseudo code
-    catchment_id references catchment.id
-    addresslevel_id references address_level.id
-    ```
-    <br />
+* For restoration issues, check that the dump file path is correct and accessible
