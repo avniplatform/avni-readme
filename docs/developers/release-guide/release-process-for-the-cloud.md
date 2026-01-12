@@ -52,7 +52,7 @@ We have `make` commands in the [makefile](https://github.com/avniproject/avni-pr
 
 For example, if you are working on releasing 16.3:
 
-* First, update `src/code.ts` in avni-product [https://github.com/avniproject/avni-product/blob/master/src/code.ts](here)  to include the latest release
+* First, update `src/code.ts` in avni-product [here](https://github.com/avniproject/avni-product/blob/master/src/code.ts)  to include the latest release
 
 ### 2. Create Remote Branches
 
