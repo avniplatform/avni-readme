@@ -84,7 +84,8 @@ This will tell you what merges are done and what haven't been completed. For exa
 
 `repoName can be avni-client for example.`
 
-This will go branch by branch asking you to merge or not (y/n). Ideally, it should not ask for branches that are already merged (we can update/fix this later). Since you already know which ones are not merged from `make branch-merge-test`, just type 'y' for the ones that need to be merged.
+This will go branch by branch asking you to merge or not (y/n). Ideally, it should not ask for branches that are already merged (we can update/fix this later). Since you already know which ones are not merged from   
+`make branch-merge-test`, just type 'y' for the ones that need to be merged.
 
 **Note on Conflicts:**
 
