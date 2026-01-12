@@ -24,6 +24,7 @@ This feature is part of the **avni-etl** repository. For complete setup instruct
 
 * **GitHub Repository**: [https://github.com/avniproject/avni-etl](https://github.com/avniproject/avni-etl)
 * **ETL Service Documentation**: See the README.md in the avni-etl repository for basic ETL setup and configuration
+* Refer <Anchor label="Developer Avni Setup documentation" target="_blank" href="developer-environment-setup-ubuntu">Developer Avni Setup documentation</Anchor> for more information
 
 ### Prerequisites
 
