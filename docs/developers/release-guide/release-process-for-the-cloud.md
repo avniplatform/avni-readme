@@ -38,7 +38,7 @@ All versions of below specified end-deployables are marked with a release number
 * integration-service
 * integration-admin-app
 
-Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages. 
+Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages.
 
 Any changes if required in avni-infra are done directly on the master branch, the deployment pipeline uses it.
 
@@ -58,7 +58,7 @@ For example, if you are working on releasing 16.3:
 
 `make create-all-remote-branches-from-mainline`
 
-This will create branches on repos where branches did not exist (because no changes were done in those repos). 
+This will create branches on repos where branches did not exist (because no changes were done in those repos).
 
 We still create those branches and release them to maintain consistency across all repositories. This makes it easier to understand the correct version in production as mentioned before.
 
@@ -84,14 +84,14 @@ This will tell you what merges are done and what haven't been completed. For exa
 
 `repoName can be avni-client for example.`
 
-This will go branch by branch asking you to merge or not (y/n). Ideally, it should not ask for branches that are already merged (we can update/fix this later). Since you already know which ones are not merged from   
+This will go branch by branch asking you to merge or not (y/n). Ideally, it should not ask for branches that are already merged (we can update/fix this later). Since you already know which ones are not merged from  
 `make branch-merge-test`, just type 'y' for the ones that need to be merged.
 
 **Note on Conflicts:**
 
 * If there are any conflicts, you will need to manually fix them
 * It will specify if their are conflicts
-* At the end, it will say "merge complete/done" although there were conflicts   
+* At the end, it will say "merge complete/done" although there were conflicts  
   (we plan to improve this UX/messaging in future)
 * Once conflicts are resolved, push changes manually
 
@@ -124,7 +124,9 @@ You can find all GitHub issue cards part of this release by executing:
 
 * Find the Latest System Snapshot for Avni PROD DB RDS, and invoke "Copy snapshot" action on it. Name the snapshot "bkp-$\{Source snapshot name}". Ex: bkp-proddb02-2024-02-13-23-12
 
-### 9. avni-server
+## Perform Deploys
+
+### 1. avni-server
 
 * Find the passing circle-ci job for the tag. If the job was triggered more than a week ago, retrigger a fresh build from circleci after selecting the repo and the branch so that the artifacts from the build step are available in the deploy steps.
 * Check if there are any running Background jobs on Prod and if needed wait for them to complete
@@ -184,20 +186,20 @@ You can find all GitHub issue cards part of this release by executing:
   ```
 * Approve deployment to production
 
-### 10. avni-webapp
+### 2. avni-webapp
 
 * Find the passing circle-ci job for the release tag. If the job was triggered more than a week ago, retrigger a fresh build from circleci after selecting the repo and the branch so that the artifacts from the build step are available in the deploy steps.
 * Approve deployment to production
 * Deploy platform translations for all app flavors.
 
-### 11. rules-server
+### 3. rules-server
 
 * Find the passing circle-ci job for the tag.
 * Approve deployment to production
 
-### 12. avni-client
+### 4. avni-client
 
-Binaries for avni-client can be generated on the local machine or via circleci(Preferred for Avni Production).   
+Binaries for avni-client can be generated on the local machine or via circleci(Preferred for Avni Production).  
 Steps for both are mentioned below.
 
 ##### Local Machine Build
