@@ -96,7 +96,7 @@ The below steps are written down taking setup of prerelease environment as an ex
     > a. Become rules user => sudo su - rules
     >
     > b. Follow steps specified in [https://medium.com/monstar-lab-bangladesh-engineering/deploying-node-js-apps-in-amazon-linux-with-pm2-7fc3ef5897bb](https://medium.com/monstar-lab-bangladesh-engineering/deploying-node-js-apps-in-amazon-linux-with-pm2-7fc3ef5897bb)  
-    > 		till it asks for running command  
+    > till it asks for running command  
     > "sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemv -u rules --hp /home/rules"  
     > c. sudo mkdir -p /etc/pm2deamon  
     > d. sudo chmod 777 -R /etc/pm2deamon  
@@ -151,26 +151,22 @@ The below steps are written down taking setup of prerelease environment as an ex
 * Trigger build from circleci to deploy app and apply Platform migrations if not already done
 * (Only if specifically required to clean up S3 files) Delete all S3 folders within prerelease-user-media bucket, retaining the bucket as is.([https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1&tab=objects](https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1\&tab=objects))
 * Void Integration-config to prevent cross environment usage **Very Important**
+  ```sql
+  -- Step 1: Void all existing integration configs (safer than delete)
+  UPDATE integration_system_config SET is_voided = true;
+  UPDATE integration_system SET is_voided = true;
+  UPDATE goonj_adhoc_task SET is_voided = true;
+  UPDATE integration_system_config set value = 'prerelease', is_voided = true
+  where key = 'int_env';
 
-```sql
--- Step 1: Void all existing integration configs (safer than delete)
-UPDATE integration_system_config SET is_voided = true;
-UPDATE integration_system SET is_voided = true;
-UPDATE goonj_adhoc_task SET is_voided = true;
-UPDATE integration_system_config set value = 'prerelease', is_voided = true
-where key = 'int_env';
-
--- Step 2: Later, when setting up prerelease integrations, 
--- insert new configs with int_env = 'prerelease'
-INSERT INTO integration_system_config (key, value, is_secret, integration_system_id, is_voided, uuid)
-SELECT 'int_env', 'prerelease', false, id, false, 'bea0db7a-719a-4b42-8840-db2047c54071'
-FROM integration_system
-WHERE system_type IN ('Goonj', 'rwb')
-  AND is_voided = false;
-```
-
-<br />
-
+  -- Step 2: Later, when setting up prerelease integrations, 
+  -- insert new configs with int_env = 'prerelease'
+  INSERT INTO integration_system_config (key, value, is_secret, integration_system_id, is_voided, uuid)
+  SELECT 'int_env', 'prerelease', false, id, false, 'bea0db7a-719a-4b42-8840-db2047c54071'
+  FROM integration_system
+  WHERE system_type IN ('Goonj', 'rwb')
+    AND is_voided = false;
+  ```
 * Delete the urls of prod s3 icons in prereleasedb by doing the below:
   ```Text SQL
   set role none;
