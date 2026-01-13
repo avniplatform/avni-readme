@@ -99,7 +99,7 @@ This will go branch by branch asking you to merge or not (y/n). Ideally, it shou
 
 Once all merging is complete, execute:
 
-`make tag-all-repos-with-release-version releaseBranch=15.3.0 releaseTag=v15.3.0`
+`make tag-all-repos-with-release-version releaseBranch=15.3 releaseTag=v15.3.0`
 
 **Important:** The release tag should be prefixed with 'v' to avoid branch and tag confusion conflicts in git.
 
