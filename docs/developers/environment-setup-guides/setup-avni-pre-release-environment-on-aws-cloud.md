@@ -150,7 +150,7 @@ The below steps are written down taking setup of prerelease environment as an ex
 * Apply manual data-fixes if needed
 * Trigger build from circleci to deploy app and apply Platform migrations if not already done
 * (Only if specifically required to clean up S3 files) Delete all S3 folders within prerelease-user-media bucket, retaining the bucket as is.([https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1&tab=objects](https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1\&tab=objects))
-* Void Integration-config to prevent cross environment usage **Very Important**
+* Clean-up Integration-system-config to prevent cross environment usage **Very Important**
   ```sql
   -- Step 1: Void all existing integration configs (safer than delete)
   DELETE FROM integration_system_config WHERE id >= 1;
