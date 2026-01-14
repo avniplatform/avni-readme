@@ -153,11 +153,10 @@ The below steps are written down taking setup of prerelease environment as an ex
 * Void Integration-config to prevent cross environment usage **Very Important**
   ```sql
   -- Step 1: Void all existing integration configs (safer than delete)
-  UPDATE integration_system_config SET is_voided = true;
+  DELETE FROM integration_system_config WHERE id >= 1;
   UPDATE integration_system SET is_voided = true;
   UPDATE goonj_adhoc_task SET is_voided = true;
-  UPDATE integration_system_config set value = 'prerelease', is_voided = true
-  where key = 'int_env';
+
 
   -- Step 2: Later, when setting up prerelease integrations, 
   -- insert new configs with int_env = 'prerelease'
@@ -167,6 +166,7 @@ The below steps are written down taking setup of prerelease environment as an ex
   WHERE system_type IN ('Goonj', 'rwb')
     AND is_voided = false;
   ```
+  <br />
 * Delete the urls of prod s3 icons in prereleasedb by doing the below:
   ```Text SQL
   set role none;
