@@ -25,7 +25,7 @@ When a Group Subject is unassigned, we do not automatically unassign all member 
 
 ### Catchment and Privilege constraints
 
-Only those GroupSubjects and MemberSubjects will sync to User's device that have  
+Only those GroupSubjects and MemberSubjects will sync to User's device that have
 
 * Its Address included in the User's Catchment
 * One of the User's UserGroup Privilege should allow for View Privilege for those Subject Types
@@ -49,5 +49,3 @@ Only those GroupSubjects and MemberSubjects will sync to User's device that have
 * `UserSubjectAssignment` table: Tracks user-subject relationships
 * `GroupSubject` table: Tracks group-member relationships
 * Both tables support soft deletion using the [isVoided](cci:1://file:///Users/himeshr/IdeaProjects/avni-server/avni-server-api/src/main/java/org/avni/server/web/request/FormMappingContract.java:12:4-14:5) flag
-
-<br />
