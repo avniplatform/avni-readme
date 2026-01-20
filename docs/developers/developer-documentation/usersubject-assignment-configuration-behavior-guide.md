@@ -1,5 +1,5 @@
 ---
-title: 'UserSubject Assignment - Configuration & Behavior Guide  '
+title: 'UserSubject Assignment - Behavior Guide  '
 deprecated: false
 hidden: false
 metadata:
