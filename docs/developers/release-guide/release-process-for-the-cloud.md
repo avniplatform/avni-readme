@@ -113,7 +113,9 @@ Once all merging is complete, execute:
 
 You can find all GitHub issue cards part of this release by executing:
 
-`gh project item-list -L 3000 --owner avniproject --format json 2 | jq -c '.items[] | select (.release == "<Specify release number, ex:5.1.0>") | [ .title, .content.url]'`
+```shell
+gh project item-list -L 3000 --owner avniproject --format json 2 | jq -c '.items[] | select (.release == "<Specify release number, ex:5.1.0>") | [ .title, .content.url]'
+```
 
 **Important:** The release number must be suffixed with `.0`. For example:
 
