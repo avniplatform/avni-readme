@@ -15,7 +15,7 @@ For development and support team members:
 2. **Search Inbox**: Navigate to the Bugsnag inbox search functionality  
 3. **Find Issues**: Search for relevant error reports and stack traces  
 
-   <Image align="center" border={false} width="600px" src="https://files.readme.io/f5fc08cab978cdd79540d1bf374f1096f37fa1c348f716c4b54490f921e87f2f-Screenshot_2026-02-02_at_11.49.08_AM.png" />
+   <Image align="center" border={false} width="800px" src="https://files.readme.io/f5fc08cab978cdd79540d1bf374f1096f37fa1c348f716c4b54490f921e87f2f-Screenshot_2026-02-02_at_11.49.08_AM.png" />
 4. **Analysis**: Use the detailed error information to understand and resolve bugs  
 
    <Image align="center" border={false} src="https://files.readme.io/791d978aff2df65b87669997efc99828003f412ac917a3c1686e83aa18fbe981-Screenshot_2026-02-02_at_11.50.05_AM.png" />
