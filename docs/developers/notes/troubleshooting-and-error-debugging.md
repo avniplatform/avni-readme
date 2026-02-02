@@ -9,8 +9,6 @@ metadata:
 
 ## BugSnag Error Monitoring
 
-For development and support team members:
-
 1. **Access Bugsnag**: Log into the Bugsnag dashboard
 2. **Search Inbox**: Navigate to the Bugsnag inbox search functionality
 3. **Find Issues**: Search for relevant error reports and stack traces
