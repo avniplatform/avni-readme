@@ -1,5 +1,5 @@
 ---
-title: Copy of Colours for Offline Report Cards
+title: Capture location of a Subject/Individual
 excerpt: >-
   Please choose from the below palette of recommeded colours, while setting up
   offline report cards.
