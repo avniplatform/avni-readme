@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting and Error Debugging
+title: Reporting and Troubleshooting an issue
 deprecated: false
 hidden: false
 metadata:
