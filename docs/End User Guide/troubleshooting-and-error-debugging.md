@@ -7,7 +7,7 @@ metadata:
 ---
 <br />
 
-## BugSnag Error Monitoring
+### BugSnag Error Monitoring
 
 1. **Access Bugsnag**: Log into the Bugsnag dashboard
 2. **Search Inbox**: Navigate to the Bugsnag inbox search functionality
@@ -18,17 +18,17 @@ metadata:
 
    <Image align="center" border={false} src="https://files.readme.io/791d978aff2df65b87669997efc99828003f412ac917a3c1686e83aa18fbe981-Screenshot_2026-02-02_at_11.50.05_AM.png" />
 
-## Upload Issue Details
+### Reporting an issue
 
 When a user encounters an error in the application:
 
 1. **Error Alert**: An alert popup is displayed on the screen
-2. **Upload Button**: The alert contains a button labeled "Upload issue info"
+2. **Upload Button**: The alert contains a button labelled "Upload issue info"
 
    <Image align="center" border={false} width="300px" src="https://files.readme.io/4241d4b1377e95253025b07dedfadaa5be2dbfe982c52c2f7bf879e6ecfc49d3-Screenshot_2026-02-02_at_11.16.37_AM.png" />
-3. **Upload Process**: Click this button to automatically upload application logs to AWS S3
-4. **Debugging**: The uploaded logs can be accessed (env-user-media bucket ->organisationName ->adhoc-dump-as-zip-username@orgName-uuid)by the development team analyze the root cause of the issue and Implement appropriate fixes
+3. **Upload Process**: Click this button to automatically report information related to this issue.
+4. **Debugging**: The uploaded information can be accessed (env-user-media bucket ->organisationName ->adhoc-dump-as-zip-username@orgName-uuid) by the development team to analyze the root cause of the issue and Implement appropriate fixes.
 
-If the user's face an issue and the alert is not shown or does not contain Upload issue info they can click on more in the home page, and then click on Upload app info.
+If the user's face an issue and the alert is not shown or the alert box does not contain 'Upload issue info' button, they can click on 'More' in the home page, and then click on 'Upload app info'.
 
 <Image align="center" border={false} width="300px" src="https://files.readme.io/37733e4cb85d86af34f6ad82ae12053fecbb53728dcf8737541f7537c8c72a9b-Screenshot_2026-02-02_at_11.47.53_AM.png" />
