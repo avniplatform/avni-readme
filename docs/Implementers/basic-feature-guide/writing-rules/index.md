@@ -15,11 +15,11 @@ next:
       title: Access Control
 ---
 > 🚧 Important Update on Rules Execution
-> 
+>
 > Please be informed that all existing rules stored in the rules table will become obsolete by the end of this year, 2024. This means that starting January 1, 2025, these rules will no longer be executed.
-> 
+>
 > However, any rules added through the App Designer and avni-health-modules will continue to work as expected.
-> 
+>
 > If you have any questions or need assistance with migrating your rules, please contact our support team.
 
 # Contents:
@@ -80,7 +80,7 @@ All rule receives an entity from the `params` object. Depending on the rule type
 7. [Enrolment eligibility check rule](/docs/writing-rules#7-enrolment-eligibility-check-rule)
 8. [Encounter eligibility check rule](/docs/writing-rules#8-encounter-eligibility-check-rule)
 9. [Checklists rule](/docs/writing-rules#9-checklists-rule)
-10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule) - *See [comprehensive worklist guide](https://avni.readme.io/update/docs/worklist-configuration)*
+10. [Work list updation rule](/docs/writing-rules#10-work-list-updation-rule) - _See [comprehensive worklist guide](https://avni.readme.io/update/docs/worklist-configuration)_
 11. [Subject summary rule](/docs/writing-rules#11-subject-summary-rule)
 12. [Hyperlink menu item rule](/docs/writing-rules#12-hyperlink-menu-item-rule)
 13. [Message rule](https://avni.readme.io/docs/writing-rules#13-message-rule)
@@ -91,19 +91,23 @@ All rule receives an entity from the `params` object. Depending on the rule type
 18. [Global reusable code rule](https://avni.readme.io/docs/writing-rules#18-global-reusable-code-rule-alpha)
 
 <br />
-![Invocation of different rule types](https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png)
+
+<Image alt="Invocation of different rule types" border={false} src="https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png" />
 
 <br />
-![](https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png)
 
-<br/><hr/>
+<Image border={false} src="https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png" />
+
+<br />
+
+<hr />
 
 ## 1. Enrolment summary rule
 
-- Logical scope = Program Enrolment
-- Trigger = Before the opening of a subject dashboard with default program selection. On program change of subject dashboard.
-- In designer = Program (Enrolment Summary Rule)
-- When to use = Display important information in the subject dashboard for a program
+* Logical scope = Program Enrolment
+* Trigger = Before the opening of a subject dashboard with default program selection. On program change of subject dashboard.
+* In designer = Program (Enrolment Summary Rule)
+* When to use = Display important information in the subject dashboard for a program
 
 You can use this rule to highlight important information about the program on the Subject Dashboard in table format. It can pull data from all the encounters of enrolment and the enrolment itself. You can use this when the information you want to show is not entered by the user in any of the forms and is also not required for any reporting purposes (hence you wouldn't also generate this data via decision rule).
 
@@ -143,22 +147,26 @@ You need to return an array of summary objects from this function.
     return summaries;
 };
 ```
-![](https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png)
+
+<Image border={false} src="https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png" />
 
 <br />
-![](https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png)
 
-<br/><hr/>
+<Image border={false} src="https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png" />
+
+<br />
+
+<hr />
 
 ## 2. Form element rule
 
-- Logical scope = Form Element
-- Trigger = Before display of form element in the form wizard and on any change done by the user in on that page
-- In designer = Form Element (RULES tab)
-- When to use = 
-  - Hide/show a form element
-  - auto calculate the value of a form element
-  - reset value of a form element
+* Logical scope = Form Element
+* Trigger = Before display of form element in the form wizard and on any change done by the user in on that page
+* In designer = Form Element (RULES tab)
+* When to use =
+  * Hide/show a form element
+  * auto calculate the value of a form element
+  * reset value of a form element
 
 ### Shape of params object:
 
@@ -176,7 +184,7 @@ You need to return an array of summary objects from this function.
 
 This function should return an instance of [FormElementStatus](https://github.com/avniproject/avni-models/blob/master/src/application/FormElementStatus.js) to show/hide the element, show validation error, set its value, reset a value, or skip answers.
 
-To reset a value, you can use FormElementStatus.\_resetIfValueIsNull() method.  
+To reset a value, you can use FormElementStatus._resetIfValueIsNull() method.  
 You can either use FormElementStatusBuilder or use normal JavaScript to build the return value. FormElementStatusBuilder is a helper class provided by Avni that helps writing rules in a declarative way.
 
 ### Examples using FormElementStatusBuilder.
@@ -252,22 +260,27 @@ You can either use FormElementStatusBuilder or use normal JavaScript to build th
 const phulwariName = _.get(_.find(params.entityContext.affiliatedGroups, ({voided}) => !voided), ['groupSubject', 'firstName'], '');
 
 ```
-![](https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png)
+
+<Image border={false} src="https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png" />
+
 <br />
-![](https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif)
 
-Please note that form element rules are not transitive and cannot depend on the result of another form element's form element rule. The rule logic for a particular element will need to cater to this. 
+<Image border={false} src="https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif" />
 
-i.e. If rule C on element C depends on value of element B and rule B depends on value of element A, updating A will only update B's value and not C's value. 
+Please note that form element rules are not transitive and cannot depend on the result of another form element's form element rule. The rule logic for a particular element will need to cater to this.
 
-<br/><hr/>
+i.e. If rule C on element C depends on value of element B and rule B depends on value of element A, updating A will only update B's value and not C's value.
+
+<br />
+
+<hr />
 
 ## 3. Form element group rule
 
-- Scope = Form Element Group
-- Trigger = Before display of form element group to the user (including previous or next)
-- In designer = Form Element Group (RULES tab)
-- When to use = Hide/show a form element group
+* Scope = Form Element Group
+* Trigger = Before display of form element group to the user (including previous or next)
+* In designer = Form Element Group (RULES tab)
+* When to use = Hide/show a form element group
 
 Sometimes we want to hide the entire form element group based on some conditions. This can be done using a form element group (FEG) rule. There is a rules tab on each FEG where this type of rule can be written. Note that this rule gets executed before form element rule so if the form element is hidden by this rule then the _form element rule_ will not get executed.
 
@@ -297,14 +310,16 @@ This function should return an array of  [FormElementStatus](https://github.com/
 };
 ```
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 4. Visit schedule rule
 
-- Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
-- Trigger = On completion of an form wizard before final screen is displayed
-- In designer = Form (RULES tab)
-- When to use = For scheduling one or more encounters in the future
+* Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
+* Trigger = On completion of an form wizard before final screen is displayed
+* In designer = Form (RULES tab)
+* When to use = For scheduling one or more encounters in the future
 
 ### Shape of params object:
 
@@ -380,36 +395,40 @@ You need to return an array of visit schedules from this function.
 .
 .
 ```
-![](https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png)
+
+<Image border={false} src="https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png" />
 
 <br />
-![](https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png)
+
+<Image border={false} src="https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png" />
 
 ### Strategies that Avni uses.
 
-For all the visit schedules that are returned, Avni evaluates how to create a visit. Assume you provide the default visitCreationStrategy (this is the default behaviour). Avni checks if there is already a scheduled visit for the given encounter type. If it is there, then it is updated with the incoming scheduled visit's name and other parameters. This strategy works well in most cases. 
+For all the visit schedules that are returned, Avni evaluates how to create a visit. Assume you provide the default visitCreationStrategy (this is the default behaviour). Avni checks if there is already a scheduled visit for the given encounter type. If it is there, then it is updated with the incoming scheduled visit's name and other parameters. This strategy works well in most cases.
 
-- Remember that the VisitSchedule rule gets called whether you create a visit, or edit it. 
-- Remember not to send multiple visit schedule objects for the same encounter type. If you do, the last one will overwrite the previous objects. 
+* Remember that the VisitSchedule rule gets called whether you create a visit, or edit it.
+* Remember not to send multiple visit schedule objects for the same encounter type. If you do, the last one will overwrite the previous objects.
 
 ### Using the "createNew" visit strategy
 
-Do this only if you know what you are doing. If you add visitCreationStrategy of "createNew", then a new visit will be created no matter what. 
+Do this only if you know what you are doing. If you add visitCreationStrategy of "createNew", then a new visit will be created no matter what.
 
-You need to be careful while using this strategy because, in edit scenarios, we might end up creating the same kind of visits multiple times. 
+You need to be careful while using this strategy because, in edit scenarios, we might end up creating the same kind of visits multiple times.
 
 ### Using the VisitScheduleBuilder.getAllUniqueVisits
 
-VisitSchedulBuilder class has a getAllUniqueVisits method that provides some shortcuts to reduce the cruft you might have to do while creating scheduled visits. It mostly does the right thing, so you don't have to worry about its logic. However, if you think it is doing something you didn't intend, then you can replace it with your own implementation. Look up the [code](https://github.com/avniproject/rules-config/blob/master/src/rules/builder/VisitScheduleBuilder.js) for more details. 
+VisitSchedulBuilder class has a getAllUniqueVisits method that provides some shortcuts to reduce the cruft you might have to do while creating scheduled visits. It mostly does the right thing, so you don't have to worry about its logic. However, if you think it is doing something you didn't intend, then you can replace it with your own implementation. Look up the [code](https://github.com/avniproject/rules-config/blob/master/src/rules/builder/VisitScheduleBuilder.js) for more details.
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 5. Decision rule
 
-- Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
-- Trigger = On completion of an form wizard before final screen is displayed
-- In designer = Form (RULES tab)
-- When to use = To create any additional observations based on all the data filled by the user in the form
+* Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
+* Trigger = On completion of an form wizard before final screen is displayed
+* In designer = Form (RULES tab)
+* When to use = To create any additional observations based on all the data filled by the user in the form
 
 Used to add decisions/recommendations to the form. The decisions are displayed on the last page of the form and are also saved in the form's observations.
 
@@ -486,19 +505,23 @@ The shape of <decision object>
     return decisions;
 };
 ```
-![](https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png)
+
+<Image border={false} src="https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png" />
 
 <br />
-![](https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png)
 
-<br/><hr/>
+<Image border={false} src="https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png" />
+
+<br />
+
+<hr />
 
 ## 6. Validation rule
 
-- Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
-- Trigger = On completion of an form wizard before final screen is displayed
-- In designer = Form (RULES tab)
-- When to use = To provide validation error(s) to the user that are not specific to one form element but involved data in multiple form elements.
+* Logical scope = Encounter (aka Visit), Subject, or Program Enrolment
+* Trigger = On completion of an form wizard before final screen is displayed
+* In designer = Form (RULES tab)
+* When to use = To provide validation error(s) to the user that are not specific to one form element but involved data in multiple form elements.
 
 Used to stop users from filling invalid data
 
@@ -527,16 +550,19 @@ The return value of this function is an array with validation errors.
   return validationResults;
 };
 ```
-![](https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png)
 
-<br/><hr/>
+<Image border={false} src="https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png" />
+
+<br />
+
+<hr />
 
 ## 7. Enrolment Eligibility Check Rule
 
-- Logical scope = Subject
-- Trigger = On launch of program list when user enrols a subject into program
-- In designer = Program page
-- When to use = To restrict the programs which are available for enrolment based on subject's data (e.g. not allowing males to enrol in pregnancy programs)
+* Logical scope = Subject
+* Trigger = On launch of program list when user enrols a subject into program
+* In designer = Program page
+* When to use = To restrict the programs which are available for enrolment based on subject's data (e.g. not allowing males to enrol in pregnancy programs)
 
 ### Shape of params object:
 
@@ -563,22 +589,25 @@ The return value of this function should be a boolean.
 };
 ```
 
-**Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour. 
-![](https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png)
+**Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour.
+<Image border={false} src="https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png" />
 
 <br />
-![](https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png)
 
-<br/><hr/>
+<Image border={false} src="https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png" />
+
+<br />
+
+<hr />
 
 ## 8. Encounter Eligibility Check Rule
 
-- Logical scope = Subject or Program Enrolment
-- Trigger = On launch of new visit (encounter) list
-- In designer = Encounter page
-- When to use = To restrict the encounters which are available based on subject's full data (e.g. not showing postnatal care form if the delivery form has not been filed yet)
+* Logical scope = Subject or Program Enrolment
+* Trigger = On launch of new visit (encounter) list
+* In designer = Encounter page
+* When to use = To restrict the encounters which are available based on subject's full data (e.g. not showing postnatal care form if the delivery form has not been filed yet)
 
-Used to hide some visit types depending on some data. If there existed scheduled encounters for that subject or program enrolment, clicking on an ineligible visit type, will fill up the scheduled encounter. 
+Used to hide some visit types depending on some data. If there existed scheduled encounters for that subject or program enrolment, clicking on an ineligible visit type, will fill up the scheduled encounter.
 
 ### Shape of params object:
 
@@ -607,10 +636,12 @@ The return value of this function should be a boolean.
 };
 ```
 
-**Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour. 
-![](https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png)
+**Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour.
+<Image border={false} src="https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png" />
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 9. Checklists rule
 
@@ -645,20 +676,24 @@ Used to add a checklist to an enrolment
 };
 ```
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 10. Work List Updation rule
 
-- Logical scope = Subject, Program Enrolment, or Encounters
-- Trigger = On display of system recommendation's page in form wizard
-- In designer = Main Menu
-- When to use = Stitch together multiple forms which can be filled back to back
+* Logical scope = Subject, Program Enrolment, or Encounters
+* Trigger = On display of system recommendation's page in form wizard
+* In designer = Main Menu
+* When to use = Stitch together multiple forms which can be filled back to back
 
-> 📖 **Comprehensive Worklist Documentation Available**
-> 
-> For detailed information about worklists, including concepts, implementation patterns, examples, and troubleshooting, see the [**Avni Worklist Documentation**](https://avni.readme.io/update/docs/worklist-configuration).
+<Callout icon="📖" theme="default">
+  ### **Comprehensive Worklist Documentation Available**
 
-The System Recommendations screen of Avni can be configured to direct a user to go to the next task to be done. Typically, if a new encounter is scheduled for a person on the same day, then the system automatically prompts the user to perform that encounter.  
+  For detailed information about worklists, including concepts, implementation patterns, examples, and troubleshooting, see the [**Avni Worklist Documentation**](https://avni.readme.io/update/docs/worklist-configuration).
+</Callout>
+
+The System Recommendations screen of Avni can be configured to direct a user to go to the next task to be done. Typically, if a new encounter is scheduled for a person on the same day, then the system automatically prompts the user to perform that encounter.
 
 This is performed using **worklists** - a powerful feature that enables sequential form workflows by automatically chaining multiple forms together. A worklist is an array of [work items](https://github.com/avniproject/avni-models/blob/master/src/application/WorkItem.js) that represent individual forms/tasks in the sequence.
 
@@ -667,11 +702,12 @@ The **WorkListUpdation rule** is used to customize this flow. The WorkLists obje
 ### Quick Reference
 
 For a complete understanding of worklists, including:
-- **What are worklists and when to use them**
-- **Detailed WorkItem types and parameters** 
-- **Real-world implementation examples**
-- **Advanced patterns and best practices**
-- **Limitations and troubleshooting**
+
+* **What are worklists and when to use them**
+* **Detailed WorkItem types and parameters**
+* **Real-world implementation examples**
+* **Advanced patterns and best practices**
+* **Limitations and troubleshooting**
 
 Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/update/docs/worklist-configuration).
 
@@ -717,20 +753,21 @@ Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/up
 
 ### Additional Resources
 
-- [External example gist](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
-- [**Complete worklist documentation with advanced examples**](https://avni.readme.io/update/docs/worklist-configuration)
+* [External example gist](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
+* [**Complete worklist documentation with advanced examples**](https://avni.readme.io/update/docs/worklist-configuration)
 
-![](https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png)
+<Image border={false} src="https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png" />
 
+<br />
 
-<br/><hr/>
+<hr />
 
 ## 11. Subject summary rule
 
-- Logical scope = Subject registration
-- Trigger = Before the opening of the subject dashboard profile tab.
-- In designer = Subject (Subject Summary Rule)
-- When to use = Display important information in the subject's profile. It can be used to show the summary if there are no programs.
+* Logical scope = Subject registration
+* Trigger = Before the opening of the subject dashboard profile tab.
+* In designer = Subject (Subject Summary Rule)
+* When to use = Display important information in the subject's profile. It can be used to show the summary if there are no programs.
 
 This rule is very similar to the Enrolment summary rule. Except its scope is the Subject's registration.
 
@@ -769,14 +806,16 @@ You need to return an array of summary objects from this function.
 };
 ```
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 12. Hyperlink menu item rule
 
-- Logical scope = User
-- Trigger = When More navigation is opened in the mobile app
-- In designer = Coming very soon...
-- When to use = When a dynamic link has to be provided to the user (these links cannot be specific to subjects)
+* Logical scope = User
+* Trigger = When More navigation is opened in the mobile app
+* In designer = Coming very soon...
+* When to use = When a dynamic link has to be provided to the user (these links cannot be specific to subjects)
 
 ### Shape of params object:
 
@@ -799,31 +838,33 @@ You need to return a string that is the full URL that can be opened in a browser
 ({params}) => {return `https://reporting.avniproject.org/public/question/11265388-5909-438e-9d9a-6faaa0c5863f?username=${encodeURIComponent(user.username)}&name=${encodeURIComponent(user.name)}&month=${imports.moment().month() + 1}&year=${imports.moment().year()}`;}
 ```
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ## 13. Message rule
 
-- When to use =  To configure sending Glific messages
-- Logical scope = User, Subject, General and Program Encounter, Program Enrolment
-- Trigger = 
-  - For User : Only on creation of an User . 
-  - For Subject, General and Program Encounter, Program Enrolment : On every save (create / update)
-- In designer = "User Messaging Config", "Subject Type" , "Encounter type" and "Programs" page
+* When to use =  To configure sending Glific messages
+* Logical scope = User, Subject, General and Program Encounter, Program Enrolment
+* Trigger =
+  * For User : Only on creation of an User .
+  * For Subject, General and Program Encounter, Program Enrolment : On every save (create / update)
+* In designer = "User Messaging Config", "Subject Type" , "Encounter type" and "Programs" page
 
 Message Rule can be configured only when 'Messaging' is enabled for the organisation. Its configuration constitutes specifying following details:
 
-- **Name** identifier name for the Message Rule
-- **Template** Used to indicate the Skeleton of the message with placeholders for parameters
-- **Receiver Type** Used to indicate the target audience for the Glific Whatsap message
-- **Schedule** date and time configuration should return the time to send the message.
-- **Message** content configuration should return the parameters to be filled in the Glific message template selected under 'Select Template' dropdown.
+* **Name** identifier name for the Message Rule
+* **Template** Used to indicate the Skeleton of the message with placeholders for parameters
+* **Receiver Type** Used to indicate the target audience for the Glific Whatsap message
+* **Schedule** date and time configuration should return the time to send the message.
+* **Message** content configuration should return the parameters to be filled in the Glific message template selected under 'Select Template' dropdown.
 
- Any number of message Rules can be configured.
+Any number of message Rules can be configured.
 
 ### Example configuration:
 
-Say, 'common_otp' Glific message template is 'Your OTP for `{{1}}` is `{{2}}`. This is valid for `{{3}}`.' If we want to send a OTP message that says 'Your OTP for receiving books is 1458. This is valid for 2 hours.' to a student after 1 day of their registration, then we need to configure for student subject type as shown in the below image (Note the shape of the return objects): 
-![](https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png)
+Say, 'common_otp' Glific message template is 'Your OTP for `{{1}}` is `{{2}}`. This is valid for `{{3}}`.' If we want to send a OTP message that says 'Your OTP for receiving books is 1458. This is valid for 2 hours.' to a student after 1 day of their registration, then we need to configure for student subject type as shown in the below image (Note the shape of the return objects):
+<Image border={false} src="https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png" />
 
 ```Text Schedule
 'use strict';  
@@ -904,7 +945,9 @@ The shape of dashboard card rule
 
 14.2) [https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L30](https://github.com/avniproject/avni-models/blob/8613b53edbf88e9b19150eda9e13da573e2a59ba/src/CustomFilter.js#L30)
 
-<br/><hr/>
+<br />
+
+<hr />
 
 ### 15. Manual Programs Eligibility Check Rule
 
@@ -932,10 +975,10 @@ _boolean_
 
 This rule is used to determine whether an **existing** member can be added to a group or household. The rule is configured at the subject type level and is executed when a user attempts to add an existing member to a group/household.
 
-- Logical scope = Group/Household and Individual
-- Trigger = On attempt to add a member to a group/household
-- In designer = Subject Type (Member Addition Eligibility Check Rule)
-- When to use = To validate if an **existing** individual can be added as a member to a specific group/household based on custom business rules
+* Logical scope = Group/Household and Individual
+* Trigger = On attempt to add a member to a group/household
+* In designer = Subject Type (Member Addition Eligibility Check Rule)
+* When to use = To validate if an **existing** individual can be added as a member to a specific group/household based on custom business rules
 
 #### Shape of Input Object
 
@@ -1007,17 +1050,17 @@ While adding members to a "Self-help" group, we need to validate that the person
 ```
 
 **Reference Screenshot, when Member Addition Eligibility Check Rule fails:**
-![](https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png)
+<Image border={false} src="https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png" />
 
 #### Error Handling
 
 When a Member Addition Eligibility Check rule fails (throws an exception), the error is logged and stored in the RuleFailureTelemetry with the following information:
 
-- source_type: 'MemberAdditionEligibilityCheck'
-- source_id: UUID of the subject type
-- entity_type: 'Individual'
-- entity_id: UUID of the group/household to which a member is being added
-- individual_uuid: UUID of the individual being added to the group/household
+* source_type: 'MemberAdditionEligibilityCheck'
+* source_id: UUID of the subject type
+* entity_type: 'Individual'
+* entity_id: UUID of the group/household to which a member is being added
+* individual_uuid: UUID of the individual being added to the group/household
 
 ### 17. Edit Form Rule
 
@@ -1142,9 +1185,9 @@ This pattern is used to identify if the application is running in a web context 
 
 When working with web applications, consider the following:
 
-- Some validations might need to be bypassed in web context
-- UI/UX might need adjustments for web vs mobile
-- Performance considerations might differ between platforms
+* Some validations might need to be bypassed in web context
+* UI/UX might need adjustments for web vs mobile
+* Performance considerations might differ between platforms
 
 #### Basic Pattern
 
@@ -1223,14 +1266,14 @@ function validateLocation(individual, locationData) {
 
 Available Audit Fields
 
-  The following audit fields are available :
+The following audit fields are available :
 
-- createdByUUID
-- lastModifiedByUUID
-- createdBy
-- lastModifiedBy
-- filledBy (only for program and general encounters)
-- filledByUUID (only for program and general encounters)
+* createdByUUID
+* lastModifiedByUUID
+* createdBy
+* lastModifiedBy
+* filledBy (only for program and general encounters)
+* filledByUUID (only for program and general encounters)
 
 ```coffeescript JS
 //SAMPLE EDIT FORM RULE
@@ -1312,12 +1355,12 @@ Note that this function is not implemented for the data entry app and throws a "
 
 ### Service methods available are:
 
-- [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js)
-- [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js)
+* [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/IndividualServiceFacade.js)
+* [https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js](https://github.com/avniproject/avni-client/blob/master/packages/openchs-android/src/service/facade/AddressLevelServiceFacade.js)
 
 ### Examples
 
-The view-filter rule is for the subject data type concept that displays all the subjects of type 'Person' in the passed location. 
+The view-filter rule is for the subject data type concept that displays all the subjects of type 'Person' in the passed location.
 
 ```
 'use strict';
@@ -1345,8 +1388,8 @@ Use IndividualServiceFacade`getSubjects(subjectTypeName, realmFilter)` method to
 
 ##### Method Signature
 
-- subjectTypeName (string): The name of the subject type (e.g., 'Volunteer', 'Patient', 'Household')
-- realmFilter (string, optional): Realm query filter string for additional filtering
+* subjectTypeName (string): The name of the subject type (e.g., 'Volunteer', 'Patient', 'Household')
+* realmFilter (string, optional): Realm query filter string for additional filtering
 
 ```js
 
@@ -1415,11 +1458,11 @@ return new imports.rulesConfig.FormElementStatus(formElementUUID, visibility, va
 
 <br />
 
-### Handle set of Modifiable Select Coded Concepts
+### Handle set of Select Coded Concepts Outside Question Group
 
 In-order to init a modifiable Select Coded Concept FormElement's Value in a form, you can specify the AnswerConcept **Name** as the value, which should be enough to set the initial value as expected.
 
-### Handle set of Read-Only Select Coded Concepts
+### Handle set of Read-Only Select Coded Concepts Within QuestionGroup
 
 There were 2 issues that were preventing implementation team from reliably setting a **Read-only** SingleSelectCodeConcept's value via FormElement Rules:
 
@@ -1431,12 +1474,12 @@ There were 2 issues that were preventing implementation team from reliably setti
 To resolve these issues, we only needed to make following adjustments in the FormElement Rule:
 
 1. Selection of a AnswerConcept => Make use of AnswerConcept's UUID instead of name as value
-2. Stablizing the selected value  => 
-   > - Mark the SelectedCodedConcept value as ReadOnly 
-   > - For Multi-select: Return a FormElementStatus object with only the difference between previous valueArray and new valueArray. If no change in value, then return empty array.
-   > - For Single-select: Return a FormElementStatus object with selected value, only if previousValue was null. If not, return null.
+2. Stablizing the selected value  =>
+   > * Mark the SelectedCodedConcept value as ReadOnly
+   > * For Multi-select: Return a FormElementStatus object with only the difference between previous valueArray and new valueArray. If no change in value, then return empty array.
+   > * For Single-select: Return a FormElementStatus object with selected value, only if previousValue was null. If not, return null.
 
-This would toggle the answers as expected and result in only the expected value(s) being shown as selected. 
+This would toggle the answers as expected and result in only the expected value(s) being shown as selected.
 
 #### Example Rule for SingleSelect FormElement set via Rule
 
@@ -1524,7 +1567,7 @@ For business reasons, we might need to verify that there are **No / Limited numb
 Use IndividualServiceFacade.findAllSubjectsWithMobileNumberForType(mobileNumber, subjectTypeUUID) method to get subjects with same phone number.
 
 **Requires the PhoneNumber concept to have, KeyValue (primary_contact : yes) or (contact_number : yes)**
-![](https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png)
+<Image border={false} src="https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png" />
 
 ```js
 
