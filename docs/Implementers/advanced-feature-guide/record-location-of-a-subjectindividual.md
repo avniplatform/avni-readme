@@ -3,6 +3,7 @@ title: Navigation to beneficiary's location
 deprecated: false
 hidden: false
 link:
+  new_tab: true
   url: https://avni.readme.io/update/docs/navigation
 metadata:
   robots: index
