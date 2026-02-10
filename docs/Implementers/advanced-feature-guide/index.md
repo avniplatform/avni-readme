@@ -1,5 +1,5 @@
 ---
-title: Advanced Feature Guide
+title: Feature Guide
 excerpt: ''
 deprecated: false
 hidden: false
