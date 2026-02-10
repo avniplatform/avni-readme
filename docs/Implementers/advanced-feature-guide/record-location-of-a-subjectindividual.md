@@ -5,13 +5,15 @@ hidden: false
 metadata:
   robots: index
 ---
-Users would like to capture the beneficiary's location during their first visit so that it is easier to visit for followups or when some other user makes the visit. The feature can be used to record location of non-living subjects like Dams as well if Avni is used to track information on them.
+Avni allows users to capture the location of a beneficiary during their first visit. This recorded location helps make follow-up visits easier, especially when the visit is conducted by a different user.
+
+The same capability can also be used to record the location of non-living subjects (for example, dams or other physical assets) when Avni is used to track such entities.
 
 ### Steps to record location and navigate
 
-* When you are at a beneficiary’s residence, tap the Add Location icon. 
+* When you are at a beneficiary’s residence, tap the Add Location icon.
 * If prompted, grant the required permissions to capture and save the beneficiary’s location.
-* Once saved, you can tap the location to navigate to it or edit it. 
+* Once saved, you can tap the location to navigate to it or edit it.
 * You may recapture the location to improve accuracy.
 
 <Image align="center" border={false} src="https://files.readme.io/ba843bb409bdcd1eaf16d89ce47e83f156bd435ec48875310e40b09a34c7cad9-location.gif" />
