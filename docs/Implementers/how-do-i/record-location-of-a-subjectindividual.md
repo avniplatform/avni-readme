@@ -1,5 +1,5 @@
 ---
-title: Record location of a Subject/Individual
+title: Navigation to beneficiary's location
 deprecated: false
 hidden: false
 metadata:
