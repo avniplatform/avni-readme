@@ -7,7 +7,7 @@ metadata:
 ---
 Avni allows users to capture the location of a beneficiary during their visit. This recorded location helps make follow-up visits easier, especially when the visit is conducted by a different user.
 
-The same capability can also be used to record the location of non-living subjects (for example, dams or other physical assets) when Avni is used to them.
+The same capability can also be used to record the location of non-living subjects (for example, dams or other physical assets) when Avni is used to track them.
 
 ### Steps to record location and navigate
 
