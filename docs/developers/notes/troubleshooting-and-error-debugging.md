@@ -33,4 +33,4 @@ If the user's face an issue and the alert is not shown or the alert box does not
 
 <br />
 
-3. **Fixing by Avni team**: The uploaded information can be accessed from AWS S3 ('env-user-media bucket' -> 'organisation media directory name' -> 'adhoc-dump-as-zip-username-uuid') by the development team to analyze the root cause of the issue and Implement appropriate fixes.
+3. **Fixing by Avni team**: The uploaded information can be accessed from AWS S3 ('env-user-media bucket' -> 'organisation media directory name' -> 'adhoc-dump-as-zip-username-uuid') by the development team to analyze the root cause of the issue and implement appropriate fixes.
