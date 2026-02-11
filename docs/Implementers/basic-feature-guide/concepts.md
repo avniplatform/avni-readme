@@ -202,7 +202,7 @@ Note: **You can reuse the same "Placeholder for counselling form element" multip
 When using a "Location" type concept with "Within Catchment" set to false:
 
 * You must update the form(s) using that concept
-* The `organisation_config` settings need to be modified to sync locations outside catchment to the user's device
+* On form save, the `organisation_config` settings gets auto-modified to sync locations outside catchment to the user's device
 * This ensures all locations are accessible while filling the form
 
 #### When "Within Catchment" is set to TRUE (default)
@@ -239,4 +239,4 @@ Due to the form concept configuration restriction mentioned above:
 * State information will **not be shown on the app** while filling in the address fields
 * This applies **irrespective of the catchment configuration** for a user
 * For users with large catchments, all districts across different states will appear in a single listing
-* There is **no ability to categorize** districts by their respective states 
+* There is **no ability to categorize** districts by their respective states
