@@ -201,8 +201,8 @@ Note: **You can reuse the same "Placeholder for counselling form element" multip
 
 When using a "Location" type concept with "Within Catchment" set to false:
 
-* You must update the form(s) using that concept
-* On form save, the `organisation_config` settings gets auto-modified to sync locations outside catchment to the user's device
+* You must ensure that you perform update of the form(s) using that concept
+* So that on form save, the `organisation_config` settings gets auto-modified to sync locations outside catchment to the user's device
 * This ensures all locations are accessible while filling the form
 
 #### When "Within Catchment" is set to TRUE (default)
