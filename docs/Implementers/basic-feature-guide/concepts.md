@@ -78,7 +78,7 @@ The following datatypes are supported while defining concepts to be used in form
       <td>
         Images and videos can be captured using Image and Video concept datatypes. To capture Images with geotagging and other metadata associated, ImageV2 datatype can be used.
 
-        For audio recording, Audio datatype can be used.  
+        For audio recording, Audio datatype can be used.
 
         For other generic file types, File datatype can be used.
       </td>
@@ -190,3 +190,53 @@ For showing counselling points in a form, always create a Form Element, using be
 Specify counselling point as the Form Element Name, add numbering if needed.
 
 Note: **You can reuse the same "Placeholder for counselling form element" multiple times in a single form**, without worrying about uniqueness constraint breach concerns.
+
+***
+
+## Location Concept Configuration
+
+### General Location Concept Behavior
+
+#### When "Within Catchment" is set to FALSE
+
+When using a "Location" type concept with "Within Catchment" set to false:
+
+* You must update the form(s) using that concept
+* The `organisation_config` settings need to be modified to sync locations outside catchment to the user's device
+* This ensures all locations are accessible while filling the form
+
+#### When "Within Catchment" is set to TRUE (default)
+
+When this option is enabled:
+
+**Requirements:**
+
+* Every user's catchment configuration must contain all required "Highest Level" type locations
+* Without this, the form will not display any locations for selection
+
+**Display Behavior:**
+
+* Even if some users' catchments have locations higher than the Location concept's "Highest Level" type, those higher levels will not be shown
+* The listing will start from the "Highest Level" type
+* All locations across different lineages will be bunched together in a single list
+
+### CSJ Organization - Important Notes
+
+#### Catchment Configuration Requirements
+
+**Note for CSJ org support:** Please keep the following details for future reference:
+
+1. **Catchment Level**: For CSJ org, User Catchments must be configured at **District Level and above**. This is due to the `HighestAddressLevelType` configuration set for:
+   * "Address of Applicant" in "Case" Registration
+   * "Address of applicant - Claim" in "Claim" Registration
+
+2. **Location Hierarchy**: User Catchments should include both "Administrative State" and "State" hierarchy locations.
+
+#### Known Limitation
+
+Due to the form concept configuration restriction mentioned above:
+
+* State information will **not be shown on the app** while filling in the address fields
+* This applies **irrespective of the catchment configuration** for a user
+* For users with large catchments, all districts across different states will appear in a single listing
+* There is **no ability to categorize** districts by their respective states 
