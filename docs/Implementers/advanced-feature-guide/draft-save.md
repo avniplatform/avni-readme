@@ -31,3 +31,29 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 * **Save Checkpoint:** A draft save action is performed on clicking "Next" or "Previous" buttons while filling in a form, therefore, if User fills in a page but does not click on "Next" or "Previous" buttons, then the Draft saved would have content only till the previous page (On which "Next" button was clicked)
 * **Exiting a form:** To exit from a form in-between, user may click on the "Header" "Back" button or click on "Footer" "Home" buttons**
 * **Stale Drafts clean-up:** Usually drafts get deleted once you perform a final save operation to convert it to an actual entity. Along with that we have a periodic drafts clean-up which gets executed once a day, to delete drafts that were last updated more than 30 days ago.
+
+<br />
+
+<br />
+
+# How Drafts Work Differently by Form Type
+
+1. Registration
+
+   * One draft per subject (looked up by UUID).
+   * Draft is saved on clicking "Next".
+   * Draft is NOT saved on clicking "Previous" or "Back".
+   * Registration drafts are displayed as cards on the Register screen with edit and do actions.
+   * On reopening, the draft reconstructs the individual/subject with previously filled observations.
+
+   <Image align="center" src="https://files.readme.io/36d013626c1150e15af521af8c2fe286ee48d5757553ee56c796f71c51def157-subjectRegisterDraft.gif" />
+
+2. Enrolment
+
+   * One draft per (individual, program) pair.
+   * Draft is saved on clicking "Next", "Previous", or "Back".
+   * Only the enrolment flow is drafted. If the user is filling a program exit form, no draft is saved.
+   * Enrolment drafts are displayed with the previously provided values on attempting enrolment again for the same program.
+   * There is no separate "Drafts" section on the dashboard for enrolments; instead, the draft loads automatically when the user initiates enrolment again.
+
+   <Image align="center" src="https://files.readme.io/8bd82a5e32105748b856bef6ffa7517ae19a989080f547b65e67cd0564c27293-programenrolement.gif" />
