@@ -77,11 +77,14 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * Scheduled encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section. The draft loads automatically when the user opens the scheduled encounter.
 
 5. Program Encounter (Unplanned/Unscheduled)
+
    * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime=null).
    * One draft per encounter type for unscheduled program encounters.
    * Draft is saved on clicking "Next", "Previous", or "Back".
    * Unscheduled program encounter drafts are displayed under the "Drafts" section on the Program tab of the Subject Dashboard.
    * Users can delete or edit drafts directly from the dashboard.
+
+   <Image align="center" src="https://files.readme.io/4f2cdf94d820ff80083777b6866c2c2433fcec61c7b7625294bc4ad0cfc3b489-PEUPV.gif" />
 
 6. Program Encounter (Planned/Scheduled)
    * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime).
