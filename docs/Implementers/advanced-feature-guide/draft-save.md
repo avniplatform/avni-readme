@@ -40,17 +40,15 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
 1. Registration
 
-   * One draft per subject (looked up by UUID).
    * Draft is saved on clicking "Next".
    * Draft is NOT saved on clicking "Previous" or "Back".
    * Registration drafts are displayed as cards on the Register screen with edit and do actions.
    * On reopening, the draft reconstructs the individual/subject with previously filled observations.
 
-   <Image align="center" width="300px" src="https://files.readme.io/36d013626c1150e15af521af8c2fe286ee48d5757553ee56c796f71c51def157-subjectRegisterDraft.gif" />
+   <Image align="center" border={true} width="300px" src="https://files.readme.io/36d013626c1150e15af521af8c2fe286ee48d5757553ee56c796f71c51def157-subjectRegisterDraft.gif" className="border" />
 
 2. Enrolment
 
-   * One draft per (individual, program) pair.
    * Draft is saved on clicking "Next", "Previous", or "Back".
    * Only the enrolment flow is drafted. If the user is filling a program exit form, no draft is saved.
    * Enrolment drafts are displayed with the previously provided values on attempting enrolment again for the same program.
@@ -60,9 +58,8 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
 <br />
 
-3. General Encounter (Unplanned/Unscheduled)
+3. General Encounter (Unplanned Visit)
 
-   * Looked up by a composite key of (individual, encounter type, earliestVisitDateTime=null).
    * One draft per encounter type for unscheduled encounters.
    * Draft is saved on clicking "Next" or "Previous".
    * Unscheduled encounter drafts are displayed under the "Drafts" section on the General tab of the Subject Dashboard.
@@ -70,13 +67,12 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
    <Image align="center" width="300px" src="https://files.readme.io/d25f086f4ff2ca5b0abe4129926626d7d494cbc4748378622e8bb642652dc908-GEUPV.gif" />
 
-4. General Encounter (Planned/Scheduled)
-   * Looked up by a composite key of (individual, encounter type, earliestVisitDateTime).
+4. General Encounter (Planned Visit)
    * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
    * Draft is saved on clicking "Next" or "Previous".
    * Scheduled encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section. The draft loads automatically when the user opens the scheduled encounter.
 
-5. Program Encounter (Unplanned/Unscheduled)
+5. Program Encounter (Unplanned Visit)
 
    * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime=null).
    * One draft per encounter type for unscheduled program encounters.
@@ -86,7 +82,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
    <Image align="center" width="300px" src="https://files.readme.io/4f2cdf94d820ff80083777b6866c2c2433fcec61c7b7625294bc4ad0cfc3b489-PEUPV.gif" />
 
-6. Program Encounter (Planned/Scheduled)
+6. Program Encounter (Planned Visit)
    * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime).
    * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
    * Draft is saved on clicking "Next", "Previous", or "Back".
