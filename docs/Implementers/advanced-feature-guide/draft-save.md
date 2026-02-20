@@ -46,7 +46,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * Registration drafts are displayed as cards on the Register screen with edit and do actions.
    * On reopening, the draft reconstructs the individual/subject with previously filled observations.
 
-   <Image align="center" src="https://files.readme.io/36d013626c1150e15af521af8c2fe286ee48d5757553ee56c796f71c51def157-subjectRegisterDraft.gif" />
+   <Image align="center" width="300px" src="https://files.readme.io/36d013626c1150e15af521af8c2fe286ee48d5757553ee56c796f71c51def157-subjectRegisterDraft.gif" />
 
 2. Enrolment
 
@@ -56,7 +56,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * Enrolment drafts are displayed with the previously provided values on attempting enrolment again for the same program.
    * There is no separate "Drafts" section on the dashboard for enrolments; instead, the draft loads automatically when the user initiates enrolment again.
 
-   <Image align="center" src="https://files.readme.io/8bd82a5e32105748b856bef6ffa7517ae19a989080f547b65e67cd0564c27293-programenrolement.gif" />
+   <Image align="center" width="300px" src="https://files.readme.io/8bd82a5e32105748b856bef6ffa7517ae19a989080f547b65e67cd0564c27293-programenrolement.gif" />
 
 <br />
 
@@ -68,7 +68,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * Unscheduled encounter drafts are displayed under the "Drafts" section on the General tab of the Subject Dashboard.
    * Users can delete or edit drafts directly from the dashboard.
 
-   <Image align="center" src="https://files.readme.io/d25f086f4ff2ca5b0abe4129926626d7d494cbc4748378622e8bb642652dc908-GEUPV.gif" />
+   <Image align="center" width="300px" src="https://files.readme.io/d25f086f4ff2ca5b0abe4129926626d7d494cbc4748378622e8bb642652dc908-GEUPV.gif" />
 
 4. General Encounter (Planned/Scheduled)
    * Looked up by a composite key of (individual, encounter type, earliestVisitDateTime).
@@ -84,7 +84,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * Unscheduled program encounter drafts are displayed under the "Drafts" section on the Program tab of the Subject Dashboard.
    * Users can delete or edit drafts directly from the dashboard.
 
-   <Image align="center" src="https://files.readme.io/4f2cdf94d820ff80083777b6866c2c2433fcec61c7b7625294bc4ad0cfc3b489-PEUPV.gif" />
+   <Image align="center" width="300px" src="https://files.readme.io/4f2cdf94d820ff80083777b6866c2c2433fcec61c7b7625294bc4ad0cfc3b489-PEUPV.gif" />
 
 6. Program Encounter (Planned/Scheduled)
    * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime).
