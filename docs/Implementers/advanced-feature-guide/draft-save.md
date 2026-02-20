@@ -24,16 +24,6 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
 ![](https://files.readme.io/8386271-d.png "d.png")
 
-## Key points
-
-* **Applicability:** Currently, this feature works for Registration, Enrolment and Encounter forms. Cancellation and Exit forms are not supported as drafts.
-* **Display:** Registration drafts are displayed on the Register screen. Encounter drafts are displayed under the on the 'General' tab on the Subject Dashboard. Unscheduled encounter drafts are displayed under the 'Drafts' section and scheduled encounter drafts are accessible by tapping 'Do' on encounters under the 'Visits Planned' section. Enrolment drafts are displayed with the previously provided values on attempting enrolment again. Program encounters are displayed similar to Encounters on the 'Program' tab.
-* **Save Checkpoint:** A draft save action is performed on clicking "Next" or "Previous" buttons while filling in a form, therefore, if User fills in a page but does not click on "Next" or "Previous" buttons, then the Draft saved would have content only till the previous page (On which "Next" button was clicked)
-* **Exiting a form:** To exit from a form in-between, user may click on the "Header" "Back" button or click on "Footer" "Home" buttons**
-* **Stale Drafts clean-up:** Usually drafts get deleted once you perform a final save operation to convert it to an actual entity. Along with that we have a periodic drafts clean-up which gets executed once a day, to delete drafts that were last updated more than 30 days ago.
-
-<br />
-
 <br />
 
 # How Drafts Work Differently by Form Type
@@ -58,29 +48,39 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
 <br />
 
-3. ## General Encounter (Unplanned Visit)
+3. ## General Encounter
 
    * One draft per encounter type for unscheduled encounters.
+   * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
    * Draft is saved on clicking "Next" or "Previous".
    * Unscheduled encounter drafts are displayed under the "Drafts" section on the General tab of the Subject Dashboard.
+   * Scheduled (Planned) encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section. The draft loads automatically when the user opens the scheduled encounter.
    * Users can delete or edit drafts directly from the dashboard.
 
    <Image align="center" width="300px" src="https://files.readme.io/d25f086f4ff2ca5b0abe4129926626d7d494cbc4748378622e8bb642652dc908-GEUPV.gif" />
 
-4. ## General Encounter (Planned Visit)
-   * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
-   * Draft is saved on clicking "Next" or "Previous".
-   * Scheduled encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section. The draft loads automatically when the user opens the scheduled encounter.
+<br />
 
-5. ## Program Encounter (Unplanned Visit)
+3. ## Program Encounter
 
    * One draft per encounter type for unscheduled program encounters.
    * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
    * Draft is saved on clicking "Next", "Previous", or "Back".
    * Unscheduled program encounter drafts are displayed under the "Drafts" section on the Program tab of the Subject Dashboard.
-   * Scheduled program encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section on the Program tab. The draft loads automatically when the user opens the scheduled program encounter.
+   * Scheduled (Planned) program encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section on the Program tab. The draft loads automatically when the user opens the scheduled program encounter.
    * Users can delete or edit drafts directly from the dashboard.
 
    <Image align="center" width="300px" src="https://files.readme.io/4f2cdf94d820ff80083777b6866c2c2433fcec61c7b7625294bc4ad0cfc3b489-PEUPV.gif" />
 
 <Image align="center" width="300px" src="https://files.readme.io/6dbc5f6177e879cfd200737debba645cf39a02e9a6007b235022299a310e910c-planned.gif" />
+
+<br />
+
+## Key points
+
+* **Applicability:** Currently, this feature works for Registration, Enrolment and Encounter forms. Cancellation and Exit forms are not supported as drafts.
+* **Display:** Registration drafts are displayed on the Register screen. Encounter drafts are displayed under the on the 'General' tab on the Subject Dashboard. Unscheduled encounter drafts are displayed under the 'Drafts' section and scheduled encounter drafts are accessible by tapping 'Do' on encounters under the 'Visits Planned' section. Enrolment drafts are displayed with the previously provided values on attempting enrolment again. Program encounters are displayed similar to Encounters on the 'Program' tab.
+* **Save Checkpoint:** A draft save action is performed on clicking "Next" or "Previous" buttons while filling in a form, therefore, if User fills in a page but does not click on "Next" or "Previous" buttons, then the Draft saved would have content only till the previous page (On which "Next" button was clicked)
+* **Exiting a form:** To exit from a form in-between, user may click on the "Header" "Back" button or click on "Footer" "Home" buttons** . For enrolments and program encounters, the back button also triggers a draft save.
+* **Stale Drafts clean-up:** Usually drafts get deleted once you perform a final save operation to convert it to an actual entity. Along with that we have a periodic drafts clean-up which gets executed once a day, to delete drafts that were last updated more than 30 days ago.
+* Timer Behaviour: When a draft is loaded, the encounter date/time timer is not re-initialized. It retains the original timestamp from when the form was first started. For new (non-draft) forms, the timer is initialized fresh.
