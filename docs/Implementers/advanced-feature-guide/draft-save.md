@@ -26,7 +26,7 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
 
 <br />
 
-# How Drafts Work Differently by Form Type
+# How Drafts Work Differently for different form types
 
 1. ## Registration
 
