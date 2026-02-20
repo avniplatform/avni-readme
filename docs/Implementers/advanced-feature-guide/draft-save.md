@@ -57,3 +57,34 @@ If a draft is opened up and the form is saved, it becomes an item that will be s
    * There is no separate "Drafts" section on the dashboard for enrolments; instead, the draft loads automatically when the user initiates enrolment again.
 
    <Image align="center" src="https://files.readme.io/8bd82a5e32105748b856bef6ffa7517ae19a989080f547b65e67cd0564c27293-programenrolement.gif" />
+
+<br />
+
+3. General Encounter (Unplanned/Unscheduled)
+
+   * Looked up by a composite key of (individual, encounter type, earliestVisitDateTime=null).
+   * One draft per encounter type for unscheduled encounters.
+   * Draft is saved on clicking "Next" or "Previous".
+   * Unscheduled encounter drafts are displayed under the "Drafts" section on the General tab of the Subject Dashboard.
+   * Users can delete or edit drafts directly from the dashboard.
+
+   <Image align="center" src="https://files.readme.io/d25f086f4ff2ca5b0abe4129926626d7d494cbc4748378622e8bb642652dc908-GEUPV.gif" />
+
+4. General Encounter (Planned/Scheduled)
+   * Looked up by a composite key of (individual, encounter type, earliestVisitDateTime).
+   * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
+   * Draft is saved on clicking "Next" or "Previous".
+   * Scheduled encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section. The draft loads automatically when the user opens the scheduled encounter.
+
+5. Program Encounter (Unplanned/Unscheduled)
+   * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime=null).
+   * One draft per encounter type for unscheduled program encounters.
+   * Draft is saved on clicking "Next", "Previous", or "Back".
+   * Unscheduled program encounter drafts are displayed under the "Drafts" section on the Program tab of the Subject Dashboard.
+   * Users can delete or edit drafts directly from the dashboard.
+
+6. Program Encounter (Planned/Scheduled)
+   * Looked up by a composite key of (program enrolment, encounter type, earliestVisitDateTime).
+   * Multiple drafts can exist per encounter type (one per scheduled visit with a different date).
+   * Draft is saved on clicking "Next", "Previous", or "Back".
+   * Scheduled program encounter drafts are accessible by tapping "Do" on encounters under the "Visits Planned" section on the Program tab. The draft loads automatically when the user opens the scheduled program encounter.
