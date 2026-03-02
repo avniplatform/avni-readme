@@ -10,12 +10,12 @@ After syncing is completed for the first time, new field users often don't know 
 ## How to Enable
 
 1. Log in to the Avni webapp as an admin.
-   2. Navigate to the **Organisation Details** page at [https://app.avniproject.org/#/admin/organisationDetails](https://app.avniproject.org/#/admin/organisationDetails) .
-      3. Toggle on **"Guide users to Register button"**.
+2. Navigate to the **Organisation Details** page at [https://app.avniproject.org/#/admin/organisationDetails](https://app.avniproject.org/#/admin/organisationDetails)
+3. Toggle on **"Guide users to Register button"**.
 
-         <Image align="center" src="https://files.readme.io/54dadeb6f8b365a57f0fe015ff0b8376271b691a3ee9b33de84bdbea393975cd-webapp.png" />
+   <Image align="center" src="https://files.readme.io/54dadeb6f8b365a57f0fe015ff0b8376271b691a3ee9b33de84bdbea393975cd-webapp.png" />
 
-         <br />
+   <br />
 
 ## How It Works
 
