@@ -12,4 +12,4 @@ next:
 ---
 Website: [https://avniproject.org/](https://avniproject.org/)
 
-Chat: [https://discord.gg/JVEpdaMt](https://discord.gg/JVEpdaMt)
+Chat: [https://discord.gg/4pcgcQW8pk](https://discord.gg/4pcgcQW8pk)
