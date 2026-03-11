@@ -11,7 +11,7 @@ After syncing is completed for the first time, new field users often don't know 
 
 1. Log in to the Avni webapp as an admin.
 2. Navigate to the **Organisation Details** page <Anchor label="here" target="_blank" href="[](https://app.avniproject.org/#/admin/organisationDetails)">here</Anchor>
-3. Toggle on **"Guide users to Register button"**.
+3. Toggle on **"Guide users"**.
 
    <Image align="center" src="https://files.readme.io/54dadeb6f8b365a57f0fe015ff0b8376271b691a3ee9b33de84bdbea393975cd-webapp.png" />
 
@@ -29,3 +29,4 @@ Once enabled, when a user signs in for the first time on the mobile app, a toolt
 
 * The tooltip is shown **only on the first login** after sync is completed, so it does not interrupt experienced users.
 * This is an organisation-level setting — once enabled, it applies to all users in the organisation.
+* Enabling this toggle also shows a friendly "Welcome" message at the top of the screen instead of the "Home" text. This is always shown i.e. regardless of whether it is the first or subsequent login or sync.
