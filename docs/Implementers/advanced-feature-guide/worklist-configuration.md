@@ -650,7 +650,7 @@ workLists.currentWorkList.workItems.sort((a, b) =>
 
 **Alternative**: Use multiple worklist rules with different conditions, or implement branching logic in form element rules.
 
-#### ❌ Cross-Subject Worklists
+#### Cross-Subject Worklists
 
 ```javascript
 // This is NOT supported:
@@ -658,9 +658,11 @@ workLists.currentWorkList.workItems.sort((a, b) =>
 // - Workflows that span multiple subjects
 ```
 
-**Why**: Worklists are tied to a single subject context.
+**Solution**: Can be used with household/group subject types and their Member Subject Types, or separate worklists for each subject. OR, Use splice direct array manipulation to replace all pending items with just the next desired item, so the button label correctly reflects the new target. Ex: when registering Individual of type B after registering Individual of type A.  
 
-**Alternative**: Can be used with household/group subject types and their Member Subject Types, or separate worklists for each subject.
+```
+splice(0, currentWorkList.workItems.length, newItem) 
+```
 
 #### ❌ Async/External API Calls
 
