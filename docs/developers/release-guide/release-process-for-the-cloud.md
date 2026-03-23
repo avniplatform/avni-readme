@@ -243,7 +243,7 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
 * Click on the 'Trigger Pipeline' button. Note that Trigger can be done only on HEAD of a branch, if you need to build from one of the previous commits, then create a new branch and use that for build purposes. Merge it back to the parent after build.
 * In the popup that is opened, add `flavor`, `versionCode` and `versionName` parameters. `flavor` by default is set to `generic` and can be skipped if generating the generic avni flavor.
 
-<Image border={false} src="https://files.readme.io/ef90846-image.png" />
+![](https://files.readme.io/ef90846-image.png)
 
 * Click on 'Trigger Pipeline' in the popup.
 * Once the test and build jobs pass, approve the **hold_live** job.
@@ -296,4 +296,7 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
   * avni-community discord channel
   * avni-community whatsapp group
 * If you are sending this communication for the first check past examples.
+* Update dify knowledgebase
+  * Update README.md from [https://github.com/avniplatform/avni-readme/blob/v2.0/README.md](https://github.com/avniplatform/avni-readme/blob/v2.0/README.md) 
+  * Update About the Assistant.md from [https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md](https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md)
 * Update release version in the [release tracker](https://docs.google.com/spreadsheets/d/1LcyE3_Ht_YztBjfPpedvjUtvzcJezP5dFOZFOyzWs2E/edit?usp=sharing)
