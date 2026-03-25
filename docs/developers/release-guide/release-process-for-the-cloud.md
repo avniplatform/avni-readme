@@ -53,6 +53,7 @@ We have `make` commands in the [makefile](https://github.com/avniproject/avni-pr
 For example, if you are working on releasing 16.3:
 
 * First, update `src/code.ts` in avni-product [here](https://github.com/avniproject/avni-product/blob/master/src/code.ts)  to include the latest release
+* Note: If we have already cut the branch for next release make sure to include it as well so that the current release branch gets merged into it. Generally only after the release is done, next branch is cut from master.
 
 ### 2. Create Remote Branches
 
@@ -297,6 +298,6 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
   * avni-community whatsapp group
 * If you are sending this communication for the first check past examples.
 * Update dify knowledgebase
-  * Update README.md from [https://github.com/avniplatform/avni-readme/blob/v2.0/README.md](https://github.com/avniplatform/avni-readme/blob/v2.0/README.md) 
+  * Update README.md from [https://github.com/avniplatform/avni-readme/blob/v2.0/README.md](https://github.com/avniplatform/avni-readme/blob/v2.0/README.md)
   * Update About the Assistant.md from [https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md](https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md)
 * Update release version in the [release tracker](https://docs.google.com/spreadsheets/d/1LcyE3_Ht_YztBjfPpedvjUtvzcJezP5dFOZFOyzWs2E/edit?usp=sharing)
