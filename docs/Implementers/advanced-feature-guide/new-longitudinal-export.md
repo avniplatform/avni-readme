@@ -19,6 +19,7 @@ New longitudinal export fixes the following issues with old export.
 * Inability to fetch data across different forms for the same subject. eg: Fetch data from two different encounter types on the same program
 * Inability to fetch group/household information
 * Inability to fetch only selected fields from different forms
+* Inability to fetch RQG (Repeatable Question Group) data
 
 ### Limitations
 
