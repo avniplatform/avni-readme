@@ -24,6 +24,7 @@ New longitudinal export fixes the following issues with old export.
 ### Limitations
 
 * There is a limit of maximum of 10,000 Individuals data that could be exported at once, as part of a single Longitudinal export request
+* **While fetching repeatable question group concept data, ensure you have atleast 1 normal formElement concept data**
 
 ## Presupposition
 
