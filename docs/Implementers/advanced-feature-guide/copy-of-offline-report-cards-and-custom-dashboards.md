@@ -796,3 +796,102 @@ The above kind of scenarios also lead to code duplication across report cards an
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
 The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+
+<br />
+
+```javascript Nested Report Card Query Format
+'use strict';
+({params, imports}) => {
+    /*
+    Business logic
+    */
+    return {reportCards: [
+        {
+            cardName: 'nested-i',
+            cardColor: '#123456',
+            textColor: '#654321',
+            primaryValue: '20',
+            secondaryValue: '(5%)',
+            lineListFunction: () => {
+                /*Do something*/
+            }
+        },
+        {
+            cardName: 'nested-i+1',
+            cardColor: '#123456',
+            textColor: '#654321',
+            primaryValue: '20',
+            secondaryValue: '(5%)',
+            lineListFunction: () => {
+                /*Do something*/
+            }
+        }
+    ]
+    }
+};
+```
+```Text Mandatory Fields
+- primaryValue
+- secondaryValue
+- lineListFunction
+```
+```Text Optional fields
+- cardName
+- cardColor
+- textColor
+```
+
+<br />
+
+```javascript Sample Nested Report card Query
+// Documentation - https://docs.mongodb.com/realm-legacy/docs/javascript/latest/index.html#queries
+
+'use strict';
+({params, imports}) => {
+const _ = imports.lodash;
+const moment = imports.moment;
+
+const substanceUseDue = (enrolment) => {
+    const substanceUseEnc = enrolment.scheduledEncountersOfType('Record Substance use details');
+    
+    const substanceUse = substanceUseEnc
+    .filter((e) => moment().isSameOrAfter(moment(e.earliestVisitDateTime)) && e.cancelDateTime === null && e.encounterDateTime === null );
+    
+    return substanceUse.length > 0 ? true : false;
+    
+    };
+const indList = params.db.objects('Individual')
+        .filtered(`SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Substance use' and $enrolment.programExitDateTime = null and $enrolment.voided = false and SUBQUERY($enrolment.encounters, $encounter, $encounter.encounterType.name = 'Record Substance use details' and $encounter.voided = false ).@count > 0 and voided = false).@count > 0`)
+        .filter((individual) => _.some(individual.enrolments, enrolment => substanceUseDue(enrolment)
+        )); 
+        
+const includingVoidedLength = indList.length;
+const excludingVoidedLength = 6;  
+const llf1 = () => { return params.db.objects('Individual')
+        .filtered(`SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Substance use' and $enrolment.programExitDateTime = null and $enrolment.voided = false and SUBQUERY($enrolment.encounters, $encounter, $encounter.encounterType.name = 'Record Substance use details' and $encounter.voided = false ).@count > 0 and voided = false).@count > 0`)
+        .filter((individual) => _.some(individual.enrolments, enrolment => substanceUseDue(enrolment)
+        ));    
+        };
+           
+
+return {reportCards: [{
+      cardName: 'nested 1',
+      textColor: '#bb34ff',
+      primaryValue: includingVoidedLength,   
+      secondaryValue: null,
+      lineListFunction: llf1
+  },
+  {
+      cardName: 'nested 2',
+      cardColor: '#ff34ff',
+      primaryValue: excludingVoidedLength,   
+      secondaryValue: null,
+      lineListFunction: () => {return params.db.objects('Individual')
+        .filtered(`SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Substance use' and $enrolment.programExitDateTime = null and $enrolment.voided = false and SUBQUERY($enrolment.encounters, $encounter, $encounter.encounterType.name = 'Record Substance use details' and $encounter.voided = false ).@count > 0 and voided = false).@count > 0`)
+        .filter((individual) => individual.voided === false  && _.some(individual.enrolments, enrolment => substanceUseDue(enrolment)
+        ));}
+  }]}
+};
+```
+
+<br />
