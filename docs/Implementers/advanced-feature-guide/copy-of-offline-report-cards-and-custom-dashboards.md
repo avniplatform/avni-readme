@@ -946,46 +946,169 @@ HTML template receives:
 
 1. Select **Custom Design Card** as the card type
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
-3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
+3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. 
 
-   In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
+   <br />
 
-   ### Bundle Upload
+   #### HTML Template Syntax
 
-   Card configuration — including action settings (action type, subject type, program, encounter type, visit type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+   The HTML file is evaluated as a JavaScript **template literal**. Everything inside `${...}` is executed as JavaScript with `data` in scope.
 
-   ## Creating a Dashboard
+   <br />
 
-   After all the cards are done it's time to group them together using the dashboard. Offline Dashboards have the following sub-components:
+   ```html
+   <!-- Simple value -->
+   <div>${data.total}</div>
 
-   * Sections : Visual Partitions used to club together cards of specific grouping type
-   * Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
-   * Filters : Configurable filters that get applied to all "Report Cards" count and listing
+   <!-- Loop -->
+   ${data.rows.map(row => `<tr><td>${row.name}</td></tr>`).join('')}
 
-   Users with access to the "App Designer" can Create, Modifiy or Delete Custom Dashboards as seen below.
+   <!-- Conditional -->
+   ${data.rows.length > 0 ? `<table>...</table>` : `<div>No data</div>`}
+   ```
 
-   ![](https://files.readme.io/824878a-image.png)
+   #### Interactive Filtering
 
-   ### Steps to configure a Custom Dashboard
+   For interactivity (dropdowns, filters), embed the data as JSON in a `<script>` tag and use plain JavaScript:
 
-   * Click on the dashboard tab on the app designer and click on the new dashboard.
-   * This will take you to the new dashboard screen. Provide the name and description of the dashboard.
-   * You can create sections on this screen and
-   * Select all the cards you need to add to the section in the dashboard.
-   * After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
+   ```html
+   <select id="month-filter" onchange="filterByMonth()">
+       <option value="all">All months</option>
+   </select>
+   <tbody id="table-body"></tbody>
 
-   <Image align="center" src="https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png" />
+   <script>
+       var allRows = ${JSON.stringify(data.rows)};
+
+       function filterByMonth() {
+           var selected = document.getElementById('month-filter').value;
+           var filtered = selected === 'all'
+               ? allRows
+               : allRows.filter(function(row) { return row.month === selected; });
+           renderRows(filtered);
+       }
+
+       function renderRows(rows) {
+           document.getElementById('table-body').innerHTML = rows.map(function(row) {
+               return '<tr><td>' + row.name + '</td></tr>';
+           }).join('');
+       }
+
+       renderRows(allRows);
+   </script>
+   ```
+
+   The key pattern: `${JSON.stringify(data.rows)}` injects the data as a JSON literal at template evaluation time. The `<script>` then uses it as a regular JavaScript variable for dynamic filtering.
+
+   #### Scrolling
+
+   **Vertical scrolling** is handled by the platform automatically. **Horizontal scrolling** is the implementer's responsibility — wrap wide tables in a container with `overflow-x: auto`:
 
 <br />
 
-### Dashboard Filters
+```html
+<div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+    <table><!-- wide table --></table>
+</div>
+```
 
-You can also create filters for a dashboard on the same screen by clicking on "Add Filter". This shows a popup as in the below screenshot where you can configure your filter and set the filter name, type, widget type and other values based on your filter type.
+#### Things to Avoid
 
-![](https://files.readme.io/91f1aa1-image.png)
+* **Backticks** — the HTML is wrapped in backticks. A stray ``` in your HTML will break evaluation. Use `&#96;` for backtick characters.
+* **Template expressions in scripts** — inside `<script>` tags, use string concatenation instead of backtick template literals to avoid ambiguity with the outer template evaluation.
+* **Heavy computations in lineListFunction** — it's called every time the card detail view opens. Keep it fast with indexed Realm queries.
 
-Once all the changes are done. Save the dashboard.
+#### Complete Example
 
-#### For the filters to be applied to the cards in the dashboard, the code for the cards will need to handle the filters.
+**Data rule:**
 
-Sample Code for handling filters in report card:
+```javascript
+'use strict';
+({params, imports}) => {
+    const _ = imports.lodash;
+    const moment = imports.moment;
+    const startOfMonth = moment().startOf('month').toDate();
+
+    const subjects = params.db.objects('Individual')
+        .filtered('voided = false AND registrationDate >= $0', startOfMonth);
+
+    const rows = _.map(subjects, ind => ({
+        date: moment(ind.registrationDate).format('DD.MM.YY'),
+        name: ind.name,
+        status: 'approved',
+    }));
+
+    return {
+        primaryValue: rows.length,
+        secondaryValue: `(${rows.length} this month)`,
+        cardName: 'Recent Registrations',
+        cardColor: '#FFE500',
+        textColor: '#222222',
+        lineListFunction: () => ({ total: rows.length, rows: rows }),
+    };
+}
+```
+
+**HTML template:**
+
+```html
+<style>
+    body { font-family: sans-serif; background: #f5f5f5; }
+    .summary { background: white; border: 2px solid #333; border-radius: 6px; padding: 14px; text-align: center; margin-bottom: 12px; }
+    .summary .value { font-size: 22px; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; border: 2px solid #333; background: white; }
+    th { background: #fff3cd; padding: 8px; border: 1px solid #333; font-size: 13px; text-align: left; }
+    td { padding: 8px; border: 1px solid #333; font-size: 13px; }
+</style>
+
+<div class="summary">
+    <div class="value">${data.total} registrations this month</div>
+</div>
+
+${data.rows.length > 0 ? `
+<table>
+    <thead><tr><th>Date</th><th>Name</th><th>Status</th></tr></thead>
+    <tbody>
+        ${data.rows.map(row => `
+        <tr><td>${row.date}</td><td>${row.name}</td><td>${row.status}</td></tr>
+        `).join('')}
+    </tbody>
+</table>
+` : `<div style="text-align:center;color:#777;padding:20px;">No registrations this month</div>`}
+```
+
+### Bundle Upload
+
+Card configuration — including action settings (action type, subject type, program, encounter type, visit type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+
+## Default Dashboard and Cards
+
+Starting in release 10.0, any newly created organisation will have a default dashboard created with the following sections, standard cards and filters.
+
+Default Dashboard (Filters: 'Subject Type' and 'As On Date')
+
+1. Visit Details Section
+   1. Scheduled Visits Card
+   2. Overdue Visits Card
+2. Recent Statistics Section
+   1. Recent Registrations Card (Recent duration filter configured as - 1 day)
+   2. Recent Enrolments Card (Recent duration filter configured as - 1 day)
+   3. Recent Visits Card (Recent duration filter configured as - 1 day)
+3. Registration Overview Section
+   1. Total Card
+
+This default dashboard will also be assigned as Primary dashboard on the 'Everyone' user group.
+
+## Reference screen-shots of Avni-Client Custom Dashboard with Approvals ReportCards and Location filter
+
+<Image align="center" alt="Default state of Approvals Report Cards without any filter applied" border={true} caption="Default state of Approvals Report Cards without any filter applied" src="https://files.readme.io/e35888a-Screenshot_2023-12-12_at_12.46.46_PM.png" />
+
+***
+
+<Image align="center" alt="Custom Dashboards filter page" border={true} caption="Custom Dashboards filter page" src="https://files.readme.io/576efec-Screenshot_2023-12-12_at_12.47.01_PM.png" />
+
+***
+
+<Image align="center" alt="State of Approvals Report Cards after the Location filter was applied" border={true} caption="State of Approvals Report Cards after the Location filter was applied" src="https://files.readme.io/c5ac6f6-Screenshot_2023-12-12_at_12.47.25_PM.png" />
+
+***
