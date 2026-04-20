@@ -789,13 +789,12 @@ Use concept uuid instead of readableValue to compare and check for value only in
 
 ### 3. Nested Report Cards
 
-
-Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.\
+Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.  
 The above kind of scenarios also lead to code duplication across report cards and when some requirement changes, then the change needs to be done in both.
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
-The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
 
 <br />
 
@@ -947,4 +946,46 @@ HTML template receives:
 
 1. Select **Custom Design Card** as the card type
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
-3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
+3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
+
+   In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
+
+   ### Bundle Upload
+
+   Card configuration — including action settings (action type, subject type, program, encounter type, visit type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+
+   ## Creating a Dashboard
+
+   After all the cards are done it's time to group them together using the dashboard. Offline Dashboards have the following sub-components:
+
+   * Sections : Visual Partitions used to club together cards of specific grouping type
+   * Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
+   * Filters : Configurable filters that get applied to all "Report Cards" count and listing
+
+   Users with access to the "App Designer" can Create, Modifiy or Delete Custom Dashboards as seen below.
+
+   ![](https://files.readme.io/824878a-image.png)
+
+   ### Steps to configure a Custom Dashboard
+
+   * Click on the dashboard tab on the app designer and click on the new dashboard.
+   * This will take you to the new dashboard screen. Provide the name and description of the dashboard.
+   * You can create sections on this screen and
+   * Select all the cards you need to add to the section in the dashboard.
+   * After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
+
+   <Image align="center" src="https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png" />
+
+<br />
+
+### Dashboard Filters
+
+You can also create filters for a dashboard on the same screen by clicking on "Add Filter". This shows a popup as in the below screenshot where you can configure your filter and set the filter name, type, widget type and other values based on your filter type.
+
+![](https://files.readme.io/91f1aa1-image.png)
+
+Once all the changes are done. Save the dashboard.
+
+#### For the filters to be applied to the cards in the dashboard, the code for the cards will need to handle the filters.
+
+Sample Code for handling filters in report card:
