@@ -96,7 +96,7 @@ This is the default action. The card runs your query and displays the result on 
 - **Single subject returned:** Directly opens the subject's profile — no listing screen shown.
 - **No subjects returned:** Card shows count as 0.
 
-The query can return a simple array of subjects (backward compatible):
+The query can return a simple array of subjects:
 
 ```javascript
 'use strict';
@@ -137,7 +137,7 @@ Or return an object with additional display properties:
 
 **Backward Compatibility:** All existing custom card queries continue to work. Queries returning a plain array of subjects, or only `primaryValue` and `lineListFunction`, or `primaryValue` without `lineListFunction` (e.g., percentage cards) all work as before.
 
-**Example: Percentage Card (Non-tappable)**
+**Example: Percentage Card (Non-tappable because `lineListFunction` is not a function)**
 
 ```javascript
 'use strict';
@@ -218,7 +218,7 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns data accessible in the HTML via `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults.
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
 
-In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within an `AutoHeightWebView`.
+In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
 
 ### Bundle Upload
 
@@ -621,7 +621,7 @@ Please also get in touch with platform team if you identify a new pattern and a 
 * But in cases where time complexity is the same for both cases, writing realm queries would be efficient to achieve the purpose. (refer below code example). Also refer to `Filter based on a custom observation value expression` pattern above.
 
     * ```Text Usecase
-  Find 13 months children who are completely immunised
+    Find 13 months children who are completely immunised
     ```
       ```javascript Recommended way
       'use strict';
@@ -657,7 +657,7 @@ Please also get in touch with platform team if you identify a new pattern and a 
 * In most cases, filtering as much as possible using realm queries (for cases like voided checks) and then doing JS filtering on top of it if needed, would be appropriate. (refer the below code example)
 
     * ```Text Usecase
-  Find dead children using concept value captured in encounter cancel or program exit form.
+    Find dead children using concept value captured in encounter cancel or program exit form.
     ```
       ```javascript Recommended way
       'use strict';
@@ -928,7 +928,7 @@ HTML template receives:
 #### Configuration
 
 1. Select **Custom Design Card** as the card type
-2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. If omitted, the entire rule result is passed as `data`. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
+2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
 
 #### HTML Template Syntax
