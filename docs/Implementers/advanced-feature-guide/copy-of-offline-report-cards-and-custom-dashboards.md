@@ -217,7 +217,7 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns data accessible in the HTML via `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults.
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
 
-Sample Data Rule and HTML 
+Sample Data Rule and HTML
 
 ```javascript
 'use strict';
@@ -503,7 +503,13 @@ After saving the dashboard sync the field app, and from the bottom "More" tab cl
 
 Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query. For custom data cards with the "View subject profile" action, if only one subject is returned, the app directly opens the subject's profile. For cards with the "Do visit" action, clicking opens the encounter form directly (for single subject) or shows the list with encounter type rows below each subject.
 
-<Image align="center" width="400px" src="https://files.readme.io/18fb944-Subject-list-field-app.png" />
+<Image align="center" width="200px" src="https://files.readme.io/f5ba147ebded65488509282dc6a8681a3a9f7292833c5f396f4202d8dfcebe7c-directencounterform.gif" />
+
+<Image align="center" width="200px" src="https://files.readme.io/2b91b6b483b58526ec0f6733f32b20567c4ace3b9288daafc0cdf4049a556604-morethan1list.gif" />
+
+<Image align="center" width="200px" src="https://files.readme.io/756a8c0f676b7667bfe9d5d3c0279f7c2797374b55f9b31d89177bbe3765a40b-viewsubjectprofile.gif" />
+
+<Image align="center" width="200px" src="https://files.readme.io/b07ab045ba4bbb50f189f36a625587d032399a3f06ebde6c7226e0df5a70ed42-viewsubjectmultiple.gif" />
 
 Users can click on any subject and navigate to their dashboard.
 
@@ -996,7 +1002,7 @@ The above kind of scenarios also lead to code duplication across report cards an
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
-The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
 
 <br />
 
