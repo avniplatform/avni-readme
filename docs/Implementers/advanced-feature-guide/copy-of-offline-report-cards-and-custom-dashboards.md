@@ -223,11 +223,7 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 
 In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
 
-<Image align="center" width="200px" src="https://files.readme.io/0fe507b82926d56a4cb65edb9b9b1eeec9bc02bf2d490532107b6696d74ffde2-Screenshot_2026-04-20_at_3.12.44_PM.png" />
-
-<Image align="center" width="200px" src="https://files.readme.io/596e9cce804bd1e96000dd0cc544525e4a4c5f8d3d7391e8d74cdba36bb5b70c-Screenshot_2026-04-20_at_3.12.27_PM.png" />
-
-<br />
+<Image align="center" width="200px" src="https://files.readme.io/2cb24b681fbea38d559ba6a0729c639a599a082ec942107012f89a1b80f2e6f0-demo.gif" />
 
 ## Creating a Dashboard
 
