@@ -790,7 +790,7 @@ The query can return an object with "reportCards" property, which holds within i
     /*
     Business logic
     */
-    return {reportCards: \[
+    return {reportCards: [
         {
             cardName: 'nested-i',
             cardColor: '#123456',
@@ -812,7 +812,7 @@ The query can return an object with "reportCards" property, which holds within i
             }
         }
     ]
-	}
+    }
 };
 ```
 ```Text Mandatory Fields
@@ -884,8 +884,6 @@ return {reportCards: [{
 ### Screenshot of Nested Report Cards in Custom Dashboard in Avni Client
 
 <Image align="center" width="576px" src="https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png" />
-
-![]()
 
 Note: If there is a mismatch between the count of nested report cards configured and the length of reportCards property returned by the query response, then we show an appropriate error message on all Nested Report Cards corresponding to the Custom Report Card.
 
