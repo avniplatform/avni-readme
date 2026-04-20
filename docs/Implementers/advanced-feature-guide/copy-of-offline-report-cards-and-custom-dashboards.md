@@ -895,3 +895,56 @@ return {reportCards: [{
 ```
 
 <br />
+
+### Screenshot of Nested Custom Dashboard Report Card Edit screen on Avni Webapp
+
+<Image align="center" src="https://files.readme.io/ecdd996-Screenshot_2024-01-25_at_5.15.20_PM.png" />
+
+### Screenshot of Nested Report Cards in Custom Dashboard in Avni Client
+
+<Image align="center" width="576px" src="https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png" />
+
+Note: If there is a mismatch between the count of nested report cards configured and the length of reportCards property returned by the query response, then we show an appropriate error message on all Nested Report Cards corresponding to the Custom Report Card.
+
+<Image align="center" width="576px" src="https://files.readme.io/82d8ca0-Screenshot_2024-01-25_at_5.23.56_PM.png" />
+
+<br />
+
+### 4. Custom Design Cards
+
+Custom design cards let you define both the data and the UI for a dashboard card. You provide an HTML template and a data rule; the platform evaluates the rule, passes the result into your template, and renders it in a WebView on the mobile app.
+
+#### How it works
+
+1. **Data rule** — a JavaScript function that queries the device database and returns data
+2. **HTML template** — an HTML file that renders the data using `${data.variable}` syntax
+3. **Platform glue** — the platform calls your data rule, takes the return value of `lineListFunction()`, and passes it as `data` to your HTML template
+
+<br />
+
+```
+Data rule returns:
+{
+    primaryValue: 10,          ← shown on dashboard tile
+    secondaryValue: "(5 new)", ← shown below primaryValue on tile
+    cardName: "My Card",       ← overrides tile name (optional)
+    cardColor: "#FFE500",      ← overrides tile background (optional)
+    textColor: "#222",         ← overrides tile text color (optional)
+    lineListFunction: () => {  ← called by platform, result becomes 'data' in HTML
+        return {
+            total: 10,
+            rows: [...]
+        };
+    }
+}
+
+HTML template receives:
+    data.total  → 10
+    data.rows   → [...]
+```
+
+#### Configuration
+
+1. Select **Custom Design Card** as the card type
+2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
+3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
