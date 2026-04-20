@@ -707,3 +707,92 @@ Please also get in touch with platform team if you identify a new pattern and a 
   ```
 
 Also check - [https://avni.readme.io/docs/writing-rules#using-paramsdb-object-when-writing-rules](https://avni.readme.io/docs/writing-rules#using-paramsdb-object-when-writing-rules)
+
+#### DEPRECATED. Use Concept UUIDs instead of their names for comparison
+
+Please check - `Filter based on a custom observation value expression` pattern above.
+
+Though not much performance improvement, using concept uuids(for comparing with concept answers), instead of getting its readable values did provide minor improvement(in seconds) when need to iterate through thousands of rows. (refer below code example)
+
+* ```Text Usecase
+  Find children with congential abnormality based on values of certain concepts
+  ```
+  ```javascript Recommended way
+  'use strict';
+  ({params, imports}) => {
+      const isChildCongenitalAnamoly = (enrolment) => {
+         const _ = imports.lodash;
+      
+         const encounter = enrolment.lastFulfilledEncounter('Child PNC'); 
+         if(_.isNil(encounter)) return false; 
+         
+         const obs1 = encounter.findObservation("Is the infant's mouth cleft pallet seen?");
+         const condition2 = obs1 ? obs1.getValueWrapper().getValue() === '3a9fe9a1-a866-47ed-b75c-c0071ea22d97' : false;
+           
+         const obs2 = encounter.findObservation('Is there visible tumor on back or on head of infant?');
+         const condition3 = obs2 ? obs2.getValueWrapper().getValue() === '3a9fe9a1-a866-47ed-b75c-c0071ea22d97' : false;
+           
+         const obs3 = encounter.findObservation("Is foam coming from infant's mouth continuously?");
+         const condition4 = obs3 ? obs3.getValueWrapper().getValue() === '3a9fe9a1-a866-47ed-b75c-c0071ea22d97' : false;
+                    
+           return condition2 || condition3 || condition4;
+      };
+      
+      const isChildCongenitalAnamolyReg = (individual) => {
+           const obs = individual.findObservation('Has any congenital abnormality?');
+           return obs ? obs.getValueWrapper().getValue() === '3a9fe9a1-a866-47ed-b75c-c0071ea22d97' : false;
+      };
+      
+      return params.db.objects('Individual')
+          .filtered(`voided = false and SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Child' and $enrolment.programExitDateTime = null and $enrolment.voided = false).@count > 0`)
+          .filter((individual) => (isChildCongenitalAnamolyReg(individual) || 
+              _.some(individual.enrolments, enrolment => enrolment.program.name === 'Child' && _.isNil(enrolment.programExitDateTime) && !enrolment.voided && isChildCongenitalAnamoly(enrolment) )) )
+  };
+  ```
+
+<br />
+
+```javascript Not recommended way
+'use strict';
+({params, imports}) => {
+    const isChildCongenitalAnamoly = (enrolment) => {
+         
+         const obs1 = enrolment.findLatestObservationInEntireEnrolment("Is the infant's mouth cleft pallet seen?");
+         const condition2 = obs1 ? obs1.getReadableValue() === 'Yes' : false;
+         
+     const obs2 = enrolment.findLatestObservationInEntireEnrolment('Is there visible tumor on back or on head of infant?');
+         const condition3 = obs2 ? obs2.getReadableValue() === 'Yes' : false;
+         
+         const obs3 = enrolment.findLatestObservationInEntireEnrolment("Is foam coming from infant's mouth continuously?");
+         const condition4 = obs3 ? obs3.getReadableValue() === 'Yes' : false;
+                  
+         return condition2 || condition3 || condition4;
+    };
+    
+    const isChildCongenitalAnamolyReg = (individual) => {
+         const obs = individual.getObservationReadableValue('Has any congenital abnormality?');
+         return obs ? obs === 'Yes' : false;
+    };
+    
+    return params.db.objects('Individual')
+        .filtered(`SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Child' and $enrolment.programExitDateTime = null and $enrolment.voided = false).@count > 0`)
+        .filter((individual) => individual.voided === false && (isChildCongenitalAnamolyReg(individual) || 
+            _.some(individual.enrolments, enrolment => enrolment.program.name === 'Child' && isChildCongenitalAnamoly(enrolment) )) )
+};
+```
+
+<br />
+
+```Text How optimized
+Use concept uuid instead of readableValue to compare and check for value only in specific encounter type where the concept was used
+```
+
+### 3. Nested Report Cards
+
+
+Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.\
+The above kind of scenarios also lead to code duplication across report cards and when some requirement changes, then the change needs to be done in both.
+
+In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
+
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
