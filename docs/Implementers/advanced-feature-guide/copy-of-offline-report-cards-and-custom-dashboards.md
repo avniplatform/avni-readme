@@ -217,11 +217,17 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns data accessible in the HTML via `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults.
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
 
+<Image align="center" src="https://files.readme.io/19120a40f3990c57a5b4808c8ec96185f64ec8e819329ed7471a6c3b95b3cac6-Screenshot_2026-04-20_at_3.09.45_PM.png" />
+
+<Image align="center" src="https://files.readme.io/c488c5c00c08ec09265f7aa7e5c4c5a3aee8fa356e17d3d2b936c3dfaeedc4fa-Screenshot_2026-04-20_at_3.10.17_PM.png" />
+
 In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
 
-### Bundle Upload
+<Image align="center" width="200px" src="https://files.readme.io/0fe507b82926d56a4cb65edb9b9b1eeec9bc02bf2d490532107b6696d74ffde2-Screenshot_2026-04-20_at_3.12.44_PM.png" />
 
-Card configuration — including action settings (action type, subject type, program, encounter type, visit type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+<Image align="center" width="200px" src="https://files.readme.io/596e9cce804bd1e96000dd0cc544525e4a4c5f8d3d7391e8d74cdba36bb5b70c-Screenshot_2026-04-20_at_3.12.27_PM.png" />
+
+<br />
 
 ## Creating a Dashboard
 
@@ -794,7 +800,7 @@ The above kind of scenarios also lead to code duplication across report cards an
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
-The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
 
 <br />
 
@@ -946,7 +952,7 @@ HTML template receives:
 
 1. Select **Custom Design Card** as the card type
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
-3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. 
+3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
 
    <br />
 
