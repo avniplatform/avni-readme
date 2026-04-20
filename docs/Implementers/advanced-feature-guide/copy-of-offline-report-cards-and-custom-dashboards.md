@@ -217,9 +217,209 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns data accessible in the HTML via `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults.
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
 
-<Image align="center" src="https://files.readme.io/19120a40f3990c57a5b4808c8ec96185f64ec8e819329ed7471a6c3b95b3cac6-Screenshot_2026-04-20_at_3.09.45_PM.png" />
+Sample Data Rule and HTML 
 
-<Image align="center" src="https://files.readme.io/c488c5c00c08ec09265f7aa7e5c4c5a3aee8fa356e17d3d2b936c3dfaeedc4fa-Screenshot_2026-04-20_at_3.10.17_PM.png" />
+```javascript
+'use strict';
+({params, imports}) => {
+    const _ = imports.lodash;
+    const moment = imports.moment;
+
+    const startOfMonth = moment().startOf('month').toDate();
+
+    const subjects = params.db.objects('Individual')
+        .filtered('voided = false ');
+
+    const rows = _.map(subjects, ind => {
+        const enrolment = _.first(ind.enrolments);
+        const lastEncounter = enrolment
+            ? _.maxBy(enrolment.encounters, e => e.encounterDateTime)
+            : _.maxBy(ind.encounters, e => e.encounterDateTime);
+        return {
+            date: moment(ind.registrationDate).format('DD.MM.YY'),
+            name: ind.name,
+            status: 'approved',
+            village: ind.lowestAddressLevel ? ind.lowestAddressLevel.name : null,
+            program: enrolment ? enrolment.program.name : null,
+            lastVisit: lastEncounter && lastEncounter.encounterDateTime
+                ? moment(lastEncounter.encounterDateTime).format('DD.MM.YY')
+                : null,
+            amount: null,
+        };
+    });
+
+    return {
+        primaryValue: rows.length,
+        secondaryValue: `(${rows.length} this month)`,
+        name: 'Recent Registrations',
+        colors: { background: '#FFE500', text: '#222222' },
+
+        lineListFunction: () => ({
+            total: rows.length,
+            rows: rows,
+        }),
+    };
+}
+
+```
+```html
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #f5f5f5; }
+
+    .summary {
+      background: white;
+      border: 2px solid #333;
+      border-radius: 6px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .summary .label { font-size: 12px; color: #666; margin-bottom: 4px; }
+    .summary .value { font-size: 22px; font-weight: 700; color: #222; }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .filter-bar label { font-size: 13px; font-weight: 600; color: #333; }
+    .filter-bar select {
+      padding: 6px 10px;
+      font-size: 13px;
+      border: 1px solid #999;
+      border-radius: 4px;
+      background: white;
+    }
+
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; border-collapse: collapse; border: 2px solid #333; background: white; }
+    th { background: #fff3cd; font-weight: 700; padding: 8px; border: 1px solid #333; font-size: 13px; text-align: left; }
+    td { padding: 8px; border: 1px solid #333; font-size: 13px; }
+
+    .status-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .status-approved { background: #d4edda; color: #155724; }
+    .status-pending  { background: #fff3cd; color: #856404; }
+    .status-rejected { background: #f8d7da; color: #721c24; }
+
+    .empty {
+      background: white;
+      border: 2px dashed #999;
+      padding: 20px;
+      text-align: center;
+      color: #777;
+      border-radius: 6px;
+    }
+    #filtered-count { font-size: 13px; color: #666; margin-left: auto; }
+  </style>
+
+  <div class="summary">
+    <div class="label">Total registrations</div>
+    <div class="value" id="total-display">${data.total}</div>
+  </div>
+
+  <div class="filter-bar">
+    <label for="month-filter">Month:</label>
+    <select id="month-filter" onchange="filterByMonth()">
+      <option value="all">All months</option>
+    </select>
+    <span id="filtered-count"></span>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Subject</th>
+          <th>Status</th>
+          <th style="text-align:right;">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    var allRows = ${JSON.stringify(data.rows)};
+
+    function getMonthYear(dateStr) {
+      var parts = dateStr.split('.');
+      return parts[1] + '.' + parts[2];
+    }
+
+    function getMonthLabel(monthYear) {
+      var months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var parts = monthYear.split('.');
+      var monthNum = parseInt(parts[0], 10);
+      return months[monthNum] + ' 20' + parts[1];
+    }
+
+    function populateMonthFilter() {
+      var select = document.getElementById('month-filter');
+      var monthSet = {};
+      allRows.forEach(function(row) {
+        var my = getMonthYear(row.date);
+        monthSet[my] = true;
+      });
+      var sorted = Object.keys(monthSet).sort().reverse();
+      sorted.forEach(function(my) {
+        var opt = document.createElement('option');
+        opt.value = my;
+        opt.textContent = getMonthLabel(my);
+        select.appendChild(opt);
+      });
+    }
+
+    function renderRows(rows) {
+      var tbody = document.getElementById('table-body');
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#777;">No data for selected month</td></tr>';
+      } else {
+        tbody.innerHTML = rows.map(function(row) {
+          return '<tr>'
+            + '<td>' + row.date + '</td>'
+            + '<td>' + row.name + '</td>'
+            + '<td><span class="status-pill status-' + row.status + '">' + row.status + '</span></td>'
+            + '<td style="text-align:right;">' + (row.amount != null ? row.amount : '-') + '</td>'
+            + '</tr>';
+        }).join('');
+      }
+      document.getElementById('total-display').textContent = rows.length;
+      document.getElementById('filtered-count').textContent = rows.length + ' of ' + allRows.length;
+    }
+
+    function filterByMonth() {
+      var selected = document.getElementById('month-filter').value;
+      if (selected === 'all') {
+        renderRows(allRows);
+      } else {
+        renderRows(allRows.filter(function(row) {
+          return getMonthYear(row.date) === selected;
+        }));
+      }
+    }
+
+    populateMonthFilter();
+    renderRows(allRows);
+  </script>
+
+```
+
+<Image align="center" src="https://files.readme.io/19120a40f3990c57a5b4808c8ec96185f64ec8e819329ed7471a6c3b95b3cac6-Screenshot_2026-04-20_at_3.09.45_PM.png" />
 
 In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
 
@@ -796,7 +996,7 @@ The above kind of scenarios also lead to code duplication across report cards an
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
-The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
 
 <br />
 
