@@ -170,7 +170,7 @@ This action is for cards where tapping should directly open an encounter form. W
 * The encounter type name appears below each subject. Clicking it opens a new visit form.
 * Single matching subject: opens the new form directly — no listing shown.
 
-The count shown on the card tile reflects the filtered count — only subjects with eligible encounters, which may differ from the total returned by the query.
+For Do visit cards, the count shown on the card tile is the filtered count (subjects with eligible encounters), not the `primaryValue` from the query. This ensures the tile always reflects how many subjects the user will actually see on tap.
 
 **Example: Scheduled Program Encounter**
 
@@ -1010,7 +1010,7 @@ The above kind of scenarios also lead to code duplication across report cards an
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
-The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
+The query can return an object with "reportCards" property, which holds within it an array of objets with properties, ` { cardName: 'nested-i', cardColor: '#123456', textColor: '#654321', primaryValue: '20', secondaryValue: '(5%)',  lineListFunction: () => \{/\*Do something\\\\\\\*/} }`. DB instance is passed using the params and useful libraries like lodash and moment are available in the imports parameter of the function.
 
 <br />
 
