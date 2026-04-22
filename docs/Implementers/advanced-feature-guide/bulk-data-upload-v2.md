@@ -176,6 +176,11 @@ Please note that sample file for uploading visit details and scheduling a visit 
 * **Id Confusion**: The identifiers (used in Id from previous system) are different from Id elements in the form, if you have them.
 * **Form Data Editing**: Editing previously submitted form data is not currently supported through the CSV upload process.
 * **No Metadata Rollback**: For metadata zip uploads, uploading an older zip file version does not restore a previous version of the metadata. The result of uploading an older version will be an attempted merge of the old version over the current version which might not be what is expected. Avni does not support rolling back of the metadata configuration to a previous state. One can only move forward from the current configuration.
+* **Multi-select Coded Concepts**: For multi-select answers, expected input format would be:
+  1. Answer 1, Answer 2, ...
+  2. Answer 1, "Answer2, has, commas", Answer 3, ...
+  3. "Single answer, with commas" or "Single answer, with commas"
+  4. CSV-style escaped quotes: """Answer, with, commas""" ... etc.
 
 # Questions
 
