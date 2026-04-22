@@ -12,7 +12,7 @@ next:
 ---
 The Data Entry App, as the name suggests, is used to view and enter data directly without relying on mobile syncing. It can be accessed by clicking on the 'Data Entry app' tile in the home page.
 
-<Image align="center" border={false} width="10000px" src="https://files.readme.io/be9c75e10c6f8e1eb905f84e0714b46475192e039bac88837f38b62c87cabf91-Screenshot_2025-08-25_at_7.10.40_PM.png" />
+<Image align="center" width="10000px" src="https://files.readme.io/be9c75e10c6f8e1eb905f84e0714b46475192e039bac88837f38b62c87cabf91-Screenshot_2025-08-25_at_7.10.40_PM.png" />
 
 ### Advantages:
 
@@ -41,3 +41,4 @@ The Data Entry App, as the name suggests, is used to view and enter data directl
 * [Growth chart](https://avni.readme.io/docs/child-growth-charts)
 * Details on who performed a registration, enrolment or visit
 * Viewing of data outside of a user's catchment and configured sync attribute cannot be restricted. Only editing can be restricted.
+* Display and selection of the 'Any' chip to select all the locations at a specific level while filtering through the locations in various views (Registration / Search / Filter / Location Form Element etc)
