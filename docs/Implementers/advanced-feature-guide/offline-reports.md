@@ -727,6 +727,229 @@ Note: If there is a mismatch between the count of nested report cards configured
 
 <br />
 
+## Custom Design Cards
+
+Custom design cards let an implementer render a fully bespoke HTML view on a dashboard tile, populated by a JavaScript data rule and localised through the standard Avni translations pipeline.
+
+### When to use
+
+- The standard report cards (count, nested, line list) cannot express the visualisation you need.
+- You want full control over layout, typography, conditional sections, tables, or inline iconography.
+- You need values that are computed from arbitrary Realm queries, not just count/list of subjects.
+
+If a count or simple line list will do, prefer a Standard or Custom Data card — they are simpler and more performant.
+
+### How it works
+
+A custom card has three pieces:
+
+1. **Data rule** — a JavaScript expression that evaluates to a function `({ params, imports }) => result`. The function returns whatever shape the template needs, conventionally `{ primaryValue, secondaryValue, data }`.
+2. **HTML template** — an `.html` file uploaded by the implementer. It is a JavaScript template literal: any `${...}` is evaluated against `data` and `translations` at render time.
+3. **Translations** — key/default-value pairs entered in the report card editor. Defaults persist on the card; localised values are authored through the existing Translations workflow (Lokalise round-trip) and resolved on the device via `I18n.t(key)`.
+
+At render time on the device:
+
+```
+data rule  →  ruleResult.data  ─┐
+                                ├─→  new Function('data','translations', `return \`${template}\``)(data, translations)
+translations on entity  ─→ resolved via I18n.t() with default fallback ─┘
+```
+
+The resulting string is shown in a React Native `WebView`.
+
+### Authoring a card
+
+#### 1. Create the card
+
+App Designer → **Report Cards → Add Report Card**. Set Card Type to **Fully custom card**.
+
+#### 2. Write the data rule
+
+The whole rule must be a single JavaScript expression that yields a function. The runtime calls it with `{ params, imports }`.
+
+```js
+({ params, imports }) => {
+  const _ = imports.lodash;
+  const subjectType = params.db
+    .objects("SubjectType")
+    .filtered("voided = false and name = 'Farmer'")[0];
+
+  if (!subjectType) {
+    return { primaryValue: 0, secondaryValue: "—", data: { total: 0, latestName: null } };
+  }
+
+  const farmers = params.db
+    .objects("Individual")
+    .filtered("voided = false and subjectType.uuid = $0", subjectType.uuid);
+
+  return {
+    primaryValue: farmers.length,
+    secondaryValue: farmers.length === 0 ? "—" : "ok",
+    data: {
+      total: farmers.length,
+      latestName: farmers.sorted("registrationDate", true)[0]?.nameString ?? null,
+    },
+  };
+}
+```
+
+Available bindings:
+
+- `params.db` — the live Realm. Use `db.objects("EntityName").filtered(...)` to query.
+- `params.ruleInput` — the dashboard filter context (subject type, programs, etc.).
+- `imports.lodash`, `imports.moment` — convenience libraries.
+
+The runtime exposes `ruleResult.data` to the HTML template; `primaryValue` / `secondaryValue` are surfaced on the dashboard tile preview.
+
+#### 3. Add translations
+
+Below the Data Rule field, click **Add Translation** for each string the template will reference. Each row has:
+
+- **Translation Key** — opaque identifier the template refers to. Examples: `card.farmer.title`, `cardFarmerHelpText`. Choose identifier-safe keys (no dots, hyphens, spaces) if you want to use dot access in the template; otherwise stick with bracket access.
+- **Default (English) Value** — the fallback rendered when no Lokalise translation exists for the user's locale. Multi-line is supported.
+
+Validation:
+
+- Empty keys are blocked.
+- Duplicate keys (case-sensitive) are blocked.
+
+#### 4. Upload the HTML template
+
+Pick or drag a `.html` file into the upload area. The file is a JavaScript template literal: every `${...}` is evaluated against `data` and `translations` at render time.
+
+```html
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>html,body{margin:0;padding:0;font-family:-apple-system,Roboto,sans-serif;color:#222;}</style></head>
+<body>
+<div style="padding:12px;font-family:sans-serif;">
+    <div style="font-size:12px;color:#666;">${translations['card.farmer.title']}</div>
+    <div style="font-size:08px;color:#666;">${translations.cardFarmerSubtitle}</div>
+    <div style="font-size:28px;font-weight:600;">${data.total}</div>
+    <div style="font-size:12px;margin-top:4px;">
+        ${translations['card.farmer.lastRegistered'].replace('{name}', data.latestName || '—')}
+    </div>
+    <div style="font-size:11px;color:#999;margin-top:8px;white-space:pre-wrap;">
+        ${translations['card.farmer.helpText']}
+    </div>
+</div>
+</body>
+</html>
+```
+
+Tips:
+
+- **`white-space:pre-wrap`** — required if you want `\n` characters in a translation default to render as visible line breaks. Without it, HTML collapses consecutive whitespace to a single space.
+- **Avoid leading whitespace inside the wrapping element** when `pre-wrap` is on — `<div>\n  ${...}\n</div>` will render the indentation literally. Inline `${...}` directly after `>`.
+- The implementer owns the HTML; the app does not wrap it. You may supply a complete document with `<!DOCTYPE html>`, `<head>`, `<style>`, etc., or just a fragment — both work.
+- Templates are sandboxed inside a `WebView`. JavaScript inside `<script>` tags executes; `fetch`/`XHR` etc. follow the WebView's security model and `originWhitelist`.
+
+### 5. Save
+
+The card and its translations are persisted together. Reopening the editor shows your translation rows, default values, and HTML preview.
+
+## Translating into other languages
+
+This step does not happen on the report card screen.
+
+1. **Export.** Either via Lokalise integration or by hitting `GET /translation?platform=Android` directly. Every key you defined on the card appears in every locale's JSON: with the English default for `en`, with empty string for other locales (until translated).
+2. **Translate.** Author the localised values in Lokalise (or directly in the JSON).
+3. **Import.** Upload through the App Designer **Translations** screen, or `POST /translation`.
+4. **Sync the device.** The local i18n cache picks up the new strings; the next time the card is opened, translated text appears.
+
+The card's defaults table on the entity is **not** modified by the translation flow. Editing a default on the card form only writes the entity row; existing locale translations in the `translation` table are preserved.
+
+## Render-time behaviour
+
+For each key on the card, the device runs:
+
+```
+const translated = i18n.t(key);
+return translated === key
+  ? (entityDefaults[key] || key)   // fallback
+  : translated;                     // localised value
+```
+
+This means:
+
+- **Locale has a translation** → translated string renders.
+- **Locale has no translation but English default exists** → English default renders.
+- **Locale has no translation and the entity default has been removed** → the literal key renders (this is intentional — implementers see immediately if a key reference is broken).
+
+## Examples
+
+### Counter with primary + helper text
+
+```js
+// Data rule
+({ params }) => {
+  const total = params.db.objects("Individual").filtered("voided = false").length;
+  return { primaryValue: total, secondaryValue: "people", data: { total } };
+}
+```
+
+```html
+<!-- Template -->
+<div>
+  <div>${translations['count.title']}</div>
+  <div style="font-size:32px;font-weight:bold;">${data.total}</div>
+  <div style="white-space:pre-wrap;color:#666;">${translations['count.help']}</div>
+</div>
+```
+
+### Conditional empty-state
+
+```html
+${data.total === 0
+  ? `<div>${translations['empty.message']}</div>`
+  : `<div>${data.total} ${translations['unit.plural']}</div>`}
+```
+
+### Iterated table
+
+```js
+// Data rule
+return { data: { rows: farmers.slice(0, 5).map(f => ({ name: f.nameString, date: f.registrationDate })) } };
+```
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>${translations['col.name']}</th>
+      <th>${translations['col.date']}</th>
+    </tr>
+  </thead>
+  <tbody>
+    ${data.rows.map(r => `<tr><td>${r.name}</td><td>${r.date}</td></tr>`).join('')}
+  </tbody>
+</table>
+```
+
+## Limitations
+
+- **Dot access vs bracket access.** `translations.cardFarmerTitle` works for identifier-safe keys; `translations['card.farmer.title']` is required when a key contains dots, hyphens, spaces, or starts with a digit.
+- **No file upload for translation values.** Long multi-line defaults are supported inline through the multi-line text field. A CSV/JSON bulk uploader can be added in future if needed.
+- **HTML rendering caveats.** The runtime is the platform's WebView. Test on the lowest supported device.
+- **Template errors are caught.** A syntax error in the data rule or a runtime exception (`undefined.foo`) shows an inline error string instead of the card. Check device logs (`Rule-Failure`) for stack traces.
+- **Translation removal does not auto-clean Lokalise.** Removing a key from the card editor only clears it from the card's `translations` jsonb; existing localised values in the `translation` table remain (cheap to keep, easy to clean up later if needed).
+
+## Storage internals (for reference)
+
+- `custom_card_config.translations` (jsonb) — the implementer's English defaults, source of truth for keys.
+- `translation.translation_json` (per-locale jsonb) — Lokalise-authored translations. Never written by the card-save flow.
+- `customcardconfigs/<uuid>.html` in S3 (or `${java.io.tmpdir}/<orgDir>/customcardconfigs/<uuid>.html` in dev mode) — the uploaded HTML template.
+- Sync: `CustomCardConfig` is non-scope-aware (org-wide). `lastModifiedDateTime` on the row triggers re-sync. The HTML file is downloaded lazily on card render if missing locally.
+
+## Troubleshooting
+
+| Symptom                                            | Likely cause                                                                                               |
+| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Card renders blank                                 | HTML template not yet on the device. Re-sync, or check that `customCardConfigsDir` contains `<uuid>.html`. |
+| Card shows `undefined`                             | The data rule didn't put the field on `result.data`. Check what your rule returns.                         |
+| Newlines in default not visible                    | Add `white-space:pre-wrap` to the rendering element.                                                       |
+| `${translations.foo}` shows literal text           | Key is dotted (`foo.bar`); use bracket access instead.                                                     |
+| Hindi translation reverts after re-saving the card | Should not happen — the card save never writes the translation table. If reproducible, file a bug.         |
+| Dev-mode HTML download returns 0 bytes             | Need the dev-mode storage round-trip fix (#1851). Restart the server with the latest code; re-upload.      |
+
 ## Default Dashboard and Report Cards
 
 Starting in release 10.0, any newly created organisation will have a default dashboard created with the following sections, standard cards and filters.
