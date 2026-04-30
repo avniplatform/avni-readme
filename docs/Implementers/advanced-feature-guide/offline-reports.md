@@ -764,6 +764,26 @@ The data rule is a single JavaScript expression that yields a function `({ param
      };
    }
    ```
+
+   ```js
+   ({ params, imports }) => {
+     const _ = imports.lodash;
+     const farmers = params.db
+       .objects("Individual")
+       .filtered("voided = false and subjectType.name = 'Farmer'");
+
+     return {
+       primaryValue: farmers.length,
+       secondaryValue: farmers.length === 0 ? "—" : "ok",
+       deferredDataFunction: () => { 
+         return {
+          total: farmers.length,
+          rows: farmers.slice(0, 5).map(f => ({ name: f.nameString })),
+         }
+       },
+     };
+   }
+   ```
 3. **Add translations.** Below the Data Rule field, click **Add Translation** for each string the template will reference — each row is a key plus a multi-line English default. The save flow blocks empty keys, within-card duplicates, cross-card duplicates, and any default that conflicts with an existing English entry in the Translations screen; the resulting 400 names the offending key.
 4. **Upload the HTML template and save.** Pick a `.html` file. The file is a JavaScript template literal: every `${...}` is evaluated against `data` and `translations` at render time. Use `white-space:pre-wrap` on any element where multi-line translation defaults need to retain their line breaks.
 
