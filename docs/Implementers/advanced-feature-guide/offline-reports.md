@@ -740,7 +740,7 @@ The data rule is a single JavaScript expression that yields a function `({ param
 
 `data` may be a plain object, an array, or a Realm result — anything `typeof === 'object'` and not `null`. Primitives, functions, `null`, and `undefined` are silently replaced with `{}` and the template renders blanks. When both `data` and `deferredDataFunction` are present, `data` wins.
 
-> Note: `lineListFunction`, used by Nested Report Cards above, is intentionally not supported here — see the Nested Report Cards section if that is the pattern you need.
+> Note: `lineListFunction`, used by Nested Report Cards above, is intentionally not supported here — deferredDataFunction instead is to be used for detailing deferred data evaluation on clicking a Fully Custom card.
 
 ### Authoring a card
 
