@@ -199,5 +199,5 @@ If you are using decision concepts in the rule but not linked those concepts the
 ### How do I upload images?
 
 * For images, use a url that the avni server can download. Ensure that
-  * The images are a direct download link (not a redirect to a page that uses javascript to download)
+  * The images are a direct download link (not a redirect to a page that uses javascript to download). Starting from v16.13, Avni will follow 5 redirects and attempt to download the file to be able to support google drive share links.
   * The image urls end with the image type. eg: [https://somedomain.com/images/abc.png](https://somedomain.com/images/abc.png)
