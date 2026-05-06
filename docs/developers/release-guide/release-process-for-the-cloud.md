@@ -265,8 +265,8 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
   * On Prod track, partial rollout to 5% of Prod track users
 * After we receive Playstore review approval and QA team gives "Go ahead" on performing Sanity testing of Prod APK, manually publish the changes
 * Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing.
-* Wait for 7 days for feedback from users. If none, then increase roll-out to 20% of the production user-base
-* Wait for another 7 days(14 days from initial rollout) for feedback from users. If none, then increase roll-out to 100% of the production user-base
+* Wait for 7 days for feedback from users and monitor bugsnag for errors for this version. If none, then increase roll-out to 100% of the production user-base
+* If another version needs to be released within 7 days of the previous release, try and release the previous version to a 100% (so that the fixes in it are not held back) instead of superseding it with the new one depending on risk.
 
 ### Deployment of secondary applications
 
