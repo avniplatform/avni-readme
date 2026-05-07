@@ -44,7 +44,7 @@ The following privileges are available in order to allow organisation admins to 
 * The Subject level privileges are configurable for each Subject Type setup in your organisation.
 * The Enrolment level privileges are configurable for each program setup in your organisation.
 * The Encounter level privileges are configurable for each Encounter Type (General or Program) setup in your organisation.
-* The Checklist level privileges are configurable for each Program containing checklists for your organisation. 
+* The Checklist level privileges are configurable for each Program containing checklists for your organisation.
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -74,7 +74,7 @@ The following privileges are available in order to allow organisation admins to 
       </td>
 
       <td>
-        Controls whether field users can see subjects of a particular subject type in the app.  
+        Controls whether field users can see subjects of a particular subject type in the app.
 
         All other privileges are dependent on this privilege. If disallowed, field users cannot see or access any functionality for the specific subject type.
       </td>
@@ -128,7 +128,7 @@ The following privileges are available in order to allow organisation admins to 
       </td>
 
       <td>
-        Add member\*
+        Add member*
       </td>
 
       <td>
@@ -142,7 +142,7 @@ The following privileges are available in order to allow organisation admins to 
       </td>
 
       <td>
-        Edit member\*
+        Edit member*
       </td>
 
       <td>
@@ -156,7 +156,7 @@ The following privileges are available in order to allow organisation admins to 
       </td>
 
       <td>
-        Remove member\*
+        Remove member*
       </td>
 
       <td>
@@ -296,7 +296,7 @@ The following privileges are available in order to allow organisation admins to 
       </td>
 
       <td>
-        Void visit\*\*
+        Void visit**
       </td>
 
       <td>
@@ -336,7 +336,7 @@ The following privileges are available in order to allow organisation admins to 
 
 `*` Only for 'Household' subject types
 
-`**` Only available as part of Avni 4.0 release (not a full list)
+`**` Only available as part of Avni 4.0 release (not a full list). Only supported on DEA, not on android.
 
 Some of these privileges imply others. For example, allowing the 'Register Subject' privilege implies that the group will also have 'View Subject' allowed. The system handles these dependencies automatically.
 
