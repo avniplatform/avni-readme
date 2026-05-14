@@ -291,7 +291,6 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
 ## Post-deployment
 
 * Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing.
-* **Optional:** Create a blog on avni-website repository with details of the release. Make sure to include relevant documentation links and videos if necessary. This is meant for a non-technical user while the release notes on Github can be for developers and implementers
 * Send brief information on
   * [avni@samanvayfoundation.org](mailto:avni@samanvayfoundation.org),  [avni-users@googlegroups.com](mailto:avni-users@googlegroups.com) (usually with the subject "Avni Release Announcement - release_number")
   * avni-community discord channel
@@ -301,3 +300,4 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
   * Update README.md from [https://github.com/avniplatform/avni-readme/blob/v2.0/README.md](https://github.com/avniplatform/avni-readme/blob/v2.0/README.md)
   * Update About the Assistant.md from [https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md](https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md)
 * Update release version in the [release tracker](https://docs.google.com/spreadsheets/d/1LcyE3_Ht_YztBjfPpedvjUtvzcJezP5dFOZFOyzWs2E/edit?usp=sharing)
+* **Optional:** Create a blog on avni-website repository with details of the release. Make sure to include relevant documentation links and videos if necessary. This is meant for a non-technical user while the release notes on Github can be for developers and implementers
