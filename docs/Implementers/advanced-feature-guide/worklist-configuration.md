@@ -34,7 +34,7 @@ A **Worklist** is a sequence of forms that are presented to the user one after a
 
 * **WorkList**: Container holding multiple WorkItems
 * **WorkItem**: Individual form/task in the sequence
-* **WorkItem Types**: REGISTRATION, ENCOUNTER, PROGRAM_ENCOUNTER, PROGRAM_ENROLMENT, PROGRAM_EXIT, ADD_MEMBER, HOUSEHOLD, REMOVE_MEMBER, CANCELLED_ENCOUNTER
+* **WorkItem Types**: REGISTRATION, ENCOUNTER, PROGRAM_ENCOUNTER, PROGRAM_ENROLMENT, PROGRAM_EXIT, ADD_MEMBER, HOUSEHOLD, REMOVE_MEMBER, CANCELLED_ENCOUNTER, SHARE
 * **Worklist Updation Rule**: JavaScript code that modifies the worklist dynamically
 
 ***
@@ -231,6 +231,15 @@ new WorkItem(uuid, WorkItem.type.CANCELLED_ENCOUNTER, {
 })
 ```
 
+#### 10. SHARE
+
+Triggers the share screen for the subject's last filled form immediately after save, so the field worker does not need to tap **Share** as a separate step. **Required parameters**
+
+* `subjectUUID` — the subject whose form is being shared.
+* `format` — `"pdf"` or `"text"`. Determines whether the phone's share screen opens with a PDF attached or with the form's contents as a plain-text message. Any other value is rejected by validation. **Behaviour** When the worklist advances to a `SHARE` work item, the app opens the phone's share screen directly using the requested format. The PDF/Text bottom sheet that the manual Share button shows is **not** displayed — the implementor has already chosen the format by setting it on the work item. If the field worker dismisses the share screen, the work item is consumed and the worklist proceeds normally. If the form has a Share rule configured (see the **Share rule** section of _Writing Rules_), the custom format from that rule is used; otherwise the defaults are used.
+
+<br />
+
 ### WorkItem Validation Rules
 
 Each WorkItem type has specific validation requirements enforced by the system:
@@ -246,6 +255,7 @@ Each WorkItem type has specific validation requirements enforced by the system:
 * **HOUSEHOLD**: No subjectUUID required
 * **REMOVE_MEMBER**: `groupSubjectUUID`
 * **CANCELLED_ENCOUNTER**: `encounterType`, `subjectUUID`
+* **SHARE**: `subjectUUID`, `format` (must be `"pdf"` or `"text"`)
 
 #### Special Validation Rules:
 
@@ -523,6 +533,30 @@ const next = currentWorkList.nextWorkItem();
 }
 ```
 
+<br />
+
+#### Example 6: Auto-share a household visit after save
+
+A field worker conducts a household visit and the form must always be sent on to the supervisor as a PDF. Instead of asking the worker to tap **Share** after every save, queue a `SHARE` work item after the encounter:
+
+```js
+({ params: { context, workLists }, imports: { models, common } }) => {
+  const entity = context.entity;
+  const isHouseholdVisit = _.get(entity, 'encounterType.name') === 'Household Visit';
+  if (isHouseholdVisit) {
+    workLists.addItemsToCurrentWorkList(
+      new models.WorkItem(common.getUUID(), models.WorkItem.type.SHARE, {
+        subjectUUID: entity.individual.uuid,
+        format: 'pdf'
+      })
+    );
+  }
+  return workLists;
+}
+```
+
+After the household visit is saved, the worklist advances to the `SHARE` item and the share screen opens with the PDF ready to send. To send the contents as a WhatsApp-friendly message instead, change `format: 'pdf'` to `format: 'text'`. To make the shared content match a custom layout or message, configure a Share rule for the same form (see _Writing Rules_).
+
 ### WorkItem Management Approaches
 
 #### Method 1: Using WorkLists API (Recommended)
@@ -658,7 +692,7 @@ workLists.currentWorkList.workItems.sort((a, b) =>
 // - Workflows that span multiple subjects
 ```
 
-**Solution**: Can be used with household/group subject types and their Member Subject Types, or separate worklists for each subject. OR, Use splice direct array manipulation to replace all pending items with just the next desired item, so the button label correctly reflects the new target. Ex: when registering Individual of type B after registering Individual of type A.  
+**Solution**: Can be used with household/group subject types and their Member Subject Types, or separate worklists for each subject. OR, Use splice direct array manipulation to replace all pending items with just the next desired item, so the button label correctly reflects the new target. Ex: when registering Individual of type B after registering Individual of type A.
 
 ```
 splice(0, currentWorkList.workItems.length, newItem) 
