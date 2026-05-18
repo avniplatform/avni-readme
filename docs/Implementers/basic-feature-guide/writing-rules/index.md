@@ -89,7 +89,7 @@ All rule receives an entity from the `params` object. Depending on the rule type
 16. [Member Addition Eligibility Check Rule](https://avni.readme.io/docs/writing-rules#16-member-addition-eligibility-check-rule)
 17. [Edit Form Rule](https://avni.readme.io/docs/writing-rules#17-edit-form-rule)
 18. [Global reusable code rule](https://avni.readme.io/docs/writing-rules#18-global-reusable-code-rule-alpha)
-19. [Share Rule]
+19. [Share Rule](https://avni.readme.io/update/docs/writing-rules)
 
 <br />
 
