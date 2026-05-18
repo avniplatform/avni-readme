@@ -6,8 +6,6 @@ hidden: false
 metadata:
   robots: index
 ---
-<br />
-
 ## What this feature does
 
 For specific forms, an organisation can choose to have the share action fire automatically the moment the form is saved. The field worker doesn't need to find or tap the Share button afterwards — the phone's share screen pops up directly.
