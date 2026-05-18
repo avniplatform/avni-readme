@@ -26,7 +26,7 @@ Organisations can decide what each format looks like for any given form. If noth
 
 ## What an implementor can configure
 
-For any form, an implementor can set up either or both of:
+For any form, an implementor can set up either or both of via [Share Rules](https://avni.readme.io/docs/writing-rules#19-share-rule):
 
 * A **custom PDF layout** — for example, one that mimics a government register format the form is meant to feed into.
 * A **custom text message** — for example, a friendly WhatsApp summary using bold, italics, and bullets.
