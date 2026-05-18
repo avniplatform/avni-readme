@@ -89,14 +89,15 @@ All rule receives an entity from the `params` object. Depending on the rule type
 16. [Member Addition Eligibility Check Rule](https://avni.readme.io/docs/writing-rules#16-member-addition-eligibility-check-rule)
 17. [Edit Form Rule](https://avni.readme.io/docs/writing-rules#17-edit-form-rule)
 18. [Global reusable code rule](https://avni.readme.io/docs/writing-rules#18-global-reusable-code-rule-alpha)
+19. [Share Rule]
 
 <br />
 
-<Image alt="Invocation of different rule types" border={false} src="https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png" />
+![Invocation of different rule types](https://files.readme.io/2284f79-Screenshot_2020-07-03_at_9.33.55_AM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png" />
+![](https://files.readme.io/baad794-Screenshot_2020-07-03_at_9.59.42_AM.png)
 
 <br />
 
@@ -148,11 +149,11 @@ You need to return an array of summary objects from this function.
 };
 ```
 
-<Image border={false} src="https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png" />
+![](https://files.readme.io/4f29afe-Screenshot_2020-05-19_at_3.09.44_PM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png" />
+![](https://files.readme.io/6fdb1f3-4bf85d9-encounter-scheduling-2.png)
 
 <br />
 
@@ -261,11 +262,11 @@ const phulwariName = _.get(_.find(params.entityContext.affiliatedGroups, ({voide
 
 ```
 
-<Image border={false} src="https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png" />
+![](https://files.readme.io/ece1355-Screenshot_2020-07-02_at_6.21.43_PM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif" />
+![](https://files.readme.io/abb6bcf-4692c21-SkipLogic.gif)
 
 Please note that form element rules are not transitive and cannot depend on the result of another form element's form element rule. The rule logic for a particular element will need to cater to this.
 
@@ -396,11 +397,11 @@ You need to return an array of visit schedules from this function.
 .
 ```
 
-<Image border={false} src="https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png" />
+![](https://files.readme.io/42b7d6b-Screenshot_2020-05-19_at_7.04.19_PM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png" />
+![](https://files.readme.io/cbaef6a-4fff50b-encounter-scheduling-1.png)
 
 ### Strategies that Avni uses.
 
@@ -506,11 +507,11 @@ The shape of <decision object>
 };
 ```
 
-<Image border={false} src="https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png" />
+![](https://files.readme.io/f0f898a-Screenshot_2020-05-19_at_7.09.58_PM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png" />
+![](https://files.readme.io/4b488cc-4fff50b-encounter-scheduling-1.png)
 
 <br />
 
@@ -551,7 +552,7 @@ The return value of this function is an array with validation errors.
 };
 ```
 
-<Image border={false} src="https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png" />
+![](https://files.readme.io/fb8e5df-Screenshot_2020-05-19_at_7.14.05_PM.png)
 
 <br />
 
@@ -590,11 +591,12 @@ The return value of this function should be a boolean.
 ```
 
 **Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour.
-<Image border={false} src="https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png" />
+
+![](https://files.readme.io/bc76050-Screenshot_2020-05-20_at_3.57.52_PM.png)
 
 <br />
 
-<Image border={false} src="https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png" />
+![](https://files.readme.io/ba63cb1-cbe944e-Screenshot_2019-11-20_at_6.51.40_PM.png)
 
 <br />
 
@@ -637,7 +639,8 @@ The return value of this function should be a boolean.
 ```
 
 **Notes**: The eligibility check is triggered only when someone tries to create a visit manually. Form stitching rules can override this default behaviour.
-<Image border={false} src="https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png" />
+
+![](https://files.readme.io/0d034b9-Screenshot_2020-05-20_at_4.02.24_PM.png)
 
 <br />
 
@@ -756,7 +759,7 @@ Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/up
 * [External example gist](https://gist.github.com/hithacker/d0fe89107b974797fbb11ced1feda146)
 * [**Complete worklist documentation with advanced examples**](https://avni.readme.io/update/docs/worklist-configuration)
 
-<Image border={false} src="https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png" />
+![](https://files.readme.io/ef3535d-Screenshot_2020-05-21_at_3.25.33_PM.png)
 
 <br />
 
@@ -864,7 +867,8 @@ Any number of message Rules can be configured.
 ### Example configuration:
 
 Say, 'common_otp' Glific message template is 'Your OTP for `{{1}}` is `{{2}}`. This is valid for `{{3}}`.' If we want to send a OTP message that says 'Your OTP for receiving books is 1458. This is valid for 2 hours.' to a student after 1 day of their registration, then we need to configure for student subject type as shown in the below image (Note the shape of the return objects):
-<Image border={false} src="https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png" />
+
+![](https://files.readme.io/2e3e442-Screenshot_2023-12-27_at_6.15.54_PM.png)
 
 ```Text Schedule
 'use strict';  
@@ -1050,7 +1054,8 @@ While adding members to a "Self-help" group, we need to validate that the person
 ```
 
 **Reference Screenshot, when Member Addition Eligibility Check Rule fails:**
-<Image border={false} src="https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png" />
+
+![](https://files.readme.io/aaa48f09aa4c5bcaebf2d9ae72f19c0777e719bd463b213b43e011796fd8db0a-Screenshot_2025-06-27_at_7.41.28_PM.png)
 
 #### Error Handling
 
@@ -1135,6 +1140,75 @@ Note that you can define the signature of your new function (like hello, sum). I
    1. Provide the origin and token
    2. The token will determine the organisation to which it is deployed. Rerunning it will update the previous rule.
 2. Run sync in the mobile app
+
+<br />
+
+### 19. Share Rule
+
+**Logical scope:** Form (Registration form, Encounter form, Program Encounter form, etc.) **Trigger:** Runs when the field worker shares a saved form — either by tapping the **Share** button and choosing **Share as PDF** / **Share as Text**, or automatically when an auto-share work item fires from a Work list updation rule. **Designer location:** App Designer → Form → _Share rule_ tab. **When to use:** Configure a Share rule when the standard share output (default PDF, default plain-text summary) does not match the format your programme needs to send out. Typical reasons:
+
+* You need the PDF to look like a specific government register page or printed form.
+* You want the text version to read like a friendly WhatsApp summary using bold, italics and bullets — not a raw question-and-answer dump.
+* You want translations of the share text to be exportable from the webapp alongside other translated content. A Share rule can return one or both of the two formats. Whichever it does not return falls back to the default for that format. **Shape of `params`:**
+
+```js
+{
+  entity,           // the saved form's primary entity (Individual, ProgramEncounter, etc.)
+  form,             // the form being shared
+  services,
+  myUserGroups,
+  user
+}
+```
+
+**Shape of return value:**
+
+```js
+{
+  data: { /* plain JS object */ },   // optional — injected into the HTML template that produces the PDF
+  text: "..."                         // optional — plain string used as the WhatsApp/SMS message body
+}
+```
+
+Both fields are optional. Returning only `data` customises the PDF and leaves the text format at default. Returning only `text` customises the message and leaves the PDF at default. Returning neither (or an empty object) is equivalent to having no Share rule at all — both formats fall back to defaults. The `data` object is made available as `data` inside the HTML template, the same way it is for fully custom card templates. **Example — both formats customised:**
+
+```js
+({ params: { entity, form }, imports: { common } }) => {
+  const subject = entity.individual;
+  const visitDate = common.formatDate(entity.encounterDateTime);
+  const observationsByName = {};
+  entity.observations.forEach(obs => {
+    observationsByName[obs.concept.name] = obs.getReadableValue();
+  });
+  return {
+    data: {
+      subjectName: subject.nameString,
+      villageName: _.get(subject, 'lowestAddressLevel.name'),
+      visitDate,
+      observations: observationsByName
+    },
+    text:
+      `*Household visit — ${subject.nameString}*\n` +
+      `_${visitDate}_\n\n` +
+      `- Members present: ${observationsByName['Members present'] || '—'}\n` +
+      `- Concerns: ${observationsByName['Concerns raised'] || 'None'}`
+  };
+}
+```
+
+**Example — text only, PDF falls back to default:**
+
+```js
+({ params: { entity }, imports: { common } }) => ({
+  text: `Visit completed for ${entity.individual.nameString} on ${common.formatDate(entity.encounterDateTime)}.`
+});
+```
+
+**Notes:**
+
+* Media observations (images, audio, video) can be referenced from the PDF template but should be skipped in the text output — they cannot be pasted into a chat message.
+* When the Share rule throws, the failure is captured in the same way as other rule failures and the affected format falls back to its default; the field worker still sees a usable share screen.
+* The Share rule is invoked by both manual shares (Share button → Share as PDF / Share as Text) and auto-shares queued via a Work list updation rule. There is no separate rule for the two paths.
 
 ## Accessing Address Level Properties :
 
@@ -1567,7 +1641,8 @@ For business reasons, we might need to verify that there are **No / Limited numb
 Use IndividualServiceFacade.findAllSubjectsWithMobileNumberForType(mobileNumber, subjectTypeUUID) method to get subjects with same phone number.
 
 **Requires the PhoneNumber concept to have, KeyValue (primary_contact : yes) or (contact_number : yes)**
-<Image border={false} src="https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png" />
+
+![](https://files.readme.io/f48da098be8218e797e7dd841e023036199eb0b7aa696ece422a6974e0b3f56f-421821795-e7b7766d-3865-4a66-a66e-93f4ddc8b13d.png)
 
 ```js
 
