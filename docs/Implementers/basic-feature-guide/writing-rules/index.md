@@ -745,8 +745,6 @@ Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/up
             }
         );
         
-        // Insert before the last item
-        const totalItems = workLists.currentWorkList.workItems.length;
         workLists.addItemsToCurrentWorkList(healthSurvey);
     }
     
