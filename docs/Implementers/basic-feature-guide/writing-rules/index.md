@@ -747,7 +747,7 @@ Please refer to the [**comprehensive worklist guide**](https://avni.readme.io/up
         
         // Insert before the last item
         const totalItems = workLists.currentWorkList.workItems.length;
-        workLists.currentWorkList.workItems.splice(totalItems - 1, 0, healthSurvey);
+        workLists.addItemsToCurrentWorkList(healthSurvey);
     }
     
     return workLists;
