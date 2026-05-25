@@ -25,9 +25,9 @@ next:
 The Admin app of the web console has an upload option. Currently, this supports
 
 * Upload subjects
-* Upload program enrolment (excluding exit information and observations)
-* Upload program encounters (excluding cancel information and observations)
-* Upload encounters (excluding cancel information and observations)
+* Upload program enrolments — active, or already exited
+* Upload program encounters — scheduled, completed, or cancelled
+* Upload encounters — scheduled, completed, or cancelled
 * [Upload locations](location-and-catchment-in-avni)
 * Upload users and catchments
 * Upload metadata zip file downloaded from a different implementation

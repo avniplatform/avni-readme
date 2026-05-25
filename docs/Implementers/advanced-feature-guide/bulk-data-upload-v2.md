@@ -21,9 +21,9 @@ next:
 The Admin app of the web console has an upload option. Currently, this supports the following. Essentially for each form present in you organisation there is a corresponding upload option in the dropdown, with a sample file.
 
 * Upload subjects
-* Upload program enrolment (excluding exit information and observations)
-* Upload program encounters (excluding cancel information and observations)
-* Upload encounters (excluding cancel information and observations)
+* Upload program enrolments — active, or already exited
+* Upload program encounters — scheduled, completed, or cancelled
+* Upload encounters — scheduled, completed, or cancelled
 * [Upload locations](location-and-catchment-in-avni)
 * Upload users and catchments
 * Upload metadata zip file downloaded from a different implementation
@@ -161,9 +161,33 @@ The primary purpose of these identifiers is for the users to be able to link dif
 
 > 📘 The identifiers used above, for Id from previous system, are saved in Avni but is not visible in Avni after uploading, it is used only for matching records during CSV upload.
 
-## Scheduling a visit and Upload visit details
+## Encounter and enrolment upload modes
 
-Please note that sample file for uploading visit details and scheduling a visit are different. These two options allow for  either creating a scheduled encounter/visit or completed encounter/visit. Note that scheduling a visit and then uploading the visit details for the same visit is not supported (as that is similar to edit).
+When the upload type is an encounter, program encounter, or program enrolment, a *mode* radio group appears below the upload-type dropdown. Each mode has its own sample file, since the required columns differ.
+
+### Encounter modes
+
+Available for both general encounters and program encounters:
+
+* **Schedule visits** — creates a scheduled (not-yet-completed) encounter. Sample includes `Earliest Visit Date` and `Max Visit Date`; no visit observations.
+* **Upload visits** — creates a completed encounter. Sample includes `Visit Date` and the encounter form's observations. *(Previously labelled "Upload visit details".)*
+* **Upload cancelled visits** — creates an encounter already in the cancelled state. Sample includes `Earliest Visit Date`, `Max Visit Date`, `Cancel Date`, optional `Cancel Location`, and the encounter's cancellation form observations. There is no `Visit Date` column. Use this when migrating cancelled encounters from another system (typically during an organisation merge).
+
+Scheduling a visit and then later uploading the visit details for the same visit is not supported — that would be an edit, which CSV upload does not handle.
+
+### Program enrolment modes
+
+* **Upload enrolments** *(default)* — creates an active program enrolment. Same shape as before.
+* **Upload exited enrolments** — creates a program enrolment that is already in the exited state, from a single row carrying both regular and exit observations. Sample includes `Enrolment Date`, optional `Enrolment Coordinates`, the enrolment form's observations, `Exit Date`, optional `Exit Coordinates`, and the program-exit form's observations. Use this when migrating exited enrolments from another system (typically during an organisation merge).
+
+#### `Exit:` prefix convention
+
+In the *Upload exited enrolments* sample, every column drawn from the program-exit form is prefixed with the literal string `Exit: ` to disambiguate it from enrolment-form columns (the same concept may appear on both forms).
+
+* Valid: `Exit: Weight at exit`, `Exit: Vitals at exit|Weight`, `Exit: Medications stopped|Drug name|1`.
+* The prefix is recognised **only at the start of the column header**. A header containing `Exit:` anywhere else (e.g. `Vitals|Exit: Weight`) is rejected.
+
+On import, `Exit:`-prefixed columns are stored as exit observations; remaining concept columns are stored as regular observations.
 
 <Image align="center" border={true} src="https://files.readme.io/30f7062dbe6572554955d88df13530e6e45c5a4cd5986fd81499661a294f78a2-image.png" className="border" />
 
