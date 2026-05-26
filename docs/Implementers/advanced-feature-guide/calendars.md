@@ -16,9 +16,6 @@ The calendar is the foundation that the [Attendance](doc:attendance) feature bui
 
 If your organisation does not need attendance, you may not need to configure a calendar at all. If you are setting up attendance, configure the calendar first.
 
-<!-- TODO: high-level diagram showing a calendar with marked dates feeding into the Attendance "expected sessions" view -->
-<Image align="center" width="700px" src="" alt="Calendar feeds the attendance expected-sessions view" />
-
 ## Global vs. per-location calendars
 
 An organisation can be in **exactly one** of two calendar modes at any given time:
