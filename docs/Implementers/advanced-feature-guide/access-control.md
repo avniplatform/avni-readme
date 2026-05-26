@@ -331,6 +331,20 @@ The following privileges are available in order to allow organisation admins to 
         Allows field users to edit checklist.
       </td>
     </tr>
+
+    <tr>
+      <td>
+        Calendar
+      </td>
+
+      <td>
+        ManageCalendars
+      </td>
+
+      <td>
+        Grants access to the Calendars page in App Designer for creating and managing calendars and date markers. Used by the [Attendance](doc:attendance) feature. Org-wide privilege (not scoped per entity type).
+      </td>
+    </tr>
   </tbody>
 </Table>
 
