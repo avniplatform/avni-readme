@@ -163,33 +163,39 @@ The primary purpose of these identifiers is for the users to be able to link dif
 
 ## Encounter and enrolment upload modes
 
-When the upload type is an encounter, program encounter, or program enrolment, a *mode* radio group appears below the upload-type dropdown. Each mode has its own sample file, since the required columns differ.
+When the upload type is an encounter, program encounter, or program enrolment, a _mode_ radio group appears below the upload-type dropdown. Each mode has its own sample file, since the required columns differ.
 
 ### Encounter modes
 
 Available for both general encounters and program encounters:
 
 * **Schedule visits** — creates a scheduled (not-yet-completed) encounter. Sample includes `Earliest Visit Date` and `Max Visit Date`; no visit observations.
-* **Upload visits** — creates a completed encounter. Sample includes `Visit Date` and the encounter form's observations. *(Previously labelled "Upload visit details".)*
+* **Upload visits** — creates a completed encounter. Sample includes `Visit Date` and the encounter form's observations. _(Previously labelled "Upload visit details".)_
 * **Upload cancelled visits** — creates an encounter already in the cancelled state. Sample includes `Earliest Visit Date`, `Max Visit Date`, `Cancel Date`, optional `Cancel Location`, and the encounter's cancellation form observations. There is no `Visit Date` column. Use this when migrating cancelled encounters from another system (typically during an organisation merge).
 
 Scheduling a visit and then later uploading the visit details for the same visit is not supported — that would be an edit, which CSV upload does not handle.
 
+<Image align="center" border={true} src="https://files.readme.io/dec1912d350d0762948915daeb49bef3d9bb3a4a753264e2640305d540779057-image.png" className="border" />
+
+<br />
+
 ### Program enrolment modes
 
-* **Upload enrolments** *(default)* — creates an active program enrolment. Same shape as before.
+* **Upload enrolments** _(default)_ — creates an active program enrolment. Same shape as before.
 * **Upload exited enrolments** — creates a program enrolment that is already in the exited state, from a single row carrying both regular and exit observations. Sample includes `Enrolment Date`, optional `Enrolment Coordinates`, the enrolment form's observations, `Exit Date`, optional `Exit Coordinates`, and the program-exit form's observations. Use this when migrating exited enrolments from another system (typically during an organisation merge).
 
 #### `Exit:` prefix convention
 
-In the *Upload exited enrolments* sample, every column drawn from the program-exit form is prefixed with the literal string `Exit: ` to disambiguate it from enrolment-form columns (the same concept may appear on both forms).
+In the _Upload exited enrolments_ sample, every column drawn from the program-exit form is prefixed with the literal string `Exit: ` to disambiguate it from enrolment-form columns (the same concept may appear on both forms).
 
 * Valid: `Exit: Weight at exit`, `Exit: Vitals at exit|Weight`, `Exit: Medications stopped|Drug name|1`.
 * The prefix is recognised **only at the start of the column header**. A header containing `Exit:` anywhere else (e.g. `Vitals|Exit: Weight`) is rejected.
 
 On import, `Exit:`-prefixed columns are stored as exit observations; remaining concept columns are stored as regular observations.
 
-<Image align="center" border={true} src="https://files.readme.io/30f7062dbe6572554955d88df13530e6e45c5a4cd5986fd81499661a294f78a2-image.png" className="border" />
+<Image align="center" border={true} src="https://files.readme.io/9d0721b153ded7c35fe91b779306adc20d4c7e21e14313dba0fbc1a31856a554-image.png" className="border" />
+
+<br />
 
 ## Important Notes / Gotchas
 
