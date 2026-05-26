@@ -1,18 +1,12 @@
 ---
 title: Calendars
-excerpt: Configure working days, public holidays, and region-specific overrides so attendance reports can distinguish "no class was expected" from "attendance wasn't recorded".
+excerpt: Configure working days, public holidays, and region-specific overrides so attendance reports distinguish expected absences from missed entries.
 deprecated: false
 hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
-  pages:
-    - type: advanced
-      slug: attendance
-      title: Attendance
 ---
 ## Overview
 
