@@ -127,9 +127,6 @@ This concept's answers populate the **Session-level** reason picker. Recommended
   * Forgot to mark
   * Other no-data reason
 
-<!-- TODO (no file provided yet): screenshot of the Session Outcome Reason coded concept opened in the Concept editor (App Designer → Concepts → Edit), with its answer set visible — capture this when the example concept is set up in the demo org -->
-<Image align="center" width="700px" src="" alt="Session Outcome Reason concept's answer set in the Concept editor" />
-
 ### Absence Reason concept
 
 This concept's answers populate the **per-student** dropdown that appears beneath any roster row toggled to Absent. The recommended answer set is simpler:
@@ -141,9 +138,6 @@ This concept's answers populate the **per-student** dropdown that appears beneat
 * Other
 
 Leaving the reason blank for an Absent student counts as *"reason unknown"* and triggers an automatic follow-up encounter on save (if the Attendance Type has a follow-up encounter type configured).
-
-<!-- TODO (no file provided yet): screenshot of the Absence Reason coded concept opened in the Concept editor (App Designer → Concepts → Edit), with its answer set visible — capture this when the example concept is set up in the demo org -->
-<Image align="center" width="700px" src="" alt="Absence Reason concept's answer set in the Concept editor" />
 
 > **Tip:** Different Attendance Types within the same Subject Type can pick different reason concepts — for example, Morning Prayer could use a simple absence-reason set while Math Class uses a richer set that includes academic-specific reasons. The flexibility is intentional.
 
@@ -227,8 +221,8 @@ When the worker saves a Held session, Avni inspects each Absent student's reason
 
 A confirmation dialog appears after the save, listing the students for whom a follow-up was created.
 
-<!-- TODO (no file provided yet): screenshot of the Android post-save dialog listing the auto-created follow-up encounters (student names, encounter type, due date, max date, single OK button) — capture this when a Save creates at least one follow-up encounter -->
-<Image align="center" width="400px" src="" alt="Follow-ups created — Android post-save confirmation dialog listing students for whom a follow-up encounter was created" />
+<!-- TODO: upload `absentee-followup-created.png` from /Users/himeshr/Desktop/ — Android post-save "Follow-ups created" dialog reading "1 follow-up encounters have been created for absent students whose reason was blank." then listing gowri shankara · Roll 1 · Absence Followup · Due today · Max date: Thu 28 May 2026, with a single OK action -->
+<Image align="center" width="400px" src="" alt="Android post-save Follow-ups created dialog listing the absent student for whom a follow-up encounter was auto-created" />
 
 If the worker later corrects a Session (re-marks an Absent-no-reason student as Present, or fills in their reason), the previously-created follow-up encounter is automatically voided in the same transaction — **unless** the follow-up encounter has already been filled in (it has Observations), in which case it is left untouched and the dialog surfaces a warning.
 
