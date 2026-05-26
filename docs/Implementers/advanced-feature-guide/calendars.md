@@ -30,8 +30,15 @@ For example, an organisation operating in Karnataka and Tamil Nadu would use per
 
 The two modes are **mutually exclusive within an organisation**. To switch modes, all existing calendars must first be deleted.
 
-<!-- TODO: side-by-side screenshot — Calendars list in Global mode (one row with GLOBAL badge + DEFAULT badge) and in Per-location mode (multiple rows with location names in the Scope column) -->
-<Image align="center" width="700px" src="" alt="Calendars list shown in both modes" />
+**Global mode** — one calendar applies org-wide; the single row carries a `GLOBAL` badge and a `DEFAULT` badge:
+
+<!-- TODO: upload `list-global.png` from /Users/himeshr/Desktop/ — Calendars list page with a single global calendar named "Safal Global" carrying GLOBAL + DEFAULT badges -->
+<Image align="center" width="800px" src="" alt="Calendars list in Global mode — one row, GLOBAL + DEFAULT badges" />
+
+**Per-location mode** — one calendar per location node; each row's Scope column shows the address-level name:
+
+<!-- TODO: upload `list-local.png` from /Users/himeshr/Desktop/ — Calendars list page with two per-location calendars (Muniguda, Harichandanpur), Scope column showing "Per-location" for each -->
+<Image align="center" width="800px" src="" alt="Calendars list in Per-location mode — two rows for Muniguda and Harichandanpur" />
 
 ## Setting up your first calendar
 
@@ -39,8 +46,8 @@ The two modes are **mutually exclusive within an organisation**. To switch modes
 
 Navigate to **App Designer → Calendars** in the left navigation. This menu entry is visible only to users in a group that has the `ManageCalendars` privilege (see the section on privileges below).
 
-<!-- TODO: screenshot of the App Designer left navigation with the Calendars entry highlighted -->
-<Image align="center" width="300px" src="" alt="Calendars entry in the App Designer left navigation" />
+<!-- TODO: upload `republic-day-off-modal.png` from /Users/himeshr/Desktop/ — App Designer left navigation showing the Calendars entry (the marker popover in the same image is reused in the "Two ways to add a marker" section below) -->
+<Image align="center" width="500px" src="" alt="App Designer left navigation showing the Calendars entry" />
 
 ### Step 2 — Add the calendar
 
@@ -51,19 +58,21 @@ Tap **+ ADD CALENDAR**. The Add Calendar modal opens with three fields:
 * **Location** — an address-level picker, shown only when Scope is *Per-location*. Pick the address-level node that this calendar should apply to. Each location can hold at most one calendar.
 * **Weekly working pattern** — a 7-row × 5-column grid of checkboxes. The rows are the days of the week (Mon to Sun); the columns are the occurrence within the month (1st, 2nd, 3rd, 4th, 5th). Tick a cell to mark that occurrence as a working day. Defaults to Mon–Fri all ticked (full Monday-to-Friday working week).
 
-<!-- TODO: screenshot of the Add Calendar modal with Scope = Per-location, Location = Karnataka, and the weekly working-pattern grid showing the default Mon–Fri pattern -->
-<Image align="center" width="600px" src="" alt="Add Calendar modal" />
+<!-- TODO: upload `calendar-monthly-pattern.png` from /Users/himeshr/Desktop/ — Edit Calendar modal for Muniguda (Per-location), Location = Muniguda (Block), Weekly working pattern grid with Mon–Fri all ticked across columns 1–5 and Sat columns 2 and 4 ticked (Sat 1/3/5 left unticked) -->
+<Image align="center" width="700px" src="" alt="Edit Calendar modal — Muniguda per-location, weekly working-pattern grid with Mon–Fri all on and Sat columns 2 and 4 ticked" />
 
 ### Step 3 — Save
 
 Tap **SAVE**. The new calendar appears in the list.
 
-### Example — Bengaluru schools that work on the 1st, 3rd, and 5th Saturday
+### Example — partial-Saturday working patterns
 
-Many schools in Bengaluru follow a working pattern where Saturdays are working **only** on the 1st, 3rd, and 5th occurrence within the month (2nd and 4th Saturdays are off). To model this, tick the **Sat** row's columns 1, 3, and 5 in the working-pattern grid, and leave columns 2 and 4 unticked.
+Many local block schedules don't follow a simple Mon–Fri or full-Mon–Sat pattern. The 7×5 grid lets you tick individual Saturday occurrences:
 
-<!-- TODO: screenshot of the working-pattern grid configured for the Bengaluru-schools example -->
-<Image align="center" width="500px" src="" alt="Weekly working pattern: Mon–Fri all ticked, Sat columns 1, 3, 5 ticked" />
+* **Muniguda** (shown in the screenshot above) works on **2nd and 4th Saturdays** — tick `Sat` columns 2 and 4; leave `Sat` columns 1, 3, 5 unticked.
+* **Bengaluru schools** typically work on **1st, 3rd, and 5th Saturdays** — tick `Sat` columns 1, 3, 5; leave 2 and 4 unticked.
+
+Adapt the same idea for any custom pattern your organisation needs.
 
 ## Marking holidays and working overrides
 
@@ -81,15 +90,22 @@ From the Calendars list, click the calendar's name to drill in. The grid view sh
 * Red-dotted cells are public holidays (Off markers).
 * Green-dotted cells are working overrides.
 
-<!-- TODO: screenshot of a calendar's grid view for 2026 showing Republic Day (red dot, 26 Jan), Diwali (red dot, 9 Nov), and a green-dot working override on a Saturday -->
-<Image align="center" width="800px" src="" alt="Calendar grid view with sample markers" />
+<!-- TODO: upload `calendar-global-show.png` from /Users/himeshr/Desktop/ — Drill-in grid view for "Safal Global" (GLOBAL + DEFAULT badges) for year 2026 showing the 12-month layout with a few green-dot working-override markers in May -->
+<Image align="center" width="900px" src="" alt="Calendar grid view for Safal Global (2026) — 12-month layout with green-dot working-override markers visible in May" />
 
 ### Two ways to add a marker
 
 **Click any date cell** in the grid. A small popover opens with an Off/Working radio and a Name field. The radio defaults to the right direction — clicking a working day defaults to *Off*; clicking a weekly-off day defaults to *Working*. Type a name (for example, "Republic Day") and save.
 
-<!-- TODO: screenshot of the popover marker editor opened on 26 January with Off radio selected and "Republic Day" typed -->
-<Image align="center" width="400px" src="" alt="Popover marker editor for clicking on a date cell" />
+*Off variant* — clicking a working-day cell (e.g. 26 January) defaults the radio to **Off**:
+
+<!-- TODO: upload `republic-day-off-modal.png` from /Users/himeshr/Desktop/ — Popover marker editor for 2026-01-26 with marker name "Republic day" typed and Off radio selected -->
+<Image align="center" width="500px" src="" alt="Popover marker editor — Off variant, marking 26 January as Republic day" />
+
+*Working variant* — clicking a weekly-off cell (e.g. a Sunday) defaults the radio to **Working**:
+
+<!-- TODO: upload `calendar-local-show-with-working-sunday-modal.png` from /Users/himeshr/Desktop/ — Per-location calendar (Harichandanpur) grid view with the popover marker editor open on a Sunday (2026-08-16), marker name "Cleanlisness" typed and Working radio selected -->
+<Image align="center" width="900px" src="" alt="Popover marker editor — Working variant, marking a Sunday as a working override" />
 
 **Tap + ADD MARKER** in the page header. This opens a modal with a date picker, allowing you to mark a date in a different year without scrolling. The modal has a Date picker (defaults to today), an Off/Working radio (defaults to Off — most markers are public holidays), and a Name field. If the picked date is in a year other than the one currently displayed, the grid auto-navigates to that year after save.
 
