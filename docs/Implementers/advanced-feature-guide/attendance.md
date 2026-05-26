@@ -52,15 +52,15 @@ Before enabling attendance on a Subject Type, make sure:
 
 Navigate to **App Designer → Subject Types**, pick the Group Subject Type (for example, `Class`), and switch to the **Advanced** tab. You will see a new **Attendance** sub-block.
 
-<!-- TODO: screenshot of the Subject Type Advanced section with the Attendance sub-block highlighted -->
-<Image align="center" width="700px" src="" alt="Subject Type Advanced section with the new Attendance sub-block" />
+<!-- TODO: upload `disabled-attendance.png` from /Users/himeshr/Desktop/ — Subject Type Advanced section showing the Attendance sub-block with the "Enable attendance" toggle in its initial off state; clean starting point before any types are configured -->
+<Image align="center" width="900px" src="" alt="Subject Type Advanced section showing the Attendance sub-block with the Enable attendance toggle in its off (initial) state" />
 
 ### Step 2 — Toggle Enable attendance
 
 Toggle **Enable attendance** on. Avni seeds a default Attendance Type named `Attendance` so the types list always has at least one row to edit. The seed row is **incomplete** — it has no reason concepts set yet — and the page shows a warning banner under the types list naming the incomplete type.
 
-<!-- TODO: screenshot of the attendance types list with the seeded "Attendance" row and the incomplete-warning banner -->
-<Image align="center" width="700px" src="" alt="Types list with the seeded Attendance row and a warning that it needs reason concepts" />
+<!-- TODO: upload `partial-attendance-default-config-with-warning.png` from /Users/himeshr/Desktop/ — Attendance sub-block with Enable attendance toggled on, showing the seeded "Attendance" row in the types list, an amber warning banner reading "The following attendance types are incomplete and must be configured: Attendance", and the ADD ATTENDANCE TYPE button -->
+<Image align="center" width="900px" src="" alt="Types list with the seeded Attendance row and an incomplete-types warning banner naming the row that needs reason concepts" />
 
 ### Step 3 — Edit the seed Attendance Type
 
@@ -80,8 +80,13 @@ The per-Attendance-Type Edit modal has the following fields:
 * **Share rule (inline JS)** (optional, Android only) — a JavaScript snippet that builds the share content for a saved Session. See [Example share rule](#example-share-rule) below.
 * **Auto-share on save** (optional, Android only) — when on, the Android share sheet pops up automatically after every saved Session of this type. When the share rule is empty, the built-in default template is used.
 
-<!-- TODO: screenshot of the Edit Attendance Type modal for "Math Class" with all fields populated -->
-<Image align="center" width="600px" src="" alt="Edit Attendance Type modal with name, sort order, both reason concepts, follow-up encounter type, share rule editor, and auto-share toggle" />
+<!-- TODO: upload `edit-attendance-type-modal.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal for "Math Class", all fields populated: Name = Math Class, Sort Order = 3, Session Outcome Reason Concept = Session Outcome, Absence Reason Concept = Absence Reason, Follow-up Encounter Type dropdown open showing "None" + "Absence Followup" options, inline JS share rule snippet, Auto-share on save toggle (off), CANCEL / DONE buttons -->
+<Image align="center" width="800px" src="" alt="Edit Attendance Type modal for Math Class with all fields populated and the Follow-up Encounter Type dropdown open" />
+
+> **Tip — using the same concept for both reason fields.** You can pick the same coded concept for *Session Outcome Reason* and *Absence Reason* on a single Attendance Type. The modal will show a warning banner ("Both reason pickers will show the same answer set in this attendance type") but the save is allowed — useful when an organisation's session-level and per-student reasons genuinely overlap.
+
+<!-- TODO: upload `same-concept-warning.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal showing the amber warning banner "Both reason pickers will show the same answer set in this attendance type" at the top, with both Session Outcome Reason Concept and Absence Reason Concept dropdowns set to the same concept ("Session Outcome") -->
+<Image align="center" width="800px" src="" alt="Edit Attendance Type modal with the warning banner shown when both reason pickers are set to the same coded concept" />
 
 ### Example — Gubbachi school's three-attendances-per-day model
 
@@ -93,8 +98,8 @@ A Gubbachi school configures three Attendance Types on its `Class` Subject Type:
 
 Each Attendance Type carries its own config, so they can differ even though they live inside the same Subject Type.
 
-<!-- TODO: screenshot of the types list with all three Gubbachi attendance types configured and reordered -->
-<Image align="center" width="700px" src="" alt="Three configured attendance types: Morning Prayer, Math Class, Afternoon Reading" />
+<!-- TODO: upload `list-attendance-types.png` from /Users/himeshr/Desktop/ — Attendance sub-block with three configured attendance types in the list: Morning Prayer, Afternoon Reading, Math Class (each row with drag handle, edit pencil, delete bin) plus the ADD ATTENDANCE TYPE button and the calendar-resolution note below -->
+<Image align="center" width="900px" src="" alt="Attendance types list with three configured types: Morning Prayer, Afternoon Reading, Math Class" />
 
 ## Example coded concepts
 
@@ -122,8 +127,8 @@ This concept's answers populate the **Session-level** reason picker. Recommended
   * Forgot to mark
   * Other no-data reason
 
-<!-- TODO: screenshot of the Session Outcome Reason concept's answer set in the Concept editor (App Designer → Concepts → Edit) -->
-<Image align="center" width="700px" src="" alt="Session Outcome Reason concept's answer set" />
+<!-- TODO (no file provided yet): screenshot of the Session Outcome Reason coded concept opened in the Concept editor (App Designer → Concepts → Edit), with its answer set visible — capture this when the example concept is set up in the demo org -->
+<Image align="center" width="700px" src="" alt="Session Outcome Reason concept's answer set in the Concept editor" />
 
 ### Absence Reason concept
 
@@ -137,8 +142,8 @@ This concept's answers populate the **per-student** dropdown that appears beneat
 
 Leaving the reason blank for an Absent student counts as *"reason unknown"* and triggers an automatic follow-up encounter on save (if the Attendance Type has a follow-up encounter type configured).
 
-<!-- TODO: screenshot of the Absence Reason concept's answer set in the Concept editor -->
-<Image align="center" width="700px" src="" alt="Absence Reason concept's answer set" />
+<!-- TODO (no file provided yet): screenshot of the Absence Reason coded concept opened in the Concept editor (App Designer → Concepts → Edit), with its answer set visible — capture this when the example concept is set up in the demo org -->
+<Image align="center" width="700px" src="" alt="Absence Reason concept's answer set in the Concept editor" />
 
 > **Tip:** Different Attendance Types within the same Subject Type can pick different reason concepts — for example, Morning Prayer could use a simple absence-reason set while Math Class uses a richer set that includes academic-specific reasons. The flexibility is intentional.
 
@@ -191,22 +196,22 @@ This section is a brief tour of the end-user experience. The exact look-and-feel
 
 The field worker opens a group's dashboard and taps the **Attendance** button. This button is visible only when the group's Subject Type has attendance enabled and the user has edit-subject privilege.
 
-<!-- TODO: screenshot of an Android group-subject dashboard with the new Attendance button -->
-<Image align="center" width="350px" src="" alt="Group dashboard with the Attendance button" />
+<!-- TODO: upload `grp-subject-dashboard.png` from /Users/himeshr/Desktop/ — Android group-subject dashboard for "Bal 1" (Sample village) showing the REGISTRATION DETAILS section and below it the new "Attendance · 3 attendance types" section with the "Attendance →" entry point -->
+<Image align="center" width="400px" src="" alt="Android group-subject dashboard with the Attendance section and entry point" />
 
 ### Picking a date and an attendance type
 
 The sheet opens with a short horizontal date strip (last 14 days plus today) and a row per configured Attendance Type. Each row shows the status for the selected date: "Not marked yet" with MARK / DIDN'T HAPPEN buttons, or "Held — X of Y" with an Edit link, or "Didn't happen — [reason]". Tapping any past day on the strip lets the worker mark retroactively.
 
-<!-- TODO: screenshot of the Attendance sheet with date strip + attendance-type picker -->
-<Image align="center" width="350px" src="" alt="Attendance sheet — date strip and attendance-type picker" />
+<!-- TODO: upload `client-attendance-sheet.png` from /Users/himeshr/Desktop/ — Attendance sheet for "Bal 1" with the Jump-to-date row, horizontal date strip (Wed 20 to Tue 26, dots indicating Held / mixed / weekly-off states), a "Special duty — region-wide working day" banner, and three attendance-type rows: Morning Prayer (Held — 1 of 2 present, expanded showing a Void/Edit/Share action row plus the roster preview), Afternoon Reading (Not marked yet), Math Class (Not marked yet) -->
+<Image align="center" width="400px" src="" alt="Attendance sheet showing the date strip, day-status banner, and the three-row attendance-type picker with one type already marked Held" />
 
 ### Marking a Held session
 
 Tapping **MARK** opens the roster — one row per group member with a Present (default) / Absent toggle. When a student is toggled to Absent, an inline **Reason for absence** dropdown appears beneath the row, sourced from this Attendance Type's Absence Reason concept. The reason is optional; leaving it blank means "unknown" and triggers auto follow-up creation on save (if configured).
 
-<!-- TODO: screenshot of the roster with one student set to Absent and the inline reason dropdown open -->
-<Image align="center" width="350px" src="" alt="Roster with inline absence-reason dropdown" />
+<!-- TODO: upload `morning-prayer-filling.png` from /Users/himeshr/Desktop/ — Roster screen for "Morning Prayer" — header reading "Tap to toggle Present → Absent" + "Mark all present" shortcut; first member "gana esha #1" toggled to Absent with the inline Reason for absence dropdown showing "Unwell" selected; second member "gowri shankara #2" Present; summary line "1 with reason · 0 without reason → 0 follow-ups will be created"; optional Session notes textarea; teal Save attendance button -->
+<Image align="center" width="400px" src="" alt="Roster with one student toggled to Absent and the inline absence-reason dropdown showing the selected reason; summary line indicating no follow-ups will be created" />
 
 ### Marking Didn't Happen
 
@@ -222,8 +227,8 @@ When the worker saves a Held session, Avni inspects each Absent student's reason
 
 A confirmation dialog appears after the save, listing the students for whom a follow-up was created.
 
-<!-- TODO: screenshot of the post-save follow-up confirmation dialog -->
-<Image align="center" width="350px" src="" alt="Follow-ups created — confirmation dialog" />
+<!-- TODO (no file provided yet): screenshot of the Android post-save dialog listing the auto-created follow-up encounters (student names, encounter type, due date, max date, single OK button) — capture this when a Save creates at least one follow-up encounter -->
+<Image align="center" width="400px" src="" alt="Follow-ups created — Android post-save confirmation dialog listing students for whom a follow-up encounter was created" />
 
 If the worker later corrects a Session (re-marks an Absent-no-reason student as Present, or fills in their reason), the previously-created follow-up encounter is automatically voided in the same transaction — **unless** the follow-up encounter has already been filled in (it has Observations), in which case it is left untouched and the dialog surfaces a warning.
 
