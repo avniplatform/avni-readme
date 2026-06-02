@@ -18,7 +18,7 @@ Creating a new card is no different than creating any other Avni entity. Open ap
 Cards can be of 4 types:
 
 1. **Standard Report Card** — Built-in logic for common use cases (scheduled visits, overdue, approvals, etc.)
-2. **Custom Data Card** — A query-based card with configurable actions (view subject profile or do visit)
+2. **Custom Data Card** — A query-based card with configurable actions (view subject profile, do visit, or mark attendance)
 3. **Nested Report Card** — A single query that renders up to 9 sub-cards
 4. **Custom Design Card** — A fully custom card rendered using an uploaded HTML template with dynamic data
 
@@ -77,10 +77,11 @@ Custom data cards are query-based cards where the implementer writes the logic. 
 
 #### Action Configuration
 
-When creating a custom data card (with "Is Standard Report Card?" disabled), an **Action** dropdown appears with two options:
+When creating a custom data card (with "Is Standard Report Card?" disabled), an **Action** dropdown appears with three options:
 
 * **View subject profile** (default) — Opens the subject's profile on tap
 * **Do visit** — Opens an encounter form on tap
+* **Mark attendance** — Opens the attendance sheet for a class, pre-selected to one attendance type for today (requires the [Attendance](doc:attendance) feature)
 
 #### View Subject Profile (Default Action)
 
@@ -203,6 +204,76 @@ Admin configuration: Action = Do visit, Subject Type = Household, Program = (emp
         primaryValue: individuals.length,
         cardName: 'Surveys to Fill',
         lineListFunction: () => individuals
+    };
+};
+```
+
+#### Mark Attendance Action
+
+This action turns a card into a **daily attendance worklist** for one attendance type. It is built for organisations that run several named attendances a day (for example Morning Prayer / Math Class / Afternoon Reading) across many classes and need a "what's still unmarked today" nudge. Tapping a class on the card jumps the field worker **straight into the attendance sheet for that class and attendance type, for today** — instead of opening the class dashboard — and on save returns them to the card with one fewer class pending.
+
+> **Prerequisite:** the [Attendance](doc:attendance) feature. The chosen Group Subject Type must already have attendance enabled with at least one fully configured attendance type. Configure **one card per attendance type** (a card targets a single attendance type).
+
+When **Mark attendance** is selected, these configuration fields appear:
+
+| Field                    | Required | Description                                                                                                                                                            |
+| ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Group Subject Type**   | Yes      | Only Group subject types that have attendance enabled are listed                                                                                                       |
+| **Attendance Type**      | Yes      | The attendance types configured on the chosen Group Subject Type. Changing the Group Subject Type resets this picker. If the subject type has none, a hint points you to *App Designer → Subject Types → Attendance* |
+| **On Action Completion** | Yes      | **Source Page** (default) — after saving, return to the card list (count decremented). **Subject Profile Page** — after saving, land on the class dashboard             |
+
+<!-- TODO: upload `mark-attendance-card-config.png` — App Designer Custom Data Card editor with Action = "Mark attendance" selected, showing the Group Subject Type picker (set to "Class"), the cascading Attendance Type picker (set to "Morning Prayer"), and On Action Completion = "Source Page" -->
+<Image align="center" width="900px" src="" alt="App Designer card editor with the Mark attendance action selected, showing the Group Subject Type and cascading Attendance Type pickers and the On Action Completion picker" />
+
+**Behaviour on the field app (Android):**
+
+* The card tile reads e.g. **"Morning Prayer — 4 pending"**. The count and the listed classes come entirely from the card's **query** (see the sample below) evaluated on-device — the server computes nothing.
+* Tapping the card opens the usual subject listing of the classes the query returned.
+* Tapping a class opens the **attendance sheet pre-selected to that attendance type for today** — the same roster, inline absence-reason and save sheet as the per-class flow. The date strip stays available, so a past date can still be corrected from there.
+* On save, **On Action Completion** decides where the worker lands — back on the card list (one fewer pending) or on the class dashboard.
+
+<!-- TODO: upload `mark-attendance-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card alongside other cards; optionally a second frame showing the class list it opens and the attendance sheet reached on tapping a class -->
+<Image align="center" width="400px" src="" alt="Android custom dashboard with a Mark attendance card reading Morning Prayer — 4 pending, which deep-links into the attendance sheet for the chosen class" />
+
+> **Platform note:** the deep-link is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards and lists the classes, but a row tap there opens the subject dashboard (today's behaviour) rather than the attendance sheet.
+
+**Sample "unmarked today" query.** Use this as a starting point and adapt the filters to your organisation. It returns the classes that are still missing this attendance type's session for today; the card count is the length of that list. The card's configured subject type and attendance type are available to the query, so a single query can be reused across the cards you configure for each attendance type.
+
+```javascript
+'use strict';
+({params, imports}) => {
+    const db = params.db;
+    const moment = imports.moment;
+
+    // Session.scheduledDate is stored as a calendar-date string ("YYYY-MM-DD"),
+    // so compare against today's date as a string, not a JS Date.
+    const todayStr = moment().format('YYYY-MM-DD');
+
+    // The Group Subject Type and Attendance Type configured on this card.
+    const subjectTypeUUID    = "<your-group-subject-type-uuid>";
+    const attendanceTypeUUID = "<your-attendance-type-uuid>";
+
+    // 1. Classes of the configured Group Subject Type in the user's catchment.
+    const classes = [...db.objects('Individual')
+        .filtered("voided == false AND subjectType.uuid == $0", subjectTypeUUID)];
+
+    // 2. Keep only classes that do NOT yet have a (non-voided) Session for
+    //    (this class, today, this attendance type).
+    const unmarked = classes.filter((cls) => {
+        const session = db.objects('Session').filtered(
+            "voided == false AND scheduledDate == $0 AND attendanceTypeUUID == $1 AND groupSubjectUUID == $2",
+            todayStr, attendanceTypeUUID, cls.uuid
+        );
+        return session.length === 0;
+    });
+
+    // Optional: also drop classes whose resolved calendar makes today a
+    //           non-working day, so the worklist only shows expected sessions.
+
+    return {
+        primaryValue: unmarked.length,
+        secondaryValue: 'pending',
+        lineListFunction: () => unmarked
     };
 };
 ```
@@ -501,7 +572,7 @@ After saving the dashboard sync the field app, and from the bottom "More" tab cl
 
 <Image align="center" alt={566} caption="Report cards  returning `primaryValue` and `secondaryValue` object" title="offline-dashboard.png" src="https://files.readme.io/548f99d-offline-dashboard.png" width="400px" />
 
-Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query. For custom data cards with the "View subject profile" action, if only one subject is returned, the app directly opens the subject's profile. For cards with the "Do visit" action, clicking opens the encounter form directly (for single subject) or shows the list with encounter type rows below each subject.
+Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query. For custom data cards with the "View subject profile" action, if only one subject is returned, the app directly opens the subject's profile. For cards with the "Do visit" action, clicking opens the encounter form directly (for single subject) or shows the list with encounter type rows below each subject. For cards with the "Mark attendance" action, tapping a class opens the attendance sheet for that class and attendance type for today (Android only — see the *Mark Attendance Action* section above).
 
 <Image align="center" width="200px" src="https://files.readme.io/f5ba147ebded65488509282dc6a8681a3a9f7292833c5f396f4202d8dfcebe7c-directencounterform.gif" />
 
@@ -1295,7 +1366,7 @@ ${data.rows.length > 0 ? `
 
 ### Bundle Upload
 
-Card configuration — including action settings (action type, subject type, program, encounter type, visit type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+Card configuration — including action settings (action type, subject type, program, encounter type, visit type, and the Mark-attendance action's attendance type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
 
 ## Default Dashboard and Cards
 
