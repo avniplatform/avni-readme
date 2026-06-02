@@ -30,7 +30,7 @@ Configure attendance when your organisation needs to:
 
 - Track presence/absence of members of a group on specific dates.
 - Distinguish "did not happen" from "happened but not marked" in reports.
-- Auto-create a follow-up encounter (for example, a Home Visit) for any absent member whose absence reason is unknown.
+- Auto-create a follow-up encounter (for example, a Home Visit) for any absent member the worker flags as needing follow-up.
 - Optionally share an attendance summary on WhatsApp from the field worker's phone.
 
 If your organisation only needs occasional presence tracking embedded in another form, attendance configuration may be overkill — a regular Encounter Type might be simpler.
@@ -82,8 +82,8 @@ The per-Attendance-Type Edit modal has the following fields:
 - **Name** (required) — for example, "Morning Prayer", "Math Class", or simply "Attendance".
 - **Sort order** — controls the display order of types on the field worker's dashboard.
 - **Session Outcome Reason concept** (required) — answers populate the Session-level reason picker. This is used in three flows: when the worker marks "Didn't Happen" (the class didn't take place), when the worker uses Mark anyway on a holiday/weekly-off day, and when the worker records "attendance not recorded" retrospectively.
-- **Absence Reason concept** (required) — answers populate the inline per-student reason dropdown on the roster, shown whenever a student is toggled to Absent.
-- **Follow-up encounter type** (optional) — when set, an Absent student whose reason was left blank automatically generates a follow-up encounter of this type (due today; max date today + 2 days). When unset, no auto follow-up is created.
+- **Absence Reason concept** (required) — answers populate the inline per-student reason **chips** on the roster, shown whenever a student is toggled to Absent. The worker can select **more than one** reason per student.
+- **Follow-up encounter type** (optional) — when set, an Absent student the worker ticks **Needs follow-up** generates a follow-up encounter of this type on save (due today; max date today + 2 days). When unset, the Needs-follow-up checkbox has no effect and no auto follow-up is created.
 - **Share rule (inline JS)** (optional, Android only) — a JavaScript snippet that builds the share content for a saved Session. See [Example share rule](#example-share-rule) below.
 - **Auto-share on save** (optional, Android only) — when on, the Android share sheet pops up automatically after every saved Session of this type. When the share rule is empty, the built-in default template is used.
 
@@ -145,7 +145,7 @@ This concept's answers populate the **Session-level** reason picker. Recommended
 
 ### Absence Reason concept
 
-This concept's answers populate the **per-student** dropdown that appears beneath any roster row toggled to Absent. The recommended answer set is simpler:
+This concept's answers populate the **per-student** reason chips that appear beneath any roster row toggled to Absent — the worker can tap one or more. The recommended answer set is simpler:
 
 - Sick
 - Family event
@@ -153,7 +153,7 @@ This concept's answers populate the **per-student** dropdown that appears beneat
 - Personal
 - Other
 
-Leaving the reason blank for an Absent student counts as _"reason unknown"_ and triggers an automatic follow-up encounter on save (if the Attendance Type has a follow-up encounter type configured).
+Reasons are optional and **independent of follow-up**. A follow-up encounter is created on save only when the worker ticks the separate **Needs follow-up** checkbox on an Absent student (and the Attendance Type has a follow-up encounter type configured) — not based on whether a reason was picked.
 
 > **Tip:** Different Attendance Types within the same Subject Type can pick different reason concepts — for example, Morning Prayer could use a simple absence-reason set while Math Class uses a richer set that includes academic-specific reasons. The flexibility is intentional.
 
@@ -224,12 +224,12 @@ The sheet opens with a short horizontal date strip (last 14 days plus today) and
 
 ### Marking a Held session
 
-Tapping **MARK** opens the roster — one row per group member with a Present (default) / Absent toggle. When a student is toggled to Absent, an inline **Reason for absence** dropdown appears beneath the row, sourced from this Attendance Type's Absence Reason concept. The reason is optional; leaving it blank means "unknown" and triggers auto follow-up creation on save (if configured).
+Tapping **MARK** opens the roster — one row per group member with a Present (default) / Absent toggle. When a student is toggled to Absent, inline **Reason for absence** chips appear beneath the row, sourced from this Attendance Type's Absence Reason concept — the worker can tap **more than one**. A separate **Needs follow-up** checkbox sits below the chips; ticking it flags the student for an auto follow-up encounter on save (if the Attendance Type has a follow-up encounter type configured). Reasons and the checkbox are independent — a student can have reasons with no follow-up, or a follow-up with no reason. A running summary above Save reads e.g. _"1 follow-up(s) will be created"_.
 
-{/* upload `morning-prayer-filling.png` from /Users/himeshr/Desktop/ — Roster screen for "Morning Prayer" — header reading "Tap to toggle Present → Absent" + "Mark all present" shortcut; first member "gana esha #1" toggled to Absent with the inline Reason for absence dropdown showing "Unwell" selected; second member "gowri shankara #2" Present; summary line "1 with reason · 0 without reason → 0 follow-ups will be created"; optional Session notes textarea; teal Save attendance button */}
+{/* `morning-prayer-filling.png` (Screenshot 2026-06-02) — Roster for "Morning Prayer": header "Tap to toggle Present → Absent" + "Mark all present"; "gana esha #1" Present; "gowri shankara #2" Absent with reason chips (Unwell / Travel / Competition / Other) and the "Needs follow-up" checkbox ticked; "shana rana #3" Absent with Unwell + Travel selected and "Needs follow-up" unchecked; summary line "1 follow-up(s) will be created"; Session notes; Save attendance */}
 
 
-<Image src="https://files.readme.io/9f5fbd6ca07eda3b1d12f53eafa397da167a29eee6d8eaaae0718114d4af2566-Screenshot_2026-06-02_at_2.57.20_PM.png" alt="Roster with one student toggled to Absent and the inline absence-reason dropdown showing the selected reason; summary line indicating no follow-ups will be created" align="center" width="400px" />
+<Image src="https://files.readme.io/9f5fbd6ca07eda3b1d12f53eafa397da167a29eee6d8eaaae0718114d4af2566-Screenshot_2026-06-02_at_2.57.20_PM.png" alt="Roster with students toggled to Absent showing multi-select reason chips and a per-student Needs-follow-up checkbox; summary line indicating one follow-up will be created" align="center" width="400px" />
 
 
 ### Marking Didn't Happen
@@ -256,19 +256,19 @@ The **Mark attendance** report-card action solves this. The implementer configur
 <Image src="https://files.readme.io/655f2160255809e8c8b1fc506a290990d99f03c56784e95e65dafed71a7517eb-Screenshot-2026-06-02-at-25653PM_1.jpg" alt="Android custom dashboard with a Mark attendance shortcut card reading Morning Prayer — 4 pending, deep-linking into the attendance sheet for a chosen class" align="center" width="720px" />
 
 
-## Auto-created follow-ups for unknown absences
+## Auto-created follow-ups (Needs follow-up)
 
-When the worker saves a Held session, Avni inspects each Absent student's reason. For any student where the reason was left blank AND this Attendance Type has a follow-up encounter type configured, the server (or the Android client, offline-first) creates a follow-up encounter on that student in the same transaction. The encounter is due today; the max-date is today + 2 days.
+When the worker saves a Held session, Avni inspects each Absent student's **Needs follow-up** checkbox. For any student where it is ticked AND this Attendance Type has a follow-up encounter type configured, the server (or the Android client, offline-first) creates a follow-up encounter on that student in the same transaction. The encounter is due today; the max-date is today + 2 days. The reason chips do not affect this — a follow-up is driven solely by the checkbox.
 
 A confirmation dialog appears after the save, listing the students for whom a follow-up was created.
 
-{/* upload `absentee-followup-created.png` from /Users/himeshr/Desktop/ — Android post-save "Follow-ups created" dialog reading "1 follow-up encounters have been created for absent students whose reason was blank." then listing gowri shankara · Roll 1 · Absence Followup · Due today · Max date: Thu 28 May 2026, with a single OK action */}
+{/* REPLACE `absentee-followup-created.png` if the live image still references "reason was blank" — Android post-save "Follow-ups created" dialog listing each absent student flagged Needs follow-up (e.g. gowri shankara · Roll 1 · Absence Followup · Due today · Max date), with a single OK action */}
 
 
 <Image src="https://files.readme.io/71da2deebf3b38d677be714a47eac438bf5180811817094057050c36dcd3e563-absentee-followup-created.png" alt="Android post-save Follow-ups created dialog listing the absent student for whom a follow-up encounter was auto-created" align="center" width="400px" />
 
 
-If the worker later corrects a Session (re-marks an Absent-no-reason student as Present, or fills in their reason), the previously-created follow-up encounter is automatically voided in the same transaction — **unless** the follow-up encounter has already been filled in (it has Observations), in which case it is left untouched and the dialog surfaces a warning.
+If the worker later corrects a Session (re-marks the student as Present, or unticks **Needs follow-up**), the previously-created follow-up encounter is automatically voided in the same transaction — **unless** the follow-up encounter has already been filled in (it has Observations), in which case it is left untouched and the dialog surfaces a warning.
 
 > **Note:** Each Attendance Type's follow-up encounter type is honoured independently. A student absent in two attendance types on the same day, where both types have follow-up configured, gets two follow-up encounters (one per type).
 
@@ -300,6 +300,12 @@ You probably have one or more incomplete Attendance Types. Open the Attendance s
 
 **Can I change an Attendance Type's follow-up encounter type later?**
 Yes. Prior auto-created encounters keep their original type (the link is preserved). New sessions saved after the change use the new type.
+
+**How is a follow-up encounter triggered for an absent student?**
+By the per-student **Needs follow-up** checkbox on the roster — not by the absence reason. The worker can record one or more reasons and independently decide whether the student needs a follow-up. Follow-ups are only created when the Attendance Type has a follow-up encounter type configured.
+
+**Can a student have more than one absence reason?**
+Yes. The per-student reason picker is multi-select — tap as many chips as apply.
 
 **What if a class doesn't meet on a particular day?**
 Two options. If the day is region-wide off (holiday or weekly off): mark a date marker on the calendar — see [Calendars](doc:calendars). If the day is off only for this one school (teacher absent, equipment failure): the field worker marks the session as **Didn't Happen** with a reason from the Session Outcome Reason concept. There is no per-group "meeting days" override.
