@@ -262,10 +262,10 @@ When the worker saves a Held session, Avni inspects each Absent student's **Need
 
 A confirmation dialog appears after the save, listing the students for whom a follow-up was created.
 
-{/* REPLACE `absentee-followup-created.png` if the live image still references "reason was blank" — Android post-save "Follow-ups created" dialog listing each absent student flagged Needs follow-up (e.g. gowri shankara · Roll 1 · Absence Followup · Due today · Max date), with a single OK action */}
+{/*`absentee-followup-created.png` if the live image still references "reason was blank" — Android post-save "Follow-ups created" dialog listing each absent student flagged Needs follow-up (e.g. gowri shankara · Roll 1 · Absence Followup · Due today · Max date), with a single OK action */}
 
 
-<Image src="https://files.readme.io/71da2deebf3b38d677be714a47eac438bf5180811817094057050c36dcd3e563-absentee-followup-created.png" alt="Android post-save Follow-ups created dialog listing the absent student for whom a follow-up encounter was auto-created" align="center" width="400px" />
+<Image src="https://files.readme.io/67be45abd462aa58b76719f1adb3d557337d14a2dd516496413344de8e60ccbf-Screenshot_2026-06-02_at_6.05.44_PM.png" alt="Android post-save Follow-ups created dialog listing the absent student for whom a follow-up encounter was auto-created" align="center" width="720px" />
 
 
 If the worker later corrects a Session (re-marks the student as Present, or unticks **Needs follow-up**), the previously-created follow-up encounter is automatically voided in the same transaction — **unless** the follow-up encounter has already been filled in (it has Observations), in which case it is left untouched and the dialog surfaces a warning.
