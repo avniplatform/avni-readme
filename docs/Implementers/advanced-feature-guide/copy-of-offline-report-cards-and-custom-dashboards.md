@@ -26,33 +26,35 @@ Cards can be of 4 types:
 
 The logic used to display the values in standard cards is already implemented in Avni. The different types are (Entity specified in brackets indicates the type of entity listed on clicking on the card):
 
-* Pending approval (Entity Approval Statuses)
+- Pending approval (Entity Approval Statuses)
 
-* Approved (Entity Approval Statuses)
+- Approved (Entity Approval Statuses)
 
-* Rejected (Entity Approval Statuses)
+- Rejected (Entity Approval Statuses)
 
-* Scheduled visits (Subjects)
+- Scheduled visits (Subjects)
 
-* Overdue visits (Subjects)
+- Overdue visits (Subjects)
 
-* Recent registrations (Subjects)
+- Recent registrations (Subjects)
 
-* Recent enrolments (Subjects)
+- Recent enrolments (Subjects)
 
-* Recent visits (Subjects)
+- Recent visits (Subjects)
 
-* Total (Subjects)
+- Total (Subjects)
 
-* Comments (Subjects)
+- Comments (Subjects)
 
-* Call tasks (Tasks)
+- Call tasks (Tasks)
 
-* Open subject tasks (Tasks)
+- Open subject tasks (Tasks)
 
-* Due checklist (Individuals)
+- Due checklist (Individuals)
 
-<Image align="center" src="https://files.readme.io/5093034-Screenshot_2023-12-11_at_4.55.48_PM.png" />
+
+<Image src="https://files.readme.io/5093034-Screenshot_2023-12-11_at_4.55.48_PM.png" align="center" />
+
 
 #### Standard Report Card Type Filters
 
@@ -79,9 +81,9 @@ Custom data cards are query-based cards where the implementer writes the logic. 
 
 When creating a custom data card (with "Is Standard Report Card?" disabled), an **Action** dropdown appears with three options:
 
-* **View subject profile** (default) — Opens the subject's profile on tap
-* **Do visit** — Opens an encounter form on tap
-* **Mark attendance** — Opens the attendance sheet for a class, pre-selected to one attendance type for today (requires the [Attendance](doc:attendance) feature)
+- **View subject profile** (default) — Opens the subject's profile on tap
+- **Do visit** — Opens an encounter form on tap
+- **Mark attendance** — Opens the attendance sheet for a class, pre-selected to one attendance type for today (requires the [Attendance](doc:attendance) feature)
 
 #### View Subject Profile (Default Action)
 
@@ -89,9 +91,9 @@ This is the default action. The card runs your query and displays the result on 
 
 **Behavior:**
 
-* **Multiple subjects returned:** Shows the list of subjects. The custom card name appears in the top bar.
-* **Single subject returned:** Directly opens the subject's profile — no listing screen shown.
-* **No subjects returned:** Card shows count as 0.
+- **Multiple subjects returned:** Shows the list of subjects. The custom card name appears in the top bar.
+- **Single subject returned:** Directly opens the subject's profile — no listing screen shown.
+- **No subjects returned:** Card shows count as 0.
 
 The query can return a simple array of subjects:
 
@@ -134,7 +136,7 @@ Or return an object with additional display properties:
 
 **Backward Compatibility:** All existing custom card queries continue to work. Queries returning a plain array of subjects, or only `primaryValue` and `lineListFunction`, or `primaryValue` without `lineListFunction` (e.g., percentage cards) all work as before.
 
-**Example: Percentage Card (Non-tappable because `lineListFunction` is not a function)**
+**Example: Percentage Card (Non-tappable because&#x20;**`lineListFunction`**&#x20;is not a function)**
 
 ```javascript
 'use strict';
@@ -160,16 +162,16 @@ This action is for cards where tapping should directly open an encounter form. W
 
 **Scheduled Visit Type:**
 
-* On tap, only subjects with a scheduled encounter of the configured type are shown.
-* The encounter type name appears below each subject in the list. Clicking it opens the scheduled visit form directly.
-* Single matching subject: opens the form directly — no listing shown.
-* No matching subjects: card dismisses without navigation.
+- On tap, only subjects with a scheduled encounter of the configured type are shown.
+- The encounter type name appears below each subject in the list. Clicking it opens the scheduled visit form directly.
+- Single matching subject: opens the form directly — no listing shown.
+- No matching subjects: card dismisses without navigation.
 
 **Unplanned Visit Type:**
 
-* On tap, only subjects enrolled in the configured program (if set) are shown.
-* The encounter type name appears below each subject. Clicking it opens a new visit form.
-* Single matching subject: opens the new form directly — no listing shown.
+- On tap, only subjects enrolled in the configured program (if set) are shown.
+- The encounter type name appears below each subject. Clicking it opens a new visit form.
+- Single matching subject: opens the new form directly — no listing shown.
 
 For Do visit cards, the count shown on the card tile is the filtered count (subjects with eligible encounters), not the `primaryValue` from the query. This ensures the tile always reflects how many subjects the user will actually see on tap.
 
@@ -216,24 +218,30 @@ This action turns a card into a **daily attendance worklist** for one attendance
 
 When **Mark attendance** is selected, these configuration fields appear:
 
-| Field                    | Required | Description                                                                                                                                                            |
-| ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Group Subject Type**   | Yes      | Only Group subject types that have attendance enabled are listed                                                                                                       |
-| **Attendance Type**      | Yes      | The attendance types configured on the chosen Group Subject Type. Changing the Group Subject Type resets this picker. If the subject type has none, a hint points you to *App Designer → Subject Types → Attendance* |
-| **On Action Completion** | Yes      | **Source Page** (default) — after saving, return to the card list (count decremented). **Subject Profile Page** — after saving, land on the class dashboard             |
+| Field                    | Required | Description                                                                                                                                                                                                          |
+| ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Group Subject Type**   | Yes      | Only Group subject types that have attendance enabled are listed                                                                                                                                                     |
+| **Attendance Type**      | Yes      | The attendance types configured on the chosen Group Subject Type. Changing the Group Subject Type resets this picker. If the subject type has none, a hint points you to _App Designer → Subject Types → Attendance_ |
+| **On Action Completion** | Yes      | **Source Page** (default) — after saving, return to the card list (count decremented). **Subject Profile Page** — after saving, land on the class dashboard                                                          |
 
-<!-- TODO: upload `mark-attendance-card-config.png` — App Designer Custom Data Card editor with Action = "Mark attendance" selected, showing the Group Subject Type picker (set to "Class"), the cascading Attendance Type picker (set to "Morning Prayer"), and On Action Completion = "Source Page" -->
-<Image align="center" width="900px" src="" alt="App Designer card editor with the Mark attendance action selected, showing the Group Subject Type and cascading Attendance Type pickers and the On Action Completion picker" />
+{/* upload `mark-attendance-card-config.png` — App Designer Custom Data Card editor with Action = "Mark attendance" selected, showing the Group Subject Type picker (set to "Class"), the cascading Attendance Type picker (set to "Morning Prayer"), and On Action Completion = "Source Page" */}
+
+
+<Image src="https://files.readme.io/67b6bc3ca777f80af0b47fdd3da084002930b456103aa4ab236829454c437cb1-Screenshot_2026-06-02_at_2.42.47_PM.png" alt="App Designer card editor with the Mark attendance action selected, showing the Group Subject Type and cascading Attendance Type pickers and the On Action Completion picker" align="center" width="900px" />
+
 
 **Behaviour on the field app (Android):**
 
-* The card tile reads e.g. **"Morning Prayer — 4 pending"**. The count and the listed classes come entirely from the card's **query** (see the sample below) evaluated on-device — the server computes nothing.
-* Tapping the card opens the usual subject listing of the classes the query returned.
-* Tapping a class opens the **attendance sheet pre-selected to that attendance type for today** — the same roster, inline absence-reason and save sheet as the per-class flow. The date strip stays available, so a past date can still be corrected from there.
-* On save, **On Action Completion** decides where the worker lands — back on the card list (one fewer pending) or on the class dashboard.
+- The card tile reads e.g. **"Morning Prayer — 4 pending"**. The count and the listed classes come entirely from the card's **query** (see the sample below) evaluated on-device — the server computes nothing.
+- Tapping the card opens the usual subject listing of the classes the query returned.
+- Tapping a class opens the **attendance sheet pre-selected to that attendance type for today** — the same roster, inline absence-reason and save sheet as the per-class flow. The date strip stays available, so a past date can still be corrected from there.
+- On save, **On Action Completion** decides where the worker lands — back on the card list (one fewer pending) or on the class dashboard.
 
-<!-- TODO: upload `mark-attendance-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card alongside other cards; optionally a second frame showing the class list it opens and the attendance sheet reached on tapping a class -->
-<Image align="center" width="400px" src="" alt="Android custom dashboard with a Mark attendance card reading Morning Prayer — 4 pending, which deep-links into the attendance sheet for the chosen class" />
+{/* upload `mark-attendance-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card alongside other cards; optionally a second frame showing the class list it opens and the attendance sheet reached on tapping a class */}
+
+
+<Image src="https://files.readme.io/0a1a995cee00efaaf2e44eb580a89be8ce3de5efabcd54ddf72e9f39134948b2-Screenshot-2026-06-02-at-25653PM_1.jpg" alt="Android custom dashboard with a Mark attendance card reading Morning Prayer — 4 pending, which deep-links into the attendance sheet for the chosen class" align="center" width="720px" />
+
 
 > **Platform note:** the deep-link is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards and lists the classes, but a row tap there opens the subject dashboard (today's behaviour) rather than the attendance sheet.
 
@@ -490,19 +498,23 @@ Sample Data Rule and HTML
 
 ```
 
-<Image align="center" src="https://files.readme.io/19120a40f3990c57a5b4808c8ec96185f64ec8e819329ed7471a6c3b95b3cac6-Screenshot_2026-04-20_at_3.09.45_PM.png" />
+
+<Image src="https://files.readme.io/19120a40f3990c57a5b4808c8ec96185f64ec8e819329ed7471a6c3b95b3cac6-Screenshot_2026-04-20_at_3.09.45_PM.png" align="center" />
+
 
 In the mobile app, the HTML template is rendered with data from the rule. The HTML is wrapped as a template literal and data is passed to generate the final HTML string, rendered within a `WebView`.
 
-<Image align="center" width="200px" src="https://files.readme.io/2cb24b681fbea38d559ba6a0729c639a599a082ec942107012f89a1b80f2e6f0-demo.gif" />
+
+<Image src="https://files.readme.io/2cb24b681fbea38d559ba6a0729c639a599a082ec942107012f89a1b80f2e6f0-demo.gif" align="center" width="200px" />
+
 
 ## Creating a Dashboard
 
 After all the cards are done it's time to group them together using the dashboard. Offline Dashboards have the following sub-components:
 
-* Sections : Visual Partitions used to club together cards of specific grouping type
-* Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
-* Filters : Configurable filters that get applied to all "Report Cards" count and listing
+- Sections : Visual Partitions used to club together cards of specific grouping type
+- Offline (Custom) Report Cards : Usually Clickable blocks with count information about grouping of Individuals or EntityApprovals of specific type
+- Filters : Configurable filters that get applied to all "Report Cards" count and listing
 
 Users with access to the "App Designer" can Create, Modifiy or Delete Custom Dashboards as seen below.
 
@@ -510,13 +522,15 @@ Users with access to the "App Designer" can Create, Modifiy or Delete Custom Das
 
 ### Steps to configure a Custom Dashboard
 
-* Click on the dashboard tab on the app designer and click on the new dashboard.
-* This will take you to the new dashboard screen. Provide the name and description of the dashboard.
-* You can create sections on this screen and
-* Select all the cards you need to add to the section in the dashboard.
-* After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
+- Click on the dashboard tab on the app designer and click on the new dashboard.
+- This will take you to the new dashboard screen. Provide the name and description of the dashboard.
+- You can create sections on this screen and
+- Select all the cards you need to add to the section in the dashboard.
+- After adding all the cards, you can re-arrange the cards in the order you want them to see in the field app.
 
-<Image align="center" src="https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png" />
+
+<Image src="https://files.readme.io/b6a8b74-Screenshot_2023-12-11_at_4.45.34_PM.png" align="center" />
+
 
 ### Dashboard Filters
 
@@ -558,35 +572,49 @@ Sample Code for handling filters in report card:
 
 ### Assigning custom Dashboards to User Groups
 
-Custom Dashboards created need to be assigned specifically to a User Group, in-order for Users to see it on the Avni-client mobile app. You may do this, by navigating to the "Admin" app -> "User Groups" -> (User_GROUP) -> "Dashboards" tab, and assigning one or more Custom Dashboards to a User-Group.
+Custom Dashboards created need to be assigned specifically to a User Group, in-order for Users to see it on the Avni-client mobile app. You may do this, by navigating to the "Admin" app -> "User Groups" -> (User\_GROUP) -> "Dashboards" tab, and assigning one or more Custom Dashboards to a User-Group.
 
-In addition, You can also mark one of these Custom Dashboards as the Primary (Is Primary: True) dashboard from the "Admin" app -> "User Groups" -> (User_GROUP) -> "Dashboards".
+In addition, You can also mark one of these Custom Dashboards as the Primary (Is Primary: True) dashboard from the "Admin" app -> "User Groups" -> (User\_GROUP) -> "Dashboards".
 
-<Image align="center" src="https://files.readme.io/54b6434-Screenshot_2024-06-26_at_12.14.37_PM.png" />
+
+<Image src="https://files.readme.io/54b6434-Screenshot_2024-06-26_at_12.14.37_PM.png" align="center" />
+
 
 ## Using the Dashboard in the Field App
 
 After saving the dashboard sync the field app, and from the bottom "More" tab click on the "Dashboards" option. It will take you to the dashboard screen and will show all the cards that are added to the dashboard.
 
-<Image align="center" alt="Report cards only passing List of subjects." caption="Report cards only passing List of subjects." title="dashboard-field-app.png" src="https://files.readme.io/8b37cf6-Screenshot_2024-06-26_at_12.15.37_PM.png" width="400px" />
 
-<Image align="center" alt={566} caption="Report cards  returning `primaryValue` and `secondaryValue` object" title="offline-dashboard.png" src="https://files.readme.io/548f99d-offline-dashboard.png" width="400px" />
+<Image src="https://files.readme.io/8b37cf6-Screenshot_2024-06-26_at_12.15.37_PM.png" alt="Report cards only passing List of subjects." align="center" width="400px" caption="Report cards only passing List of subjects." />
 
-Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query. For custom data cards with the "View subject profile" action, if only one subject is returned, the app directly opens the subject's profile. For cards with the "Do visit" action, clicking opens the encounter form directly (for single subject) or shows the list with encounter type rows below each subject. For cards with the "Mark attendance" action, tapping a class opens the attendance sheet for that class and attendance type for today (Android only — see the *Mark Attendance Action* section above).
 
-<Image align="center" width="200px" src="https://files.readme.io/f5ba147ebded65488509282dc6a8681a3a9f7292833c5f396f4202d8dfcebe7c-directencounterform.gif" />
+
+<Image src="https://files.readme.io/548f99d-offline-dashboard.png" alt="566" align="center" width="400px" caption="Report cards  returning `primaryValue` and `secondaryValue` object" />
+
+
+Clicking any card will take the user to the subject listing page, which will display all the subject names returned by the card query. For custom data cards with the "View subject profile" action, if only one subject is returned, the app directly opens the subject's profile. For cards with the "Do visit" action, clicking opens the encounter form directly (for single subject) or shows the list with encounter type rows below each subject. For cards with the "Mark attendance" action, tapping a class opens the attendance sheet for that class and attendance type for today (Android only — see the _Mark Attendance Action_ section above).
+
+
+<Image src="https://files.readme.io/f5ba147ebded65488509282dc6a8681a3a9f7292833c5f396f4202d8dfcebe7c-directencounterform.gif" align="center" width="200px" />
+
 
 One subject registered and Do Visit action configured
 
-<Image align="center" width="200px" src="https://files.readme.io/2b91b6b483b58526ec0f6733f32b20567c4ace3b9288daafc0cdf4049a556604-morethan1list.gif" />
+
+<Image src="https://files.readme.io/2b91b6b483b58526ec0f6733f32b20567c4ace3b9288daafc0cdf4049a556604-morethan1list.gif" align="center" width="200px" />
+
 
 Multiple subjects registered and Do Visit action configured
 
-<Image align="center" width="200px" src="https://files.readme.io/756a8c0f676b7667bfe9d5d3c0279f7c2797374b55f9b31d89177bbe3765a40b-viewsubjectprofile.gif" />
+
+<Image src="https://files.readme.io/756a8c0f676b7667bfe9d5d3c0279f7c2797374b55f9b31d89177bbe3765a40b-viewsubjectprofile.gif" align="center" width="200px" />
+
 
 One subject registered and View Subject Profile action configured
 
-<Image align="center" width="200px" src="https://files.readme.io/b07ab045ba4bbb50f189f36a625587d032399a3f06ebde6c7226e0df5a70ed42-viewsubjectmultiple.gif" />
+
+<Image src="https://files.readme.io/b07ab045ba4bbb50f189f36a625587d032399a3f06ebde6c7226e0df5a70ed42-viewsubjectmultiple.gif" align="center" width="200px" />
+
 
 Multiple subjects registered and View Subject Profile action configured
 
@@ -598,17 +626,23 @@ Users can click on any subject and navigate to their dashboard.
 
 As part of Avni release 8.0.0, a new feature of a secondary dashboard is added which can be configured at user group level to populate an additional option on the Avni mobile app bottom drawer to navigate to a secondary dashboard. This configuration has to be done in the user group in Avni web app.
 
-* By navigating to the dashboard section in a particular user group where dashboards can be added to user groups, the secondary dashboard can be defined apart from the home dashboard. As shown in the screenshot below, any dashboard can be selected as the secondary dashboard.
+- By navigating to the dashboard section in a particular user group where dashboards can be added to user groups, the secondary dashboard can be defined apart from the home dashboard. As shown in the screenshot below, any dashboard can be selected as the secondary dashboard.
 
-<Image align="center" width="1500px" src="https://files.readme.io/68ac5d9-Screenshot_2024-06-26_at_12.14.37_PM.png" />
 
-<Image align="center" width="15px" src="https://files.readme.io/a5640e1-Se.png" />
+<Image src="https://files.readme.io/68ac5d9-Screenshot_2024-06-26_at_12.14.37_PM.png" align="center" width="1500px" />
+
+
+
+<Image src="https://files.readme.io/a5640e1-Se.png" align="center" width="15px" />
+
 
 ### Secondary dashboard in mobile app
 
 The configuration mentioned above would display the particular dashboard in the mobile app as given below. This would allow users to access the home and secondary dashboard from the bottom drawer of the mobile app instead of navigating to the more page.
 
-<Image align="center" width="400px" src="https://files.readme.io/d95166d-Screenshot_2024-06-26_at_12.17.40_PM.png" />
+
+<Image src="https://files.readme.io/d95166d-Screenshot_2024-06-26_at_12.17.40_PM.png" align="center" width="400px" />
+
 
 ### Clash in Dashboards configuration across different UserGroups
 
@@ -709,10 +743,10 @@ Please also get in touch with platform team if you identify a new pattern and a 
 
 #### DEPRECATED: Avoid using generic functions:
 
-* The following is deprecated cause we should use `Filter based on chronological data` pattern from above.
-* To find observation of a concept avoid using the function `findLatestObservationInEntireEnrolment` unless absolutely necessary since it searches for the observation in all encounters and enrolment observations. Use specific functions.
-* Eg: To find observation in enrolment can use the function `enrolment.findObservation` or to find observations in specific encounter type can get the encounters using `enrolment.lastFulfilledEncounter(...encounterTypeNames)` and then find observation. Refer code examples for the below 3 usecases.
-* ```text Usecase 1
+- The following is deprecated cause we should use `Filter based on chronological data` pattern from above.
+- To find observation of a concept avoid using the function `findLatestObservationInEntireEnrolment` unless absolutely necessary since it searches for the observation in all encounters and enrolment observations. Use specific functions.
+- Eg: To find observation in enrolment can use the function `enrolment.findObservation` or to find observations in specific encounter type can get the encounters using `enrolment.lastFulfilledEncounter(...encounterTypeNames)` and then find observation. Refer code examples for the below 3 usecases.
+- ```text Usecase 1
   Find children with birth weight less than 2. Birth weight is captured in enrolment
   ```
   ```javascript Recommended way
@@ -821,11 +855,11 @@ Please also get in touch with platform team if you identify a new pattern and a 
 
 #### Based on the use case decide whether to write the logic using realm query or JS.
 
-* Not always achieving the purpose using realm queries might be efficient/possible.
+- Not always achieving the purpose using realm queries might be efficient/possible.
 
-  * **DEPRECATED** cause we should use `Filter based on chronological data` pattern from above. Eg: consider a use case where a mandatory concept is used in a program encounter. Now to check the latest value of the concept, its sufficient to check the last encounter and need not iterate all encounters. Since realm subquery doesn't support searching only in the last encounter, for such usecases, using realm queries not only becomes slow and also sometimes inappropriate depending on the usecase. So in such cases, using JS code for the logic, is more efficient. (refer the below code example)
+  - **DEPRECATED** cause we should use `Filter based on chronological data` pattern from above. Eg: consider a use case where a mandatory concept is used in a program encounter. Now to check the latest value of the concept, its sufficient to check the last encounter and need not iterate all encounters. Since realm subquery doesn't support searching only in the last encounter, for such usecases, using realm queries not only becomes slow and also sometimes inappropriate depending on the usecase. So in such cases, using JS code for the logic, is more efficient. (refer the below code example)
 
-    * ```Text Usecase
+    - ```Text Usecase
       ```
 
     Find dead children using concept value captured in encounter cancel or program exit form.
@@ -833,10 +867,10 @@ Please also get in touch with platform team if you identify a new pattern and a 
     ````
         ```javascript Recommended way
         'use strict';
-        ({params, imports}) => { 
+        ({params, imports}) => \{ 
            const moment = imports.moment;
 
-           const isChildDead = (enrolment) => {
+           const isChildDead = (enrolment) => \{
               const exitObservation = enrolment.findExitObservation('29238876-fbd8-4f39-b749-edb66024e25e');
               if(!_.isNil(exitObservation) && _.isEqual(exitObservation.getValueWrapper().getValue(), "cbb0969c-c7fe-4ce4-b8a2-670c4e3c5039"))
                 return true;
@@ -851,29 +885,29 @@ Please also get in touch with platform team if you identify a new pattern and a 
               const cancelObservation = latestEncounter.findCancelEncounterObservation('0066a0f7-c087-40f4-ae44-a3e931967767');
               if(_.isNil(cancelObservation)) return false;
               return _.isEqual(cancelObservation.getValueWrapper().getValue(), "cbb0969c-c7fe-4ce4-b8a2-670c4e3c5039")
-            };
+            \};
 
         return params.db.objects('Individual')
                 .filtered(`voided = false`)
                 .filter(individual => _.some(individual.enrolments, enrolment => enrolment.program.name === 'Child' && isChildDead(enrolment)));
-        }
+        \}
     ````
     ```javascript Not recommended way
     'use strict';
-    ({params, imports}) => {
+    ({params, imports}) => \{
 
     return params.db.objects('Individual')
             .filtered(`subquery(enrolments, $enrolment, $enrolment.program.name == "Child" and subquery(programExitObservations, $exitObservation, $exitObservation.concept.uuid ==  "29238876-fbd8-4f39-b749-edb66024e25e" and ( $exitObservation.valueJSON ==  '{"answer":"cbb0969c-c7fe-4ce4-b8a2-670c4e3c5039"}')  ).@count > 0 ).@count > 0 OR subquery(enrolments.encounters, $encounter, $encounter.voided == false and subquery(cancelObservations, $cancelObservation, $cancelObservation.concept.uuid ==  "0066a0f7-c087-40f4-ae44-a3e931967767" and ( $cancelObservation.valueJSON ==  '{"answer":"cbb0969c-c7fe-4ce4-b8a2-670c4e3c5039"}')  ).@count > 0 ).@count > 0`)
             .filter(ind => ind.voided == false)
-    };
+    \};
     ```
     ```Text How optimized
     Moving to JS since realm query iterates through all encounters which can be avoided in JS
     In this cases since the intention is to find if child is dead, hence it can be assumed to be captured in the last encounter or in program exit form based on the domain knowledge
 
     ```
-  * Please also refer to `Filter based on a custom observation value expression` pattern above, before using this. Consider another use case, where observations of numeric concepts need to be compared. This is not possible to achieve via realm query since the solution would involve the need for JSON parsing of the stored observation. Hence JS logic is appropriate here. (refer below code example)
-    * ```Text Usecase
+  - Please also refer to `Filter based on a custom observation value expression` pattern above, before using this. Consider another use case, where observations of numeric concepts need to be compared. This is not possible to achieve via realm query since the solution would involve the need for JSON parsing of the stored observation. Hence JS logic is appropriate here. (refer below code example)
+    - ```Text Usecase
       ```
     Find children with birth weight less than 2. Birth weight is captured in enrolment
     ````
@@ -904,9 +938,9 @@ Please also get in touch with platform team if you identify a new pattern and a 
     ```Text How optimized
     Moving to realm query for checking birth weight was not possible. If it were a equals comparison it can be achieved using 'CONTAINS' in realm
     ```
-* But in cases where time complexity is the same for both cases, writing realm queries would be efficient to achieve the purpose. (refer below code example). Also refer to `Filter based on a custom observation value expression` pattern above.
+- But in cases where time complexity is the same for both cases, writing realm queries would be efficient to achieve the purpose. (refer below code example). Also refer to `Filter based on a custom observation value expression` pattern above.
 
-  * ```Text Usecase
+  - ```Text Usecase
     ```
 
   Find 13 months children who are completely immunised
@@ -922,7 +956,7 @@ Please also get in touch with platform team if you identify a new pattern and a 
   ````
   ```javascript Not recommended way
   'use strict';
-  ({params, imports}) => {
+  ({params, imports}) => \{
       const isChildGettingImmunised = (enrolment) => {
           if (enrolment.hasChecklist) {
               const vaccineToCheck = ['BCG', 'Polio 0', 'Polio 1', 'Polio 2', 'Polio 3', 'Pentavalent 1', 'Pentavalent 2', 'Pentavalent 3', 'Measles 1', 'Measles 2', 'FIPV 1', 'FIPV 2', 'Rota 1', 'Rota 2'];
@@ -938,14 +972,14 @@ Please also get in touch with platform team if you identify a new pattern and a 
       return params.db.objects('Individual')
           .filtered(`SUBQUERY(enrolments, $enrolment, $enrolment.program.name = 'Child' and $enrolment.programExitDateTime = null and $enrolment.voided = false).@count > 0`)
           .filter((individual) => individual.voided === false && individual.getAgeInMonths() >= 13 && _.some(individual.enrolments, enrolment => enrolment.program.name === 'Child' && isChildGettingImmunised(enrolment)))
-  };
+  \};
   ```
   ```Text How optimized
   Moving to realm query since no of children with age < 13 months were less
   ```
-* In most cases, filtering as much as possible using realm queries (for cases like voided checks) and then doing JS filtering on top of it if needed, would be appropriate. (refer the below code example)
+- In most cases, filtering as much as possible using realm queries (for cases like voided checks) and then doing JS filtering on top of it if needed, would be appropriate. (refer the below code example)
 
-  * ```Text Usecase
+  - ```Text Usecase
     ```
 
   Find dead children using concept value captured in encounter cancel or program exit form.
@@ -1001,7 +1035,7 @@ Please check - `Filter based on a custom observation value expression` pattern a
 
 Though not much performance improvement, using concept uuids(for comparing with concept answers), instead of getting its readable values did provide minor improvement(in seconds) when need to iterate through thousands of rows. (refer below code example)
 
-* ```Text Usecase
+- ```Text Usecase
   Find children with congential abnormality based on values of certain concepts
   ```
   ```javascript Recommended way
@@ -1076,8 +1110,7 @@ Use concept uuid instead of readableValue to compare and check for value only in
 
 ### 3. Nested Report Cards
 
-Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.  
-The above kind of scenarios also lead to code duplication across report cards and when some requirement changes, then the change needs to be done in both.
+Frequently there are cases where across report cards very similar logic is used and only a value used for comparison, changes. Eg: in one of our partner organisations, we load 'Total SAM children' and 'Total MAM children'. For rendering each takes around 20-30s. And hence the dashboard nos doesn't load until both the report card results are calculated and it makes the user to wait for a minute. If the logic is combined, we can render the results in 30s since it would need only retrieval from db and iterating once.<br />The above kind of scenarios also lead to code duplication across report cards and when some requirement changes, then the change needs to be done in both.
 
 In-order to handle such scenarios, we recommend using the Nested Report Card. This is a non-standard report card, which has the ability to show upto a maximum of **9** report cards, based on a single Query's response.
 
@@ -1184,15 +1217,21 @@ return {reportCards: [{
 
 ### Screenshot of Nested Custom Dashboard Report Card Edit screen on Avni Webapp
 
-<Image align="center" src="https://files.readme.io/ecdd996-Screenshot_2024-01-25_at_5.15.20_PM.png" />
+
+<Image src="https://files.readme.io/ecdd996-Screenshot_2024-01-25_at_5.15.20_PM.png" align="center" />
+
 
 ### Screenshot of Nested Report Cards in Custom Dashboard in Avni Client
 
-<Image align="center" width="576px" src="https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png" />
+
+<Image src="https://files.readme.io/dca68e5-Screenshot_2024-01-25_at_5.19.04_PM.png" align="center" width="576px" />
+
 
 Note: If there is a mismatch between the count of nested report cards configured and the length of reportCards property returned by the query response, then we show an appropriate error message on all Nested Report Cards corresponding to the Custom Report Card.
 
-<Image align="center" width="576px" src="https://files.readme.io/82d8ca0-Screenshot_2024-01-25_at_5.23.56_PM.png" />
+
+<Image src="https://files.readme.io/82d8ca0-Screenshot_2024-01-25_at_5.23.56_PM.png" align="center" width="576px" />
+
 
 <br />
 
@@ -1235,13 +1274,13 @@ HTML template receives:
 2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
 
-   <br />
+
 
    #### HTML Template Syntax
 
    The HTML file is evaluated as a JavaScript **template literal**. Everything inside `${...}` is executed as JavaScript with `data` in scope.
 
-   <br />
+
 
    ```html
    <!-- Simple value -->
@@ -1301,9 +1340,9 @@ HTML template receives:
 
 #### Things to Avoid
 
-* **Backticks** — the HTML is wrapped in backticks. A stray ``` in your HTML will break evaluation. Use `&#96;` for backtick characters.
-* **Template expressions in scripts** — inside `<script>` tags, use string concatenation instead of backtick template literals to avoid ambiguity with the outer template evaluation.
-* **Heavy computations in lineListFunction** — it's called every time the card detail view opens. Keep it fast with indexed Realm queries.
+- **Backticks** — the HTML is wrapped in backticks. A stray \`\`\` in your HTML will break evaluation. Use `&#96;` for backtick characters.
+- **Template expressions in scripts** — inside `<script>` tags, use string concatenation instead of backtick template literals to avoid ambiguity with the outer template evaluation.
+- **Heavy computations in lineListFunction** — it's called every time the card detail view opens. Keep it fast with indexed Realm queries.
 
 #### Complete Example
 
@@ -1311,7 +1350,7 @@ HTML template receives:
 
 ```javascript
 'use strict';
-({params, imports}) => {
+({params, imports}) => \{
     const _ = imports.lodash;
     const moment = imports.moment;
     const startOfMonth = moment().startOf('month').toDate();
@@ -1333,7 +1372,7 @@ HTML template receives:
         textColor: '#222222',
         lineListFunction: () => ({ total: rows.length, rows: rows }),
     };
-}
+\}
 ```
 
 **HTML template:**
@@ -1361,6 +1400,7 @@ ${data.rows.length > 0 ? `
         `).join('')}
     </tbody>
 </table>
+
 ` : `<div style="text-align:center;color:#777;padding:20px;">No registrations this month</div>`}
 ```
 
@@ -1388,14 +1428,22 @@ This default dashboard will also be assigned as Primary dashboard on the 'Everyo
 
 ## Reference screen-shots of Avni-Client Custom Dashboard with Approvals ReportCards and Location filter
 
-<Image align="center" alt="Default state of Approvals Report Cards without any filter applied" border={true} caption="Default state of Approvals Report Cards without any filter applied" src="https://files.readme.io/e35888a-Screenshot_2023-12-12_at_12.46.46_PM.png" />
+
+<Image src="https://files.readme.io/e35888a-Screenshot_2023-12-12_at_12.46.46_PM.png" alt="Default state of Approvals Report Cards without any filter applied" align="center" caption="Default state of Approvals Report Cards without any filter applied" border={true} />
+
 
 ***
 
-<Image align="center" alt="Custom Dashboards filter page" border={true} caption="Custom Dashboards filter page" src="https://files.readme.io/576efec-Screenshot_2023-12-12_at_12.47.01_PM.png" />
+
+<Image src="https://files.readme.io/576efec-Screenshot_2023-12-12_at_12.47.01_PM.png" alt="Custom Dashboards filter page" align="center" caption="Custom Dashboards filter page" border={true} />
+
 
 ***
 
-<Image align="center" alt="State of Approvals Report Cards after the Location filter was applied" border={true} caption="State of Approvals Report Cards after the Location filter was applied" src="https://files.readme.io/c5ac6f6-Screenshot_2023-12-12_at_12.47.25_PM.png" />
+
+<Image src="https://files.readme.io/c5ac6f6-Screenshot_2023-12-12_at_12.47.25_PM.png" alt="State of Approvals Report Cards after the Location filter was applied" align="center" caption="State of Approvals Report Cards after the Location filter was applied" border={true} />
+
 
 ***
+
+<br />
