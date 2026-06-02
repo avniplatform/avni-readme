@@ -229,7 +229,7 @@ Tapping **MARK** opens the roster — one row per group member with a Present (d
 {/* upload `morning-prayer-filling.png` from /Users/himeshr/Desktop/ — Roster screen for "Morning Prayer" — header reading "Tap to toggle Present → Absent" + "Mark all present" shortcut; first member "gana esha #1" toggled to Absent with the inline Reason for absence dropdown showing "Unwell" selected; second member "gowri shankara #2" Present; summary line "1 with reason · 0 without reason → 0 follow-ups will be created"; optional Session notes textarea; teal Save attendance button */}
 
 
-<Image src="https://files.readme.io/26fe36be9d35f1cc603793f770cf2d54b9d3eba0ad0e5c0e99ecd25681c22ecb-morning-prayer-filling.png" alt="Roster with one student toggled to Absent and the inline absence-reason dropdown showing the selected reason; summary line indicating no follow-ups will be created" align="center" width="400px" />
+<Image src="https://files.readme.io/9f5fbd6ca07eda3b1d12f53eafa397da167a29eee6d8eaaae0718114d4af2566-Screenshot_2026-06-02_at_2.57.20_PM.png" alt="Roster with one student toggled to Absent and the inline absence-reason dropdown showing the selected reason; summary line indicating no follow-ups will be created" align="center" width="400px" />
 
 
 ### Marking Didn't Happen
