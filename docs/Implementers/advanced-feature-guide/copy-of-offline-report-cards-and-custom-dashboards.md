@@ -245,7 +245,7 @@ When **Mark attendance** is selected, these configuration fields appear:
 
 > **Platform note:** the deep-link is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards and lists the classes, but a row tap there opens the subject dashboard (today's behaviour) rather than the attendance sheet.
 
-**Sample "unmarked today" query.** Use this as a starting point and adapt the filters to your organisation. It returns the classes that are still missing this attendance type's session for today; the card count is the length of that list. The card's configured subject type and attendance type are available to the query, so a single query can be reused across the cards you configure for each attendance type.
+**Sample "unmarked today" query.** Use this as a starting point and adapt the filters to your organisation. It returns the classes that are still missing this attendance type's session for today; the card count is the length of that list. The query does **not** receive the card's configured Group Subject Type / Attendance Type — set them yourself at the top of the query (by UUID below, or resolve them by name). Since each card targets one attendance type, give each card its own copy with the right values.
 
 ```javascript
 'use strict';
@@ -257,7 +257,8 @@ When **Mark attendance** is selected, these configuration fields appear:
     // so compare against today's date as a string, not a JS Date.
     const todayStr = moment().format('YYYY-MM-DD');
 
-    // The Group Subject Type and Attendance Type configured on this card.
+    // Set these to match this card's Group Subject Type and Attendance Type
+    // (the query has no access to the card config). Use UUIDs, or resolve by name.
     const subjectTypeUUID    = "<your-group-subject-type-uuid>";
     const attendanceTypeUUID = "<your-attendance-type-uuid>";
 
