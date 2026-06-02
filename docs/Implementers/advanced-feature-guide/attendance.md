@@ -242,15 +242,17 @@ If the selected date is a public holiday or weekly-off per the resolved calendar
 
 ## Attendance shortcut cards (a daily worklist)
 
-Marking from the group dashboard is **per-class**: open the class → tap Attendance → pick the type → mark. An organisation that runs several named attendances a day across many classes faces a lot of repetitive navigation, and nothing tells the worker *which classes are still unmarked today*.
+Marking from the group dashboard is **per-class**: open the class → tap Attendance → pick the type → mark. An organisation that runs several named attendances a day across many classes faces a lot of repetitive navigation, and nothing tells the worker _which classes are still unmarked today_.
 
 The **Mark attendance** report-card action solves this. The implementer configures one dashboard card per attendance type; each card shows how many classes still have that attendance type unmarked for today, and tapping a class jumps **straight into the attendance sheet for that class and attendance type, for today** — then returns to the card on save so the worker can clear the next class.
 
-* This is a **report-card configuration** layered on top of attendance — see the *Mark Attendance Action* section in [Offline Cards and Custom Dashboards](doc:copy-of-offline-report-cards-and-custom-dashboards) for the full setup, fields, and a sample "unmarked today" query.
-* The deep-link into the attendance sheet is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards, but a row tap there opens the subject dashboard rather than the attendance sheet.
-* **Prerequisite:** the target Group Subject Type must already have attendance enabled with at least one fully configured attendance type (everything above on this page).
+- This is a **report-card configuration** layered on top of attendance — see the _Mark Attendance Action_ section in [Offline Cards and Custom Dashboards](doc:copy-of-offline-report-cards-and-custom-dashboards) for the full setup, fields, and a sample "unmarked today" query.
+- The deep-link into the attendance sheet is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards, but a row tap there opens the subject dashboard rather than the attendance sheet.
+- **Prerequisite:** the target Group Subject Type must already have attendance enabled with at least one fully configured attendance type (everything above on this page).
 
-<!-- TODO: upload `attendance-shortcut-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card; ideally a second frame showing the class list it opens and the attendance sheet reached on tapping a class -->
+{/* TODO: upload `attendance-shortcut-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card; ideally a second frame showing the class list it opens and the attendance sheet reached on tapping a class */}
+
+
 <Image align="center" width="400px" src="" alt="Android custom dashboard with a Mark attendance shortcut card reading Morning Prayer — 4 pending, deep-linking into the attendance sheet for a chosen class" />
 
 ## Auto-created follow-ups for unknown absences
