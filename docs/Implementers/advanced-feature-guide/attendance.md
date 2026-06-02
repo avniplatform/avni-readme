@@ -53,7 +53,7 @@ Before enabling attendance on a Subject Type, make sure:
 
 Navigate to **App Designer → Subject Types**, pick the Group Subject Type (for example, `Class`), and switch to the **Advanced** tab. You will see a new **Attendance** sub-block.
 
-{/* TODO: upload `disabled-attendance.png` from /Users/himeshr/Desktop/ — Subject Type Advanced section showing the Attendance sub-block with the "Enable attendance" toggle in its initial off state; clean starting point before any types are configured */}
+{/*upload `disabled-attendance.png` from /Users/himeshr/Desktop/ — Subject Type Advanced section showing the Attendance sub-block with the "Enable attendance" toggle in its initial off state; clean starting point before any types are configured */}
 
 
 <Image src="https://files.readme.io/9d979a8e049d306858d0cf5d9275c00a4c87d5d3d3708ae84a4f868a1a06ffee-disabled-attendance.png" alt="Subject Type Advanced section showing the Attendance sub-block with the Enable attendance toggle in its off (initial) state" align="center" width="900px" />
@@ -63,7 +63,7 @@ Navigate to **App Designer → Subject Types**, pick the Group Subject Type (for
 
 Toggle **Enable attendance** on. Avni seeds a default Attendance Type named `Attendance` so the types list always has at least one row to edit. The seed row is **incomplete** — it has no reason concepts set yet — and the page shows a warning banner under the types list naming the incomplete type.
 
-{/* TODO: upload `partial-attendance-default-config-with-warning.png` from /Users/himeshr/Desktop/ — Attendance sub-block with Enable attendance toggled on, showing the seeded "Attendance" row in the types list, an amber warning banner reading "The following attendance types are incomplete and must be configured: Attendance", and the ADD ATTENDANCE TYPE button */}
+{/* upload `partial-attendance-default-config-with-warning.png` from /Users/himeshr/Desktop/ — Attendance sub-block with Enable attendance toggled on, showing the seeded "Attendance" row in the types list, an amber warning banner reading "The following attendance types are incomplete and must be configured: Attendance", and the ADD ATTENDANCE TYPE button */}
 
 
 <Image src="https://files.readme.io/04294ca89ae14da8f0fa3da2776b93597c6ff205fb8c2dbe038ffd88ca341ecd-partial-attendance-default-config-with-warning.png" alt="Types list with the seeded Attendance row and an incomplete-types warning banner naming the row that needs reason concepts" align="center" width="900px" />
@@ -87,7 +87,7 @@ The per-Attendance-Type Edit modal has the following fields:
 - **Share rule (inline JS)** (optional, Android only) — a JavaScript snippet that builds the share content for a saved Session. See [Example share rule](#example-share-rule) below.
 - **Auto-share on save** (optional, Android only) — when on, the Android share sheet pops up automatically after every saved Session of this type. When the share rule is empty, the built-in default template is used.
 
-{/* TODO: upload `edit-attendance-type-modal.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal for "Math Class", all fields populated: Name = Math Class, Sort Order = 3, Session Outcome Reason Concept = Session Outcome, Absence Reason Concept = Absence Reason, Follow-up Encounter Type dropdown open showing "None" + "Absence Followup" options, inline JS share rule snippet, Auto-share on save toggle (off), CANCEL / DONE buttons */}
+{/* upload `edit-attendance-type-modal.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal for "Math Class", all fields populated: Name = Math Class, Sort Order = 3, Session Outcome Reason Concept = Session Outcome, Absence Reason Concept = Absence Reason, Follow-up Encounter Type dropdown open showing "None" + "Absence Followup" options, inline JS share rule snippet, Auto-share on save toggle (off), CANCEL / DONE buttons */}
 
 
 <Image src="https://files.readme.io/5925f05a7f8ca1ef412549600f77afebd117a7b2f7560e3fcf4a3b657b571d8d-edit-attendance-type-modal.png" alt="Edit Attendance Type modal for Math Class with all fields populated and the Follow-up Encounter Type dropdown open" align="center" width="800px" />
@@ -95,7 +95,7 @@ The per-Attendance-Type Edit modal has the following fields:
 
 > **Tip — using the same concept for both reason fields.** You can pick the same coded concept for _Session Outcome Reason_ and _Absence Reason_ on a single Attendance Type. The modal will show a warning banner ("Both reason pickers will show the same answer set in this attendance type") but the save is allowed — useful when an organisation's session-level and per-student reasons genuinely overlap.
 
-{/* TODO: upload `same-concept-warning.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal showing the amber warning banner "Both reason pickers will show the same answer set in this attendance type" at the top, with both Session Outcome Reason Concept and Absence Reason Concept dropdowns set to the same concept ("Session Outcome") */}
+{/* upload `same-concept-warning.png` from /Users/himeshr/Desktop/ — Edit Attendance Type modal showing the amber warning banner "Both reason pickers will show the same answer set in this attendance type" at the top, with both Session Outcome Reason Concept and Absence Reason Concept dropdowns set to the same concept ("Session Outcome") */}
 
 
 <Image src="https://files.readme.io/976b90d9cc021c28641e2e6fce45ce347100733900a863c3d954c11b78aeb846-same-concept-warning.png" alt="Edit Attendance Type modal with the warning banner shown when both reason pickers are set to the same coded concept" align="center" width="800px" />
@@ -111,7 +111,7 @@ A Gubbachi school configures three Attendance Types on its `Class` Subject Type:
 
 Each Attendance Type carries its own config, so they can differ even though they live inside the same Subject Type.
 
-{/* TODO: upload `list-attendance-types.png` from /Users/himeshr/Desktop/ — Attendance sub-block with three configured attendance types in the list: Morning Prayer, Afternoon Reading, Math Class (each row with drag handle, edit pencil, delete bin) plus the ADD ATTENDANCE TYPE button and the calendar-resolution note below */}
+{/* upload `list-attendance-types.png` from /Users/himeshr/Desktop/ — Attendance sub-block with three configured attendance types in the list: Morning Prayer, Afternoon Reading, Math Class (each row with drag handle, edit pencil, delete bin) plus the ADD ATTENDANCE TYPE button and the calendar-resolution note below */}
 
 
 <Image src="https://files.readme.io/9c50699f597a0c38fc14a7e85e9008d0aadeb378a4889381ff943fd6d70f31f0-list-attendance-types.png" alt="Attendance types list with three configured types: Morning Prayer, Afternoon Reading, Math Class" align="center" width="900px" />
@@ -206,7 +206,7 @@ This section is a brief tour of the end-user experience. The exact look-and-feel
 
 The field worker opens a group's dashboard and taps the **Attendance** button. This button is visible only when the group's Subject Type has attendance enabled and the user has edit-subject privilege.
 
-{/* TODO: upload `grp-subject-dashboard.png` from /Users/himeshr/Desktop/ — Android group-subject dashboard for "Bal 1" (Sample village) showing the REGISTRATION DETAILS section and below it the new "Attendance · 3 attendance types" section with the "Attendance →" entry point */}
+{/* upload `grp-subject-dashboard.png` from /Users/himeshr/Desktop/ — Android group-subject dashboard for "Bal 1" (Sample village) showing the REGISTRATION DETAILS section and below it the new "Attendance · 3 attendance types" section with the "Attendance →" entry point */}
 
 
 <Image src="https://files.readme.io/a594dc24219534df89783ada5e11656f0ef30767b66e6187f63ccf85ba045f04-grp-subject-dashboard.png" alt="Android group-subject dashboard with the Attendance section and entry point" align="center" width="400px" />
@@ -216,7 +216,7 @@ The field worker opens a group's dashboard and taps the **Attendance** button. T
 
 The sheet opens with a short horizontal date strip (last 14 days plus today) and a row per configured Attendance Type. Each row shows the status for the selected date: "Not marked yet" with MARK / DIDN'T HAPPEN buttons, or "Held — X of Y" with an Edit link, or "Didn't happen — \[reason]". Tapping any past day on the strip lets the worker mark retroactively.
 
-{/* TODO: upload `client-attendance-sheet.png` from /Users/himeshr/Desktop/ — Attendance sheet for "Bal 1" with the Jump-to-date row, horizontal date strip (Wed 20 to Tue 26, dots indicating Held / mixed / weekly-off states), a "Special duty — region-wide working day" banner, and three attendance-type rows: Morning Prayer (Held — 1 of 2 present, expanded showing a Void/Edit/Share action row plus the roster preview), Afternoon Reading (Not marked yet), Math Class (Not marked yet) */}
+{/* upload `client-attendance-sheet.png` from /Users/himeshr/Desktop/ — Attendance sheet for "Bal 1" with the Jump-to-date row, horizontal date strip (Wed 20 to Tue 26, dots indicating Held / mixed / weekly-off states), a "Special duty — region-wide working day" banner, and three attendance-type rows: Morning Prayer (Held — 1 of 2 present, expanded showing a Void/Edit/Share action row plus the roster preview), Afternoon Reading (Not marked yet), Math Class (Not marked yet) */}
 
 
 <Image src="https://files.readme.io/e2dd9d23319c7696784029406af07efc96b956b8041c907b46d60ba83df010f3-client-attendance-sheet.png" alt="Attendance sheet showing the date strip, day-status banner, and the three-row attendance-type picker with one type already marked Held" align="center" width="400px" />
@@ -226,7 +226,7 @@ The sheet opens with a short horizontal date strip (last 14 days plus today) and
 
 Tapping **MARK** opens the roster — one row per group member with a Present (default) / Absent toggle. When a student is toggled to Absent, an inline **Reason for absence** dropdown appears beneath the row, sourced from this Attendance Type's Absence Reason concept. The reason is optional; leaving it blank means "unknown" and triggers auto follow-up creation on save (if configured).
 
-{/* TODO: upload `morning-prayer-filling.png` from /Users/himeshr/Desktop/ — Roster screen for "Morning Prayer" — header reading "Tap to toggle Present → Absent" + "Mark all present" shortcut; first member "gana esha #1" toggled to Absent with the inline Reason for absence dropdown showing "Unwell" selected; second member "gowri shankara #2" Present; summary line "1 with reason · 0 without reason → 0 follow-ups will be created"; optional Session notes textarea; teal Save attendance button */}
+{/* upload `morning-prayer-filling.png` from /Users/himeshr/Desktop/ — Roster screen for "Morning Prayer" — header reading "Tap to toggle Present → Absent" + "Mark all present" shortcut; first member "gana esha #1" toggled to Absent with the inline Reason for absence dropdown showing "Unwell" selected; second member "gowri shankara #2" Present; summary line "1 with reason · 0 without reason → 0 follow-ups will be created"; optional Session notes textarea; teal Save attendance button */}
 
 
 <Image src="https://files.readme.io/26fe36be9d35f1cc603793f770cf2d54b9d3eba0ad0e5c0e99ecd25681c22ecb-morning-prayer-filling.png" alt="Roster with one student toggled to Absent and the inline absence-reason dropdown showing the selected reason; summary line indicating no follow-ups will be created" align="center" width="400px" />
@@ -250,10 +250,11 @@ The **Mark attendance** report-card action solves this. The implementer configur
 - The deep-link into the attendance sheet is **Android only** for now. A Mark-attendance card still renders on the webapp's Data Entry App dashboards, but a row tap there opens the subject dashboard rather than the attendance sheet.
 - **Prerequisite:** the target Group Subject Type must already have attendance enabled with at least one fully configured attendance type (everything above on this page).
 
-{/* TODO: upload `attendance-shortcut-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card; ideally a second frame showing the class list it opens and the attendance sheet reached on tapping a class */}
+{/* upload `attendance-shortcut-card-client.png` — Android custom dashboard showing a "Morning Prayer — 4 pending" Mark-attendance card; ideally a second frame showing the class list it opens and the attendance sheet reached on tapping a class */}
 
 
-<Image align="center" width="400px" src="" alt="Android custom dashboard with a Mark attendance shortcut card reading Morning Prayer — 4 pending, deep-linking into the attendance sheet for a chosen class" />
+<Image src="https://files.readme.io/655f2160255809e8c8b1fc506a290990d99f03c56784e95e65dafed71a7517eb-Screenshot-2026-06-02-at-25653PM_1.jpg" alt="Android custom dashboard with a Mark attendance shortcut card reading Morning Prayer — 4 pending, deep-linking into the attendance sheet for a chosen class" align="center" width="720px" />
+
 
 ## Auto-created follow-ups for unknown absences
 
@@ -261,7 +262,7 @@ When the worker saves a Held session, Avni inspects each Absent student's reason
 
 A confirmation dialog appears after the save, listing the students for whom a follow-up was created.
 
-{/* TODO: upload `absentee-followup-created.png` from /Users/himeshr/Desktop/ — Android post-save "Follow-ups created" dialog reading "1 follow-up encounters have been created for absent students whose reason was blank." then listing gowri shankara · Roll 1 · Absence Followup · Due today · Max date: Thu 28 May 2026, with a single OK action */}
+{/* upload `absentee-followup-created.png` from /Users/himeshr/Desktop/ — Android post-save "Follow-ups created" dialog reading "1 follow-up encounters have been created for absent students whose reason was blank." then listing gowri shankara · Roll 1 · Absence Followup · Due today · Max date: Thu 28 May 2026, with a single OK action */}
 
 
 <Image src="https://files.readme.io/71da2deebf3b38d677be714a47eac438bf5180811817094057050c36dcd3e563-absentee-followup-created.png" alt="Android post-save Follow-ups created dialog listing the absent student for whom a follow-up encounter was auto-created" align="center" width="400px" />
