@@ -33,7 +33,8 @@ Avni is composed of multiple components connected to each other. Following are a
 # Local Development Environment Setup (for Avni Product)
 
 [Environment setup for product development - Ubuntu](doc:developer-environment-setup-ubuntu)\
-[Environment setup for front end product development - Ubuntu](doc:environment-setup-for-front-end-product-development-ubuntu)
+[Environment setup for front end product development - Ubuntu](doc:environment-setup-for-front-end-product-development-ubuntu)\
+[Environment setup for front end product development - Windows (WSL2)](doc:environment-setup-for-front-end-product-development-windows-wsl2)
 
 # Production/Test Environment Setup
 

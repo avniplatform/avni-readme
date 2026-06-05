@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This page documents, how to set up your development machine so that you can contribute to Avni front-end code - mobile app or webapp. This assumes that you have access to some test avni server, with one or more implementations deployed, to which you can connect to from your development environment. If you want to set up a full-stack environment, please use [this](doc:developer-environment-setup-ubuntu).
+This page documents, how to set up your development machine so that you can contribute to Avni front-end code - mobile app or webapp. This assumes that you have access to some test avni server, with one or more implementations deployed, to which you can connect to from your development environment. If you want to set up a full-stack environment, please use [this](doc:developer-environment-setup-ubuntu). If you are on Windows, use the [Windows (WSL2) guide](doc:environment-setup-for-front-end-product-development-windows-wsl2) instead.
 
 This setup documentation assumes that the user knows how to install and use some of the commonly used utilities. There is enough documentation on the Internet for installing and using them (putting in your version of Ubuntu would give you better results). We may link these docs in some places but not always. The exact commands are `indicated as this always`. Please ensure you have the following software setup.
 
@@ -27,12 +27,16 @@ This setup documentation assumes that the user knows how to install and use some
 
 # Field mobile app components
 
+### Java
+
+* Install JDK 17 (e.g. `sudo apt install openjdk-17-jdk-headless`)
+
 ### Android SDK
 
 * Install Android SDK Manager
-* Use SDK Manager to install - *platforms;android-28* and *build-tools;28.0.3*
+* Use SDK Manager to install - *platforms;android-35*, *build-tools;35.0.0* and *ndk;27.1.12297006*
 * Set ANDROID\_HOME environment variable
-* Modify PATH to include $ANDROID\_HOME/tools and $ANDROID\_HOME/tools/bin
+* Modify PATH to include $ANDROID\_HOME/platform-tools and $ANDROID\_HOME/cmdline-tools/latest/bin
 
 ### Android Emulator
 
