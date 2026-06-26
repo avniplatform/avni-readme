@@ -49,6 +49,10 @@ A catchment is a group of locations that are serviced by a user i.e. the locatio
 
 <br />
 
+### Updating Catchments:
+
+Updating Catchments are not encouraged, especially, when it involves removal of location or replacing one set of locations with another set of locations. Ideally, create a new catchment with required locations and assign the same to the user, keeping the old catchment as is.<br /><br />This is also the best practice regardless of whether the catchment is linked to a single user or multiple of them.
+
 ### Creating Users:
 
 Once the above-provided prerequisites have been created successfully, we can proceed with the user creation process.
@@ -71,7 +75,7 @@ Once the above-provided prerequisites have been created successfully, we can pro
 
 <br />
 
-4. While creating a user, the administrator can provide a custom password by clicking on the toggle button highlighted below. This would populate two additional fields to enter a custom password and verify it by giving the same password again. 
+4. While creating a user, the administrator can provide a custom password by clicking on the toggle button highlighted below. This would populate two additional fields to enter a custom password and verify it by giving the same password again.
 
 ![](https://files.readme.io/ee06b59-image3.png)
 
@@ -90,13 +94,13 @@ Once the above-provided prerequisites have been created successfully, we can pro
 
 <br />
 
-8. Set user groups as per the operational roles of the user. Multiple user groups can be assigned to a user. 
+8. Set user groups as per the operational roles of the user. Multiple user groups can be assigned to a user.
 
 ![](https://files.readme.io/511929c-image6.png)
 
 <br />
 
-9. Further settings specific to the user can be setup to customise the user experience 
+9. Further settings specific to the user can be setup to customise the user experience
 
    1. Preferred Language
    2. Track location - Switches on visit location tracking on the Field App
@@ -111,4 +115,6 @@ Once the above-provided prerequisites have been created successfully, we can pro
 
    ![](https://files.readme.io/a73b680-image1.png)
 
-   <br />
+
+
+<br />
