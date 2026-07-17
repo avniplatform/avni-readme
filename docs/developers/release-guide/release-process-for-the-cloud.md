@@ -109,6 +109,7 @@ Once all merging is complete, execute:
 * Go to [https://github.com/avniproject/avni-product/releases](https://github.com/avniproject/avni-product/releases)
 * Create a new release
 * Specify all the changes that are part of this release
+* Follow the [Release Notes SoP](https://github.com/avniproject/avni-product-ops/blob/main/sops/release-notes.md) for the format and sources — sections, bullet style, what to include/exclude
 
 #### 7.1. Find Related GitHub Issues
 
