@@ -34,9 +34,9 @@ next:
 
 ## Logout
 
-* Logout works offline. It clears only the session tokens on the device; it does **not** delete local data, including unsynced records.
-* Logging back in requires internet — the app warns at logout: "If you log out, you will need to login again with the internet to continue using the app." Field users should stay logged in between field days.
-* Logout is different from **Delete Data** (application menu): Delete Data wipes the app's local database including unsynced records, and warns "You will lose information that is not synced".
+* Logging out requires an internet connection — the logout action itself communicates with the server, and the next login does too. The app warns at logout: "If you log out, you will need to login again with the internet to continue using the app."
+* Logout does **not** delete local data — unsynced records are preserved on the device.
+* Field users should stay logged in between field days; there is no security or operational need to log out.
 
 ## One user per device
 
