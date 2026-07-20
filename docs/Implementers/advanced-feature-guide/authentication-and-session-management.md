@@ -27,9 +27,9 @@ next:
 
 ## Offline sessions
 
-* After login, the app works completely offline except for sync. There is no inactivity timeout or automatic logout while offline.
-* If a user stays offline (no successful sync) beyond the refresh-token validity, the session can no longer be renewed. The app returns to the login screen — at the next sync attempt or app restart — and the user must **go online and log in again** before continuing data entry.
-* No data is lost in this situation. Data captured offline stays on the device, and sync resumes incrementally after re-login (the database is intact, so [fast sync](https://avni.readme.io/docs/fast-sync) is not triggered again).
+* After login, the app works completely offline except for sync.
+* After 30 days of inactivity (no successful sync), the session expires and the user is logged out — they must **go online and log in again** to continue data entry.
+* Nothing is lost when this happens: data captured offline stays on the device, and after re-login sync resumes incrementally (the database is intact, so [fast sync](https://avni.readme.io/docs/fast-sync) is not triggered again).
 * Recommended field practice: sync whenever connectivity is available — this keeps the session fresh well within the token validity.
 
 ## Logout
