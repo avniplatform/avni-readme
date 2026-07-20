@@ -34,7 +34,7 @@ next:
 
 ## Logout
 
-* Logging out requires an internet connection — the logout action itself communicates with the server, and the next login does too. The app warns at logout: "If you log out, you will need to login again with the internet to continue using the app."
+* Logging out requires an internet connection — the logout action itself communicates with the server, and the next login does too.
 * Logout does **not** delete local data — unsynced records are preserved on the device.
 * Field users should stay logged in between field days; there is no security or operational need to log out.
 
