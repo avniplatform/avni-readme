@@ -31,6 +31,7 @@ The visit date is **always** recorded — only its visibility changes. What valu
 | **Editing an existing encounter** | Its original saved date, kept unchanged                                         |
 | **Scheduled / planned visit**     | Today — the day the form is filled (auto-captured, since the user can't set it) |
 
-<br />
+In short: when the field is hidden, a fresh encounter is dated the day it's filled, and
+any existing date is left as-is.
 
 <br />
