@@ -144,6 +144,11 @@ The below steps are written down taking setup of prerelease environment as an ex
 
 ## Steps specific to prerelease env setup before bugbash:
 
+> **Read this before you start.** In January 2026 the prerelease integration service was brought up while it still held Goonj's *production* integration settings. Two integration systems ran against Goonj's live Salesforce at the same time, creating duplicate records and inventory mismatches. It took ten days to resolve and needed manual data repair on both Salesforce and Avni.
+>
+> The integration settings live in the integration service's own database, which on prerelease is also a copy of production's. So a restore brings production's integration configuration with it. The first step below, and the verification step, exist because of that incident. Do not skip them and do not reorder them.
+
+* **Stop the integration service before anything else** - `sudo systemctl stop avni-int-service_appserver.service` on the prerelease integration host. Do not start it again until the clean-up and verification steps below have both passed. Starting it against a freshly restored database is what caused the January 2026 incident.
 * Update the db of prerelease with prod db data. Do this before generating the prerelease apk, since generating of the apk is linked with updating platform translations in the server db.
 * Stop the prerelease avni app server process - sudo systemctl stop avni_server_appserver.service
 * Update the route53 dns entry for prereleasedb.avniproject.org to point to the RDS endpoint if changed
@@ -151,22 +156,50 @@ The below steps are written down taking setup of prerelease environment as an ex
 * Trigger build from circleci to deploy app and apply Platform migrations if not already done
 * (Only if specifically required to clean up S3 files) Delete all S3 folders within prerelease-user-media bucket, retaining the bucket as is.([https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1&tab=objects](https://s3.console.aws.amazon.com/s3/buckets/prerelease-user-media?region=ap-south-1\&tab=objects))
 * Clean-up Integration-system-config to prevent cross environment usage **Very Important**
+
+  Run this against the **`avni_int` database** - the integration service's own database - and **not** against `prereleasedb`. They are two different databases. Cleaning `prereleasedb` does nothing for integrations.
+
   ```sql
-  -- Step 1: Void all existing integration configs (safer than delete)
+  -- Step 1: Clear all integration config and switch every integration system off.
   DELETE FROM integration_system_config WHERE id >= 1;
   UPDATE integration_system SET is_voided = true;
   UPDATE goonj_adhoc_task SET is_voided = true;
+  ```
 
+  ```sql
+  -- Step 2: ONLY when you later want specific integrations running on prerelease.
+  -- Un-void them first. Step 1 voided every row, so an insert filtered on
+  -- is_voided = false would match nothing and silently write no marker at all.
+  UPDATE integration_system SET is_voided = false
+   WHERE system_type IN ('Goonj', 'rwb');
 
-  -- Step 2: Later, when setting up prerelease integrations, 
-  -- insert new configs with int_env = 'prerelease'
   INSERT INTO integration_system_config (key, value, is_secret, integration_system_id, is_voided, uuid)
   SELECT 'int_env', 'prerelease', false, id, false, 'bea0db7a-719a-4b42-8840-db2047c54071'
-  FROM integration_system
-  WHERE system_type IN ('Goonj', 'rwb')
-    AND is_voided = false;
+    FROM integration_system
+   WHERE system_type IN ('Goonj', 'rwb')
+     AND is_voided = false
+     AND NOT EXISTS (
+           SELECT 1 FROM integration_system_config c
+            WHERE c.integration_system_id = integration_system.id
+              AND c.key = 'int_env');
   ```
+
+  The service compares `AVNI_INT_ENV`, which avni-infra sets per environment, against this `int_env` row and skips the job when the two disagree.
+
+  **That check does not cover every module.** It was added for Goonj and RWB; other modules ran without it. **Which modules are present, and which of them validate their environment, changes over time** as integrations are added and the check is extended - so do not trust the module names on this page as a current list. Confirm against the startup summary in the next step and against the integration-service code as it stands today. For any module that does not validate its environment, the clean-up above is the only thing protecting production.
   <br />
+* Verify before trusting the clean-up **Very Important**
+
+  Start the integration service only once the clean-up above has run, then read the startup summary in its log:
+
+  ```
+  ========== INTEGRATION SERVICE STARTUP SUMMARY ==========
+  Active modules (n): ...
+  Skipped modules (n): ...
+  ==========================================================
+  ```
+
+  Every module listed as active must be one you meant to run on prerelease. If anything unexpected is active, stop the service before investigating. This summary exists because during the January 2026 incident nothing in the logs indicated that the Goonj job was running at all.
 * Delete the urls of prod s3 icons in prereleasedb by doing the below:
   ```Text SQL
   set role none;
