@@ -179,7 +179,7 @@ The below steps are written down taking setup of prerelease environment as an ex
   VACUUM (ANALYZE) individual, encounter, program_encounter, program_enrolment;
   ```
 
-  It will be slow - that is the point. It also refreshes planner statistics, which arrive sized for production's larger instance.
+  It will be slow - that is the point, and it is the only reason to run it. The restore needs no reindexing and no statistics rebuild: table and index files are copied byte for byte, so B-trees and `pg_statistic` arrive intact and valid. All that is missing is materialised blocks.
   <br />
 * Apply manual data-fixes if needed
 * Trigger build from circleci to deploy app and apply Platform migrations if not already done
@@ -277,5 +277,17 @@ The below steps are written down taking setup of prerelease environment as an ex
    WHERE observations::text ~ '[a-z0-9-]+-user-media';
   ```
 
-  Expect `prod-user-media` in the output. That is the known and accepted state - note it on the refresh card so the next person does not read it as a leak. What would be a genuine problem is a *resolvable* production reference, and the two controls above are what prevent that.
+  Expect `prod-user-media` in the output. That is the known and accepted state - note it on the refresh card so the next person does not read it as a leak. What would be a genuine problem is a *resolvable* production reference, and the check above is what prevents that.
+
+  **Tell QA before the bug bash: media on old records will not load, and that is correct.** The webapp shows "Unable to fetch media." and the server logs a 403. Verified on the August 2026 refresh:
+
+  ```
+  GET /media/signedUrl?url=https://s3.ap-south-1.amazonaws.com/prod-user-media/<org>/<uuid>.jpg
+      Status: 403  User: <user>  Organisation: <org>
+  ERROR MediaController: User '<user>' not authorized to access
+        'https://s3.ap-south-1.amazonaws.com/prod-user-media/<org>/<uuid>.jpg'
+  org.springframework.security.access.AccessDeniedException
+  ```
+
+  That is the bucket check doing its job. Media attached to records created *on prerelease after the refresh* uploads and displays normally. If a production media file ever does render, stop and investigate - it means the check is not working and the refresh procedure needs revisiting.
 * Delete the older prerelease db. Do this once the new one is serving - two 300 GB gp3 instances cost roughly $27/month each, so leaving the old one running doubles the bill.
