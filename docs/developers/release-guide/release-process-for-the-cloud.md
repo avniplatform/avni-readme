@@ -277,11 +277,12 @@ Avni secondary components are:
 * integration-service
 * integration-admin-app
 * media-service(Server and client)
+* avni-autopilot
 
 For each of the Avni secondary components listed above, repeat the following steps
 
 1. Find the passing circle-ci job for the tag corresponding to the release
-2. Approve deployment to production
+2. If present, approve deployment to production
 
 Additionally, if there are any changes in Lambda scripts of Avni-media, deploy them to S3.
 
