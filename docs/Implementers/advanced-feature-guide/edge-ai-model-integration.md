@@ -68,6 +68,60 @@ The `payload` block is **pure data** — no executable code — so a model's com
 
 **Updating weights requires no app release.** New weights produce a new SHA-256; upload the new file, update the record, load the new key, and devices refresh on their next sync. Changing the *preprocessor or decoder code* does still require an app release.
 
+### Hosting the model in the organisation's own cloud
+
+By default the encrypted model is stored in Avni's own cloud storage, and the Downloadable Content upload is all that's needed. To keep model files in the **organisation's own cloud account** (e.g. a Google Cloud Storage bucket the organisation controls), a one-time setup is required. There is no admin UI for this yet — it is SQL plus two server environment keys.
+
+**Server environment (once per environment — prerelease / staging / prod).** Two master keys must be set; they wrap secrets at rest and never reach the device:
+
+- `OPENCHS_MODEL_KEY_ENCRYPTION_KEY` — wraps each model's AES key in the server key store.
+- `OPENCHS_STORAGE_CREDENTIALS_KEY` — wraps the organisation's storage login (the GCS HMAC secret) at rest.
+
+Each must base64-decode to 16 / 24 / 32 bytes (AES-128/192/256) — e.g. `openssl rand -base64 32`.
+
+**From the organisation (GCS).** The **bucket name** and an **HMAC key** (access id + secret) for a service account with object read+write on that bucket. For GCS the S3-interoperability endpoint is always `https://storage.googleapis.com` — confirm the store is Google Cloud Storage (a different provider changes both the endpoint and the `type` below).
+
+**Store the organisation's storage credential.** The HMAC secret is stored **encrypted under `OPENCHS_STORAGE_CREDENTIALS_KEY`** (there is a one-off encrypt helper for this):
+
+```sql
+set role <org_schema>;
+insert into org_storage_credential
+  (uuid, credential_ref, access_key, encrypted_secret_key, organisation_id,
+   is_voided, created_by_id, last_modified_by_id, created_date_time, last_modified_date_time, version)
+values
+  (gen_random_uuid()::text,
+   'orgGcsCred',                                     -- credential_ref, referenced by the routing config below
+   '<HMAC access id, clear>',
+   '<HMAC secret, encrypted under STORAGE_CREDENTIALS_KEY>',
+   (select id from organisation where media_directory = '<org_media_dir>'),
+   false,
+   (select id from users where username = '<admin_user>'),
+   (select id from users where username = '<admin_user>'),
+   now(), now(), 0);
+```
+
+**Route the `model` data class to that bucket:**
+
+```sql
+update organisation_config
+set settings = coalesce(settings, '{}'::jsonb) || jsonb_build_object(
+    'storageTargets',  jsonb_build_object('orgGcs',
+        jsonb_build_object('type','GCS',
+                           'endpoint','https://storage.googleapis.com',
+                           'bucket','<gcs_bucket_name>',
+                           'credentialRef','orgGcsCred')),   -- must match org_storage_credential.credential_ref
+    'storageBackends', jsonb_build_object('model','orgGcs')) -- route only the 'model' class; other media stays on the default store
+where organisation_id = (select id from organisation where media_directory = '<org_media_dir>');
+```
+
+Notes:
+- Only the `model` object-key prefix diverts to GCS; icons and other media stay on the default store.
+- Use `https://` on the endpoint — a bare host trips the storage signer.
+- `COMMIT` the SQL and verify from a fresh connection: org config is read per request (not cached), so an apparent "staleness" is almost always an uncommitted transaction.
+- Misconfiguration fails loud (`500 StorageConfigurationException: No storage target named '…'`), never a silent fallback to the default store.
+
+Once this is in place, the Downloadable Content upload writes the encrypted blob to the organisation's bucket instead of Avni's default store.
+
 ## Engines (runtime dependencies)
 
 | Engine key | Runtime |
@@ -183,11 +237,19 @@ Two things to watch:
 - **Coded targets:** the stored value (after `labelMap`) must exactly match an answer concept name of the target concept, or the write is skipped. Text targets store the string verbatim.
 - **Repeatable groups:** the row at `rowIdx` must already exist — capture the image into the row first. Rows are not created automatically.
 
-The async path deduplicates in-flight jobs (form-element rules re-fire on every observation change), and detects when the user retakes a photo — re-running inference instead of returning the stale verdict.
+The async path deduplicates in-flight jobs (form-element rules re-fire on every observation change), and detects when the user retakes a photo — or re-opens an encounter whose verdict was computed in an earlier session. In both cases the possibly-stale verdict is **cleared while the fresh inference runs**, so the dependent form element re-gates against an empty value instead of briefly trusting a verdict that may belong to the previous photo; the new verdict replaces it when inference resolves.
 
 ### When no verdict can be produced
 
 If the model has not finished downloading, or inference fails, **no verdict is written** — an absent verdict must never read as a negative one. The form raises a validation error on the target element and blocks the user from continuing, rather than letting them proceed on a missing result. Recovery is to sync; inference never downloads at the point of use.
+
+> ⚠️ Make the AI-verdict element mandatory for a guaranteed block
+>
+> The validation error above is a best-effort **reason** message ("AI model not available — sync and try again" / "retake the photo"). It can be removed by the form's normal validation lifecycle — a rule re-evaluation, a Previous-then-Next, or editing another field in the same repeatable-group row can clear it. To **guarantee** a worker cannot proceed with an empty verdict, make the target (AI-verdict) form element **mandatory and keep it visible** in exactly the state you are guarding — image present, verdict absent — in App Designer. A mandatory rule is re-derived from durable state every cycle, so it is the load-bearing block; the client validation error is the specific reason shown on top of it. (A hidden element is not validated, so a visibility rule that hides the verdict field until a value exists would defeat the mandatory block.)
+
+> 📘 A valid earlier verdict is kept, not blocked
+>
+> One case deliberately does **not** block: an encounter synced in with a **valid stored verdict** whose **image media was never downloaded to this device**. There is nothing to recompute against — running inference on the missing file would only fail and block a good result — so the stored verdict is kept as-is and no error is raised. Seeing a verdict with no block in this situation is expected, not a bug.
 
 ### Ensemble inference
 
