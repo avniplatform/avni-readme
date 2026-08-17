@@ -1,5 +1,5 @@
 ---
-title: Guided camera (flash   forced on)
+title: Guided camera (flash forced on)
 deprecated: false
 hidden: false
 metadata:
