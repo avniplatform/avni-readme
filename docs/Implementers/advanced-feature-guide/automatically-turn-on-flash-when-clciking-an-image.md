@@ -1,5 +1,5 @@
 ---
-title: 'Automatically turn on flash when clciking an image '
+title: 'Automatically turn on flash when clicking an image '
 deprecated: false
 hidden: false
 metadata:
