@@ -25,3 +25,13 @@ On clicking 'Review', the uploaded bundle is compared against the implementation
 On selecting a file, the details of the changes in that file are shown. The implementer can use the 'Back to Upload' option to return to the upload screen after reviewing the changes to change the bundle file used or apply the bundle.
 
 ![](https://files.readme.io/312f6da0ac043d3048fc4837f167416132de631a8d193084d809e81a63988fc8-metadata-diff.webp)
+
+<br />
+
+## Concepts that carry an image
+
+An image attached to a concept is not stored inside `concepts.json`. It travels as a separate file in the `conceptMedia` folder of the bundle.
+
+So if the bundle being uploaded contains `concepts.json`, it must also contain the `conceptMedia` folder taken from a current export of the implementation being uploaded **to**. Export that implementation first, and copy its `conceptMedia` folder into the bundle before uploading.
+
+If `concepts.json` is uploaded without it, the images on those concepts are removed. There is no error, and the review screen does not show it either — `concepts.json` itself has not changed, so the comparison finds nothing to report. The images then have to be re-attached one at a time in App Designer.
