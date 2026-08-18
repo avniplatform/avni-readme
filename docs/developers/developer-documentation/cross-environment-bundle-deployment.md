@@ -2,7 +2,7 @@
 title: Cross Environment Bundle Deployment
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
