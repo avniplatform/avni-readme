@@ -51,7 +51,7 @@ A catchment is a group of locations that are serviced by a user i.e. the locatio
 
 ### Updating Catchments:
 
-Updating Catchments are not encouraged, especially, when it involves removal of location or replacing one set of locations with another set of locations. Ideally, create a new catchment with required locations and assign the same to the user, keeping the old catchment as is.<br /><br />This is also the best practice regardless of whether the catchment is linked to a single user or multiple of them.
+Updating Catchments are not encouraged, especially, when it involves removal of location or replacing one set of locations with another set of locations. Ideally, create a new catchment with required locations and assign the same to the user, keeping the old catchment as is.<br /><br />This is also the best practice regardless of whether the catchment is linked to a single user or multiple of them.<br /><br />Adding more **users** to a catchment is a different thing, and is perfectly safe — the catchment itself does not change. See [Adding many users to a catchment that already exists](#how-to-guide-adding-many-users-to-a-catchment-that-already-exists).
 
 ### Creating Users:
 
@@ -118,3 +118,28 @@ Once the above-provided prerequisites have been created successfully, we can pro
 
 
 <br />
+
+## How to guide: Adding many users to a catchment that already exists
+
+When a team grows, you often need to add a batch of users to a catchment that is already set up. Creating them one at a time from the admin console works, but for a large batch use the **Users and Catchments** CSV upload instead.
+
+You do **not** need to create a new catchment for these users, and you do **not** need to work out and type the full list of locations the catchment covers. One location is enough to point each row at the right catchment.
+
+### Steps
+
+1. Open the catchment in the admin console (Admin app → Catchments) and note two things — its exact name, and any one location listed inside it.
+2. Go to the Admin app → **Upload** section and download the sample file for Users and Catchments.
+3. Add one row per new user. Two columns connect the user to the catchment that already exists:
+
+   * **Catchment Name** — the name of the existing catchment, spelt exactly as it appears in the admin console. Avni matches the catchment by its name, so the user joins that same catchment instead of a new one being created.
+   * **Location with full hierarchy** — any **one** location that is already part of that catchment, written with its full lineage. For example: `Bihar, District1, Block11`.
+4. Fill in the rest of the columns for each user. Username, Full Name of User, Email Address and Mobile Number are required. Preferred Language, Track Location, Date picker mode, Enable Beneficiary mode, Identifier Prefix, User Groups and Active are optional. If your organisation syncs by a registration attribute, the sample file also carries a sync attribute column, and a value for it is required.
+5. Upload the completed file from the same Upload screen.
+
+> 🚧 Choose a location that is already inside the catchment
+>
+> Avni does not check that the location you typed belongs to the catchment. If it does not, that location gets **added** to the catchment. The catchment then covers more area than intended for every user assigned to it, and all of those users are put through a full re-sync. Copy a location from the catchment as it stands today, rather than typing one from memory.
+
+> 📘 The same file also updates existing users
+>
+> If a Username in the file already belongs to someone, that row updates the existing user instead of creating a new one — including moving them into whichever catchment the row names. Keep the file to genuinely new users, unless you intend to change existing ones as well.
