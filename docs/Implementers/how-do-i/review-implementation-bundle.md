@@ -2,7 +2,7 @@
 title: Review Implementation Bundle
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
