@@ -35,8 +35,8 @@ All versions of below specified end-deployables are marked with a release number
 * avni-media
 * avni-product
 * rules-server
-* integration-service
-* integration-admin-app
+
+`integration-service` and `integration-admin-app` are **not** part of the platform release. They are released on their own cadence, are not tagged with the release number, and do not belong on a release card's deploy checklist.
 
 Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages.
 
@@ -274,8 +274,6 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
 Avni secondary components are:
 
 * etl
-* integration-service
-* integration-admin-app
 * media-service(Server and client)
 * avni-autopilot
 
@@ -295,12 +293,9 @@ Additionally, if there are any changes in Lambda scripts of Avni-media, deploy t
 * Message in the common channel(both team members present) tagging the QA with release notes link, that release is out for sanity testing.
 * Send brief information on
   * [avni@samanvayfoundation.org](mailto:avni@samanvayfoundation.org),  [avni-users@googlegroups.com](mailto:avni-users@googlegroups.com) (usually with the subject "Avni Release Announcement - release_number")
-  * avni-community discord channel
-  * avni-community whatsapp group
+  * **Optional:** avni-community discord channel
+  * **Optional:** avni-community whatsapp group
 * If you are sending this communication for the first check past examples.
-* Update dify knowledgebase
-  * Update README.md from [https://github.com/avniplatform/avni-readme/blob/v2.0/README.md](https://github.com/avniplatform/avni-readme/blob/v2.0/README.md)
-  * Update About the Assistant.md from [https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md](https://github.com/avniproject/avni-ai/blob/main/dify/About%20the%20AI%20Assistant.md)
 * Update release version in the [release tracker](https://docs.google.com/spreadsheets/d/1LcyE3_Ht_YztBjfPpedvjUtvzcJezP5dFOZFOyzWs2E/edit?usp=sharing)
 * The **platform conductor** updates Freshdesk tickets for the released cards — from the release card list already generated in step 7.1, the support-origin cards (they reference the FD ticket number / carry the board's Freshdesk field) each get a note on their ticket that the fix/feature is part of this release (with the release notes link) and are marked Resolved; the support team takes over verification and closure with the organisation from there. The release owner's step here is just to inform the conductor that the release is deployed
 * **Optional:** Create a blog on avni-website repository with details of the release. Make sure to include relevant documentation links and videos if necessary. This is meant for a non-technical user while the release notes on Github can be for developers and implementers
