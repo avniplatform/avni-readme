@@ -40,6 +40,19 @@ All versions of below specified end-deployables are marked with a release number
 
 Other smaller packages such as avni-models and rules-config have their own release cycles that do not correspond to anything. We use semantic versioning for these packages.
 
+#### Android version codes
+
+The Play store version code is **not** the number you pass to the build. `build.gradle` computes it as `8 * 1048576 + versionCode`, so the value in the Play console is always 8,388,608 higher than the parameter.
+
+**Pass `1` followed by the versionName digits.** For versionName 17.2.0 pass `versionCode=1170200`, which appears on the store as 9558808. For 17.3.0 pass `1170300`, for 18.0.0 pass `1180000`.
+
+This replaces the older convention of passing the versionName digits alone (17.2.0 → `170200`). That form can never be used again: **17.1.0 was mistakenly triggered with `versionCode=700003` instead of `170100`**, so it sits on the store as 9088611, and Play version codes can never go backwards. A correctly-numbered 17.2.0 would have been 8558808 — below 17.1.0 — and Play rejects it. This was found only after the build had been made and uploaded, and cost the release a full rebuild.
+
+Two things worth knowing when this bites:
+
+* **Check the number before you trigger, not after.** The Play console shows the computed code next to the version name on the track page; compare it against the highest code the app has ever used, under *Test and release → Latest releases and bundles*.
+* **Nothing in the app reads the version code** — only the versionName, through `DeviceInfo.getVersion()`, for sync telemetry and the login footer. So correcting it changes no behaviour, and a rebuild with a new version code from the same commit is safe.
+
 Any changes if required in avni-infra are done directly on the master branch, the deployment pipeline uses it.
 
 ### Overview
@@ -220,7 +233,7 @@ Make sure the following environment variables are set (values available in keewe
 
 ```shell
 ## Create prod bundles
-versionName=3.5.1 versionCode=30501 make release_prod_all_flavors
+versionName=17.2.0 versionCode=1170200 make release_prod_all_flavors
 
 ## Deploy platform translations
 make deploy_platform_translations_live_for_all_flavors
@@ -230,7 +243,7 @@ make deploy_platform_translations_live_for_all_flavors
 
 ```shell Shell
 ## Create prod bundle
-versionName=3.5.1 versionCode=30501 make bundle_release_prod flavor='lfe'
+versionName=17.2.0 versionCode=1170200 make bundle_release_prod flavor='lfe'
 
 ## Deploy platform translations
 make deploy_platform_translations_for_flavor_live flavor='lfe'
@@ -244,6 +257,7 @@ make deploy_platform_translations_for_flavor_live flavor='lfe'
 * Select the branch that the release is being made from
 * Click on the 'Trigger Pipeline' button. Note that Trigger can be done only on HEAD of a branch, if you need to build from one of the previous commits, then create a new branch and use that for build purposes. Merge it back to the parent after build.
 * In the popup that is opened, add `flavor`, `versionCode` and `versionName` parameters. `flavor` by default is set to `generic` and can be skipped if generating the generic avni flavor.
+* `versionCode` is `1` followed by the versionName digits — for 17.2.0 pass `1170200`. See [Android version codes](#android-version-codes) above; getting this wrong is only visible after the build, and costs a rebuild.
 
 ![](https://files.readme.io/ef90846-image.png)
 
