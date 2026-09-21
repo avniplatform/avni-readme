@@ -272,6 +272,10 @@ Please note that form element rules are not transitive and cannot depend on the 
 
 i.e. If rule C on element C depends on value of element B and rule B depends on value of element A, updating A will only update B's value and not C's value.
 
+C's old value is not only displayed. It is saved with the record. C catches up the next time anything on the page changes or the user moves between pages, so only a record saved immediately after the edit to A keeps the wrong value. That makes the problem easy to miss in testing and easy to accumulate in stored data.
+
+If element C needs a value that rule B calculates, repeat B's calculation inside rule C, reading the same source elements that rule B reads. Element B stays on the form and keeps its own rule, so nothing the user sees changes.
+
 <br />
 
 <hr />
