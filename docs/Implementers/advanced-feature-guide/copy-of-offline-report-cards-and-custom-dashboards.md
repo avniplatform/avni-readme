@@ -294,8 +294,9 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 **Configuration:**
 
 1. Select **Custom Design Card** as the card type
-2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns data accessible in the HTML via `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults.
+2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — dashboard filters are passed as input, and the rule returns a `data` object whose keys are reachable in the HTML as `data.variableName`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `name` or `colors` are returned, they override the tile's name and colours.
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error. Saving without a data rule is allowed.
+4. **Translations** (optional): Key and English value pairs the HTML template can reference as `${translations.KEY}`. See [Translations](#translations) below.
 
 Sample Data Rule and HTML
 
@@ -334,10 +335,10 @@ Sample Data Rule and HTML
         name: 'Recent Registrations',
         colors: { background: '#FFE500', text: '#222222' },
 
-        lineListFunction: () => ({
+        data: {
             total: rows.length,
             rows: rows,
-        }),
+        },
     };
 }
 
@@ -1244,7 +1245,8 @@ Custom design cards let you define both the data and the UI for a dashboard card
 
 1. **Data rule** — a JavaScript function that queries the device database and returns data
 2. **HTML template** — an HTML file that renders the data using `${data.variable}` syntax
-3. **Platform glue** — the platform calls your data rule, takes the return value of `lineListFunction()`, and passes it as `data` to your HTML template
+3. **Translations** — key and English value pairs on the card, reachable in the template as `${translations.KEY}`
+4. **Platform glue** — the platform runs your data rule, passes its `data` object and the resolved translations into your template, and renders the result
 
 <br />
 
@@ -1253,14 +1255,14 @@ Data rule returns:
 {
     primaryValue: 10,          ← shown on dashboard tile
     secondaryValue: "(5 new)", ← shown below primaryValue on tile
-    cardName: "My Card",       ← overrides tile name (optional)
-    cardColor: "#FFE500",      ← overrides tile background (optional)
-    textColor: "#222",         ← overrides tile text color (optional)
-    lineListFunction: () => {  ← called by platform, result becomes 'data' in HTML
-        return {
-            total: 10,
-            rows: [...]
-        };
+    name: "My Card",           ← overrides tile name (optional)
+    colors: {                  ← overrides tile colours (optional)
+        background: "#FFE500",
+        text: "#222"
+    },
+    data: {                    ← becomes 'data' in the HTML template
+        total: 10,
+        rows: [...]
     }
 }
 
@@ -1269,17 +1271,32 @@ HTML template receives:
     data.rows   → [...]
 ```
 
+Return `deferredDataFunction` instead of `data` when building the rows is expensive. The platform
+calls it only when the card is opened, so the dashboard tile does not pay for it.
+
+```
+{
+    primaryValue: 10,
+    deferredDataFunction: () => ({ total: 10, rows: buildRows() })
+}
+```
+
+`data` wins when a rule returns both. `lineListFunction` belongs to Custom Data Cards and is
+ignored here — a Custom Design Card whose rule returns only `lineListFunction` renders with an
+empty `data` object.
+
 #### Configuration
 
 1. Select **Custom Design Card** as the card type
-2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the Realm database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `cardName`/`cardColor`/`textColor` are returned, they override defaults. `lineListFunction` should be a function — the platform calls it and passes the return value as `data` to the HTML template. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
+2. **Data Rule** (optional): A JS rule that returns dynamic data for the HTML template. Input/output follows the same pattern as other card rules — `params.db` provides access to the device database, and dashboard filters are available via `params.ruleInput`. If `primaryValue`/`secondaryValue` are returned, they show on the card tile. If `name` or `colors` are returned, they override the tile's name and colours. `data` is the object handed to the HTML template; `deferredDataFunction` is the lazy alternative. Saving without a data rule is allowed (the HTML renders with an empty `data` object).
 3. **HTML File** (required): Upload an HTML file defining the custom layout. Saving without an HTML file shows a validation error.
+4. **Translations** (optional): One row per key, each with its English value. Add a row with **ADD TRANSLATION**. The keys are what the HTML template references as `${translations.KEY}`.
 
 
 
    #### HTML Template Syntax
 
-   The HTML file is evaluated as a JavaScript **template literal**. Everything inside `${...}` is executed as JavaScript with `data` in scope.
+   The HTML file is evaluated as a JavaScript **template literal**. Everything inside `${...}` is executed as JavaScript with two variables in scope: `data` and `translations`.
 
 
 
@@ -1287,12 +1304,69 @@ HTML template receives:
    <!-- Simple value -->
    <div>${data.total}</div>
 
+   <!-- Translated label -->
+   <th>${translations.contact_number}</th>
+
    <!-- Loop -->
    ${data.rows.map(row => `<tr><td>${row.name}</td></tr>`).join('')}
 
    <!-- Conditional -->
    ${data.rows.length > 0 ? `<table>...</table>` : `<div>No data</div>`}
    ```
+
+   #### Translations
+
+   Every fixed string in the template goes through `translations` so the card follows the field
+   worker's language setting. That means column headings, section titles and empty-state messages.
+
+   **A key added on the card does nothing on its own.** The Translations rows on the card declare
+   the key and its English value. The template has to reference the key, and the other languages
+   are filled in on the Translations screen. Three steps, all of them required:
+
+   1. **Declare the key on the card.** In App Designer → Card, under **Translations**, add a row:
+      Translation Key `contact_number`, Default (English) Value `Contact Number`. Save.
+   2. **Reference it in the HTML.** Write `${translations.contact_number}` where the text belongs.
+      `${translations["contact_number"]}` works too. Upload the HTML file and save the card.
+   3. **Fill in the other languages.** Open the **Translations** screen. Under **Download
+      Translations**, pick the platform and press **DOWNLOAD**. The zip has one JSON file per
+      language the organisation has enabled, and every key declared on every card is already in
+      each of them. Put the translated text against `contact_number` in each language file. Then,
+      under **Upload Translations** on the same screen, pick the language, **CHOOSE FILE** and
+      **UPLOAD**, one language at a time.
+
+   <br />
+
+   **What the field worker sees.** The app resolves each key in this order, and stops at the first
+   one that has a value:
+
+   | Order | Source | Set where |
+   |---|---|---|
+   | 1 | The organisation's translation for the user's language | Translations screen, uploaded file |
+   | 2 | The organisation's English translation | Translations screen, `en.json` |
+   | 3 | The English value on the card | App Designer, Card, Translations |
+   | 4 | The key itself, printed as-is | — |
+
+   Seeing `contact_number` on the screen instead of text means the key reached step 4: it is not
+   declared on the card and it is not in any uploaded translation file. Check the spelling in the
+   HTML against the key on the card.
+
+   <br />
+
+   **The blank-value trap.** A downloaded language file carries every card key with an empty value
+   against it. An empty value is a value: upload the file with `"contact_number": ""` still in it
+   and the card renders a blank where the label should be. It does not fall back to English. Fill
+   the value in, or delete the key from that language's file before uploading it.
+
+   <br />
+
+   **Two more things worth knowing.**
+
+   - Any key the organisation has translated can be used, not only the ones declared on the card.
+     `${translations.Male}` picks up the organisation's translation of a concept answer.
+   - The card's **title on the dashboard tile** is not translated through this block. The tile
+     shows the card's name, or the `name` the data rule returns, translated against the
+     organisation's translations under that exact text. Declaring the card name as a key under
+     **Translations** does not reach the tile.
 
    #### Interactive Filtering
 
@@ -1343,7 +1417,8 @@ HTML template receives:
 
 - **Backticks** — the HTML is wrapped in backticks. A stray \`\`\` in your HTML will break evaluation. Use `&#96;` for backtick characters.
 - **Template expressions in scripts** — inside `<script>` tags, use string concatenation instead of backtick template literals to avoid ambiguity with the outer template evaluation.
-- **Heavy computations in lineListFunction** — it's called every time the card detail view opens. Keep it fast with indexed Realm queries.
+- **Heavy computations in the data rule** — the rule runs every time the dashboard loads, once per card. Keep it fast with indexed queries, and move expensive row-building into `deferredDataFunction`, which only runs when the card is opened.
+- **Hard-coded English in the template** — a string typed straight into the HTML stays English in every language. Put it behind `${translations.KEY}`.
 
 #### Complete Example
 
@@ -1368,13 +1443,22 @@ HTML template receives:
     return {
         primaryValue: rows.length,
         secondaryValue: `(${rows.length} this month)`,
-        cardName: 'Recent Registrations',
-        cardColor: '#FFE500',
-        textColor: '#222222',
-        lineListFunction: () => ({ total: rows.length, rows: rows }),
+        name: 'Recent Registrations',
+        colors: { background: '#FFE500', text: '#222222' },
+        data: { total: rows.length, rows: rows },
     };
 \}
 ```
+
+**Translations on the card:**
+
+| Translation Key | Default (English) Value |
+|---|---|
+| `reg_this_month` | registrations this month |
+| `col_date` | Date |
+| `col_name` | Name |
+| `col_status` | Status |
+| `no_reg_this_month` | No registrations this month |
 
 **HTML template:**
 
@@ -1389,12 +1473,12 @@ HTML template receives:
 </style>
 
 <div class="summary">
-    <div class="value">${data.total} registrations this month</div>
+    <div class="value">${data.total} ${translations.reg_this_month}</div>
 </div>
 
 ${data.rows.length > 0 ? `
 <table>
-    <thead><tr><th>Date</th><th>Name</th><th>Status</th></tr></thead>
+    <thead><tr><th>${translations.col_date}</th><th>${translations.col_name}</th><th>${translations.col_status}</th></tr></thead>
     <tbody>
         ${data.rows.map(row => `
         <tr><td>${row.date}</td><td>${row.name}</td><td>${row.status}</td></tr>
@@ -1402,12 +1486,14 @@ ${data.rows.length > 0 ? `
     </tbody>
 </table>
 
-` : `<div style="text-align:center;color:#777;padding:20px;">No registrations this month</div>`}
+` : `<div style="text-align:center;color:#777;padding:20px;">${translations.no_reg_this_month}</div>`}
 ```
 
 ### Bundle Upload
 
-Card configuration — including action settings (action type, subject type, program, encounter type, visit type, and the Mark-attendance action's attendance type) and custom design card HTML — is included in the organisation bundle export/import. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+Card configuration is included in the organisation bundle export and import. That covers the action settings (action type, subject type, program, encounter type, visit type, and the Mark-attendance action's attendance type), the custom design card HTML, and the card's translation keys with their English values. All card settings are preserved across bundle upload. No additional configuration is needed after import.
+
+The translated values for the other languages are not stored on the card. They sit in the organisation's translation files, which the bundle carries separately under `translations/`. A bundle that includes those files brings the card's languages with it; one that does not leaves the card rendering its English values until the receiving organisation's translation files are uploaded.
 
 ## Default Dashboard and Cards
 
