@@ -300,6 +300,8 @@ Custom design cards allow implementers to upload an HTML file as the display tem
 
 Sample Data Rule and HTML
 
+**This sample is English only.** Its labels, its empty-table message and its status pills are typed straight into the HTML and the script, so they stay English in every language. To translate a card like this, follow [Translations](#translations) under Custom Design Cards further down. Text the card's script writes needs the steps under "Text the card's script writes".
+
 ```javascript
 'use strict';
 ({params, imports}) => {
@@ -1329,7 +1331,9 @@ empty `data` object.
    1. **Declare the key on the card.** In App Designer → Card, under **Translations**, add a row:
       Translation Key `contact_number`, Default (English) Value `Contact Number`. Save.
    2. **Reference it in the HTML.** Write `${translations.contact_number}` where the text belongs.
-      `${translations["contact_number"]}` works too. Upload the HTML file and save the card.
+      Upload the HTML file and save the card. The short form works only for a key made of letters,
+      digits and underscores that does not start with a digit. Any other key needs the quoted
+      form: `${translations["Total Approved"]}`, `${translations["Amount (Rs)"]}`.
    3. **Fill in the other languages.** Open the **Translations** screen. Under **Download
       Translations**, pick the platform and press **DOWNLOAD**. The zip has one JSON file per
       language the organisation has enabled, and every key declared on every card is already in
@@ -1362,10 +1366,51 @@ empty `data` object.
 
    <br />
 
-   **Two more things worth knowing.**
+   **Values that come from the data.** A status, an approval state or a coded answer reaches the
+   template as the English value the data rule returned. Use the value itself as the key:
+   `${translations[row.status]}`. Make sure every value the rule can return is a key with a
+   translation, or that value shows in English.
 
-   - Any key the organisation has translated can be used, not only the ones declared on the card.
-     `${translations.Male}` picks up the organisation's translation of a concept answer.
+   <br />
+
+   **Text the card's script writes.** Everything inside `${...}` is filled in once, before the card
+   opens. A `<script>` on the card runs later, after the card opens. Text it writes then, such as a
+   total recalculated when a filter changes or a status label in a table it builds, is not
+   translated unless the script carries the translations with it. Copy them in one key at a time:
+
+   ```html
+   <script>
+       // Filled in once, before the card opens: one line per key the script uses.
+       var T = {
+           "Pending":        ${JSON.stringify(translations["Pending"])},
+           "Total Approved": ${JSON.stringify(translations["Total Approved"])}
+       };
+       function tr(key) { return T[key] || key; }
+
+       // Later, whenever the script writes text:
+       document.getElementById('summary').textContent = tr("Total Approved") + ': Rs ' + total;
+       cell.textContent = tr(row.status);   // a value from the data, used as the key
+   </script>
+   ```
+
+   Wrapping each value in `JSON.stringify(...)` keeps a translation that contains a quote or a line
+   break from breaking the script. Add a line to the list for every key the script uses. A key
+   left out shows in English.
+
+   **Do not copy the whole set with `${JSON.stringify(translations)}`.** It produces an empty list
+   `{}`, so everything the script writes stays English. No error is shown.
+
+   <br />
+
+   **Three more things worth knowing.**
+
+   - Any key the organisation has translated can be used by name, not only the ones declared on the
+     card. `${translations.Male}` picks up the organisation's translation of a concept answer. Only a
+     key asked for by name is looked up this way.
+   - A key can be declared on one card only. Saving a card with a key another card already declares
+     fails, and the error names the key and the other card. When several cards need the same
+     label, declare the key once, on any one card, and use it by name on all of them. The other
+     cards do not need to declare it.
    - The card's **title on the dashboard tile** is not translated through this block. The tile
      shows the card's name, or the `name` the data rule returns, translated against the
      organisation's translations under that exact text. Declaring the card name as a key under
@@ -1376,13 +1421,30 @@ empty `data` object.
    For interactivity (dropdowns, filters), embed the data as JSON in a `<script>` tag and use plain JavaScript:
 
    ```html
+   <div id="summary">${translations["Total Approved"]}: Rs 0</div>
+
+   <label>${translations["Month"]}:</label>
    <select id="month-filter" onchange="filterByMonth()">
-       <option value="all">All months</option>
+       <option value="all">${translations["All"]}</option>
    </select>
-   <tbody id="table-body"></tbody>
+
+   <table>
+       <thead><tr><th>${translations["Date"]}</th><th>${translations["Status"]}</th></tr></thead>
+       <tbody id="table-body"></tbody>
+   </table>
 
    <script>
        var allRows = ${JSON.stringify(data.rows)};
+
+       // The translations this script writes, copied in one key at a time.
+       var T = {
+           "Total Approved":   ${JSON.stringify(translations["Total Approved"])},
+           "No records found": ${JSON.stringify(translations["No records found"])},
+           "Approved":         ${JSON.stringify(translations["Approved"])},
+           "Pending":          ${JSON.stringify(translations["Pending"])},
+           "Rejected":         ${JSON.stringify(translations["Rejected"])}
+       };
+       function tr(key) { return T[key] || key; }
 
        function filterByMonth() {
            var selected = document.getElementById('month-filter').value;
@@ -1393,8 +1455,19 @@ empty `data` object.
        }
 
        function renderRows(rows) {
-           document.getElementById('table-body').innerHTML = rows.map(function(row) {
-               return '<tr><td>' + row.name + '</td></tr>';
+           var total = rows
+               .filter(function(row) { return row.status === 'Approved'; })
+               .reduce(function(sum, row) { return sum + row.amount; }, 0);
+           document.getElementById('summary').textContent = tr("Total Approved") + ': Rs ' + total;
+
+           var tbody = document.getElementById('table-body');
+           if (rows.length === 0) {
+               tbody.innerHTML = '<tr><td colspan="2">' + tr("No records found") + '</td></tr>';
+               return;
+           }
+           tbody.innerHTML = rows.map(function(row) {
+               return '<tr><td>' + row.date + '</td>'
+                   + '<td class="status-' + row.status + '">' + tr(row.status) + '</td></tr>';
            }).join('');
        }
 
@@ -1403,6 +1476,12 @@ empty `data` object.
    ```
 
    The key pattern: `${JSON.stringify(data.rows)}` injects the data as a JSON literal at template evaluation time. The `<script>` then uses it as a regular JavaScript variable for dynamic filtering.
+
+   The labels outside the script (the month label, "All", the column headings) are filled in before
+   the card opens, so `${translations[...]}` is enough for them. The summary line, the empty-table
+   message and the status labels are written by the script, so they go through `T`. The raw status
+   stays in the class name, so styling that matches on `status-Approved` keeps working in every
+   language.
 
    #### Scrolling
 
@@ -1419,9 +1498,9 @@ empty `data` object.
 #### Things to Avoid
 
 - **Backticks** — the HTML is wrapped in backticks. A stray \`\`\` in your HTML will break evaluation. Use `&#96;` for backtick characters.
-- **Template expressions in scripts** — inside `<script>` tags, use string concatenation instead of backtick template literals to avoid ambiguity with the outer template evaluation.
+- **Backtick strings inside scripts** — inside `<script>` tags, build strings with `+` rather than backtick template literals, which clash with the outer template. `${...}` itself is fine inside a script and is how data and translations reach it: `${JSON.stringify(data.rows)}`, `${JSON.stringify(translations["KEY"])}`.
 - **Heavy computations in the data rule** — the rule runs every time the dashboard loads, once per card. Keep it fast with indexed queries, and move expensive row-building into `deferredDataFunction`, which only runs when the card is opened.
-- **Hard-coded English in the template** — a string typed straight into the HTML stays English in every language. Put it behind `${translations.KEY}`.
+- **Hard-coded English in the template** — a string typed straight into the HTML stays English in every language. Put it behind `${translations.KEY}`. The same goes for a string the script writes: `'Total Approved: Rs ' + total` stays English. Put it behind `tr("Total Approved")` (see [Text the card's script writes](#translations)).
 
 #### Complete Example
 
@@ -1462,6 +1541,10 @@ empty `data` object.
 | `col_name` | Name |
 | `col_status` | Status |
 | `no_reg_this_month` | No registrations this month |
+| `approved` | Approved |
+
+`approved` is the status value the data rule returns. It is a key so the template can translate
+the value itself.
 
 **HTML template:**
 
@@ -1484,7 +1567,7 @@ ${data.rows.length > 0 ? `
     <thead><tr><th>${translations.col_date}</th><th>${translations.col_name}</th><th>${translations.col_status}</th></tr></thead>
     <tbody>
         ${data.rows.map(row => `
-        <tr><td>${row.date}</td><td>${row.name}</td><td>${row.status}</td></tr>
+        <tr><td>${row.date}</td><td>${row.name}</td><td>${translations[row.status]}</td></tr>
         `).join('')}
     </tbody>
 </table>
