@@ -437,7 +437,7 @@ VisitSchedulBuilder class has a getAllUniqueVisits method that provides some sho
 * In designer = Form (RULES tab)
 * When to use = To create any additional observations based on all the data filled by the user in the form
 
-Used to add decisions/recommendations to the form. The decisions are displayed on the last page of the form and are also saved in the form's observations.
+Used to add decisions/recommendations to the form. The decisions are displayed on the last page of the form, unless their concept is marked [hidden](https://avni.readme.io/docs/concepts#hidden-concepts), and are also saved in the form's observations.
 
 ### Shape of params object:
 
