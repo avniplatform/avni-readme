@@ -192,6 +192,8 @@ The feature exists for cases where a value must be recorded without influencing 
 1. In App Designer, open the concept on the **Concepts** screen.
 2. Tick **Hidden** and save.
 
+![The Concepts screen with Hidden ticked](https://raw.githubusercontent.com/avniproject/avni-readme-docs/master/img/hidden-concept-tickbox.png "The Concepts screen with Hidden ticked. The tick stores the hidden key-value shown below it.")
+
 The tick stores a `hidden` key-value on the concept. Configuration bundles carry it, so a concept exported from one organisation arrives in another still hidden. Unticking it and saving removes the marker, and values recorded earlier become visible again.
 
 > 🚧 On the create screen, choose the datatype before ticking Hidden
