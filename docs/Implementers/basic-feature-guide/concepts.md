@@ -179,6 +179,76 @@ The following datatypes are supported while defining concepts to be used in form
 
 <br />
 
+## Hidden concepts
+
+Normally a value that is stored is shown, and a question hidden by a rule has its answer deleted. A **hidden concept** gives a third option: the value is stored, synced and reported like any other observation, but is never shown to anyone using the field app or the data entry app.
+
+Hiding is a property of the concept, so it applies to every form that uses the concept, for every user in the organisation. It is not a permission: no role or user group can see a hidden value in either app. It takes effect for values already collected as well as new ones, because the decision is made when a screen is drawn.
+
+The feature exists for cases where a value must be recorded without influencing the person recording it. The usual example is running an [on-device AI model](https://avni.readme.io/docs/edge-ai-model-integration) in shadow mode: the model's verdict is saved alongside the worker's own assessment so the two can be compared in reporting, without the worker ever seeing the verdict.
+
+### Marking a concept hidden
+
+1. In App Designer, open the concept on the **Concepts** screen.
+2. Tick **Hidden** and save.
+
+The tick stores a `hidden` key-value on the concept. Configuration bundles carry it, so a concept exported from one organisation arrives in another still hidden. Unticking it and saving removes the marker, and values recorded earlier become visible again.
+
+> 🚧 On the create screen, choose the datatype before ticking Hidden
+>
+> Changing the datatype of a new concept clears every key-value on it, including the Hidden tick, without warning. Choose the datatype first and tick Hidden after. Editing an existing concept does not have this problem.
+
+In the form designer, a question whose concept is hidden shows a read-only **Hidden** marker, and its **Mandatory** tickbox is disabled with the reason shown. The marker cannot be changed from the form; it belongs to the concept.
+
+### Where a hidden value never appears
+
+In the **field app**:
+
+* the form page, including inside a repeatable question group
+* the summary at the end of the form, both the answers given and the decisions the app worked out
+* the subject's profile
+* past visits in the subject's history
+* program enrolments, and the answers recorded on program exit
+* approval screens
+* summary screens built by a rule
+* shared or printed copies of a form
+
+In the **data entry app**:
+
+* a visit
+* the subject's profile
+* a program enrolment
+* the page shown after registering someone
+* summaries built by a rule
+* the list of completed visits
+* subject search results: a hidden concept configured as a [custom search result field](https://avni.readme.io/docs/custom-fields-in-search-results) is left out of the result columns. The configuration itself is not changed, and the column comes back if the concept is unhidden.
+
+A screen or table whose values are all hidden shows nothing at all, rather than an empty frame or a heading with no rows.
+
+### What hiding does to a question
+
+* **It is never required.** A hidden question is not validated, so it cannot block a worker from moving to the next page, whatever its Mandatory setting says. A Mandatory tick saved before the concept was hidden is kept and still shows in the form designer, but has no effect. This is the guarantee; the disabled tickbox in the designer only prevents the wrong expectation, because a concept can be hidden long after forms already use it.
+* **A failed inference raises no error.** If an on-device model cannot produce a value for a hidden question, the worker sees no error and is not blocked. For a question that is not hidden the error still appears and still blocks, exactly as before.
+
+### Hidden concepts and visibility rules are different things
+
+Hiding a question with a form element rule that returns `visibility: false` removes the question from the form and **deletes its answer**. Marking the concept hidden keeps the answer and only stops it being drawn. The two sound alike and do opposite things to the value.
+
+This also means a visibility rule that hides a hidden concept's question still deletes the value. Do not combine the two.
+
+### Designing a form with hidden questions
+
+* **Put the hidden question on the same page as whatever produces its value.** A value produced while a page is being filled, such as an on-device model's verdict, is written into a question on that page. If the hidden question sits on another page, the value is lost.
+* **Keep at least one visible question on every page.** A page whose questions are all hidden draws blank, heading included. Avni does not prevent this; it is a configuration mistake to avoid.
+
+### What hiding is not
+
+* **Not a confidentiality control.** The value is stored in the app's local database on the device, travels in sync, appears in every export, and is fully readable in the reporting database and in reports. Hiding only keeps it off the screens of the two apps.
+* **Not protection from rules.** A rule can read a hidden value and use it somewhere the worker can see: copy it into a visible question, or show a different prompt depending on what it was. The marker hides the value itself, not a conclusion drawn from it. Nothing in Avni prevents or detects this. Reviewing the organisation's rules is what catches it.
+* **Not per user or per role.** Hidden means hidden from everyone who uses the apps. Reporting is where a hidden value is read.
+
+***
+
 ## Showing counselling points in Forms
 
 For showing counselling points in a form, always create a Form Element, using below coded Concept:

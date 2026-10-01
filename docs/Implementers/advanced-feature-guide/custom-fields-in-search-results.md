@@ -23,3 +23,5 @@ Avni app has the capability to setup [custom search filters](https://avni.readme
 
 **Note**: Only concepts in the registration form are supported.\
 **Supported data types**: Text, Id, coded, numeric, and date.
+
+**Hidden concepts**: A concept marked [Hidden](https://avni.readme.io/docs/concepts#hidden-concepts) is never shown as a search result column, even when it is configured as one. The configuration is left as it is and simply has no effect while the concept is hidden; the column comes back if the concept is unhidden. Hidden values still reach reporting unchanged.

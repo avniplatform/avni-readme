@@ -245,11 +245,19 @@ If the model has not finished downloading, or inference fails, **no verdict is w
 
 > ⚠️ Make the AI-verdict element mandatory for a guaranteed block
 >
-> The validation error above is a best-effort **reason** message ("AI model not available — sync and try again" / "retake the photo"). It can be removed by the form's normal validation lifecycle — a rule re-evaluation, a Previous-then-Next, or editing another field in the same repeatable-group row can clear it. To **guarantee** a worker cannot proceed with an empty verdict, make the target (AI-verdict) form element **mandatory and keep it visible** in exactly the state you are guarding — image present, verdict absent — in App Designer. A mandatory rule is re-derived from durable state every cycle, so it is the load-bearing block; the client validation error is the specific reason shown on top of it. (A hidden element is not validated, so a visibility rule that hides the verdict field until a value exists would defeat the mandatory block.)
+> The validation error above is a best-effort **reason** message ("AI model not available — sync and try again" / "retake the photo"). It can be removed by the form's normal validation lifecycle — a rule re-evaluation, a Previous-then-Next, or editing another field in the same repeatable-group row can clear it. To **guarantee** a worker cannot proceed with an empty verdict, make the target (AI-verdict) form element **mandatory and keep it visible** in exactly the state you are guarding — image present, verdict absent — in App Designer. A mandatory rule is re-derived from durable state every cycle, so it is the load-bearing block; the client validation error is the specific reason shown on top of it. (An element hidden by a visibility rule is not validated, so a visibility rule that hides the verdict field until a value exists would defeat the mandatory block.)
 
 > 📘 A valid earlier verdict is kept, not blocked
 >
 > One case deliberately does **not** block: an encounter synced in with a **valid stored verdict** whose **image media was never downloaded to this device**. There is nothing to recompute against — running inference on the missing file would only fail and block a good result — so the stored verdict is kept as-is and no error is raised. Seeing a verdict with no block in this situation is expected, not a bug.
+
+### Shadow mode: recording a verdict without showing it
+
+To evaluate a model without influencing the worker, mark the target concept [Hidden](https://avni.readme.io/docs/concepts#hidden-concepts) in App Designer. The verdict is still written, synced and reported, but is never drawn in either app, so it can be compared against the worker's own assessment in reporting afterwards.
+
+The blocking behaviour above applies to visible verdicts. For a hidden target, a missing verdict raises no error and never blocks the worker, and the Mandatory setting on the element has no effect. Keep the hidden target element on the same page as the photo question, because that is where the verdict is written, and keep at least one visible question on that page.
+
+Run shadow mode and the visible arrangement in separate organisations. Hiding applies to the concept across the whole organisation, so each organisation is in exactly one mode.
 
 ### Ensemble inference
 
