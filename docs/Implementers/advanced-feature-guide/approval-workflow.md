@@ -56,6 +56,33 @@ Once the approval dashboard is ready and approval workflow is active, every time
 
 Please note that you can tract the forms only when the approval workflow feature is turned on. If you turn off this feature in between then all the forms filled after that will not get tracked.
 
+## Approval and rejection forms
+
+From release 17.3, a supervisor can answer a form when approving or rejecting, instead of typing a comment.
+
+A typed rejection comment is one sentence that nobody can count. A rejection form asks set questions, for example a list of reasons to pick from, so you can see how often each reason comes up.
+
+### Setting up a form
+
+1. In App Designer, create a new form and choose the form type **Rejection**. Choose **Approval** for a form shown when approving.
+2. Add questions as you would on any other form.
+3. In the form's settings, pick the subject type, and the program and encounter type if needed, of the form whose approval it applies to. Approval must already be switched on for that form.
+
+You can attach a rejection form without an approval form, and the other way round.
+
+### What the supervisor and the field user see
+
+* When a rejection form is attached, pressing Reject opens it instead of the comment box. When an approval form is attached, pressing Approve opens it.
+* The field user whose record was rejected sees the supervisor's answers where the rejection comment used to appear.
+* Where no form is attached, approving and rejecting work as before.
+
+### Things to know before you attach a form
+
+* Rejections made before you attached the form keep their typed comment.
+* A rejection form has no free-text box of its own. Add a notes question if supervisors still need to write a remark.
+* The comment box does not let a supervisor reject without a reason. A form does, unless a question on it is mandatory. Make at least one question mandatory if every rejection must carry a reason.
+* The Data Entry App has no approve or reject action, so these forms are used only in the mobile app.
+
 ### Updates to the Approval Status UI (in development)
 
 Approval items will be grouped by Subjects and arranged in alphabetical order.
