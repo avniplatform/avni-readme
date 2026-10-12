@@ -66,11 +66,11 @@ A typed rejection comment is one sentence that nobody can count. A rejection for
 
 1. In App Designer, create a new form and choose the form type **Rejection**. Choose **Approval** for a form shown when approving.
 
-{/* IMAGE 1 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): App Designer, new-form dialog with the form type list open, showing Approval and Rejection */}
+![New Form in App Designer, with Approval and Rejection in the form type list](https://github.com/user-attachments/assets/0ebc0718-c388-495d-be2f-8593fab01093)
 2. Add questions as you would on any other form.
 3. In the form's settings, pick the subject type, and the program and encounter type if needed, of the form whose approval it applies to. Approval must already be switched on for that form.
 
-{/* IMAGE 2 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): a Rejection form's settings, showing the subject type, program and encounter type pickers */}
+![A Rejection form's settings with subject type, program and encounter type](https://github.com/user-attachments/assets/82240e8e-6546-4866-b405-3cef1e5116ca)
 
 You can attach a rejection form without an approval form, and the other way round.
 
@@ -78,10 +78,12 @@ You can attach a rejection form without an approval form, and the other way roun
 
 * When a rejection form is attached, pressing Reject opens it instead of the comment box. When an approval form is attached, pressing Approve opens it.
 
-{/* IMAGE 3 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): mobile app, the rejection form open after pressing Reject; and the approval form open after pressing Approve */}
+![The rejection form, opened by pressing Reject](https://github.com/user-attachments/assets/d0ce5c3e-06d9-416f-b0f6-c4b0dc0d427c)
+
+![The approval form, opened by pressing Approve](https://github.com/user-attachments/assets/63ce9840-171b-4bdf-b833-160040529eb2)
 * The field user whose record was rejected sees the supervisor's answers where the rejection comment used to appear.
 
-{/* IMAGE 4 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): mobile app as the field user, a rejected record showing the supervisor's answers */}
+![A rejected record showing the supervisor's answers under Rejection Note](https://github.com/user-attachments/assets/e33f0bbf-be85-463d-8808-a8a531dd8a56)
 * Where no form is attached, approving and rejecting work as before.
 
 ### Things to know before you attach a form
