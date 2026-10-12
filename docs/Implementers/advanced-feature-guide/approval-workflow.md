@@ -65,15 +65,23 @@ A typed rejection comment is one sentence that nobody can count. A rejection for
 ### Setting up a form
 
 1. In App Designer, create a new form and choose the form type **Rejection**. Choose **Approval** for a form shown when approving.
+
+{/* IMAGE 1 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): App Designer, new-form dialog with the form type list open, showing Approval and Rejection */}
 2. Add questions as you would on any other form.
 3. In the form's settings, pick the subject type, and the program and encounter type if needed, of the form whose approval it applies to. Approval must already be switched on for that form.
+
+{/* IMAGE 2 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): a Rejection form's settings, showing the subject type, program and encounter type pickers */}
 
 You can attach a rejection form without an approval form, and the other way round.
 
 ### What the supervisor and the field user see
 
 * When a rejection form is attached, pressing Reject opens it instead of the comment box. When an approval form is attached, pressing Approve opens it.
+
+{/* IMAGE 3 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): mobile app, the rejection form open after pressing Reject; and the approval form open after pressing Approve */}
 * The field user whose record was rejected sees the supervisor's answers where the rejection comment used to appear.
+
+{/* IMAGE 4 (to capture, prerelease, org dineshbootcamp, user dummy@dineshbootcamp): mobile app as the field user, a rejected record showing the supervisor's answers */}
 * Where no form is attached, approving and rejecting work as before.
 
 ### Things to know before you attach a form
