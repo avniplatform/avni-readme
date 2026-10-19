@@ -44,11 +44,11 @@ Each phone receives only the records its user is allowed to see, as with sync. U
 1. In the web app, open the organisation settings page.
 2. Turn on **Enable clinic sharing**.
 
-[Image 1: web app, organisation settings page, the Enable clinic sharing switch turned on]
+![Organisation settings in the web app, with Enable clinic sharing turned on](https://github.com/user-attachments/assets/bfd22bbb-ba63-42db-966e-2eb0b11a6676)
 
 3. Ask each user to sync their phone. After the sync, **Clinic sharing** appears in the app's **More** menu.
 
-[Image 2: phone, More menu with Clinic sharing in the list]
+![More menu with Clinic sharing](https://github.com/user-attachments/assets/b0d80acd-26f2-4f0d-aa67-d8ae3b7bbd87)
 
 ## Starting the hub
 
@@ -56,11 +56,11 @@ Each phone receives only the records its user is allowed to see, as with sync. U
 2. Under **Make this phone the hub**, tap **Start hub**.
 3. Allow the permissions Android asks for.
 
-[Image 3: hub phone, Clinic sharing screen before starting, with Make this phone the hub and Start hub]
+![Clinic sharing screen with Make this phone the hub and Start hub](https://github.com/user-attachments/assets/b91f1be8-fa23-4315-96f9-755a31df730b)
 
 The hub shows a code to scan, with the name and password of its Wi-Fi network. It also shows how many phones synced with it in the last 5 minutes.
 
-[Image 4: hub phone, running hub with the code, Network, Password, Phones synced in the last 5 minutes and Stop hub]
+![A running hub showing its code, network name and password, phones synced in the last 5 minutes, and Stop hub](https://github.com/user-attachments/assets/21a02163-7121-44dc-b7a0-db4090e377fd)
 
 To stop sharing, tap **Stop hub**.
 
@@ -70,15 +70,13 @@ To stop sharing, tap **Stop hub**.
 2. Tap **Scan to join**.
 3. Point the camera at the code on the hub phone.
 
-[Image 5: joining phone, the camera scanning the hub's code]
+![Scanning the hub's code](https://github.com/user-attachments/assets/eeb43c42-49d8-4b72-a720-f07332fd82af)
 
 4. If Android asks to connect to the hub's network, tap **Connect**.
 
-[Image 6: joining phone, Android's dialog asking to connect to the hub's network]
-
 The screen then shows **Joined to** the hub's network, and when the phone last synced with the hub. A joined phone syncs with the hub every 30 seconds while Avni is open. To sync at once, tap **Sync with hub**. To stop sharing, tap **Leave hub**.
 
-[Image 7: joined phone, Joined to the hub, Last synced with the hub, Sync with hub and Leave hub]
+![A joined phone with Sync with hub and Leave hub](https://github.com/user-attachments/assets/f5ccc7b3-2295-4564-a7c5-e0952c49a6da)
 
 A joined phone can still sync with the server over mobile data. The hub's Wi-Fi has no internet, and Avni does not try to reach the server through it.
 
@@ -92,13 +90,11 @@ Phones on Android 8 or 9 cannot join the hub's network from inside Avni.
 
 If the phone is on another network, Avni says so and asks the user to join the hub's network in Wi-Fi settings first.
 
-[Image 8: older phone, the message asking to join the hub's network in Wi-Fi settings]
-
 ## When a phone loses the hub
 
 A phone that walks out of range loses the hub's network. The screen says the phone lost the hub's Wi-Fi, and offers **Rejoin** with the hub's name. Tap it when the phone is back in range.
 
-[Image 9: joined phone after leaving range, the lost Wi-Fi message with Rejoin and Scan a new code]
+![Rejoin and Scan a new code](https://github.com/user-attachments/assets/e3f0c23a-3bd0-42df-85cd-535cfd1e643f)
 
 The same happens if Android closes Avni in the background. For example, it can close Avni while the phone's camera app is open for a photo. Open **Clinic sharing** and tap **Rejoin**.
 
@@ -106,9 +102,9 @@ The same happens if Android closes Avni in the background. For example, it can c
 
 Stopping and starting the hub creates a new network with a new name and password. Every phone must scan the hub's new code.
 
-**Rejoin** cannot find the old network. The screen says the phone could not join, and suggests scanning the new code. Tap **Scan a new code** and scan the code on the hub. Records shared before the restart stay on the phones.
+**Rejoin** cannot find the old network. Android may say that no devices were found. Tap **Cancel**. The screen then says the phone could not join, and suggests scanning the new code. Tap **Scan a new code** and scan the code on the hub. Records shared before the restart stay on the phones.
 
-[Image 10: phone after the hub restarted, the could not join message suggesting a new scan]
+![Could not join the old network, with the suggestion to scan the new code](https://github.com/user-attachments/assets/30aad166-c7ce-4ece-94cf-96eb3ace0c96)
 
 ## When two people edit the same record
 
@@ -123,7 +119,7 @@ A record from another phone belongs to that phone. That phone uploads it to the 
 
 * The **Clinic sharing** screen shows how many records are waiting.
 
-[Image 11: phone, Clinic sharing screen with the count of records waiting to upload]
+![Records waiting to upload until records from other phones reach the server](https://github.com/user-attachments/assets/d97c9f86-6fc9-4f35-abe5-a9817a3f6315)
 
 * When this phone next syncs with the server and finds the patient there, it uploads the waiting records in the same sync.
 * If a record waits more than 3 days, the screen names the record it is waiting on. Ask the user of the phone that made that record to sync.
@@ -133,6 +129,6 @@ A record from another phone belongs to that phone. That phone uploads it to the 
 * Photos travel to the hub with their records.
 * A joined phone fetches a photo from the hub when someone opens it.
 
-[Image 12: joined phone, a visit opened with a photo taken on another phone]
+![A visit from another phone, opened with its photos](https://github.com/user-attachments/assets/45ee518a-f258-4c81-a066-a46e4b34420f)
 
 * Each phone uploads its own photos to the server, as usual.
