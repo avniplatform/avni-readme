@@ -28,7 +28,7 @@ Each phone receives only the records its user is allowed to see, as with sync. U
 
 * **Users must be in the SQLite Migration user group.** Clinic sharing works only on phones that use the new on-device database.
 * **The organisation must not use on-device data encryption.** The Clinic sharing menu is hidden when encryption is on.
-* **All phones must have the same version of the Avni app.** A phone on a different version cannot sync with the hub.
+* **All phones must have the same version of the Avni app.**
 
 ## Choosing the hub phone
 
@@ -58,7 +58,7 @@ Each phone receives only the records its user is allowed to see, as with sync. U
 
 <Image align="center" width="216px" alt="Clinic sharing screen with Make this phone the hub and Start hub" src="https://github.com/user-attachments/assets/b91f1be8-fa23-4315-96f9-755a31df730b" />
 
-The hub shows a code to scan, with the name and password of its Wi-Fi network. It also shows how many phones synced with it in the last 5 minutes. Below that it lists every phone by its user and phone model, with when it last synced. A phone that has stopped syncing stays on the list with its old time.
+The hub shows a code to scan, with the name and password of its Wi-Fi network. It also shows how many phones synced with it in the last 5 minutes. Below that it lists every phone by its user and phone model, with when it last synced.
 
 <Image align="center" width="216px" alt="A running hub showing its code, network name and password, phones synced in the last 5 minutes, each phone with its last sync, and Stop hub" src="https://github.com/user-attachments/assets/08d50bfc-87cd-46b2-be89-a68323f7d189" />
 
@@ -82,13 +82,11 @@ A joined phone can still sync with the server over mobile data. The hub's Wi-Fi 
 
 ## Joining by hand on older phones
 
-Phones on Android 8 or 9 cannot join the hub's network from inside Avni.
+Phones older than Android 10 cannot join the hub's network from inside Avni.
 
 1. Open the phone's Wi-Fi settings.
 2. Join the network shown on the hub screen, with the password shown there.
 3. In Avni, open **Clinic sharing** and tap **Scan to join**.
-
-If the phone is on another network, Avni says so and asks the user to join the hub's network in Wi-Fi settings first.
 
 ## When a phone loses the hub
 
