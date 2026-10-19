@@ -58,7 +58,7 @@ Each phone receives only the records its user is allowed to see, as with sync. U
 
 <Image align="center" width="216px" alt="Clinic sharing screen with Make this phone the hub and Start hub" src="https://github.com/user-attachments/assets/b91f1be8-fa23-4315-96f9-755a31df730b" />
 
-The hub shows a code to scan, with the name and password of its Wi-Fi network. It also shows how many phones synced with it in the last 5 minutes.
+The hub shows a code to scan, with the name and password of its Wi-Fi network. It also shows how many phones synced with it in the last 5 minutes. Below that it lists every phone by its user and phone model, with when it last synced. A phone that has stopped syncing stays on the list with its old time.
 
 <Image align="center" width="216px" alt="A running hub showing its code, network name and password, phones synced in the last 5 minutes, and Stop hub" src="https://github.com/user-attachments/assets/21a02163-7121-44dc-b7a0-db4090e377fd" />
 
