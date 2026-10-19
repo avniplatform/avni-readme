@@ -2,7 +2,7 @@
 title: Clinic sharing
 excerpt: 'Share subjects, visits and photos between the phones in a mobile clinic without internet'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
