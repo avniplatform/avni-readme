@@ -106,10 +106,10 @@ Stopping and starting the hub creates a new network with a new name and password
 
 ## When two people edit the same record
 
+Each person should edit only the records they created. If two people do edit the same record:
+
 * Through the hub, the version that reaches the hub last is kept.
 * On the server, the last upload wins, as with sync.
-
-Agree in the clinic who completes each record, so that two people do not fill the same visit.
 
 ## Why some uploads wait
 
